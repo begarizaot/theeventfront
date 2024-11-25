@@ -1,0 +1,19 @@
+.checkoutDialog {
+  .p-dialog-content {
+    border-radius: 10px;
+    background: var(--colorBody);
+
+    .contTickets,
+    .contCheckout {
+      height: calc(100% - 120px);
+    }
+  }
+
+  @media only screen and (max-width: 575px) {
+    .p-dialog-content {
+      .contTickets {
+        height: calc(100% - 120px - 180px);
+      }
+    }
+  }
+}

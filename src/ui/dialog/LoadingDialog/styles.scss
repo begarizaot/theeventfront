@@ -1,0 +1,11 @@
+.loadingDialog {
+  box-shadow: none;
+  .p-dialog-content {
+    padding: 0;
+    background: transparent;
+    height: 14rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

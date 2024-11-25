@@ -1,0 +1,16 @@
+.TicketQrDetailDialog {
+  box-shadow: none;
+  .p-dialog-content {
+
+    background: var(--colorBody);
+  }
+
+  .p-dialog-header{
+    background: var(--colorBody);
+    padding-top: 10px;
+    padding-bottom: 8px;
+    path{
+        fill: white;
+    }
+  }
+}
