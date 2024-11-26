@@ -1,6 +1,6 @@
 import "./style.scss";
 
-import { EventCardEffect } from "../../../../ui";
+import { EventCard } from "../../../../ui";
 
 import { useAllEvents } from "./useAllEvents";
 import { Paginator } from "primereact/paginator";
@@ -34,9 +34,9 @@ export const AllEventsPage = () => {
           <div className="grid">
             <div className="col-12">
               <div className="grid">
-                {data?.map((item:any) => (
+                {data?.map((item: any) => (
                   <div className="col-12 sm:col-6 lg:col-4" key={item?.id}>
-                    <EventCardEffect link="/event" />
+                    <EventCard link="/event" />
                   </div>
                 ))}
               </div>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { EventCard, EventCardEffect } from "../../../../../../ui";
+import { EventCard } from "../../../../../../ui";
 
 export const EventsLits = () => {
   return (
@@ -20,14 +20,9 @@ export const EventsLits = () => {
 
         <div className="col-12">
           <div className="grid">
-            {[1].map((item) => (
+            {[1, 2, 3, 4].map((item) => (
               <div className="col-12 sm:col-6 lg:col-4" key={item}>
                 <EventCard link="event" />
-              </div>
-            ))}
-            {[1].map((item) => (
-              <div className="col-12 sm:col-6 lg:col-4" key={item}>
-                <EventCardEffect link="event" />
               </div>
             ))}
           </div>

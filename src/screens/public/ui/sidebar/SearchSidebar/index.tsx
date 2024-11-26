@@ -5,7 +5,7 @@ import { InputText } from "primereact/inputtext";
 import { Sidebar } from "primereact/sidebar";
 
 // components
-import { InputIcon, EventCardEffect } from "../../../../../ui";
+import { InputIcon, EventCard } from "../../../../../ui";
 
 interface SearchSidebarProps {
   visible: boolean;
@@ -43,7 +43,7 @@ export const SearchSidebar = ({ showVisible, visible }: SearchSidebarProps) => {
           <div className="grid">
             {[1, 2, 3, 4].map((item) => (
               <div className="col-12" key={item} onClick={showVisible}>
-                <EventCardEffect link="event" />
+                <EventCard link="event" />
               </div>
             ))}
           </div>
