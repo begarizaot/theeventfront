@@ -2,8 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Footer, Header } from "../ui";
 
 import { SearchProvider } from "../context";
+import { PrivateRouter } from "../../../routers";
 
-import { PrivateRouter } from "./PrivateRouter";
 import { Error404Page } from "../../pages";
 import {
   AllEventsPage,
@@ -32,22 +32,10 @@ export const ScreenPublicRouter = () => {
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/contact-us" element={<ContactPage />} />
 
-        <Route
-          path="tickets/*"
-          element={
-            <PrivateRouter>
-              <Route path="/*" element={<MyTickets />} />
-            </PrivateRouter>
-          }
-        />
-        <Route
-          path="ticket/:id/*"
-          element={
-            <PrivateRouter>
-              <Route path="/*" element={<MyTicketDetail />} />
-            </PrivateRouter>
-          }
-        />
+        <Route element={<PrivateRouter />}>
+          <Route path="/tickets" element={<MyTickets />} />
+          <Route path="/ticket/:id" element={<MyTicketDetail />} />
+        </Route>
 
         <Route path="404" element={<Error404Page />} />
         <Route path="*" element={<Navigate to="/404" />} />
