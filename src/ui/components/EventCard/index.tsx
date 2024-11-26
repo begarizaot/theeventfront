@@ -2,13 +2,19 @@ import { Link } from "react-router-dom";
 
 interface EventCardProps {
   link?: string;
+  manager?: boolean;
 }
 
-export const EventCard = ({ link = "" }: EventCardProps) => {
+export const EventCard = ({ link = "", manager }: EventCardProps) => {
   return (
     <Link to={`${link}/1`} className="no-underline text-white">
       <div className="effectBorder p-1 border-round">
         <div className="relative h-28rem border-round">
+          {manager && (
+            <div className="absolute z-1 right-0 mr-3 mt-3 bg-white text-black-alpha-90 p-2 border-round text-sm">
+              Manager
+            </div>
+          )}
           <div
             className="bg-cover bg-center bg-no-repeat absolute w-full h-full bgGradient border-round"
             style={{

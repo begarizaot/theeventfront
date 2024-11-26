@@ -1,0 +1,21 @@
+.myEventsPage {
+  .tabMenuMyEvent {
+    .p-tabmenu-nav {
+      background: transparent;
+      border: 0;
+      justify-content: center;
+
+      .p-menuitem-link {
+        background: transparent;
+        border-radius: 10px;
+        border: 0;
+      }
+
+      .p-highlight .p-menuitem-link {
+        background: var(--effectPrimary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+}
