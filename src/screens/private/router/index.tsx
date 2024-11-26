@@ -5,7 +5,7 @@ import { Header } from "../ui";
 import { PrivateRouter } from "../../../routers";
 
 import { Error404Page } from "../../pages";
-import { CreateEventPage, MyEventsPage } from "../pages";
+import { CreateEventPage, MyEventsPage, ProfilePage } from "../pages";
 
 export const ScreenPrivateRouter = () => {
   return (
@@ -16,6 +16,7 @@ export const ScreenPrivateRouter = () => {
           <Route element={<PrivateRouter />}>
             <Route path="/myEvents" element={<MyEventsPage />} />
             <Route path="/createEvent" element={<CreateEventPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
 
           <Route path="404" element={<Error404Page />} />
