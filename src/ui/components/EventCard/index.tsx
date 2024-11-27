@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 
 interface EventCardProps {
   link?: string;
+  sublink?: string;
   manager?: boolean;
 }
 
-export const EventCard = ({ link = "", manager }: EventCardProps) => {
+export const EventCard = ({ link = "", sublink, manager }: EventCardProps) => {
   return (
-    <Link to={`${link}/1`} className="no-underline text-white">
+    <Link
+      to={`${link}/1${sublink ? `/${sublink}` : ""}`}
+      className="no-underline text-white"
+    >
       <div className="effectBorder p-1 border-round">
         <div className="relative h-28rem border-round">
           {manager && (

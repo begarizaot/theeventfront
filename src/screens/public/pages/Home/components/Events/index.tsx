@@ -20,7 +20,7 @@ export const EventsLits = () => {
 
         <div className="col-12">
           <div className="grid">
-            {[1, 2, 3, 4].map((item) => (
+            {[1, 2, 3].map((item) => (
               <div className="col-12 sm:col-6 lg:col-4" key={item}>
                 <EventCard link="event" />
               </div>

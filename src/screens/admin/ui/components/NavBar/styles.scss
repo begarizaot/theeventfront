@@ -1,0 +1,31 @@
+.navBar {
+  border: 0;
+  border-radius: 0;
+  background: #161a1f;
+  .p-menu-list {
+    height: 100%;
+
+    .p-submenu-header {
+      color: var(--colorPrimario);
+    }
+
+    .p-submenu-header,
+    .p-menuitem-content:hover {
+      background: transparent;
+    }
+  }
+}
+.layoutMobile {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 3;
+}
+
+.layoutMobileBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 2;
+}

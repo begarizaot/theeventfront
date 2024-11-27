@@ -17,7 +17,7 @@ export const MyEventsPage = () => {
       <div className="col-12">
         <div className="grid">
           <div className="col-12 sm:col-6 lg:col-4">
-            <EventCard link="/event" manager={true} />
+            <EventCard link="/admin" sublink="analytics" manager={true} />
           </div>
         </div>
       </div>

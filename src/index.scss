@@ -158,6 +158,14 @@ select,
   height: 58vh;
 }
 
+.transition{
+  transition: all 0.3s ease;
+}
+
+.col-0{
+  width: 0;
+}
+
 // colors
 .textBlack {
   color: var(--colorBody);
