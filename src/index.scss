@@ -2,6 +2,7 @@
   --colorPrimario: #cf0032;
   --colorSecundario: #242565;
   --colorBody: #0e0e0e;
+  --colorCard: #1d1d1d;
   --colorBorder: #615e9b;
   --effectPrimary: linear-gradient(
     267.23deg,
@@ -101,6 +102,8 @@ select,
 
   .p-paginator-page {
     border-radius: 15px;
+    min-width: 2.5rem;
+    height: 2.5rem;
   }
 
   .p-highlight {
@@ -117,7 +120,7 @@ select,
   }
 }
 
-.swal2-confirm{
+.swal2-confirm {
   background: var(--colorPrimario);
   color: white;
 }
@@ -145,24 +148,58 @@ select,
   color: white;
 }
 
-.p-accordion-header-link{
+.p-accordion-header-link {
   padding-left: 0;
   padding-right: 0;
 }
 
-.p-accordion-content{
+.p-accordion-content {
   padding: 5px;
 }
 
-.h58{
+.contTable {
+  border: 1px solid var(--colorBorder);
+  border-radius: 10px;
+
+  .p-datatable-header {
+    background: transparent;
+    border: 0;
+  }
+  .p-datatable-wrapper {
+    .p-datatable-thead {
+      th {
+        border-top: 1px solid var(--colorBorder);
+        border-bottom: 1px solid var(--colorBorder);
+        background: rgba(217, 217, 217, 0.1);
+        color: white;
+      }
+    }
+    .p-datatable-tbody {
+      tr {
+        background: transparent;
+        color: white;
+        td {
+          border: 0;
+        }
+      }
+    }
+  }
+
+  .p-paginator {
+    border: 0;
+    border-top: 1px solid var(--colorBorder);
+  }
+}
+
+.h58 {
   height: 58vh;
 }
 
-.transition{
+.transition {
   transition: all 0.3s ease;
 }
 
-.col-0{
+.col-0 {
   width: 0;
 }
 
@@ -170,12 +207,18 @@ select,
 .textBlack {
   color: var(--colorBody);
 }
+.textCard {
+  color: var(--colorCard);
+}
 .textPrimary {
   color: var(--colorPrimario);
 }
 
 .bgBody {
   background: var(--colorBody);
+}
+.bgCard {
+  background: var(--colorCard);
 }
 .bgPrimary {
   background: var(--colorPrimario);

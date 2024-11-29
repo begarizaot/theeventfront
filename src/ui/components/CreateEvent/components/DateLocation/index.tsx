@@ -1,5 +1,6 @@
+import { InputIcon } from "../../../InputIcon";
+
 import { InputText } from "primereact/inputtext";
-import { InputIcon } from "../../../../../../ui";
 import { Calendar } from "primereact/calendar";
 
 export const DateLocation = () => {

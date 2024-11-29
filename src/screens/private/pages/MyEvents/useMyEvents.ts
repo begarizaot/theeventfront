@@ -1,4 +1,4 @@
 export const useMyEvents = () => {
-  const itemsMenu = [{ label: "Dashboard" }, { label: "Transactions" }];
+  const itemsMenu = [{ label: "My Event" }, { label: "Shared Event" }];
   return { itemsMenu };
 };

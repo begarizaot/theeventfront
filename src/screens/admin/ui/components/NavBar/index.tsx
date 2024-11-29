@@ -11,10 +11,12 @@ export const NavBar = () => {
     <div className="p-menuitem-content">
       <NavLink
         to={item.link}
-        className={(res) => {
-          // console.log(res);
-          return "flex align-items-center justify-content-between p-menuitem-link text-white";
-        }}
+        className={({ isActive }) =>
+          `flex align-items-center justify-content-between p-menuitem-link text-white ${
+            isActive ? "border-right-3" : ""
+          }`
+        }
+        onClick={mdTable ? showNav:undefined}
       >
         <span className="text-sm lg:text-base">{item.label}</span>
         <span className={`bgPrimary p-2 border-circle text-sm ${item.icon}`} />
@@ -31,7 +33,7 @@ export const NavBar = () => {
         ),
     },
     {
-      label: "Analytics",
+      label: "Event Analytics",
       template: itemRenderer,
       icon: "pi pi-chart-bar",
       link: `/admin/1/analytics`,
@@ -46,31 +48,31 @@ export const NavBar = () => {
       label: "Team Access",
       template: itemRenderer,
       icon: "pi pi-users",
+      link: `/admin/1/teamAccess`,
     },
     {
       label: "Free Tickets",
       icon: "pi pi-ticket",
       template: itemRenderer,
+      link: `/admin/1/freeTickets`,
     },
     {
       label: "Discount Code",
       icon: "pi pi-code",
       template: itemRenderer,
+      link: `/admin/1/discountCode`,
     },
     {
       label: "Scan Tickets",
       icon: "pi pi-qrcode",
       template: itemRenderer,
-    },
-    {
-      label: "Ticket Control",
-      icon: "pi pi-receipt",
-      template: itemRenderer,
+      link: `/admin/1/scanTickets`,
     },
     {
       label: "Download Guest List",
       icon: "pi pi-download",
       template: itemRenderer,
+      link: `/admin/1/downloadGuestList`,
     },
   ];
 

@@ -21,11 +21,11 @@ export const Header = () => {
         ></span>
       </div>
       <div className="col-8 text-center">
-        <LogoLink div={true} className="sm:w-5" />
+        <LogoLink div={true} className="w-8 sm:w-5" />
       </div>
       <div className="col-2 text-right">
         <span
-          className="pi pi-bars text-2xl cursor-pointer"
+          className="pi pi-th-large text-2xl cursor-pointer"
           onClick={showNav}
         ></span>
       </div>

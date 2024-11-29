@@ -43,19 +43,15 @@ export const Nav = memo(({ onCLick }: NavProps) => {
   const handelIsLogin = () => {
     setItems([
       {
-        label: "My Events",
+        label: "My Event Manager",
         link: "manager/myEvents",
-      },
-      {
-        label: "Create Event",
-        link: "manager/createEvent",
       },
       {
         label: "My Tickets",
         link: "tickets",
       },
       {
-        label: "My Profile",
+        label: "Profile",
         link: "manager/profile",
       },
     ]);

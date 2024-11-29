@@ -1,5 +1,6 @@
+import { InputIcon } from "../../../InputIcon";
+
 import { Dropdown } from "primereact/dropdown";
-import { InputIcon } from "../../../../../../ui";
 import { InputNumber } from "primereact/inputnumber";
 import { Checkbox } from "primereact/checkbox";
 

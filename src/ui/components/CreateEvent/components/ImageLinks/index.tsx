@@ -1,7 +1,12 @@
-import { InputText } from "primereact/inputtext";
-import { InputFileBtn, InputIcon } from "../../../../../../ui";
 import "./styles.scss";
+
+import { InputIcon } from "../../../InputIcon";
+import { InputFileBtn } from "../../../InputFileBtn";
+
+import { InputText } from "primereact/inputtext";
+
 import { useState } from "react";
+
 export const ImageLinks = () => {
   const [file, setFile] = useState<any>();
   function handleChange(e: any) {
