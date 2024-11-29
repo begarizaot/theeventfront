@@ -16,7 +16,7 @@ export const NavBar = () => {
             isActive ? "border-right-3" : ""
           }`
         }
-        onClick={mdTable ? showNav:undefined}
+        onClick={mdTable ? showNav : undefined}
       >
         <span className="text-sm lg:text-base">{item.label}</span>
         <span className={`bgPrimary p-2 border-circle text-sm ${item.icon}`} />
@@ -27,8 +27,11 @@ export const NavBar = () => {
     {
       template: () =>
         mdTable && (
-          <div className="px-3 text-right py-3" onClick={showNav}>
-            <span className="pi pi-times text-white text-lg"></span>
+          <div className="px-3 text-right py-3">
+            <span
+              className="pi pi-times text-white text-lg cursor-pointer"
+              onClick={showNav}
+            ></span>
           </div>
         ),
     },
