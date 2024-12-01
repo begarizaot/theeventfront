@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useFreeTickets } from "./useFreeTickets";
 
-import { HeaderTable } from "../../ui";
+import { DataCard, HeaderTable } from "../../ui";
 import { CheckoutContext } from "../../../../context";
 
 import { DataTable } from "primereact/datatable";
@@ -25,10 +25,7 @@ export const FreeTickets = () => {
       <div className="col-12">
         <div className="grid justify-content-center">
           <div className="col-12 shadow-1 sm:col-6 h-6rem pb-0 sm:pb-2">
-            <div className="bgCard flex flex-column p-2 border-round h-full">
-              <p className="m-0">Tickets Submitted</p>
-              <h1 className="m-0 ml-auto mt-auto">2</h1>
-            </div>
+            <DataCard label="Tickets Submitted" value="1" />
           </div>
         </div>
       </div>
@@ -44,29 +41,23 @@ export const FreeTickets = () => {
       </div>
 
       <div className="col-12">
-        <div className="col-12">
-          <DataTable
-            value={data}
-            paginator
-            rows={5}
-            loading={loading}
-            filters={filters}
-            globalFilterFields={["name"]}
-            emptyMessage="No customers found."
-            header={HeaderTable({
-              clearFilter,
-              filterValue: globalFilterValue,
-              onFilterChange: onGlobalFilterChange,
-            })}
-            className="contTable"
-          >
-            <Column
-              field="name"
-              header="Name"
-              style={{ width: "25%" }}
-            ></Column>
-          </DataTable>
-        </div>
+        <DataTable
+          value={data}
+          paginator
+          rows={5}
+          loading={loading}
+          filters={filters}
+          globalFilterFields={["name"]}
+          emptyMessage="No customers found."
+          header={HeaderTable({
+            clearFilter,
+            filterValue: globalFilterValue,
+            onFilterChange: onGlobalFilterChange,
+          })}
+          className="contTable"
+        >
+          <Column field="name" header="Name" style={{ width: "25%" }}></Column>
+        </DataTable>
       </div>
     </div>
   );

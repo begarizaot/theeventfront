@@ -1,6 +1,6 @@
 import { useAnalytics } from "./useAnalytics";
 
-import { HeaderTable } from "../../ui";
+import { DataCard, HeaderTable } from "../../ui";
 
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
@@ -28,10 +28,7 @@ export const Analytics = () => {
               className="col-12 shadow-1 sm:col-6 h-6rem pb-0 sm:pb-2"
               key={index}
             >
-              <div className="bgCard flex flex-column p-2 border-round h-full">
-                <p className="m-0">{item.label}</p>
-                <h1 className="m-0 ml-auto mt-auto">{item.value}</h1>
-              </div>
+              <DataCard label={item.label} value={item.value} />
             </div>
           ))}
         </div>
