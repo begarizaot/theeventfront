@@ -69,7 +69,7 @@ export const NavBar = () => {
       label: "Scan Tickets",
       icon: "pi pi-qrcode",
       template: itemRenderer,
-      link: `/admin/1/scanTickets`,
+      link: `/scanner`,
     },
     {
       label: "Download Guest List",

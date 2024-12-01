@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
+    "@yudiel/react-qr-scanner": "^2.0.8",
     "animate.css": "^4.1.1",
     "axios": "^1.7.7",
     "primeflex": "^3.3.1",
