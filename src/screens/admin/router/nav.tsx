@@ -7,7 +7,7 @@ import { Header, NavBar } from "../ui";
 
 import { NavbarContext } from "../context";
 
-import { Analytics, EventDetails, TeamAccess } from "../pages";
+import { Analytics, EventDetails, FreeTickets, TeamAccess } from "../pages";
 import { Error404Page } from "../../pages";
 
 export const Nav = () => {
@@ -30,6 +30,7 @@ export const Nav = () => {
                 <Route path="/:id/analytics" element={<Analytics />} />
                 <Route path="/:id/eventDetail" element={<EventDetails />} />
                 <Route path="/:id/teamAccess" element={<TeamAccess />} />
+                <Route path="/:id/freeTickets" element={<FreeTickets />} />
               </Route>
 
               <Route path="404" element={<Error404Page />} />

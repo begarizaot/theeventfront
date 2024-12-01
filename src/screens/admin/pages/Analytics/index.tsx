@@ -1,11 +1,9 @@
-import { Button } from "primereact/button";
 import { useAnalytics } from "./useAnalytics";
+
+import { HeaderTable } from "../../ui";
 
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import { IconField } from "primereact/iconfield";
-import { InputIcon } from "../../../../ui";
-import { InputText } from "primereact/inputtext";
 
 export const Analytics = () => {
   const {
@@ -16,36 +14,6 @@ export const Analytics = () => {
     clearFilter,
     onGlobalFilterChange,
   } = useAnalytics();
-
-  const renderHeader = () => {
-    return (
-      <div className="flex justify-content-between">
-        <Button
-          type="button"
-          icon="pi pi-sync"
-          outlined
-          
-          className="border-round-3xl outlinedBtn text-sm"
-        />
-
-        <div className="flex align-items-center gap-3">
-          <InputIcon icon="pi pi-search" className="w-auto">
-            <InputText
-              value={globalFilterValue}
-              onChange={onGlobalFilterChange}
-              placeholder="Search email, status"
-              className="py-1 text-white"
-            />
-          </InputIcon>
-          {globalFilterValue.length > 0 && (
-            <span className="pi pi-times-circle text-white cursor-pointer" onClick={clearFilter}></span>
-          )}
-        </div>
-      </div>
-    );
-  };
-
-  const header = renderHeader();
 
   return (
     <div className="grid">
@@ -77,25 +45,14 @@ export const Analytics = () => {
           filters={filters}
           globalFilterFields={["name"]}
           emptyMessage="No customers found."
-          header={header}
+          header={HeaderTable({
+            clearFilter,
+            filterValue: globalFilterValue,
+            onFilterChange: onGlobalFilterChange,
+          })}
           className="contTable"
         >
           <Column field="name" header="Name" style={{ width: "25%" }}></Column>
-          {/* <Column
-            field="country.name"
-            header="Country"
-            style={{ width: "25%" }}
-          ></Column>
-          <Column
-            field="company"
-            header="Company"
-            style={{ width: "25%" }}
-          ></Column>
-          <Column
-            field="representative.name"
-            header="Representative"
-            style={{ width: "25%" }}
-          ></Column> */}
         </DataTable>
       </div>
     </div>

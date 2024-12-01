@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-
 import { FilterTable } from "../../../../helpers";
 
-export const useAnalytics = () => {
+export const useFreeTickets = () => {
   const filterTable = FilterTable();
   const { initFilters } = filterTable;
 
