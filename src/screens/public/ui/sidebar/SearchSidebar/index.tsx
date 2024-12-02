@@ -1,4 +1,5 @@
 import "./styles.scss";
+import { useSearch } from "./useSearch";
 
 // primereact
 import { InputText } from "primereact/inputtext";
@@ -6,6 +7,7 @@ import { Sidebar } from "primereact/sidebar";
 
 // components
 import { InputIcon, EventCard } from "../../../../../ui";
+import { Skeleton } from "primereact/skeleton";
 
 interface SearchSidebarProps {
   visible: boolean;
@@ -13,6 +15,8 @@ interface SearchSidebarProps {
 }
 
 export const SearchSidebar = ({ showVisible, visible }: SearchSidebarProps) => {
+  const { onChange, onClearSearch, search, events, isLoading } = useSearch();
+
   return (
     <Sidebar
       visible={visible}
@@ -27,25 +31,48 @@ export const SearchSidebar = ({ showVisible, visible }: SearchSidebarProps) => {
             Search <span className="effectPrimary">Events</span>
           </h2>
 
-          <form className="mt-3">
+          <div className="mt-3 flex align-items-center">
             <InputIcon icon="pi-search">
               <InputText
                 className="py-1 text-white"
-                placeholder="Search events by name, artist or genre"
+                placeholder="Search events by name"
                 name="search"
                 autoComplete="off"
+                value={search}
+                onChange={onChange}
               />
             </InputIcon>
-          </form>
+            {search.length > 0 && (
+              <i
+                className="pi pi-times textPrimary mx-3 cursor-pointer"
+                onClick={onClearSearch}
+              ></i>
+            )}
+          </div>
         </div>
 
         <div className="col-12 listEvent">
           <div className="grid">
-            {[1, 2, 3, 4].map((item) => (
-              <div className="col-12" key={item} onClick={showVisible}>
-                <EventCard link="event" />
-              </div>
-            ))}
+            {isLoading &&
+              [1, 2, 3].map((val) => (
+                <div className="col-12 sm:col-6 lg:col-4" key={val}>
+                  <Skeleton className="h-28rem"></Skeleton>
+                </div>
+              ))}
+            {!isLoading &&
+              events.length > 0 &&
+              events.map((item: any) => (
+                <div
+                  className="col-12"
+                  key={item.id_event}
+                  onClick={() => {
+                    onClearSearch();
+                    showVisible();
+                  }}
+                >
+                  <EventCard link="/event" data={item} />
+                </div>
+              ))}
           </div>
         </div>
       </div>
