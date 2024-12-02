@@ -15,11 +15,11 @@ import "primeflex/primeflex.css"; // flex
 import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  // <StrictMode>
     <PrimeReactProvider value={{ ripple: true, inputStyle: "outlined" }}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </PrimeReactProvider>
-  </StrictMode>
+  // </StrictMode>
 );

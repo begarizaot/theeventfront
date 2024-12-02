@@ -1,25 +1,17 @@
 import { useEffect, useState } from "react";
-import { AllEventsIntf } from "./intfAllEvents";
+import { useEventsListPages } from "../../../../hooks";
 
 export const useAllEvents = () => {
-  const [page, setPage] = useState(0);
-  const [listEvents, setListEvents] = useState<AllEventsIntf | undefined>();
+  const { fetchEvents, events, isLoading, pagination } = useEventsListPages();
+  const [pages, setPages] = useState<any>({});
 
   useEffect(() => {
-    fetchEvents();
-  }, []);
-
-  const fetchEvents = async () => {
-    setListEvents({
-      data: [1, 2, 3, 4],
-      pagination: { page: 1, pageSize: 10, pageCount: 10, total: 20 },
-    });
-  };
+    fetchEvents({ size: 6, page: (pages?.page || 0) + 1 });
+  }, [pages.page]);
 
   const onPageChange = (event: any) => {
-    setPage(event.first);
-    // fetchEvents();
+    setPages(event);
   };
 
-  return { ...listEvents, page, onPageChange };
+  return { onPageChange, events, isLoading, pagination, pages };
 };

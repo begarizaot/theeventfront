@@ -1,15 +1,24 @@
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 interface EventCardProps {
+  data: any;
   link?: string;
   sublink?: string;
   manager?: boolean;
 }
 
-export const EventCard = ({ link = "", sublink, manager }: EventCardProps) => {
+export const EventCard = ({
+  link = "",
+  sublink,
+  manager,
+  data,
+}: EventCardProps) => {
+  const image = data?.image[0]?.url;
+
   return (
     <Link
-      to={`${link}/1${sublink ? `/${sublink}` : ""}`}
+      to={`${link}/${data?.id_event}${sublink ? `/${sublink}` : ""}`}
       className="no-underline text-white"
     >
       <div className="effectBorder p-1 border-round">
@@ -22,36 +31,48 @@ export const EventCard = ({ link = "", sublink, manager }: EventCardProps) => {
           <div
             className="bg-cover bg-center bg-no-repeat absolute w-full h-full bgGradient border-round"
             style={{
-              backgroundImage: `url(https://res.cloudinary.com/dii5f60xx/image/upload/v1727559209/events/event_Id_4_8e1f2afeb0.png)`,
+              backgroundImage: `url(${image})`,
             }}
           ></div>
           <div className="absolute bottom-0 py-2 px-3 w-full">
             <div className="grid">
               <div className="col-12 text-center pb-0">
-                <h4 className="m-0">Saturday</h4>
-                <p className="m-0 text-sm">November</p>
-                <h1 className="m-0 text-5xl">23</h1>
+                <h4 className="m-0">
+                  {moment(data?.start_date).format("dddd")}
+                </h4>
+                <p className="m-0 text-sm">
+                  {moment(data?.start_date).format("MMMM")}
+                </p>
+                <h1 className="m-0 text-5xl">
+                  {moment(data?.start_date).format("DD")}
+                </h1>
               </div>
               <div className="col-12 text-center pt-0">
-                <h1 className="m-0 text-xl">Secreto en Concierto </h1>
+                <h1 className="m-0 text-xl">{data?.event_name}</h1>
               </div>
               <div className="col-12 flex justify-content-between flex-wrap gap-2">
                 <div className="w-5 flex">
                   <span className="pi pi-map-marker text-lg textPrimary mr-2"></span>
-                  <span className="text-sm">Tampa, FL</span>
+                  <span className="text-sm">{data?.map_id?.label}</span>
                 </div>
                 <div className="w-5 flex">
                   <span className="pi pi-id-card text-lg textPrimary mr-2"></span>
-                  <span className="text-sm">21+</span>
+                  <span className="text-sm">
+                    {data?.event_age_restriction_id?.name}
+                  </span>
                 </div>
                 <div className="w-5 flex">
                   <span className="pi pi-clock text-lg textPrimary mr-2"></span>
-                  <span className="text-sm">9:00 PM - 3:00 AM</span>
+                  <span className="text-sm">
+                    {moment(data?.start_date).format("hh:mm a")} -{" "}
+                    {moment(data?.end_date).format("hh:mm a")}
+                  </span>
                 </div>
                 <div className="w-5 flex">
                   <span className="pi pi-ticket text-lg textPrimary mr-2"></span>
                   <span className="text-sm">
-                    $55<span> - $65</span>
+                    ${data?.minValue}
+                    {data?.maxValue > 0 && <span> - ${data?.maxValue}</span>}
                   </span>
                 </div>
               </div>

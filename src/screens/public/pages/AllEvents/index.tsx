@@ -3,10 +3,12 @@ import "./style.scss";
 import { EventCard } from "../../../../ui";
 
 import { useAllEvents } from "./useAllEvents";
+
 import { Paginator } from "primereact/paginator";
+import { Skeleton } from "primereact/skeleton";
 
 export const AllEventsPage = () => {
-  const { data, pagination, page, onPageChange } = useAllEvents();
+  const { onPageChange, events, isLoading, pages, pagination } = useAllEvents();
 
   return (
     <div className="allEventsPage grid max-width-80 mx-auto px-4 sm:px-6 pt-8">
@@ -14,7 +16,7 @@ export const AllEventsPage = () => {
         <h1 className="effectPrimary m-0">All Events</h1>
       </div>
 
-      {!pagination?.total && (
+      {!isLoading && events.length == 0 && (
         <div className="col-12 text-white nothingEvent flex align-items-center justify-content-center">
           <div className="grid">
             <div className="col-6"></div>
@@ -29,29 +31,39 @@ export const AllEventsPage = () => {
         </div>
       )}
 
-      {pagination?.total && (
-        <div className="col-12">
-          <div className="grid">
+      {isLoading &&
+        [1, 2, 3].map((val) => (
+          <div className="col-12 sm:col-6 lg:col-4" key={val}>
+            <Skeleton className="h-28rem"></Skeleton>
+          </div>
+        ))}
+
+      <div className="col-12">
+        <div className="grid">
+          {!isLoading && events.length > 0 && (
             <div className="col-12">
               <div className="grid">
-                {data?.map((item: any) => (
-                  <div className="col-12 sm:col-6 lg:col-4" key={item?.id}>
-                    <EventCard link="/event" />
+                {events?.map((item: any) => (
+                  <div className="col-12 sm:col-6 lg:col-4" key={item.id_event}>
+                    <EventCard link="/event" data={item} />
                   </div>
                 ))}
               </div>
             </div>
+          )}
+
+          {pagination?.total > 6 && (
             <div className="col-12 mt-3">
               <Paginator
-                first={page}
-                rows={pagination?.pageCount}
-                totalRecords={pagination?.total}
+                first={pages?.first || 0}
+                rows={6}
+                totalRecords={10}
                 onPageChange={onPageChange}
               />
             </div>
-          </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
