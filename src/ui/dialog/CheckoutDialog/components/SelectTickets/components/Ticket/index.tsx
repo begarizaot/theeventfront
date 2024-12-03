@@ -3,8 +3,8 @@ import { ArrowRight } from "../../../../../../icons";
 export const Ticket = () => {
   return (
     <div className="grid h-full align-content-start overflow-auto">
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(() => (
-        <div className="col-12">
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+        <div className="col-12" key={value}>
           <div className="grid">
             <div className="col-1 flex align-items-center">
               <ArrowRight color="#ff0000" />

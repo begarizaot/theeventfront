@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 interface CheckoutContextProps {
-  showCheckout: () => void;
+  showCheckout: (ev:any) => void;
 }
 
 export const CheckoutContext = createContext<CheckoutContextProps>({

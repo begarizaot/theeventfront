@@ -7,15 +7,17 @@ import { Dialog } from "primereact/dialog";
 import { useCheckout } from "./useCheckout";
 
 interface CheckoutDialogProps {
+  data: any;
   visible: boolean;
   showVisible: () => void;
 }
 
 export const CheckoutDialog = ({
+  data,
   showVisible,
   visible,
 }: CheckoutDialogProps) => {
-  const { isCheckout, setIsCheckout } = useCheckout();
+  const { isCheckout, setIsCheckout } = useCheckout(data);
 
   const showModal = () => {
     setIsCheckout(false);

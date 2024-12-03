@@ -7,8 +7,8 @@ export const Details = ({ data }: DetailsProps) => {
   const Info = (data: any) => {
     return (
       <>
-        <span className={`${data.icon} textPrimary text-lg`}></span>
-        <span>{data.label}</span>
+        <span className={`${data?.icon} textPrimary text-lg`}></span>
+        <span>{data?.label}</span>
       </>
     );
   };
@@ -16,29 +16,29 @@ export const Details = ({ data }: DetailsProps) => {
   return (
     <div className="grid">
       <div className="col-12 flex flex-column gap-2">
-        {data.detail.map((item: any, index: number) =>
-          item.link ? (
-            <Link
-              key={index}
-              to={item.link}
-              className="flex gap-2 align-items-center no-underline text-white"
-              target="_blank"
-            >
-              {Info(data)}
-            </Link>
-          ) : (
-            <div className="flex gap-2 align-items-center" key={index}>
-              {Info(data)}
-            </div>
-          )
-        )}
+        {data?.detail?.length > 0 &&
+          data?.detail?.map((item: any, index: number) =>
+            item.link ? (
+              <Link
+                key={index}
+                to={item.link}
+                className="flex gap-2 align-items-center no-underline text-white"
+                target="_blank"
+              >
+                {Info(item)}
+              </Link>
+            ) : (
+              <div className="flex gap-2 align-items-center" key={index}>
+                {Info(item)}
+              </div>
+            )
+          )}
       </div>
 
-      <div className="col-12 flex flex-column">
-        <span>Directo desde la República Dominicana</span>
-        <span>Secreto “El Famoso Biberón”</span>
-        <span>Para mesas contactar 813-625-0599</span>
-        <span>ALL TICKETS ARE NON REFUNDABLE UNLESS EVENT GETS CANCELLED</span>
+      <div className="col-12 flex flex-column gap-1">
+        {data?.description?.split("\n").map((item: string, index: number) => (
+          <span key={index}>{item}</span>
+        ))}
       </div>
 
       <div className="col-12">
@@ -47,8 +47,11 @@ export const Details = ({ data }: DetailsProps) => {
         <div className="mt-2">
           <div className="flex flex-column">
             <span className="font-bold">Phone</span>
-            <Link to={`tel:+34678567876`} className="text-white no-underline">
-              +17867179768
+            <Link
+              to={`tel:${data?.contact_phone}`}
+              className="text-white no-underline"
+            >
+              {data?.contact_phone}
             </Link>
           </div>
         </div>

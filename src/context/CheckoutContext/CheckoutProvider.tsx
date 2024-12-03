@@ -8,14 +8,20 @@ interface CheckoutProviderProps {
 
 export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
   const [isCheckout, setIsCheckout] = useState(false);
+  const [eventData, setEventData] = useState(false);
 
-  const showCheckout = () => {
+  const showCheckout = (ev?: any) => {
     setIsCheckout(!isCheckout);
+    setEventData(ev);
   };
 
   return (
     <CheckoutContext.Provider value={{ showCheckout }}>
-      <CheckoutDialog visible={isCheckout} showVisible={showCheckout} />
+      <CheckoutDialog
+        data={eventData}
+        visible={isCheckout}
+        showVisible={showCheckout}
+      />
       {children}
     </CheckoutContext.Provider>
   );

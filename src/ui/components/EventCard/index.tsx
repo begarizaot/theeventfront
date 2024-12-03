@@ -64,7 +64,7 @@ export const EventCard = ({
                 <div className="w-5 flex">
                   <span className="pi pi-clock text-lg textPrimary mr-2"></span>
                   <span className="text-sm">
-                    {moment(data?.start_date).format("hh:mm a")} -{" "}
+                    {moment(data?.start_date).format("hh:mm a")} -
                     {moment(data?.end_date).format("hh:mm a")}
                   </span>
                 </div>
