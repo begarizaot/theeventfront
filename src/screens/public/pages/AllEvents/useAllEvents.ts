@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
-import { useEventsListPages } from "../../../../hooks";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getEventListPage } from "../../../../store/slices";
+import { AppDispatch, RootState } from "../../../../store";
 
 export const useAllEvents = () => {
-  const { fetchEvents, events, isLoading, pagination } = useEventsListPages();
   const [pages, setPages] = useState<any>({});
 
+  const dispatch: AppDispatch = useDispatch();
+  const { events, loading, pagination } = useSelector(
+    (state: RootState) => state.events
+  );
+
   useEffect(() => {
-    fetchEvents({ size: 6, page: (pages?.page || 0) + 1 });
-  }, [pages.page]);
+    dispatch(getEventListPage({ size: 6, page: (pages?.page || 0) + 1 }));
+  }, [dispatch, pages.page]);
 
   const onPageChange = (event: any) => {
     setPages(event);
   };
 
-  return { onPageChange, events, isLoading, pagination, pages };
+  return { onPageChange, events, loading, pagination, pages };
 };

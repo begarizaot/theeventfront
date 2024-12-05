@@ -1,22 +1,20 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { useEventsListPages } from "../../../../../../hooks";
-
 import { EventCard } from "../../../../../../ui";
+import { getEventListPage } from "../../../../../../store/slices";
+import { AppDispatch, RootState } from "../../../../../../store";
 
 import { Skeleton } from "primereact/skeleton";
-import { useEffect } from "react";
 
 export const EventsLits = () => {
-  const { fetchEvents, events, isLoading } = useEventsListPages();
+  const dispatch: AppDispatch = useDispatch();
+  const { events, loading } = useSelector((state: RootState) => state.events);
 
   useEffect(() => {
-    fetchEvents({ size: 3 });
-  }, []);
-
-  if (!isLoading && events.length == 0) {
-    return null;
-  }
+    dispatch(getEventListPage());
+  }, [dispatch]);
 
   return (
     <div className="max-width-80 mx-auto px-4 sm:px-6">
@@ -35,15 +33,15 @@ export const EventsLits = () => {
 
         <div className="col-12">
           <div className="grid">
-            {isLoading &&
+            {loading &&
               [1, 2, 3].map((val) => (
                 <div className="col-12 sm:col-6 lg:col-4" key={val}>
                   <Skeleton className="h-28rem"></Skeleton>
                 </div>
               ))}
-            {!isLoading &&
+            {!loading &&
               events.length > 0 &&
-              events.map((item: any) => (
+              events.map((item) => (
                 <div className="col-12 sm:col-6 lg:col-4" key={item.id_event}>
                   <EventCard link="event" data={item} />
                 </div>

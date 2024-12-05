@@ -15,7 +15,7 @@ interface SearchSidebarProps {
 }
 
 export const SearchSidebar = ({ showVisible, visible }: SearchSidebarProps) => {
-  const { onChange, onClearSearch, search, events, isLoading } = useSearch();
+  const { onChange, onClearSearch, search, events, loading } = useSearch();
 
   return (
     <Sidebar
@@ -53,13 +53,13 @@ export const SearchSidebar = ({ showVisible, visible }: SearchSidebarProps) => {
 
         <div className="col-12 listEvent">
           <div className="grid">
-            {isLoading &&
+            {loading &&
               [1, 2, 3].map((val) => (
-                <div className="col-12 sm:col-6 lg:col-4" key={val}>
+                <div className="col-12" key={val}>
                   <Skeleton className="h-28rem"></Skeleton>
                 </div>
               ))}
-            {!isLoading &&
+            {!loading &&
               events.length > 0 &&
               events.map((item: any) => (
                 <div

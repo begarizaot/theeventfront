@@ -4,15 +4,25 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
-export const useEventTickets = () => {
+export const useEventTickets = (dataReq: any) => {
+  const [ticketData, setTicketData] = useState({});
   const [isNewTicket, setIsNewTicket] = useState(false);
 
   const showNewTicket = () => {
     setIsNewTicket(!isNewTicket);
   };
 
-  const onDeleted = () => {
-    console.log('object');
+  const onNewTicket = () => {
+    setTicketData({});
+    showNewTicket();
+  };
+
+  const onUpdateTicket = (ev: any) => {
+    setTicketData(ev);
+    showNewTicket();
+  };
+
+  const onDeleted = (ev: any) => {
     MySwal.fire({
       title: "are you sure?",
       text: "You will not be able to recover this ticket!",
@@ -21,9 +31,16 @@ export const useEventTickets = () => {
       confirmButtonText: "Si",
       cancelButtonText: "No",
     }).then((result) => {
-      if (result.isConfirmed) console.log("object");
+      if (result.isConfirmed) dataReq.deleteTicket(ev.idTicket);
     });
   };
 
-  return { isNewTicket, showNewTicket,onDeleted };
+  return {
+    isNewTicket,
+    ticketData,
+    showNewTicket,
+    onDeleted,
+    onUpdateTicket,
+    onNewTicket,
+  };
 };

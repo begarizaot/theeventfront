@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 interface AuthContextProps {
+  errorRes: any;
   userData: any;
   showLogin: () => void;
   showRegister: () => void;
@@ -9,6 +10,7 @@ interface AuthContextProps {
 }
 
 export const AuthContext = createContext<AuthContextProps>({
+  errorRes: null,
   userData: {},
   showLogin: () => {},
   showRegister: () => {},

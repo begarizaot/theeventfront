@@ -4,10 +4,15 @@
   .p-icon-field,
   textarea,
   .p-calendar,
-  .p-dropdown {
+  .p-dropdown,
+  .p-inputnumber {
     background: transparent;
     width: 100%;
     border: 0;
+  }
+
+  .p-dropdown-label{
+    color: white;
   }
 
   .p-dropdown-label {

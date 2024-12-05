@@ -55,7 +55,7 @@ export const ImageEvent = memo(({ data }: ImageEventProps) => {
                 ))}
               </div>
             </div>
-            <span>Event Views: {NumberFormat(data.visitCount || 0)}</span>
+            <span>Event Views: {NumberFormat(data?.visitCount || 0)}</span>
           </div>
         </div>
       </div>

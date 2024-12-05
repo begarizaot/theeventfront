@@ -8,13 +8,26 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Checkbox } from "primereact/checkbox";
 import { Calendar } from "primereact/calendar";
 import { Button } from "primereact/button";
+import { ColorPicker } from "primereact/colorpicker";
+import { useNewTickes } from "./hooks/useNewTickes";
 
 interface NewTickesProps {
+  data?: any;
   visible: boolean;
   showVisible: () => void;
+  submitTicket: (e: any) => void;
 }
 
-export const NewTickes = ({ showVisible, visible }: NewTickesProps) => {
+export const NewTickes = (reqData: NewTickesProps) => {
+  const { visible, showVisible, data } = reqData;
+  const {
+    formState,
+    onInputChange,
+    onSubmitTicket,
+    onCheckboxChange,
+    setAutocompleteOff,
+  } = useNewTickes(reqData);
+
   return (
     <Sidebar
       visible={visible}
@@ -27,9 +40,10 @@ export const NewTickes = ({ showVisible, visible }: NewTickesProps) => {
       dismissable={false}
       maskClassName="newTickes"
     >
-      <div className="grid text-white">
+      <form className="grid text-white" onSubmit={onSubmitTicket}>
         <div className="col-12 text-3xl font-bold">
-          Create <span className="effectPrimary">Ticket</span>
+          {data.name ? "Update" : "Create"}
+          <span className="effectPrimary">Ticket</span>
         </div>
         <div className="col-12">
           <div className="grid">
@@ -38,8 +52,11 @@ export const NewTickes = ({ showVisible, visible }: NewTickesProps) => {
                 <InputText
                   className="py-1 text-white"
                   placeholder="Name Ticket"
-                  name="email"
+                  name="name"
                   autoComplete="off"
+                  required
+                  onChange={onInputChange}
+                  value={formState.name}
                 />
               </InputIcon>
               <span className="text-xs text-white-alpha-60">
@@ -54,7 +71,10 @@ export const NewTickes = ({ showVisible, visible }: NewTickesProps) => {
                   inputClassName="py-1 text-white"
                   placeholder="Price"
                   required
-                  useGrouping={false}
+                  name="price"
+                  onChange={onInputChange}
+                  value={formState.price}
+                  inputRef={setAutocompleteOff(0)}
                 />
               </InputIcon>
               <span className="text-xs text-white-alpha-60">
@@ -68,7 +88,10 @@ export const NewTickes = ({ showVisible, visible }: NewTickesProps) => {
                   inputClassName="py-1 text-white"
                   placeholder="Event Max Capacity"
                   required
-                  useGrouping={false}
+                  name="max_capacity"
+                  onChange={onInputChange}
+                  value={formState.max_capacity}
+                  inputRef={setAutocompleteOff(1)}
                 />
               </InputIcon>
               <span className="text-xs text-white-alpha-60">
@@ -82,7 +105,11 @@ export const NewTickes = ({ showVisible, visible }: NewTickesProps) => {
                   inputClassName="py-1 text-white"
                   placeholder="Ticket Order Limit"
                   required
-                  useGrouping={false}
+                  name="event_capacity"
+                  max={8}
+                  onChange={onInputChange}
+                  value={formState.event_capacity}
+                  inputRef={setAutocompleteOff(2)}
                 />
               </InputIcon>
               <span className="text-xs text-white-alpha-60">
@@ -90,10 +117,23 @@ export const NewTickes = ({ showVisible, visible }: NewTickesProps) => {
                 for this type of ticket.
               </span>
             </div>
+            <div className="col-12 flex flex-column gap-2">
+              <span className="text-xs text-white-alpha-60">
+                Select a color for the ticket type to help you identify it
+              </span>
+              <ColorPicker
+                format="hex"
+                className="w-4"
+                inputClassName="w-full"
+                name="color"
+                onChange={onInputChange}
+                value={formState.color}
+              />
+            </div>
             <div className="col-12">
               <InputIcon>
                 <InputTextarea
-                  name="message"
+                  name="description"
                   rows={5}
                   required
                   className="text-white px-0 py-2"
@@ -102,6 +142,8 @@ Exposure Booth
 Logo in Flyer
 Logo in Event Back Drop
 Live Mention`}
+                  onChange={onInputChange}
+                  value={formState.description}
                 />
               </InputIcon>
               <span className="text-xs text-white-alpha-60">
@@ -113,9 +155,9 @@ Live Mention`}
             <div className="mt-2 flex align-items-center">
               <Checkbox
                 inputId="promotional"
-                value=""
-                onChange={() => {}}
-                checked={true}
+                name="available"
+                onChange={onCheckboxChange}
+                checked={formState.available}
               />
               <label htmlFor="promotional" className="ml-2 text-xs">
                 Ticket Visible{" "}
@@ -137,6 +179,10 @@ Live Mention`}
                   hourFormat="12"
                   inputClassName="py-1 text-white"
                   placeholder="Start Time"
+                  name="start_date"
+                  required
+                  onChange={onInputChange}
+                  value={formState.start_date}
                 />
               </InputIcon>
             </div>
@@ -148,20 +194,24 @@ Live Mention`}
                   hourFormat="12"
                   inputClassName="py-1 text-white"
                   placeholder="End Time"
+                  name="end_date"
+                  required
+                  onChange={onInputChange}
+                  value={formState.end_date}
                 />
               </InputIcon>
             </div>
             <div className="col-12">
               <Button
-                label="Create Ticket"
+                label={`${data.name ? "Update" : "Create"} Ticket`}
                 outlined
                 className="w-full border-round-3xl outlinedBtn text-sm"
-                type="button"
+                type="submit"
               />
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </Sidebar>
   );
 };

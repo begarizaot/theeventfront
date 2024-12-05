@@ -1,34 +1,57 @@
+import { memo } from "react";
 import { ArrowRight } from "../../../../../../icons";
+import { NumberFormat } from "../../../../../../../helpers";
 
-export const Ticket = () => {
+interface TicketProps {
+  data: any[];
+  onSelected: (ev: any) => void;
+}
+
+export const Ticket = memo(({ data, onSelected }: TicketProps) => {
   return (
     <div className="grid h-full align-content-start overflow-auto">
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
-        <div className="col-12" key={value}>
+      {data?.map((value) => (
+        <div className="col-12" key={value?.id}>
           <div className="grid">
-            <div className="col-1 flex align-items-center">
-              <ArrowRight color="#ff0000" />
+            <div className="col-2 lg:col-1 flex align-items-center">
+              <ArrowRight color={`#${value.color || "#ff0000"}`} />
             </div>
-            <div className="col-9">
+            <div className="col-8 lg:col-9">
               <div className="flex align-items-center gap-2">
-                <p className="m-0 text-sm">GA</p>
-                <span className="font-bold text-lg">$55</span>
+                <p className="m-0 text-sm">{value?.name}</p>
+                <span className="font-bold text-lg">
+                  ${NumberFormat(value?.price)}
+                </span>
               </div>
               <div className="text-sm flex flex-column sm:block">
-                <span>
-                  RSVP is NOT required for this ticket purchase Ticket delante
-                  de tarima
-                </span>
-                <span>No incluye asiento</span>
-                <span>Non refundable</span>
+                {value?.description
+                  ?.split("\n")
+                  .map((item: string, index: number) => (
+                    <span key={index} className="lowercase">
+                      {item}
+                    </span>
+                  ))}
               </div>
             </div>
             <div className="col-2 flex align-items-center">
-              <select className="selectStyle h-2rem w-4rem bg-transparent text-white text-center border-round bgBorder">
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+              <select
+                className="selectStyle h-2rem w-4rem bg-transparent text-white text-center border-round bgBorder"
+                onChange={(ev) => {
+                  const quantity = ev.target.value;
+                  onSelected({ ...value, quantity: Number(quantity) });
+                }}
+              >
+                {[
+                  ...Array(
+                    value.max_capacity > value.event_capacity
+                      ? value.event_capacity + 1
+                      : value.max_capacity + 1
+                  ).keys(),
+                ].map((_, index) => (
+                  <option key={index} value={index}>
+                    {index}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -36,4 +59,4 @@ export const Ticket = () => {
       ))}
     </div>
   );
-};
+});

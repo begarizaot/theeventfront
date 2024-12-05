@@ -3,7 +3,12 @@ import { InputIcon } from "../../../InputIcon";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 
-export const EventTitle = () => {
+interface EventTitleProps {
+  data: any;
+  inputChange: (ev: any) => void;
+}
+
+export const EventTitle = ({ data, inputChange }: EventTitleProps) => {
   return (
     <div className="grid">
       <div className="col-12">
@@ -16,20 +21,23 @@ export const EventTitle = () => {
               <InputText
                 className="py-1 text-white"
                 placeholder="Event Title"
-                name="eventTitle"
+                name="event_name"
                 autoComplete="off"
                 required
+                value={data?.event_name}
+                onChange={inputChange}
               />
             </InputIcon>
           </div>
           <div className="col-12">
             <InputIcon>
               <InputTextarea
-                name="message"
+                name="description"
                 rows={5}
-                required
                 className="text-white px-0 py-2"
                 placeholder="Summary (Grab people's attention with a short description about your event.)"
+                value={data?.description}
+                onChange={inputChange}
               />
             </InputIcon>
           </div>

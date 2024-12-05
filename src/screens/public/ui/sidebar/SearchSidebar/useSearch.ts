@@ -1,13 +1,17 @@
 import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import debounce from "lodash.debounce";
 
-import { theEventApi } from "../../../../../apis";
+import { AppDispatch, RootState } from "../../../../../store";
+import { getEventSearch, searchEventsClear } from "../../../../../store/slices";
 
 export const useSearch = () => {
-  const [search, setSearch] = useState("");
-  const [events, setEvents] = useState([]);
+  const dispatch: AppDispatch = useDispatch();
+  const { searchLoading, searchResults } = useSelector(
+    (state: RootState) => state.events
+  );
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
   const onChange = (e: any) => {
     setSearch(e.target.value);
@@ -16,33 +20,23 @@ export const useSearch = () => {
 
   const onClearSearch = () => {
     setSearch("");
-    setEvents([]);
-  };
-
-  const onInitialState = () => {
-    setIsLoading(true);
-    setEvents([]);
+    dispatch(searchEventsClear());
   };
 
   const onSearchEvent = useCallback(
     debounce((event) => {
-      event.length > 2 && fetchEvents({ name: event });
+      event.length > 2
+        ? dispatch(getEventSearch(event))
+        : dispatch(searchEventsClear());
     }, 500),
     []
   );
 
-  const fetchEvents = async ({ name = "" }: any) => {
-    onInitialState();
-    try {
-      const { data } = await theEventApi.get(
-        `event/getEventSearch?eventName=${name}`
-      );
-      setEvents(data.data);
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-    }
+  return {
+    search,
+    loading: searchLoading,
+    events: searchResults,
+    onChange,
+    onClearSearch,
   };
-
-  return { search, isLoading, events, onChange, onClearSearch };
 };

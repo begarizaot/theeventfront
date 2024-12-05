@@ -1,8 +1,16 @@
+import { InputIcon } from "../../../../../components";
 import { InputText } from "primereact/inputtext";
-import { InputIcon } from "../../../../../../components";
 import { InputNumber } from "primereact/inputnumber";
 
-export const ContactInformation = () => {
+interface ContactInformationProps {
+  data: any;
+  changeUser: (ev: any) => void;
+}
+
+export const ContactInformation = ({
+  changeUser,
+  data,
+}: ContactInformationProps) => {
   return (
     <div className="grid">
       <div className="col-12">
@@ -21,6 +29,8 @@ export const ContactInformation = () => {
                 name="firstName"
                 autoComplete="off"
                 required
+                value={data?.firstName}
+                onChange={changeUser}
               />
             </InputIcon>
           </div>
@@ -35,6 +45,8 @@ export const ContactInformation = () => {
                 name="lastName"
                 autoComplete="off"
                 required
+                value={data?.lastName}
+                onChange={changeUser}
               />
             </InputIcon>
           </div>
@@ -50,6 +62,8 @@ export const ContactInformation = () => {
                 name="email"
                 autoComplete="off"
                 required
+                value={data?.email}
+                onChange={changeUser}
               />
             </InputIcon>
           </div>
@@ -61,8 +75,11 @@ export const ContactInformation = () => {
               <InputNumber
                 inputClassName="py-1 text-white"
                 placeholder="Phone Number"
+                name="phone"
                 required
                 useGrouping={false}
+                value={data?.phone}
+                onChange={changeUser}
               />
             </InputIcon>
           </div>

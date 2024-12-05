@@ -14,7 +14,7 @@ export const EventCard = ({
   manager,
   data,
 }: EventCardProps) => {
-  const image = data?.image[0]?.url;
+  const image = data?.image && data?.image[0]?.url;
 
   return (
     <Link
@@ -23,9 +23,9 @@ export const EventCard = ({
     >
       <div className="effectBorder p-1 border-round">
         <div className="relative h-28rem border-round">
-          {manager && (
+          {manager && data?.manager && (
             <div className="absolute z-1 right-0 mr-3 mt-3 bg-white text-black-alpha-90 p-2 border-round text-sm">
-              Manager
+              {data?.manager}
             </div>
           )}
           <div
