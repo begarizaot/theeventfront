@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   postCreateEvent,
   putUpdateEventImage,
 } from "../../../../../store/slices";
 
 export const useCreateEvent = () => {
+  const navigate = useNavigate();
   const [ticktes, setTicktes] = useState<any>([]);
 
   const onCreateUpdateTicket = (ev: any) => {
@@ -25,6 +27,7 @@ export const useCreateEvent = () => {
     try {
       const res = await postCreateEvent({ data, ticktes });
       await putUpdateEventImage(res.data, data.image);
+      navigate(`/admin/${res.data}/analytics`, { replace: true });
     } catch (error) {
       console.log(error);
     }

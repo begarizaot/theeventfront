@@ -168,7 +168,7 @@ Live Mention`}
             </div>
 
             <div className="col-12 mt-2">
-              <span>Ticket Sale Star / End Times</span>
+              <span>Ticket Sale Start / End Times</span>
             </div>
 
             <div className="col-12 sm:col-6">

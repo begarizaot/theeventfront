@@ -22,7 +22,7 @@ export const TicketQrDialog = ({
   return (
     <>
       <TicketQrDetailDialog
-        data={""}
+        data={isDetail}
         visible={isDetail}
         showVisible={() => setIsDetail(false)}
       />
@@ -36,8 +36,12 @@ export const TicketQrDialog = ({
         <div className="flex align-items-center flex-wrap justify-content-center gap-2">
           {data.map((item) => (
             <div className="text-center bgBody p-1 border-round" key={item?.id}>
-              <p className="m-0 text-white">id: 34lknsan</p>
-              <QRCode value="hey" size={130} onClick={() => setIsDetail("asd")} />
+              <p className="m-0 text-white">id: {item.id_ticket}</p>
+              <QRCode
+                value={item.id_ticket}
+                size={130}
+                onClick={() => setIsDetail(item.id_ticket)}
+              />
             </div>
           ))}
         </div>

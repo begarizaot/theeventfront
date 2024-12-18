@@ -14,12 +14,13 @@
 
 // store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import { eventsSlice, ticketTypeSlice } from "./slices";
+import { eventsSlice, ticketTypeSlice, ticketSlice } from "./slices";
 
 const store = configureStore({
   reducer: {
     events: eventsSlice.reducer,
     ticketType: ticketTypeSlice.reducer,
+    ticket: ticketSlice.reducer,
   },
 });
 
