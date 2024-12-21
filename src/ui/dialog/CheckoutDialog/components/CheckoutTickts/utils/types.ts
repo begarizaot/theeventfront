@@ -8,6 +8,6 @@ export interface SubTotalResult {
   subTotal: number;
   price: number;
   total: number;
-  profitMargin: number;
-  stripeFixed: number;
+  serviceFee: number;
+  processingFee: number;
 }

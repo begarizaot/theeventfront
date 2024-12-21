@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   postCreateEvent,
   putUpdateEventImage,
 } from "../../../../../store/slices";
+import { LoadingContext } from "../../../../../context";
 
 export const useCreateEvent = () => {
   const navigate = useNavigate();
+  const { showLoading } = useContext(LoadingContext);
+
   const [ticktes, setTicktes] = useState<any>([]);
 
   const onCreateUpdateTicket = (ev: any) => {
@@ -25,11 +28,13 @@ export const useCreateEvent = () => {
 
   const createUpdateEvent = async (data: any) => {
     try {
+      showLoading(true);
       const res = await postCreateEvent({ data, ticktes });
       await putUpdateEventImage(res.data, data.image);
+      showLoading(false);
       navigate(`/admin/${res.data}/analytics`, { replace: true });
     } catch (error) {
-      console.log(error);
+      showLoading(false);
     }
   };
 

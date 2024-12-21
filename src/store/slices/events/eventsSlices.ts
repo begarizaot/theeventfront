@@ -1,17 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { EventsListInterf, EventsState } from "./types";
 
-const initialState: EventsState = {
+const initialState = {
   events: [],
-  myEvents: [],
-  searchResults: [],
+  loading: false,
+  error: null,
   pagination: {},
   selectedEvent: null,
-  loading: false,
-  searchLoading: false,
-  myEventLoading: false,
-  error: null,
-  myEventError: null,
 };
 
 export const eventsSlice = createSlice({
@@ -22,40 +16,17 @@ export const eventsSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    myEventsStart(state) {
-      state.myEventLoading = true;
-      state.myEvents = [];
-      state.myEventError = null;
-    },
-    searctEventsStart(state) {
-      state.searchLoading = true;
-      state.error = null;
-    },
-    eventsSuccess(state, action: PayloadAction<EventsListInterf>) {
+    eventsSuccess(
+      state,
+      action: PayloadAction<{ events: any; pagination: any }>
+    ) {
       state.events = action.payload.events;
       state.pagination = action.payload.pagination;
       state.loading = false;
     },
-    myEventsSuccess(state, action: PayloadAction<EventsListInterf>) {
-      state.myEvents = action.payload.events;
-      state.pagination = action.payload.pagination;
-      state.myEventLoading = false;
-    },
-    searchEventsSuccess(state, action: PayloadAction<EventsListInterf>) {
-      state.searchResults = action.payload.events;
-      state.searchLoading = false;
-    },
-    eventsFailure(state, action: PayloadAction<string>) {
+    eventsFailure(state, action: PayloadAction<any>) {
       state.error = action.payload;
       state.loading = false;
-    },
-    myEventsFailure(state, action: PayloadAction<string>) {
-      state.myEventError = action.payload;
-      state.myEventLoading = false;
-    },
-    searchEventsClear(state) {
-      state.searchResults = [];
-      state.searchLoading = false;
     },
     selectEvent(state, action) {
       state.selectedEvent = action.payload;
@@ -64,15 +35,5 @@ export const eventsSlice = createSlice({
   },
 });
 
-export const {
-  eventsStart,
-  eventsSuccess,
-  eventsFailure,
-  myEventsStart,
-  myEventsSuccess,
-  myEventsFailure,
-  selectEvent,
-  searchEventsClear,
-  searchEventsSuccess,
-  searctEventsStart,
-} = eventsSlice.actions;
+export const { eventsStart, eventsSuccess, eventsFailure, selectEvent } =
+  eventsSlice.actions;

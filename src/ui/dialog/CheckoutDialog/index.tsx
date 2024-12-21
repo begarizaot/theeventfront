@@ -81,7 +81,7 @@ export const CheckoutDialog = ({
           </div>
         </div>
         {isMessage ? (
-          <MessageTickets idOrder={isMessage} />
+          <MessageTickets idOrder={isMessage} onHidden={showModal} />
         ) : (
           showSelectOrCheck()
         )}

@@ -1,5 +1,6 @@
 import { theEventApi } from "../../../apis";
 
+// GET
 export const getDowloandOrder = (idOrder: any) => {
   return new Promise<any>(async (resolve, reject) => {
     try {
@@ -7,7 +8,7 @@ export const getDowloandOrder = (idOrder: any) => {
         `order/getDowloandOrder/${idOrder}`
       );
       if (!data.status) {
-        return reject(data);
+        return reject(data.message);
       }
       resolve(data);
     } catch (error) {
@@ -16,6 +17,24 @@ export const getDowloandOrder = (idOrder: any) => {
   });
 };
 
+export const getForwardMailOrder = (idOrder: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get(
+        `order/getForwardMailOrder/${idOrder}`
+      );
+      if (!data.status) {
+        return reject(data.message);
+      }
+      resolve(data);
+    } catch (error) {
+      reject('Failed to forward mail');
+    }
+  });
+};
+// -------------------------------------------------------------
+
+// POST
 export const postCreatePayment = (dataReq: any) => {
   return new Promise<any>(async (resolve, reject) => {
     try {
@@ -46,3 +65,4 @@ export const postCreateOrder = (dataReq: any) => {
     }
   });
 };
+// -------------------------------------------------------------

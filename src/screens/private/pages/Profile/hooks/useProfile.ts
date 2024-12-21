@@ -100,6 +100,7 @@ export const useProfile = () => {
       severity: "error",
       summary: "Error",
       detail: detail,
+      life: 3000
     });
   };
 

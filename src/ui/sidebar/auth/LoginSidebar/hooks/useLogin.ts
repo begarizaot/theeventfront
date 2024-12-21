@@ -41,6 +41,7 @@ export const useLogin = () => {
       severity: "error",
       summary: "Error",
       detail: error,
+      life: 3000
     });
   };
 

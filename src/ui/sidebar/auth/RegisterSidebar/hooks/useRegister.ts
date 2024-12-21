@@ -77,6 +77,7 @@ export const useRegister = () => {
       severity: "error",
       summary: "Error",
       detail: detail,
+      life: 3000
     });
   };
 

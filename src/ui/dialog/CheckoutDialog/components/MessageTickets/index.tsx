@@ -4,13 +4,14 @@ import { Button } from "primereact/button";
 
 interface MessageTicketsProps {
   idOrder: any;
+  onHidden?: () => void;
 }
 
-export const MessageTickets = ({ idOrder }: MessageTicketsProps) => {
-  const { onDownloadOrdersTickets } = useMessageTickets(idOrder);
+export const MessageTickets = (data: MessageTicketsProps) => {
+  const { onDownloadOrdersTickets } = useMessageTickets(data);
 
   return (
-    <div className="flex flex-column h-full justify-content-center text-white">
+    <div className="flex flex-column h-full justify-content-center text-white w-full text-center">
       <div className="col-12 text-2xl font-bold">
         <span className="effectPrimary">Success!</span> Your purchase is
         complete
@@ -22,7 +23,7 @@ export const MessageTickets = ({ idOrder }: MessageTicketsProps) => {
       <div className="col-12 text-2xl font-bold">
         Please allow up to 5 minutes for delivery!
       </div>
-      <div className="col-12 text-center sm:text-left text-sm sm:text-base">
+      <div className="col-12 text-center text-sm sm:text-base">
         If you experience any issues, please send us a message
         <Link to="/contact-us" className=" textPrimary mx-1" target="_blank">
           here

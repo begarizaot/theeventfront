@@ -11,7 +11,7 @@ export const useMyEvents = () => {
 
   const dispatch: AppDispatch = useDispatch();
   const { myEvents, myEventLoading, pagination } = useSelector(
-    (state: RootState) => state.events
+    (state: RootState) => state.myEvents
   );
 
   useEffect(() => {

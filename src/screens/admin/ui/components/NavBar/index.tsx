@@ -1,12 +1,15 @@
 import "./styles.scss";
 import { useContext } from "react";
 import { NavbarContext } from "../../../context";
+import { useEventId } from "../../../hooks";
 
 import { Menu } from "primereact/menu";
 import { NavLink } from "react-router-dom";
 
 export const NavBar = () => {
   const { isNav, mdTable, showNav } = useContext(NavbarContext);
+  const { eventId } = useEventId();
+
   const itemRenderer = (item: any) => (
     <div className="p-menuitem-content">
       <NavLink
@@ -39,31 +42,31 @@ export const NavBar = () => {
       label: "Event Analytics",
       template: itemRenderer,
       icon: "pi pi-chart-bar",
-      link: `/admin/1/analytics`,
+      link: `/admin/${eventId}/analytics`,
     },
     {
       label: "Event Details",
       template: itemRenderer,
       icon: "pi pi-eye",
-      link: `/admin/1/eventDetail`,
+      link: `/admin/${eventId}/eventDetail`,
     },
     {
       label: "Team Access",
       template: itemRenderer,
       icon: "pi pi-users",
-      link: `/admin/1/teamAccess`,
+      link: `/admin/${eventId}/teamAccess`,
     },
     {
       label: "Free Tickets",
       icon: "pi pi-ticket",
       template: itemRenderer,
-      link: `/admin/1/freeTickets`,
+      link: `/admin/${eventId}/freeTickets`,
     },
     {
       label: "Discount Code",
       icon: "pi pi-code",
       template: itemRenderer,
-      link: `/admin/1/discountCode`,
+      link: `/admin/${eventId}/discountCode`,
     },
     {
       label: "Scan Tickets",
@@ -75,7 +78,7 @@ export const NavBar = () => {
       label: "Download Guest List",
       icon: "pi pi-download",
       template: itemRenderer,
-      link: `/admin/1/downloadGuestList`,
+      link: `/admin/${eventId}/downloadGuestList`,
     },
   ];
 

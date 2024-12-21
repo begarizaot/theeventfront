@@ -54,6 +54,7 @@ export const useCreateEvent = (dataReq: any) => {
         severity: "error",
         summary: "Error",
         detail: "Please upload an image",
+        life: 3000
       });
       return;
     }
@@ -63,6 +64,7 @@ export const useCreateEvent = (dataReq: any) => {
         severity: "error",
         summary: "Error",
         detail: "Please add at least one ticket",
+        life: 3000
       });
       return;
     }

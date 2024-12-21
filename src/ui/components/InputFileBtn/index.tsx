@@ -32,7 +32,7 @@ export const InputFileBtn = ({
         type="file"
         onChange={handleChange} // ADDED
         ref={hiddenFileInput}
-        accept="image/*"
+        accept=".png, .jpg, .jpeg" 
         style={{ display: "none" }}
       />
     </>

@@ -13,14 +13,23 @@ import {
   eventsFailure,
   eventsStart,
   eventsSuccess,
+  selectEvent,
+} from "./eventsSlices";
+import {
+  eventsAnalyticsFailure,
+  eventsAnalyticsStart,
+  eventsAnalyticsSuccess,
+} from "./eventAnalyticsSlice";
+import {
   myEventsFailure,
   myEventsStart,
   myEventsSuccess,
+} from "./myEventsSlices";
+import {
   searchEventsClear,
   searchEventsSuccess,
   searctEventsStart,
-  selectEvent,
-} from "./eventsSlices";
+} from "./eventsSearchSlices";
 
 export const getEventListPage = (req?: any) => {
   const { size = 3, page = 1 } = req || {};
@@ -60,7 +69,7 @@ export const getMyEventListPage = (req?: any) => {
       }
 
       dispatch(
-        myEventsSuccess({ events: data.data, pagination: data.pagination })
+        myEventsSuccess({ data: data.data, pagination: data.pagination })
       );
     } catch (error) {
       dispatch(myEventsFailure("Failed to fetch events"));
@@ -101,10 +110,36 @@ export const getEventSearch = (name: string) => {
       }
 
       dispatch(
-        searchEventsSuccess({ events: data.data, pagination: data.pagination })
+        searchEventsSuccess({ data: data.data, pagination: data.pagination })
       );
     } catch (error) {
       dispatch(searchEventsClear());
+    }
+  };
+};
+
+export const getEventAnalytics = (eventId: string, req?: any) => {
+  const { size = 6, page = 1, search = "" } = req || {};
+  return async (dispatch: AppDispatch) => {
+    dispatch(eventsAnalyticsStart());
+    try {
+      const { data } = await theEventApi.get(
+        `event/getEventAnalytics/${eventId}?size=${size}&page=${page}&search=${search}`
+      );
+
+      if (!data.status) {
+        return dispatch(eventsAnalyticsFailure(data.message));
+      }
+
+      dispatch(
+        eventsAnalyticsSuccess({
+          data: data?.data?.orders || [],
+          analytic: data?.data?.analytics || [],
+          pagination: data?.pagination || {},
+        })
+      );
+    } catch (error) {
+      dispatch(eventsAnalyticsFailure("Failed to fetch events"));
     }
   };
 };

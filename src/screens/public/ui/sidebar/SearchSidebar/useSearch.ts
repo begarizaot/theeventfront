@@ -8,7 +8,7 @@ import { getEventSearch, searchEventsClear } from "../../../../../store/slices";
 export const useSearch = () => {
   const dispatch: AppDispatch = useDispatch();
   const { searchLoading, searchResults } = useSelector(
-    (state: RootState) => state.events
+    (state: RootState) => state.eventsSearch
   );
 
   const [search, setSearch] = useState("");

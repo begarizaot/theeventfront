@@ -1,4 +1,3 @@
-
 import { TicketQrDialog } from "../../ui/dialog";
 
 import { useMyTicketDetail } from "./hooks/useMyTicketDetail";
@@ -90,11 +89,18 @@ export const MyTicketDetail = () => {
               </div>
               <div className="flex align-items-center justify-content-between">
                 <span className="text-sm">Service Fee</span>
-                <strong>${selectedTicket?.price?.profitMargin || 0}</strong>
+                <strong>
+                  $
+                  {NumberFormat(selectedTicket?.price?.serviceFee || 0, 2) || 0}
+                </strong>
               </div>
               <div className="flex align-items-center justify-content-between">
                 <span className="text-sm">Processing Fee</span>
-                <strong>${selectedTicket?.price?.stripeFixed || 0}</strong>
+                <strong>
+                  $
+                  {NumberFormat(selectedTicket?.price?.processingFee || 0, 2) ||
+                    0}
+                </strong>
               </div>
             </div>
 

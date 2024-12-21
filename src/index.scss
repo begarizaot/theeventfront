@@ -48,6 +48,10 @@ body {
   width: 95%;
 }
 
+.firstLetter:first-letter {
+  text-transform: uppercase;
+}
+
 .p-button,
 button,
 input,
@@ -158,9 +162,6 @@ select,
 }
 
 .contTable {
-  border: 1px solid var(--colorBorder);
-  border-radius: 10px;
-
   .p-datatable-header {
     background: transparent;
     border: 0;

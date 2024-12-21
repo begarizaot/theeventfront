@@ -10,6 +10,7 @@ import { theEventService } from "../services";
 import { calculateTotals } from "../utils";
 import { useStripeCheck } from "./useStripeCheck";
 import {
+  getForwardMailOrder,
   postCreateOrder,
   postCreatePayment,
 } from "../../../../../../store/slices/orders";
@@ -138,6 +139,7 @@ export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
       }
 
       showLoading(false);
+      getForwardMailOrder(createOrder.data);
       showMessage(createOrder.data);
     } catch (error: any) {
       onMessageError(error?.message || error || "");

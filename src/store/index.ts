@@ -1,24 +1,19 @@
-// import { configureStore } from "@reduxjs/toolkit";
-
-// import { eventDetailSlice, eventListSlice } from "./slices/events";
-// import { ticketTypeListSlice } from "./slices";
-
-// export const store = configureStore({
-//   reducer: {
-//     eventsListPage: eventListSlice.reducer,
-//     eventDetail: eventDetailSlice.reducer,
-//     // ticketType
-//     ticketTypeList: ticketTypeListSlice.reducer,
-//   },
-// });
-
-// store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import { eventsSlice, ticketTypeSlice, ticketSlice } from "./slices";
+import {
+  eventsSlice,
+  ticketTypeSlice,
+  ticketSlice,
+  eventAnalyticsSlice,
+  myEventsSlice,
+} from "./slices";
+import { eventsSearchSlices } from "./slices/events/eventsSearchSlices";
 
 const store = configureStore({
   reducer: {
     events: eventsSlice.reducer,
+    eventAnalytics: eventAnalyticsSlice.reducer,
+    eventsSearch: eventsSearchSlices.reducer,
+    myEvents: myEventsSlice.reducer,
     ticketType: ticketTypeSlice.reducer,
     ticket: ticketSlice.reducer,
   },

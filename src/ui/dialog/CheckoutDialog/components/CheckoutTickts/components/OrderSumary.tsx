@@ -76,13 +76,13 @@ export const OrderSumary = ({
         <div className="flex align-items-center justify-content-between">
           <p className="m-0 text-sm">Service Fee</p>
           <span className="font-bold">
-            ${NumberFormat(values?.profitMargin || 0, 2)}
+            ${NumberFormat(values?.serviceFee || 0, 2)}
           </span>
         </div>
         <div className="flex align-items-center justify-content-between">
           <p className="m-0 text-sm">Processing Fee</p>
           <span className="font-bold">
-            ${NumberFormat(values?.stripeFixed || 0, 2)}
+            ${NumberFormat(values?.processingFee || 0, 2)}
           </span>
         </div>
       </div>
