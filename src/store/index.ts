@@ -5,8 +5,9 @@ import {
   ticketSlice,
   eventAnalyticsSlice,
   myEventsSlice,
+  teamAccessSlice,
+  eventsSearchSlices,
 } from "./slices";
-import { eventsSearchSlices } from "./slices/events/eventsSearchSlices";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     myEvents: myEventsSlice.reducer,
     ticketType: ticketTypeSlice.reducer,
     ticket: ticketSlice.reducer,
+    teamAccess: teamAccessSlice.reducer,
   },
 });
 

@@ -1,14 +1,32 @@
+import { Skeleton } from "primereact/skeleton";
 import { InviteTeamSidebar } from "../../ui";
-import { useTeamAccess } from "./useTeamAccess";
+import { useTeamAccess } from "./hooks/useTeamAccess";
 
 import { Button } from "primereact/button";
 
 export const TeamAccess = () => {
-  const { isNewInvite, showInvite } = useTeamAccess();
+  const {
+    isNewInvite,
+    eventId,
+    data,
+    loading,
+    editData,
+    showInvite,
+    onCreateTeam,
+    onUpdateStatus,
+    onEditTicket,
+    onDeleteTicket,
+  } = useTeamAccess();
 
   return (
     <>
-      <InviteTeamSidebar showVisible={showInvite} visible={isNewInvite} />
+      <InviteTeamSidebar
+        data={editData}
+        eventId={eventId}
+        showVisible={showInvite}
+        visible={isNewInvite}
+        createTeam={onCreateTeam}
+      />
       <div className="grid">
         <div className="col-12 sticky top-0 bgBody z-1">
           <div className="grid">
@@ -25,49 +43,83 @@ export const TeamAccess = () => {
                 icon="pi pi-users"
                 outlined
                 className="w-full sm:w-5 border-round-3xl outlinedBtn text-sm mt-3"
-                onClick={showInvite}
+                onClick={() => onEditTicket(null)}
               />
             </div>
 
             <div className="col-12 flex align-items-center justify-content-between">
               <p className="m-0">Team Members</p>
-              <p className="m-0">(3)</p>
+              <p className="m-0">({loading ? 0 : data.length || 0})</p>
             </div>
           </div>
         </div>
 
+        {loading &&
+          [1, 2, 3].map((val) => (
+            <div className="col-12" key={val}>
+              <Skeleton className="h-8rem"></Skeleton>
+            </div>
+          ))}
+
         <div className="col-12 mt-2">
           <div className="flex flex-column">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-              <div className="col-12">
-                <div className="grid border-1 border-round p-2 bgBorder">
-                  <div className="col-11 flex gap-2">
-                    <span className="pi pi-user"></span>
-                    <div>
-                      <p className="m-0">JuanLlanos</p>
-                      <p className="m-0 text-xs">Co-Organizer</p>
+            {!loading &&
+              data?.map((item: any) => (
+                <div className="col-12" key={item?.id}>
+                  <div className="grid border-1 border-round p-2 bgBorder">
+                    <div className="col-11 flex gap-2">
+                      <span className="pi pi-user"></span>
+                      <div>
+                        <p className="m-0 flex gap-1">
+                          {item?.user_id?.firstname ? (
+                            <>
+                              <span className="firstLetter">
+                                {item?.user_id?.firstname}
+                              </span>
+                              <span className="firstLetter">
+                                {item?.user_id?.lastname}
+                              </span>
+                            </>
+                          ) : (
+                            <span className="firstLetter">
+                              {item?.user_id?.email}
+                            </span>
+                          )}
+                        </p>
+                        <p className="m-0 text-xs">
+                          {item?.team_type_role_id?.name}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="col-1 text-right">
+                      <span
+                        className="pi pi-trash cursor-pointer"
+                        onClick={() => onDeleteTicket(item)}
+                      ></span>
+                    </div>
+
+                    <div className="col-6 flex align-items-center">
+                      <span
+                        className={`${
+                          item?.state ? "bg-green-900" : "bg-red-900"
+                        } px-3 py-2 border-round text-sm cursor-pointer`}
+                        onClick={() => onUpdateStatus(item)}
+                      >
+                        {item?.state ? "Active" : "Inactive"}
+                      </span>
+                    </div>
+                    <div className="col-6 text-right">
+                      <Button
+                        label="Edit"
+                        icon="pi pi-pencil"
+                        outlined
+                        className="w-full sm:w-5 border-round-3xl outlinedBtn text-sm "
+                        onClick={() => onEditTicket(item)}
+                      />
                     </div>
                   </div>
-                  <div className="col-1 text-right">
-                    <span className="pi pi-trash cursor-pointer"></span>
-                  </div>
-
-                  <div className="col-6 flex align-items-center">
-                    <span className="bg-green-900 px-3 py-2 border-round text-sm">
-                      Active
-                    </span>
-                  </div>
-                  <div className="col-6 text-right">
-                    <Button
-                      label="Edit"
-                      icon="pi pi-pencil"
-                      outlined
-                      className="w-full sm:w-5 border-round-3xl outlinedBtn text-sm "
-                    />
-                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>
