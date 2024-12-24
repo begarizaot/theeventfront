@@ -1,15 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { useEventId, useForwardMail } from "../../../hooks";
 
 import { AppDispatch, RootState } from "../../../../../store";
 import {
-  eventsAnalyticsInic,
-  getEventAnalytics,
+  eventsFreesInic,
+  getEventDetailById,
+  getEventFreeTiekcts,
 } from "../../../../../store/slices";
 
-export const useAnalytics = () => {
+import { useEventId, useForwardMail } from "../../../hooks";
+import { CheckoutContext, LoadingContext } from "../../../../../context";
+
+export const useFreeTickets = () => {
+  const { showCheckout, isCheckout } = useContext(CheckoutContext);
+  const { showLoading } = useContext(LoadingContext);
+
   const { eventId } = useEventId();
   const { onForwardMail, toastErrEmail } = useForwardMail();
 
@@ -18,21 +23,21 @@ export const useAnalytics = () => {
 
   const dispatch: AppDispatch = useDispatch();
   const { data, loading, pagination, analytic } = useSelector(
-    (state: RootState) => state.eventAnalytics
+    (state: RootState) => state.eventFreeTickets
   );
 
   useEffect(() => {
-    dispatch(eventsAnalyticsInic());
+    dispatch(eventsFreesInic());
   }, []);
 
   useEffect(() => {
     onFetch();
-  }, [dispatch, pages.page, eventId, search]);
+  }, [dispatch, pages.page, eventId, search, isCheckout]);
 
   const onFetch = async () => {
     eventId &&
       dispatch(
-        getEventAnalytics(eventId, {
+        getEventFreeTiekcts(eventId, {
           size: 6,
           page: (pages?.page || 0) + 1,
           search,
@@ -40,7 +45,7 @@ export const useAnalytics = () => {
       );
   };
 
-  const onSearchAnalytics = async (req: any) => {
+  const onSearchFreeTickets = async (req: any) => {
     setSearch(req);
   };
 
@@ -52,16 +57,28 @@ export const useAnalytics = () => {
     pages.page > 0 ? setPages({ page: 0, first: 0 }) : onFetch();
   };
 
+  const onCreateFreeTicket = async () => {
+    showLoading(true);
+    try {
+      const res = await getEventDetailById(eventId);
+      showLoading(false);
+      showCheckout(res, true);
+    } catch (error) {
+      showLoading(false);
+    }
+  };
+
   return {
-    pages,
-    analytic,
     data,
+    pages,
     loading,
+    analytic,
     pagination,
     toastErrEmail,
-    onPageChange,
     onRefresh,
-    onSearchAnalytics,
+    onPageChange,
     onForwardMail,
+    onCreateFreeTicket,
+    onSearchFreeTickets,
   };
 };

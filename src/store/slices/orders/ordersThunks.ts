@@ -61,7 +61,21 @@ export const postCreateOrder = (dataReq: any) => {
       }
       resolve(data);
     } catch (error) {
-      reject(error);
+      reject('Error in create order, please try again later');
+    }
+  });
+};
+
+export const postCreateFreeOrder = (dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.post(`order/postCreateFreeOrder`, dataReq);
+      if (!data.status) {
+        return reject(data);
+      }
+      resolve(data);
+    } catch (error) {
+      reject('Error in create order, please try again later');
     }
   });
 };

@@ -30,7 +30,13 @@ import {
   searchEventsSuccess,
   searctEventsStart,
 } from "./eventsSearchSlices";
+import {
+  eventsFreesFailure,
+  eventsFreesStart,
+  eventsFreesSuccess,
+} from "./eventFreeTicketsSlice";
 
+// GETS
 export const getEventListPage = (req?: any) => {
   const { size = 3, page = 1 } = req || {};
   return async (dispatch: AppDispatch) => {
@@ -97,6 +103,25 @@ export const getEventDetail = (idEvent?: any) => {
   };
 };
 
+export const getEventDetailById = (idEvent?: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<EventDetail>(
+        `event/getEventDetail/${idEvent}`
+      );
+
+      if (!data.status) {
+        return reject(data.message);
+      }
+
+      const res = handleDetail(data.data);
+      resolve({ ...data.data, ...res });
+    } catch (error) {
+      reject("Failed to fetch events");
+    }
+  });
+};
+
 export const getEventSearch = (name: string) => {
   return async (dispatch: AppDispatch) => {
     dispatch(searctEventsStart());
@@ -144,6 +169,34 @@ export const getEventAnalytics = (eventId: string, req?: any) => {
   };
 };
 
+export const getEventFreeTiekcts = (eventId: string, req?: any) => {
+  const { size = 6, page = 1, search = "" } = req || {};
+  return async (dispatch: AppDispatch) => {
+    dispatch(eventsFreesStart());
+    try {
+      const { data } = await theEventApi.get(
+        `event/getEventFreeTiekcts/${eventId}?size=${size}&page=${page}&search=${search}`
+      );
+
+      if (!data.status) {
+        return dispatch(eventsFreesFailure(data.message));
+      }
+
+      dispatch(
+        eventsFreesSuccess({
+          data: data?.data?.orders || [],
+          analytic: data?.data?.analytics || [],
+          pagination: data?.pagination || {},
+        })
+      );
+    } catch (error) {
+      dispatch(eventsFreesFailure("Failed to fetch events"));
+    }
+  };
+};
+
+// POSTS
+
 export const postCreateEvent = (dataReq: any) => {
   return new Promise<any>(async (resolve, reject) => {
     try {
@@ -158,6 +211,8 @@ export const postCreateEvent = (dataReq: any) => {
     }
   });
 };
+
+// PUTS
 
 export const putUpdateEventImage = (idEvent: any, imgEvent: any) => {
   const fd = new FormData();

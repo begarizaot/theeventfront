@@ -15,12 +15,14 @@ const stripePromise = loadStripe(environment.STRIPEKEY);
 
 interface CheckoutDialogProps {
   visible: boolean;
+  freeTicket?: boolean;
   showVisible: () => void;
 }
 
 export const CheckoutDialog = ({
   showVisible,
   visible,
+  freeTicket,
 }: CheckoutDialogProps) => {
   const { eventData } = useContext(CheckoutContext);
 
@@ -39,12 +41,14 @@ export const CheckoutDialog = ({
       <Elements stripe={stripePromise}>
         {isCheckout ? (
           <CheckoutTickts
+            freeTicket={freeTicket}
             data={eventData}
             tickets={ticketsSelect}
             showMessage={(ev) => setIsMessage(ev)}
           />
         ) : (
           <SelectTickets
+            freeTicket={freeTicket}
             data={eventData}
             onCheckout={(ev: any) => {
               setTicketsSelect(ev);

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState:any = {
+const initialState: any = {
   data: [],
   analytic: [],
   pagination: {},
@@ -8,22 +8,22 @@ const initialState:any = {
   error: null,
 };
 
-export const eventAnalyticsSlice = createSlice({
-  name: "eventAnalytics",
+export const eventFreeTicketsSlice = createSlice({
+  name: "eventFreeTickets",
   initialState,
   reducers: {
-    eventsAnalyticsInic(state) {
+    eventsFreesInic(state) {
       state.loading = true;
       state.error = null;
       state.data = [];
       state.analytic = [];
     },
-    eventsAnalyticsStart(state) {
+    eventsFreesStart(state) {
       state.loading = true;
       state.error = null;
       state.pagination = {};
     },
-    eventsAnalyticsSuccess(
+    eventsFreesSuccess(
       state,
       action: PayloadAction<{ data: any; analytic: any; pagination: any }>
     ) {
@@ -32,7 +32,7 @@ export const eventAnalyticsSlice = createSlice({
       state.pagination = action.payload.pagination;
       state.loading = false;
     },
-    eventsAnalyticsFailure(state, action: PayloadAction<any>) {
+    eventsFreesFailure(state, action: PayloadAction<any>) {
       state.error = action.payload;
       state.loading = false;
       state.data = [];
@@ -42,8 +42,8 @@ export const eventAnalyticsSlice = createSlice({
 });
 
 export const {
-  eventsAnalyticsInic,
-  eventsAnalyticsStart,
-  eventsAnalyticsSuccess,
-  eventsAnalyticsFailure,
-} = eventAnalyticsSlice.actions;
+  eventsFreesInic,
+  eventsFreesStart,
+  eventsFreesSuccess,
+  eventsFreesFailure,
+} = eventFreeTicketsSlice.actions;

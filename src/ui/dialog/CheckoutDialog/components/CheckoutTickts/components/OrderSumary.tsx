@@ -12,6 +12,7 @@ interface OrderSumaryProps {
   values: any;
   useData: any;
   discount: any;
+  freeTicket: any;
   onCheckboxChange: (e: any) => void;
   onInputUser: (e: any) => void;
   onDiscountCode: () => void;
@@ -22,6 +23,7 @@ export const OrderSumary = ({
   tickets,
   useData,
   discount,
+  freeTicket,
   onCheckboxChange,
   onInputUser,
   onDiscountCode,
@@ -111,57 +113,61 @@ export const OrderSumary = ({
           Privacy Policy.
         </Link>
       </div>
+      {!freeTicket && (
+        <>
+          <div className="col-12 promotionalMessages flex">
+            <Checkbox
+              inputId="promotional"
+              value={useData.smsCheck}
+              name="smsCheck"
+              onChange={onCheckboxChange}
+              checked={useData.smsCheck}
+            />
+            <label htmlFor="promotional" className="ml-2 text-xs">
+              I agree to receive promotional messages and updates about future
+              events via SMS and/or Email. By checking this box, I consent to
+              receive marketing messages from The Event Jet at the phone number
+              and/or Email provided. Message and data rates may apply. Reply
+              'STOP' at any time to unsubscribe.
+            </label>
+          </div>
 
-      <div className="col-12 promotionalMessages flex">
-        <Checkbox
-          inputId="promotional"
-          value={useData.smsCheck}
-          name="smsCheck"
-          onChange={onCheckboxChange}
-          checked={useData.smsCheck}
-        />
-        <label htmlFor="promotional" className="ml-2 text-xs">
-          I agree to receive promotional messages and updates about future
-          events via SMS and/or Email. By checking this box, I consent to
-          receive marketing messages from The Event Jet at the phone number
-          and/or Email provided. Message and data rates may apply. Reply 'STOP'
-          at any time to unsubscribe.
-        </label>
-      </div>
-      <div className="col-12 mt-2">
-        <div className="flex flex-column">
-          <span>Discount Code</span>
+          <div className="col-12 mt-2">
+            <div className="flex flex-column">
+              <span>Discount Code</span>
 
-          <InputIcon icon="pi-tag" className="mt-2">
-            <div className="grid w-full my-auto">
-              <div className="col-9 sm:col-10 lg:col-8 xl:col-9 p-0">
-                <InputText
-                  className="py-1 text-white"
-                  placeholder="Code"
-                  name="codeDiscount"
-                  autoComplete="off"
-                  value={useData.codeDiscount}
-                  onChange={onInputUser}
-                />
-              </div>
-              <div className="col-3 sm:col-2 lg:col-4 xl:col-3 p-0">
-                <Button
-                  label="Apply"
-                  outlined
-                  className="border-round-3xl outlinedBtn text-sm h-1rem"
-                  type="button"
-                  onClick={onDiscountCode}
-                />
-              </div>
+              <InputIcon icon="pi-tag" className="mt-2">
+                <div className="grid w-full my-auto">
+                  <div className="col-9 sm:col-10 lg:col-8 xl:col-9 p-0">
+                    <InputText
+                      className="py-1 text-white"
+                      placeholder="Code"
+                      name="codeDiscount"
+                      autoComplete="off"
+                      value={useData.codeDiscount}
+                      onChange={onInputUser}
+                    />
+                  </div>
+                  <div className="col-3 sm:col-2 lg:col-4 xl:col-3 p-0">
+                    <Button
+                      label="Apply"
+                      outlined
+                      className="border-round-3xl outlinedBtn text-sm h-1rem"
+                      type="button"
+                      onClick={onDiscountCode}
+                    />
+                  </div>
+                </div>
+              </InputIcon>
+              {discount?.data == 0 && (
+                <span className="mt-1 text-xs text-red-700">
+                  {discount?.message}
+                </span>
+              )}
             </div>
-          </InputIcon>
-          {discount?.data == 0 && (
-            <span className="mt-1 text-xs text-red-700">
-              {discount?.message}
-            </span>
-          )}
-        </div>
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

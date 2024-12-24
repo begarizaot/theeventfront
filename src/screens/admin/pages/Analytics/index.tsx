@@ -16,7 +16,7 @@ export const Analytics = () => {
     pages,
     loading,
     pagination,
-    toastRes,
+    toastErrEmail,
     onPageChange,
     onRefresh,
     onSearchAnalytics,
@@ -25,7 +25,7 @@ export const Analytics = () => {
 
   return (
     <>
-      <Toast ref={toastRes} />
+      <Toast ref={toastErrEmail} />
       <div className="grid">
         <div className="col-12">
           <div className="grid justify-content-center">
@@ -37,7 +37,7 @@ export const Analytics = () => {
                 </div>
               ))}
             {(!loading || analytic.length > 0) &&
-              analytic?.map((item: any, index) => (
+              analytic?.map((item: any, index:any) => (
                 <div
                   className="col-12 shadow-1 sm:col-6 h-6rem pb-0 sm:pb-2"
                   key={index}

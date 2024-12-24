@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: any = {
   searchResults: [],
   searchLoading: false,
   pagination: {},

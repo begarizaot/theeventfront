@@ -1,9 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getListTicketTypeByEvent } from "../../../../../../store/slices";
+
+import { LoadingContext } from "../../../../../../context";
+
+import {
+  getListTicketTypeByEvent,
+  postValidateTicketEvent,
+} from "../../../../../../store/slices";
 import { AppDispatch, RootState } from "../../../../../../store";
 
-export const useSelectTickets = (req: any) => {
+export const useSelectTickets = ({ data, onCheckout, freeTicket }: any) => {
+  const { showLoading } = useContext(LoadingContext);
+
+  const errorRes = useRef<any>(null);
+
   const dispatch: AppDispatch = useDispatch();
   const { ticketTypes, loading } = useSelector(
     (state: RootState) => state.ticketType
@@ -12,8 +22,12 @@ export const useSelectTickets = (req: any) => {
   const [ticketsSelect, setTicketsSelect] = useState<any>([]);
 
   useEffect(() => {
-    dispatch(getListTicketTypeByEvent(req.id_event) as any);
-  }, [dispatch, req.id_event]);
+    fetchTicketTypes();
+  }, [dispatch, data.id_event]);
+
+  const fetchTicketTypes = async () => {
+    dispatch(getListTicketTypeByEvent(data.id_event));
+  };
 
   const onSelectedTicket = (ev: any) => {
     const index = ticketsSelect.findIndex((t: any) => t.id === ev.id);
@@ -32,5 +46,35 @@ export const useSelectTickets = (req: any) => {
     }
   };
 
-  return { ticketTypes, loading, ticketsSelect, onSelectedTicket };
+  const onCheckoutRes = async () => {
+    if (freeTicket) {
+      onCheckout(ticketsSelect);
+      return;
+    }
+
+    showLoading(true);
+    try {
+      await postValidateTicketEvent(data.id_event, ticketsSelect);
+      showLoading(false);
+      onCheckout(ticketsSelect);
+    } catch (error) {
+      showLoading(false);
+      fetchTicketTypes();
+      errorRes.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: error,
+        life: 3000,
+      });
+    }
+  };
+
+  return {
+    ticketTypes,
+    loading,
+    ticketsSelect,
+    errorRes,
+    onSelectedTicket,
+    onCheckoutRes,
+  };
 };

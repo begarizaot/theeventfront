@@ -2,10 +2,12 @@ import { createContext } from "react";
 
 interface CheckoutContextProps {
   eventData: any;
-  showCheckout: (ev: any) => void;
+  isCheckout: any;
+  showCheckout: (ev: any, free?: any) => void;
 }
 
 export const CheckoutContext = createContext<CheckoutContextProps>({
+  isCheckout: false,
   eventData: {},
   showCheckout: () => {},
 });

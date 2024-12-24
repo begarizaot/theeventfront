@@ -6,7 +6,7 @@ import { CheckoutTicktsProps } from "./types";
 import { Button } from "primereact/button";
 
 export const CheckoutTickts = (req: CheckoutTicktsProps) => {
-  const { tickets } = req;
+  const { tickets, freeTicket } = req;
 
   const {
     values,
@@ -18,6 +18,7 @@ export const CheckoutTickts = (req: CheckoutTicktsProps) => {
     onClearErrors,
     onInputChange,
     onCompleteForm,
+    onFreeCompleteForm,
     onDiscountCode,
     onCheckboxChange,
   } = useCheckoutTickets(req);
@@ -26,14 +27,19 @@ export const CheckoutTickts = (req: CheckoutTicktsProps) => {
     <>
       <Toast ref={errorRes} />
       <div className="col-12 border-top-1 pt-3 pb-5 contCheckout">
-        <form className="grid h-full" onSubmit={onCompleteForm}>
+        <form
+          className="grid h-full"
+          onSubmit={freeTicket ? onFreeCompleteForm : onCompleteForm}
+        >
           <div className="col-12 lg:col-8">
             <ContactInformation data={formState} changeUser={onInputChange} />
-            <PaymentMethod
-              paymentRequest={paymentRequest}
-              msErrors={msErrors}
-              clearErrors={onClearErrors}
-            />
+            {!freeTicket && (
+              <PaymentMethod
+                paymentRequest={paymentRequest}
+                msErrors={msErrors}
+                clearErrors={onClearErrors}
+              />
+            )}
           </div>
           <div className="col-12 lg:col-4 flex flex-column pb-7 sm:pb-2">
             <OrderSumary
@@ -44,6 +50,7 @@ export const CheckoutTickts = (req: CheckoutTicktsProps) => {
               useData={formState}
               values={values}
               discount={discount}
+              freeTicket={freeTicket}
             />
 
             <div className="fixed bottom-0 left-0 bgBody py-2 px-4 mt-auto w-full sm:py-0 sm:px-0 sm:relative">

@@ -11,13 +11,14 @@ import { calculateTotals } from "../utils";
 import { useStripeCheck } from "./useStripeCheck";
 import {
   getForwardMailOrder,
+  postCreateFreeOrder,
   postCreateOrder,
   postCreatePayment,
 } from "../../../../../../store/slices/orders";
 import { LoadingContext } from "../../../../../../context";
 
 export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
-  const { showMessage } = dataReq;
+  const { showMessage, freeTicket } = dataReq;
 
   const stripe = useStripe();
   const { showLoading } = useContext(LoadingContext);
@@ -41,7 +42,7 @@ export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
   });
 
   useEffect(() => {
-    getServiceFee();
+    !freeTicket && getServiceFee();
     onDataUser();
   }, []);
 
@@ -133,17 +134,43 @@ export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
         payment: createPayment?.data,
       });
 
-      if (!createOrder.status) {
-        onMessageError(createOrder?.message || "Error in payment");
-        return;
-      }
-
-      showLoading(false);
-      getForwardMailOrder(createOrder.data);
-      showMessage(createOrder.data);
+      onResulCreate(createOrder);
     } catch (error: any) {
       onMessageError(error?.message || error || "");
     }
+  };
+
+  const onFreeCompleteForm = async (ev: any) => {
+    ev.preventDefault();
+    showLoading(true);
+    const reqData = {
+      ...formState,
+      values,
+      eventId: dataReq.data.id_event,
+      tickets: dataReq.tickets.map((ticket: any) => ({
+        id: ticket.id,
+        quantity: ticket.quantity,
+        name: ticket.name,
+      })),
+    };
+
+    try {
+      const createOrder = await postCreateFreeOrder(reqData);
+      onResulCreate(createOrder);
+    } catch (error: any) {
+      onMessageError(error?.message || error || "");
+    }
+  };
+
+  const onResulCreate = (req: any) => {
+    if (!req.status) {
+      onMessageError(req?.message || "Error in payment");
+      return;
+    }
+
+    showLoading(false);
+    getForwardMailOrder(req.data);
+    showMessage(req.data);
   };
 
   const onMessageError = (message: any) => {
@@ -168,5 +195,6 @@ export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
     onCompleteForm,
     onDiscountCode,
     onCheckboxChange,
+    onFreeCompleteForm,
   };
 };
