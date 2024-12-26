@@ -8,6 +8,7 @@ import {
   teamAccessSlice,
   eventsSearchSlices,
   eventFreeTicketsSlice,
+  eventDiscountCodeSlice,
 } from "./slices";
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
     events: eventsSlice.reducer,
     eventAnalytics: eventAnalyticsSlice.reducer,
     eventFreeTickets: eventFreeTicketsSlice.reducer,
+    eventDiscountCode: eventDiscountCodeSlice.reducer,
     eventsSearch: eventsSearchSlices.reducer,
     myEvents: myEventsSlice.reducer,
     ticketType: ticketTypeSlice.reducer,

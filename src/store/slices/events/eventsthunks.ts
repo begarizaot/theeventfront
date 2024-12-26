@@ -35,6 +35,7 @@ import {
   eventsFreesStart,
   eventsFreesSuccess,
 } from "./eventFreeTicketsSlice";
+import { eventsDiscountFailure, eventsDiscountStart, eventsDiscountSuccess } from "./eventDiscountCodeSlice";
 
 // GETS
 export const getEventListPage = (req?: any) => {
@@ -191,6 +192,32 @@ export const getEventFreeTiekcts = (eventId: string, req?: any) => {
       );
     } catch (error) {
       dispatch(eventsFreesFailure("Failed to fetch events"));
+    }
+  };
+};
+
+export const getEventDiscountCode = (eventId: string, req?: any) => {
+  const { size = 6, page = 1, search = "" } = req || {};
+  return async (dispatch: AppDispatch) => {
+    dispatch(eventsDiscountStart());
+    try {
+      const { data } = await theEventApi.get(
+        `event/getEventDiscountCode/${eventId}?size=${size}&page=${page}&search=${search}`
+      );
+
+      if (!data.status) {
+        return dispatch(eventsDiscountFailure(data.message));
+      }
+
+      dispatch(
+        eventsDiscountSuccess({
+          data: data?.data?.data || [],
+          analytic: data?.data?.analytics || [],
+          pagination: data?.pagination || {},
+        })
+      );
+    } catch (error) {
+      dispatch(eventsDiscountFailure("Failed to fetch events"));
     }
   };
 };
