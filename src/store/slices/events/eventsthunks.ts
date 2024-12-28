@@ -35,7 +35,11 @@ import {
   eventsFreesStart,
   eventsFreesSuccess,
 } from "./eventFreeTicketsSlice";
-import { eventsDiscountFailure, eventsDiscountStart, eventsDiscountSuccess } from "./eventDiscountCodeSlice";
+import {
+  eventsDiscountFailure,
+  eventsDiscountStart,
+  eventsDiscountSuccess,
+} from "./eventDiscountCodeSlice";
 
 // GETS
 export const getEventListPage = (req?: any) => {
@@ -220,6 +224,44 @@ export const getEventDiscountCode = (eventId: string, req?: any) => {
       dispatch(eventsDiscountFailure("Failed to fetch events"));
     }
   };
+};
+
+export const getEventScanner = (eventId: string, idQr?: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<EventDetail>(
+        `event/getEventScanner/${eventId}/${idQr}`
+      );
+
+      if (!data.status) {
+        return reject(data.message);
+      }
+
+      const res = handleDetail(data.data);
+      resolve({ ...data.data, ...res });
+    } catch (error) {
+      reject("Ticket not found");
+    }
+  });
+};
+
+export const getEventScannerCreate = (eventId: string, idQr?: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<EventDetail>(
+        `event/getEventScannerCreate/${eventId}/${idQr}`
+      );
+
+      if (!data.status) {
+        return reject(data.message);
+      }
+
+      const res = handleDetail(data.data);
+      resolve({ ...data.data, ...res });
+    } catch (error) {
+      reject("Ticket not found");
+    }
+  });
 };
 
 // POSTS

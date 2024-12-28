@@ -72,14 +72,14 @@ export const NavBar = () => {
       label: "Scan Tickets",
       icon: "pi pi-qrcode",
       template: itemRenderer,
-      link: `/scanner`,
+      link: `/scanner/${eventId}`,
     },
-    {
-      label: "Download Guest List",
-      icon: "pi pi-download",
-      template: itemRenderer,
-      link: `/admin/${eventId}/downloadGuestList`,
-    },
+    // {
+    //   label: "Download Guest List",
+    //   icon: "pi pi-download",
+    //   template: itemRenderer,
+    //   link: `/admin/${eventId}/downloadGuestList`,
+    // },
   ];
 
   return (
