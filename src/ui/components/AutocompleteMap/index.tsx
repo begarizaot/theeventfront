@@ -3,10 +3,14 @@ import { InputText } from "primereact/inputtext";
 import { InputIcon } from "../InputIcon";
 
 interface AutocompleteMapProps {
+  placeHolder?: any;
   onPlaceSelected: (address: any) => void;
 }
 
-export const AutocompleteMap = ({ onPlaceSelected }: AutocompleteMapProps) => {
+export const AutocompleteMap = ({
+  placeHolder = "Address",
+  onPlaceSelected,
+}: AutocompleteMapProps) => {
   const inputRef = useRef<any>(null);
 
   useEffect(() => {
@@ -41,7 +45,7 @@ export const AutocompleteMap = ({ onPlaceSelected }: AutocompleteMapProps) => {
     <InputIcon icon="pi-map-marker">
       <InputText
         className="py-1 text-white"
-        placeholder="Address"
+        placeholder={placeHolder}
         name="address"
         autoComplete="off"
         ref={inputRef}

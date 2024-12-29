@@ -76,7 +76,7 @@ export const DateLocation = ({
             </InputIcon>
           </div>
           <div className="col-12">
-            <AutocompleteMap onPlaceSelected={onAddressChange} />
+            <AutocompleteMap placeHolder={data.mapCompl} onPlaceSelected={onAddressChange} />
           </div>
         </div>
       </div>

@@ -304,6 +304,24 @@ export const putUpdateEventImage = (idEvent: any, imgEvent: any) => {
   });
 };
 
+export const putUpdateEvent = (idEvent: any, dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.put(
+        `event/putUpdateEvent/${idEvent}`,
+        dataReq
+      );
+      if (!data.status) {
+        return reject(data.message);
+      }
+
+      resolve(data);
+    } catch (error) {
+      reject("Failed to create event");
+    }
+  });
+};
+
 const handleDetail = (ev: Event) => {
   const {
     map_id,

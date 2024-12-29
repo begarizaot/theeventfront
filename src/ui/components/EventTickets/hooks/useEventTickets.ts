@@ -18,7 +18,11 @@ export const useEventTickets = (dataReq: any) => {
   };
 
   const onUpdateTicket = (ev: any) => {
-    setTicketData(ev);
+    setTicketData({
+      ...ev,
+      start_date: new Date(ev.start_date),
+      end_date: new Date(ev.end_date),
+    });
     showNewTicket();
   };
 
@@ -31,7 +35,7 @@ export const useEventTickets = (dataReq: any) => {
       confirmButtonText: "Si",
       cancelButtonText: "No",
     }).then((result) => {
-      if (result.isConfirmed) dataReq.deleteTicket(ev.idTicket);
+      if (result.isConfirmed) dataReq.deleteTicket(ev.idTicket || ev.id);
     });
   };
 

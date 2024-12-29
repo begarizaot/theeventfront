@@ -2,7 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "../../../../hooks";
 import { theEventApi } from "../../../../apis";
 
-export const useCreateEvent = (dataReq: any) => {
+export const useCreateEvent = ({
+  createUpdateEvent,
+  ticktes,
+  edit,
+  dataReq,
+}: any) => {
   const errorRes = useRef<any>(null);
 
   const [listCategories, setListCategories] = useState<any>([]);
@@ -34,6 +39,12 @@ export const useCreateEvent = (dataReq: any) => {
     getListAgeRestrictions();
   }, []);
 
+  useEffect(() => {
+    if (dataReq?.id) {
+      onSetInput(dataReq);
+    }
+  }, [dataReq]);
+
   const getListCategories = async () => {
     const { data } = await theEventApi.get("event-categorie/getListCategories");
     setListCategories(data?.data || []);
@@ -49,27 +60,27 @@ export const useCreateEvent = (dataReq: any) => {
   const onCreateEvent = (ev: any) => {
     ev.preventDefault();
 
-    if (!formState.image) {
+    if (!formState.image && !edit) {
       errorRes.current.show({
         severity: "error",
         summary: "Error",
         detail: "Please upload an image",
-        life: 3000
+        life: 3000,
       });
       return;
     }
 
-    if (dataReq.ticktes.length === 0) {
+    if (ticktes.length === 0) {
       errorRes.current.show({
         severity: "error",
         summary: "Error",
         detail: "Please add at least one ticket",
-        life: 3000
+        life: 3000,
       });
       return;
     }
 
-    dataReq.createUpdateEvent(formState);
+    createUpdateEvent(formState);
   };
 
   return {

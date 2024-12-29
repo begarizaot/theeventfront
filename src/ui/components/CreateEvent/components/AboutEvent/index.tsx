@@ -67,7 +67,7 @@ export const AboutEvent = ({
               />
             </InputIcon>
 
-            <div className="mt-2 flex align-items-center">
+            {/* <div className="mt-2 flex align-items-center">
               <Checkbox
                 inputId="receive"
                 name="receiveSms"
@@ -77,7 +77,7 @@ export const AboutEvent = ({
               <label htmlFor="receive" className="ml-2 text-xs">
                 I agree to receive text notifications about this event.
               </label>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

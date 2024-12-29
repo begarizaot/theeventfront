@@ -5,24 +5,20 @@ import { InputFileBtn } from "../../../InputFileBtn";
 
 import { InputText } from "primereact/inputtext";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useImageLinks } from "./hooks/useImageLinks";
 
 interface ImageLinksProps {
   data: any;
   inputChange: (ev: any) => void;
   setInput: (data: any) => void;
+  changeImage?: (img: any) => void;
 }
 
-export const ImageLinks = ({
-  data,
-  inputChange,
-  setInput,
-}: ImageLinksProps) => {
-  const [file, setFile] = useState<any>();
-  function handleChange(e: any) {
-    setFile(URL.createObjectURL(e.target.files[0]));
-    setInput({ image: e.target.files[0] });
-  }
+export const ImageLinks = (dataReq: ImageLinksProps) => {
+  const { data, inputChange } = dataReq;
+
+  const { file, handleChange } = useImageLinks(dataReq);
   return (
     <div className="grid imageLinks">
       <div

@@ -7,15 +7,18 @@ import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 
 interface CreateEventCompProps {
+  dataReq?: any;
   ticktes: any[];
   edit?: boolean;
   createUpdateTicket: (ticket: any) => void;
   deleteTicket: (ticket: any) => void;
   createUpdateEvent: (event: any) => void;
+  changeImage?: (img: any) => void;
 }
 
 export const CreateEventComp = (dataReq: CreateEventCompProps) => {
-  const { ticktes, edit, createUpdateTicket, deleteTicket } = dataReq;
+  const { ticktes, edit, createUpdateTicket, deleteTicket, changeImage } =
+    dataReq;
 
   const {
     errorRes,
@@ -50,6 +53,7 @@ export const CreateEventComp = (dataReq: CreateEventCompProps) => {
                 data={formState}
                 inputChange={onInputChange}
                 setInput={onSetInput}
+                changeImage={changeImage}
               />
             </div>
             <div className="col-12 contData">

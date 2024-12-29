@@ -45,3 +45,54 @@ export const postValidateTicketEvent = (idEvent: any, dataReq: any) => {
     }
   });
 };
+export const postCreateTicketEvent = (idEvent: any, dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.post(
+        `ticket-type/postCreateTicketEvent/${idEvent}`,
+        dataReq
+      );
+      if (!data.status) {
+        return reject(data.message);
+      }
+      resolve(data);
+    } catch (error) {
+      reject("Failed to create ticket, please try again later");
+    }
+  });
+};
+
+// PUTS
+export const putUpdateTicketEvent = (idEvent: any, dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.put(
+        `ticket-type/putUpdateTicketEvent/${idEvent}`,
+        dataReq
+      );
+      if (!data.status) {
+        return reject(data.message);
+      }
+      resolve(data);
+    } catch (error) {
+      reject("Failed to update ticket, please try again later");
+    }
+  });
+};
+
+// DELETE
+export const deleteTicketEvent = (idEvent: any, idTicket: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.delete(
+        `ticket-type/deleteTicketEvent/${idEvent}/${idTicket}`
+      );
+      if (!data.status) {
+        return reject(data.message);
+      }
+      resolve(data);
+    } catch (error) {
+      reject("Failed to update ticket, please try again later");
+    }
+  });
+};
