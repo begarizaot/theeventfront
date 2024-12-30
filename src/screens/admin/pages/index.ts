@@ -1,4 +1,4 @@
-export * from "./Analytics";
+export * from "./TicketControl";
 export * from "./EventDetails";
 export * from "./TeamAccess";
 export * from "./FreeTickets";

@@ -8,22 +8,22 @@ const initialState:any = {
   error: null,
 };
 
-export const eventAnalyticsSlice = createSlice({
-  name: "eventAnalytics",
+export const eventTicketControlSlice = createSlice({
+  name: "eventTicketControl",
   initialState,
   reducers: {
-    eventsAnalyticsInic(state) {
+    eventsTicketControlInic(state) {
       state.loading = true;
       state.error = null;
       state.data = [];
       state.analytic = [];
     },
-    eventsAnalyticsStart(state) {
+    eventsTicketControlStart(state) {
       state.loading = true;
       state.error = null;
       state.pagination = {};
     },
-    eventsAnalyticsSuccess(
+    eventsTicketControlSuccess(
       state,
       action: PayloadAction<{ data: any; analytic: any; pagination: any }>
     ) {
@@ -32,7 +32,7 @@ export const eventAnalyticsSlice = createSlice({
       state.pagination = action.payload.pagination;
       state.loading = false;
     },
-    eventsAnalyticsFailure(state, action: PayloadAction<any>) {
+    eventsTicketControlFailure(state, action: PayloadAction<any>) {
       state.error = action.payload;
       state.loading = false;
       state.data = [];
@@ -42,8 +42,8 @@ export const eventAnalyticsSlice = createSlice({
 });
 
 export const {
-  eventsAnalyticsInic,
-  eventsAnalyticsStart,
-  eventsAnalyticsSuccess,
-  eventsAnalyticsFailure,
-} = eventAnalyticsSlice.actions;
+  eventsTicketControlInic,
+  eventsTicketControlStart,
+  eventsTicketControlSuccess,
+  eventsTicketControlFailure,
+} = eventTicketControlSlice.actions;

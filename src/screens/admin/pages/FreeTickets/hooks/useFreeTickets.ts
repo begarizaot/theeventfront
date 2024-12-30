@@ -13,7 +13,7 @@ import { CheckoutContext, LoadingContext } from "../../../../../context";
 
 export const useFreeTickets = () => {
   const { showCheckout, isCheckout } = useContext(CheckoutContext);
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading, hiddenLoading } = useContext(LoadingContext);
 
   const { eventId } = useEventId();
   const { onForwardMail, toastErrEmail } = useForwardMail();
@@ -59,13 +59,13 @@ export const useFreeTickets = () => {
 
   const onCreateFreeTicket = async () => {
     showLoading(true);
-    try {
-      const res = await getEventDetailById(eventId);
-      showLoading(false);
-      showCheckout(res, true);
-    } catch (error) {
-      showLoading(false);
-    }
+    getEventDetailById(eventId)
+      .then((res) => {
+        showCheckout(res, true);
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   return {

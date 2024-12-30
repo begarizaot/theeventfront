@@ -41,11 +41,11 @@ export const MyEventsPage = () => {
       <div className="col-12">
         <div className="grid">
           {!loading &&
-            events.map((event) => (
+            events.map((event:any) => (
               <div key={event.id_event} className="col-12 sm:col-6 lg:col-4">
                 <EventCard
                   link="/admin"
-                  sublink="analytics"
+                  sublink="ticketControl"
                   data={event}
                   manager={true}
                 />

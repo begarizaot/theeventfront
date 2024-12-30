@@ -5,7 +5,6 @@ import { InputFileBtn } from "../../../InputFileBtn";
 
 import { InputText } from "primereact/inputtext";
 
-import { useEffect, useState } from "react";
 import { useImageLinks } from "./hooks/useImageLinks";
 
 interface ImageLinksProps {

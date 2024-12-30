@@ -8,7 +8,7 @@ import { LoadingContext } from "../../../../../context";
 
 export const useCreateEvent = () => {
   const navigate = useNavigate();
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading, hiddenLoading } = useContext(LoadingContext);
 
   const [ticktes, setTicktes] = useState<any>([]);
 
@@ -27,15 +27,15 @@ export const useCreateEvent = () => {
   };
 
   const createUpdateEvent = async (data: any) => {
-    try {
-      showLoading(true);
-      const res = await postCreateEvent({ data, ticktes });
-      await putUpdateEventImage(res.data, data.image);
-      showLoading(false);
-      navigate(`/admin/${res.data}/analytics`, { replace: true });
-    } catch (error) {
-      showLoading(false);
-    }
+    showLoading(true);
+    postCreateEvent({ data, ticktes })
+      .then(async (res) => {
+        await putUpdateEventImage(res.data, data.image);
+        navigate(`/admin/${res.data}/ticketControl`, { replace: true });
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   return { ticktes, onCreateUpdateTicket, createUpdateEvent, onRemoveTicket };

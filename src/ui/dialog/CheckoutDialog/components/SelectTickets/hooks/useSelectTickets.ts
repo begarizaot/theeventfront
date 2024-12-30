@@ -10,7 +10,7 @@ import {
 import { AppDispatch, RootState } from "../../../../../../store";
 
 export const useSelectTickets = ({ data, onCheckout, freeTicket }: any) => {
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading, hiddenLoading } = useContext(LoadingContext);
 
   const errorRes = useRef<any>(null);
 
@@ -55,10 +55,10 @@ export const useSelectTickets = ({ data, onCheckout, freeTicket }: any) => {
     showLoading(true);
     try {
       await postValidateTicketEvent(data.id_event, ticketsSelect);
-      showLoading(false);
+      hiddenLoading();
       onCheckout(ticketsSelect);
     } catch (error) {
-      showLoading(false);
+      hiddenLoading();
       fetchTicketTypes();
       errorRes.current.show({
         severity: "error",

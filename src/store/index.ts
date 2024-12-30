@@ -3,18 +3,18 @@ import {
   eventsSlice,
   ticketTypeSlice,
   ticketSlice,
-  eventAnalyticsSlice,
   myEventsSlice,
   teamAccessSlice,
   eventsSearchSlices,
   eventFreeTicketsSlice,
   eventDiscountCodeSlice,
+  eventTicketControlSlice,
 } from "./slices";
 
 const store = configureStore({
   reducer: {
     events: eventsSlice.reducer,
-    eventAnalytics: eventAnalyticsSlice.reducer,
+    eventTicketControl: eventTicketControlSlice.reducer,
     eventFreeTickets: eventFreeTicketsSlice.reducer,
     eventDiscountCode: eventDiscountCodeSlice.reducer,
     eventsSearch: eventsSearchSlices.reducer,

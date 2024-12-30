@@ -5,11 +5,11 @@ import { useEventId, useForwardMail } from "../../../hooks";
 
 import { AppDispatch, RootState } from "../../../../../store";
 import {
-  eventsAnalyticsInic,
-  getEventAnalytics,
+  eventsTicketControlInic,
+  getEventTicketControls,
 } from "../../../../../store/slices";
 
-export const useAnalytics = () => {
+export const useTicketControl = () => {
   const { eventId } = useEventId();
   const { onForwardMail, toastErrEmail } = useForwardMail();
 
@@ -17,12 +17,12 @@ export const useAnalytics = () => {
   const [search, setSearch] = useState<any>("");
 
   const dispatch: AppDispatch = useDispatch();
-  const { data, loading, pagination, analytic } = useSelector(
-    (state: RootState) => state.eventAnalytics
+  const { data, loading, pagination } = useSelector(
+    (state: RootState) => state.eventTicketControl
   );
 
   useEffect(() => {
-    dispatch(eventsAnalyticsInic());
+    dispatch(eventsTicketControlInic());
   }, []);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export const useAnalytics = () => {
   const onFetch = async () => {
     eventId &&
       dispatch(
-        getEventAnalytics(eventId, {
+        getEventTicketControls(eventId, {
           size: 6,
           page: (pages?.page || 0) + 1,
           search,
@@ -40,7 +40,7 @@ export const useAnalytics = () => {
       );
   };
 
-  const onSearchAnalytics = async (req: any) => {
+  const onSearchTicketControl = async (req: any) => {
     setSearch(req);
   };
 
@@ -54,14 +54,13 @@ export const useAnalytics = () => {
 
   return {
     pages,
-    analytic,
     data,
     loading,
     pagination,
     toastErrEmail,
     onPageChange,
     onRefresh,
-    onSearchAnalytics,
+    onSearchTicketControl,
     onForwardMail,
   };
 };

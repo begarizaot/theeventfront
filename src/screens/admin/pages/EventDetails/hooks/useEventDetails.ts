@@ -17,7 +17,7 @@ import {
 import { LoadingContext } from "../../../../../context";
 
 export const useEventDetails = () => {
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading, hiddenLoading } = useContext(LoadingContext);
 
   const { eventId } = useEventId();
 
@@ -42,34 +42,36 @@ export const useEventDetails = () => {
 
   const fetchEventDetails = async () => {
     showLoading(true);
-    try {
-      const res = await getEventDetailById(eventId);
-      setDataEvent({
-        ...res,
-        start_date: new Date(res.start_date),
-        end_date: new Date(res.end_date),
-        event_category: res.event_category_id.id,
-        event_age_restriction: res.event_age_restriction_id.id,
-        imageUrl: res.image[0].url,
-        mapCompl: res.map_id.labelCompl,
-        map: res.map_id,
+    getEventDetailById(eventId)
+      .then((res) => {
+        setDataEvent({
+          ...res,
+          start_date: new Date(res.start_date),
+          end_date: new Date(res.end_date),
+          event_category: res.event_category_id.id,
+          event_age_restriction: res.event_age_restriction_id.id,
+          imageUrl: res.image[0].url,
+          mapCompl: res.map_id.labelCompl,
+          map: res.map_id,
+        });
+      })
+      .catch(() => {
+        onMessageError("Error fetching event details");
+      })
+      .finally(() => {
+        hiddenLoading();
       });
-      showLoading(false);
-    } catch (error) {
-      showLoading(false);
-      onMessageError("Error fetching event details");
-    }
   };
 
   const onChangeImage = async (img: any) => {
     showLoading(true);
-    try {
-      await putUpdateEventImage(eventId, img);
-      showLoading(false);
-    } catch (error) {
-      onMessageError("Error updating image");
-      showLoading(false);
-    }
+    putUpdateEventImage(eventId, img)
+      .catch(() => {
+        onMessageError("Error updating image");
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   const onMessageError = (msg: string) => {
@@ -91,50 +93,58 @@ export const useEventDetails = () => {
 
   const onCreateTicket = async (ev: any) => {
     showLoading(true);
-    try {
-      await postCreateTicketEvent(eventId, ev);
-      fetchTicketTypes();
-      showLoading(false);
-    } catch (error) {
-      onMessageError("Error create ticket");
-      showLoading(false);
-    }
+    postCreateTicketEvent(eventId, ev)
+      .then(() => {
+        fetchTicketTypes();
+      })
+      .catch(() => {
+        onMessageError("Error create ticket");
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   const onUpdateTicket = async (ev: any) => {
     showLoading(true);
-    try {
-      await putUpdateTicketEvent(eventId, ev);
-      fetchTicketTypes();
-      showLoading(false);
-    } catch (error) {
-      onMessageError("Error updating ticket");
-      showLoading(false);
-    }
+    putUpdateTicketEvent(eventId, ev)
+      .then(() => {
+        fetchTicketTypes();
+      })
+      .catch(() => {
+        onMessageError("Error updating ticket");
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   const onDeleteTicket = async (ev: any) => {
     showLoading(true);
-    try {
-      await deleteTicketEvent(eventId, ev);
-      fetchTicketTypes();
-      showLoading(false);
-    } catch (error) {
-      onMessageError("Error deleting ticket");
-      showLoading(false);
-    }
+    deleteTicketEvent(eventId, ev)
+      .then(() => {
+        fetchTicketTypes();
+      })
+      .catch(() => {
+        onMessageError("Error deleting ticket");
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   const onCreateUpdateEvent = async (ev: any) => {
     showLoading(true);
-    try {
-      await putUpdateEvent(eventId, ev);
-      fetchEventDetails();
-      showLoading(false);
-    } catch (error) {
-      onMessageError("Error updating event");
-      showLoading(false);
-    }
+    putUpdateEvent(eventId, ev)
+      .then(() => {
+        fetchEventDetails();
+      })
+      .catch(() => {
+        onMessageError("Error updating event");
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   return {

@@ -1,5 +1,4 @@
 import { Skeleton } from "primereact/skeleton";
-import React from "react";
 
 export const SkeletonDetail = () => {
   return (

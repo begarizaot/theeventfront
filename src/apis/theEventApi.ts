@@ -1,7 +1,8 @@
 import axios from "axios";
+import { environment } from "../environments/environment";
 
 export const theEventApi = axios.create({
-  baseURL: "http://localhost:9000/api/",
+  baseURL: `${environment.APITHEEVENT}/api/`,
 });
 
 // Interceptor para agregar el token de autorización

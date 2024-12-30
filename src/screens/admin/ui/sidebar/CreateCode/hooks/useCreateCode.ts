@@ -12,7 +12,7 @@ export const useCreateCode = ({
   showVisible,
   data,
 }: any) => {
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading, hiddenLoading } = useContext(LoadingContext);
 
   const errorRes = useRef<any>(null);
 
@@ -39,39 +39,43 @@ export const useCreateCode = ({
   const createCode = async (ev: any) => {
     ev.preventDefault();
     showLoading(true);
-    try {
-      await postDiscountCreateEvent(eventId, formState);
-      showLoading(false);
-      createUdateCode();
-      showVisible();
-    } catch (error) {
-      showLoading(false);
-      errorRes.current.show({
-        severity: "error",
-        summary: "Error",
-        detail: error,
-        life: 3000,
+    postDiscountCreateEvent(eventId, formState)
+      .then(() => {
+        createUdateCode();
+        showVisible();
+      })
+      .catch((error) => {
+        errorRes.current.show({
+          severity: "error",
+          summary: "Error",
+          detail: error,
+          life: 3000,
+        });
+      })
+      .finally(() => {
+        hiddenLoading();
       });
-    }
   };
 
   const updateCode = async (ev: any) => {
     ev.preventDefault();
     showLoading(true);
-    try {
-      await putDiscountEditEvent(eventId, formState);
-      showLoading(false);
-      createUdateCode();
-      showVisible();
-    } catch (error) {
-      showLoading(false);
-      errorRes.current.show({
-        severity: "error",
-        summary: "Error",
-        detail: error,
-        life: 3000,
+    putDiscountEditEvent(eventId, formState)
+      .then(() => {
+        createUdateCode();
+        showVisible();
+      })
+      .catch((error) => {
+        errorRes.current.show({
+          severity: "error",
+          summary: "Error",
+          detail: error,
+          life: 3000,
+        });
+      })
+      .finally(() => {
+        hiddenLoading();
       });
-    }
   };
 
   return {

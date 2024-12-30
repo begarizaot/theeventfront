@@ -1,17 +1,15 @@
 import moment from "moment";
-import { useAnalytics } from "./hooks/useAnalytics";
+import { useTicketControl } from "./hooks/useTicketControl";
 
-import { DataCard, TableComp } from "../../ui";
+import { TableComp } from "../../ui";
 import { NumberFormat } from "../../../../helpers";
 
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import { Skeleton } from "primereact/skeleton";
 import { Toast } from "primereact/toast";
 
-export const Analytics = () => {
+export const TicketControl = () => {
   const {
-    analytic,
     data,
     pages,
     loading,
@@ -19,39 +17,19 @@ export const Analytics = () => {
     toastErrEmail,
     onPageChange,
     onRefresh,
-    onSearchAnalytics,
+    onSearchTicketControl,
     onForwardMail,
-  } = useAnalytics();
+  } = useTicketControl();
 
   return (
     <>
       <Toast ref={toastErrEmail} />
       <div className="grid">
         <div className="col-12">
-          <div className="grid justify-content-center">
-            {loading &&
-              analytic.length == 0 &&
-              [1, 2, 3].map((val) => (
-                <div className="col-12 sm:col-6 pb-0 sm:pb-2" key={val}>
-                  <Skeleton className="h-6rem"></Skeleton>
-                </div>
-              ))}
-            {(!loading || analytic.length > 0) &&
-              analytic?.map((item: any, index:any) => (
-                <div
-                  className="col-12 shadow-1 sm:col-6 h-6rem pb-0 sm:pb-2"
-                  key={index}
-                >
-                  <DataCard data={item} />
-                </div>
-              ))}
-          </div>
-        </div>
-        <div className="col-12">
           <TableComp
             first={pages.first || 0}
             pagination={pagination}
-            onSearch={onSearchAnalytics}
+            onSearch={onSearchTicketControl}
             onPage={onPageChange}
             onRefresh={onRefresh}
           >

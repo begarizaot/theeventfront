@@ -24,12 +24,12 @@ export const ListTickets = ({ data }: ListTicketsProps) => {
           <div className="flex flex-wrap sm:grid">
             {data?.map((item, index) => (
               <div
-                className="col-4 sm:col-12 flex align-items-center sm:justify-content-between"
+                className="col-4 sm:col-12 text-sm sm:text-base flex align-items-center sm:justify-content-between"
                 key={index}
               >
                 <h4 className="m-0">{item.name}</h4>
-                <div className="m-0">
-                  <span className="text-sm mr-1">{item.quantity} x</span>
+                <div className="m-0 ml-1 sm:ml-0">
+                  <span className="sm:text-sm text-xs mr-1">{item.quantity} x</span>
                   <strong>${NumberFormat(item.price)}</strong>
                 </div>
               </div>

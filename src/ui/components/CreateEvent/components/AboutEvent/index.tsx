@@ -2,7 +2,6 @@ import { InputIcon } from "../../../InputIcon";
 
 import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
-import { Checkbox } from "primereact/checkbox";
 
 interface AboutEventProps {
   listCategories: any[];
@@ -15,7 +14,6 @@ interface AboutEventProps {
 
 export const AboutEvent = ({
   autocompleteOff,
-  checkboxChange,
   inputChange,
   data,
   listCategories,

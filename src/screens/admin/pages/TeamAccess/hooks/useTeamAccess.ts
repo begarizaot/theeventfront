@@ -17,7 +17,7 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 export const useTeamAccess = () => {
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading, hiddenLoading } = useContext(LoadingContext);
 
   const { eventId } = useEventId();
 
@@ -37,27 +37,27 @@ export const useTeamAccess = () => {
 
   const fetchDeleteTeamAccess = async (req: any) => {
     showLoading(true);
-    try {
-      await delRemoveTeamAccess(eventId, req.id_teamAcces);
-      showLoading(false);
-      fetchTeamAccess();
-    } catch (error) {
-      showLoading(false);
-    }
+    delRemoveTeamAccess(eventId, req.id_teamAcces)
+      .then(() => {
+        fetchTeamAccess();
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   const onUpdateStatus = async (req: any) => {
     showLoading(true);
-    try {
-      await putUpdateTeamAccess(eventId, {
-        state: !req.state ? 1 : 2,
-        id: req.id_teamAcces,
+    await putUpdateTeamAccess(eventId, {
+      state: !req.state ? 1 : 2,
+      id: req.id_teamAcces,
+    })
+      .then(() => {
+        fetchTeamAccess();
+      })
+      .finally(() => {
+        hiddenLoading();
       });
-      showLoading(false);
-      fetchTeamAccess();
-    } catch (error) {
-      showLoading(false);
-    }
   };
 
   const showInvite = () => {

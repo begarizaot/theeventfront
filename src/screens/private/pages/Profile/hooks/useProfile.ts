@@ -13,7 +13,7 @@ import { AuthContext, LoadingContext } from "../../../../../context";
 export const useProfile = () => {
   const navigate = useNavigate();
 
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading, hiddenLoading } = useContext(LoadingContext);
   const { onLogin } = useContext(AuthContext);
 
   const errorRes = useRef<any>(null);
@@ -64,19 +64,21 @@ export const useProfile = () => {
     if (valPass) return;
 
     showLoading(true);
-    try {
-      const { data } = await theEventApi.put("auth/putUpdateUser", formState);
-      if (!data.status) {
-        messageError(data.message);
-        return;
-      }
-
-      onLogin(data.data);
-      showLoading(false);
-    } catch (error) {
-      messageError("User not found");
-      showLoading(false);
-    }
+    theEventApi
+      .put("auth/putUpdateUser", formState)
+      .then(({ data }) => {
+        if (!data.status) {
+          messageError(data.message);
+          return;
+        }
+        onLogin(data.data);
+      })
+      .catch(() => {
+        messageError("User not found");
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   const onLogout = () => {
@@ -100,7 +102,7 @@ export const useProfile = () => {
       severity: "error",
       summary: "Error",
       detail: detail,
-      life: 3000
+      life: 3000,
     });
   };
 

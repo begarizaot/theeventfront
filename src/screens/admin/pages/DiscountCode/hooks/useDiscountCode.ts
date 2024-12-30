@@ -18,7 +18,7 @@ import {
 } from "../../../../../store/slices";
 
 export const useDiscountCode = () => {
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading, hiddenLoading } = useContext(LoadingContext);
 
   const { eventId } = useEventId();
 
@@ -102,7 +102,7 @@ export const useDiscountCode = () => {
             onErrorData(error);
           })
           .finally(() => {
-            showLoading(false);
+            hiddenLoading();
           });
       }
     });

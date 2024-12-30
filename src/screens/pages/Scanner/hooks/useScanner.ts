@@ -8,7 +8,7 @@ import {
 import { LoadingContext } from "../../../../context";
 
 export const useScanner = () => {
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading, hiddenLoading } = useContext(LoadingContext);
 
   const res: any = useParams();
   const navigate = useNavigate();
@@ -20,14 +20,16 @@ export const useScanner = () => {
   const handleScanner = async (data: any) => {
     showLoading(true);
     setShowScanner(data);
-    try {
-      const dataRes = await getEventScanner(res.idEvent, data);
-      setDataScanner(dataRes);
-      showLoading(false);
-    } catch (error: any) {
-      showLoading(false);
-      setErrorScanner(error);
-    }
+    getEventScanner(res.idEvent, data)
+      .then((res) => {
+        setDataScanner(res);
+      })
+      .catch((error) => {
+        setErrorScanner(error);
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   const onHiddenScanner = () => {
@@ -47,13 +49,13 @@ export const useScanner = () => {
     }
 
     showLoading(true);
-    try {
-      await getEventScannerCreate(res.idEvent, showScanner);
-      showLoading(false);
-      onHiddenScanner();
-    } catch (error) {
-      showLoading(false);
-    }
+    getEventScannerCreate(res.idEvent, showScanner)
+      .then(() => {
+        onHiddenScanner();
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
   };
 
   return {

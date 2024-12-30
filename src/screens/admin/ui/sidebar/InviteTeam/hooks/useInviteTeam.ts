@@ -14,7 +14,7 @@ export const useInviteTeam = ({
   createTeam,
   data,
 }: any) => {
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading, hiddenLoading } = useContext(LoadingContext);
 
   const errorRes = useRef<any>(null);
 
@@ -55,44 +55,46 @@ export const useInviteTeam = ({
     e.preventDefault();
 
     showLoading(true);
-
-    try {
-      await postCreateTeamAccess(eventId, formState);
-      showLoading(false);
-      onResetForm();
-      showVisible();
-      createTeam();
-    } catch (error) {
-      showLoading(false);
-      errorRes.current.show({
-        severity: "error",
-        summary: "Error",
-        detail: error,
-        life: 3000,
+    postCreateTeamAccess(eventId, formState)
+      .then(() => {
+        onResetForm();
+        showVisible();
+        createTeam();
+      })
+      .catch((error) => {
+        errorRes.current.show({
+          severity: "error",
+          summary: "Error",
+          detail: error,
+          life: 3000,
+        });
+      })
+      .finally(() => {
+        hiddenLoading();
       });
-    }
   };
 
   const fetchUpdateTeam = async (e: any) => {
     e.preventDefault();
 
     showLoading(true);
-
-    try {
-      await putUpdateTeamAccess(eventId, formState);
-      showLoading(false);
-      onResetForm();
-      showVisible();
-      createTeam();
-    } catch (error) {
-      showLoading(false);
-      errorRes.current.show({
-        severity: "error",
-        summary: "Error",
-        detail: error,
-        life: 3000,
+    putUpdateTeamAccess(eventId, formState)
+      .then(() => {
+        onResetForm();
+        showVisible();
+        createTeam();
+      })
+      .catch((error) => {
+        errorRes.current.show({
+          severity: "error",
+          summary: "Error",
+          detail: error,
+          life: 3000,
+        });
+      })
+      .finally(() => {
+        hiddenLoading();
       });
-    }
   };
 
   return {

@@ -1,5 +1,5 @@
 export * from "./eventsSlices";
-export * from "./eventAnalyticsSlice";
+export * from "./eventTicketControlSlice";
 export * from "./eventsthunks";
 export * from "./myEventsSlices";
 export * from "./eventsSearchSlices";

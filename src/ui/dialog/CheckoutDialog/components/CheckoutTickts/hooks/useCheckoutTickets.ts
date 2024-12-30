@@ -16,12 +16,13 @@ import {
   postCreatePayment,
 } from "../../../../../../store/slices/orders";
 import { LoadingContext } from "../../../../../../context";
+import { NumberFormat } from "../../../../../../helpers";
 
 export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
   const { showMessage, freeTicket } = dataReq;
 
   const stripe = useStripe();
-  const { showLoading } = useContext(LoadingContext);
+  const { showLoading,hiddenLoading } = useContext(LoadingContext);
 
   const { paymentStripe, paymentCard, confirmCardPayment, paymentRequest } =
     useStripeCheck();
@@ -107,7 +108,7 @@ export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
     try {
       const reqData = {
         ...formState,
-        values,
+        values: { ...values, total: Number(NumberFormat(values.total, 2)) },
         eventId: dataReq.data.id_event,
         tickets: dataReq.tickets.map((ticket: any) => ({
           id: ticket.id,
@@ -168,13 +169,13 @@ export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
       return;
     }
 
-    showLoading(false);
+    hiddenLoading();
     getForwardMailOrder(req.data);
     showMessage(req.data);
   };
 
   const onMessageError = (message: any) => {
-    showLoading(false);
+    hiddenLoading();
     errorRes.current.show({
       severity: "error",
       summary: "Error",

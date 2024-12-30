@@ -1,15 +1,18 @@
+import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider, CheckoutProvider, LoadingProvider } from "./context";
 import { AppRouter } from "./routers";
 
 function App() {
   return (
-    <LoadingProvider>
-      <AuthProvider>
-        <CheckoutProvider>
-          <AppRouter />
-        </CheckoutProvider>
-      </AuthProvider>
-    </LoadingProvider>
+    <HelmetProvider>
+      <LoadingProvider>
+        <AuthProvider>
+          <CheckoutProvider>
+            <AppRouter />
+          </CheckoutProvider>
+        </AuthProvider>
+      </LoadingProvider>
+    </HelmetProvider>
   );
 }
 

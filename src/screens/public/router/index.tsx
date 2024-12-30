@@ -4,7 +4,7 @@ import { Footer, Header } from "../ui";
 import { SearchProvider } from "../context";
 import { PrivateRouter } from "../../../routers";
 
-import { Error404Page, ScannerPage } from "../../pages";
+import { Error404Page } from "../../pages";
 import {
   AllEventsPage,
   ContactPage,

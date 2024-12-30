@@ -39,10 +39,10 @@ export const NavBar = () => {
         ),
     },
     {
-      label: "Event Analytics",
+      label: "Ticket Control",
       template: itemRenderer,
       icon: "pi pi-chart-bar",
-      link: `/admin/${eventId}/analytics`,
+      link: `/admin/${eventId}/ticketControl`,
     },
     {
       label: "Event Details",

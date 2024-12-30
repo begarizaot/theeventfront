@@ -20,7 +20,7 @@ export const Ticket = memo(({ data, freeTicket, onSelected }: TicketProps) => {
               <div className="col-2 lg:col-1 flex align-items-center">
                 <ArrowRight color={`#${value.color || "#ff0000"}`} />
               </div>
-              <div className="col-8 lg:col-9">
+              <div className="col-7 sm:col-8 lg:col-9">
                 <div className="flex align-items-center gap-2">
                   <p className="m-0 text-sm">{value?.name}</p>
                   <span className="font-bold text-lg">
@@ -37,7 +37,7 @@ export const Ticket = memo(({ data, freeTicket, onSelected }: TicketProps) => {
                     ))}
                 </div>
               </div>
-              <div className="col-2 flex align-items-center relative">
+              <div className="col-3 sm:col-2 flex align-items-center relative">
                 {showCapacity && (
                   <div className="absolute bgPrimary px-2 py-1 left-0 z-2 border-round w-full text-center">
                     <span className="text-sm pointer-events-none">
@@ -46,7 +46,7 @@ export const Ticket = memo(({ data, freeTicket, onSelected }: TicketProps) => {
                   </div>
                 )}
                 <select
-                  className="selectStyle h-2rem w-4rem bg-transparent text-white text-center border-round bgBorder"
+                  className="selectStyle h-2rem w-full bg-transparent text-white text-center border-round bgBorder"
                   onChange={(ev) => {
                     const quantity = ev.target.value;
                     onSelected({ ...value, quantity: Number(quantity) });

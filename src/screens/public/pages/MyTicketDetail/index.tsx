@@ -107,7 +107,7 @@ export const MyTicketDetail = () => {
             <div className="col-12 flex align-items-center justify-content-between">
               <span className="text-base">Total</span>
               <strong className="text-xl">
-                ${selectedTicket?.price?.total || 0}
+                ${NumberFormat(selectedTicket?.price?.total || 0, 2) || 0}
               </strong>
             </div>
           </>

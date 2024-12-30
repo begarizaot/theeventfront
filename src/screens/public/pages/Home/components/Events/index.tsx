@@ -41,7 +41,7 @@ export const EventsLits = () => {
               ))}
             {!loading &&
               events.length > 0 &&
-              events.map((item) => (
+              events.map((item:any) => (
                 <div className="col-12 sm:col-6 lg:col-4" key={item.id_event}>
                   <EventCard link="event" data={item} />
                 </div>

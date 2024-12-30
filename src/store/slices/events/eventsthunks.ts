@@ -16,10 +16,10 @@ import {
   selectEvent,
 } from "./eventsSlices";
 import {
-  eventsAnalyticsFailure,
-  eventsAnalyticsStart,
-  eventsAnalyticsSuccess,
-} from "./eventAnalyticsSlice";
+  eventsTicketControlFailure,
+  eventsTicketControlStart,
+  eventsTicketControlSuccess,
+} from "./eventTicketControlSlice";
 import {
   myEventsFailure,
   myEventsStart,
@@ -148,28 +148,28 @@ export const getEventSearch = (name: string) => {
   };
 };
 
-export const getEventAnalytics = (eventId: string, req?: any) => {
+export const getEventTicketControls = (eventId: string, req?: any) => {
   const { size = 6, page = 1, search = "" } = req || {};
   return async (dispatch: AppDispatch) => {
-    dispatch(eventsAnalyticsStart());
+    dispatch(eventsTicketControlStart());
     try {
       const { data } = await theEventApi.get(
-        `event/getEventAnalytics/${eventId}?size=${size}&page=${page}&search=${search}`
+        `event/getEventTicketControls/${eventId}?size=${size}&page=${page}&search=${search}`
       );
 
       if (!data.status) {
-        return dispatch(eventsAnalyticsFailure(data.message));
+        return dispatch(eventsTicketControlFailure(data.message));
       }
 
       dispatch(
-        eventsAnalyticsSuccess({
+        eventsTicketControlSuccess({
           data: data?.data?.orders || [],
           analytic: data?.data?.analytics || [],
           pagination: data?.pagination || {},
         })
       );
     } catch (error) {
-      dispatch(eventsAnalyticsFailure("Failed to fetch events"));
+      dispatch(eventsTicketControlFailure("Failed to fetch events"));
     }
   };
 };
@@ -379,6 +379,7 @@ const handleDetail = (ev: Event) => {
       {
         icon: "pi pi-id-card",
         label: restriction?.name || "",
+        hidden: true,
       },
     ],
   };

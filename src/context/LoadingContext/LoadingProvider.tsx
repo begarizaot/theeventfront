@@ -9,12 +9,18 @@ interface LoadingProviderProps {
 export const LoadingProvider = ({ children }: LoadingProviderProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const showLoading = (ev:any) => {
+  const showLoading = (ev: any) => {
     setIsLoading(ev);
   };
 
+  const hiddenLoading = () => {
+    setTimeout(() => {
+      showLoading(false);
+    }, 10);
+  };
+
   return (
-    <LoadingContext.Provider value={{ showLoading }}>
+    <LoadingContext.Provider value={{ showLoading, hiddenLoading }}>
       <LoadingDialog visible={isLoading} />
       {children}
     </LoadingContext.Provider>

@@ -8,7 +8,7 @@ import { Header, NavBar } from "../ui";
 import { NavbarContext } from "../context";
 
 import {
-  Analytics,
+  TicketControl,
   DiscountCode,
   EventDetails,
   FreeTickets,
@@ -33,7 +33,7 @@ export const Nav = () => {
           >
             <Routes>
               <Route element={<PrivateRouter />}>
-                <Route path="/:id/analytics" element={<Analytics />} />
+                <Route path="/:id/ticketControl" element={<TicketControl />} />
                 <Route path="/:id/eventDetail" element={<EventDetails />} />
                 <Route path="/:id/teamAccess" element={<TeamAccess />} />
                 <Route path="/:id/freeTickets" element={<FreeTickets />} />
