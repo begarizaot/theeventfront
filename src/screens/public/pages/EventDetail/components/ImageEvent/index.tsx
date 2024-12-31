@@ -34,7 +34,7 @@ export const ImageEvent = memo(({ data }: ImageEventProps) => {
           <span className="font-bold text-center sm:text-left text-3xl sm:text-2xl lg:text-4xl">
             {data?.event_name}
           </span>
-          <div className="hidden sm:flex flex-column align-items-center sm:align-items-start lg:flex-row lg:align-items-center gap-3">
+          <div className="flex flex-column align-items-center sm:align-items-start lg:flex-row lg:align-items-center gap-3">
             <FromUi min={data?.minValue} max={data?.maxValue} />
             <Divider layout="vertical" className="h-1rem hidden lg:block" />
             <BtnTicket data={data} className="lg:w-4" />

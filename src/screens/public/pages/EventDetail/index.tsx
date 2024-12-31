@@ -53,7 +53,7 @@ export const EventDetailPage = () => {
           )}
         </div>
       </div>
-      {!loading && (
+      {/* {!loading && (
         <div className="fixed bottom-0 px-4 w-full bgBody pb-3 pt-2 z-1 shadow-3 sm:hidden">
           <div className="text-white flex justify-content-center mb-2">
             <FromUi
@@ -63,7 +63,7 @@ export const EventDetailPage = () => {
           </div>
           <BtnTicket data={selectedEvent} />
         </div>
-      )}
+      )} */}
     </>
   );
 };
