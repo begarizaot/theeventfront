@@ -50,7 +50,7 @@ export const useEventDetails = () => {
           end_date: new Date(res.end_date),
           event_category: res.event_category_id.id,
           event_age_restriction: res.event_age_restriction_id.id,
-          imageUrl: res.image[0].url,
+          imageUrl: res?.image ? res?.image[0]?.url : "",
           mapCompl: res.map_id.labelCompl,
           map: res.map_id,
         });

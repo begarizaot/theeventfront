@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import convertToPngAndUpload from "../../../../../../helpers/ConvertToPng";
 
 export const useImageLinks = ({ setInput, data, changeImage }: any) => {
   const [file, setFile] = useState<any>("");
@@ -7,10 +8,10 @@ export const useImageLinks = ({ setInput, data, changeImage }: any) => {
     data.imageUrl && setFile(data.imageUrl);
   }, [data.imageUrl]);
 
-  function handleChange(e: any) {
+  async function handleChange(e: any) {
     setFile(URL.createObjectURL(e.target.files[0]));
-    setInput({ image: e.target.files[0] });
-    changeImage && changeImage(e.target.files[0]);
+    setInput({ image: await convertToPngAndUpload(e.target.files[0]) });
+    changeImage && changeImage(await convertToPngAndUpload(e.target.files[0]));
   }
 
   return { file, handleChange };

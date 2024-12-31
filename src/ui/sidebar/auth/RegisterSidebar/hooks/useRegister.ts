@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { AuthContext, LoadingContext } from "../../../../../context";
 import { useForm } from "../../../../../hooks";
-import { PasswordMust } from "../../../../../helpers";
+import { PasswordMust, RemoveCharacters } from "../../../../../helpers";
 import { theEventApi } from "../../../../../apis";
 
 export const useRegister = () => {
@@ -53,16 +53,16 @@ export const useRegister = () => {
 
     showLoading(true);
     try {
-      const { data } = await theEventApi.post(
-        "auth/postRegisterUser",
-        formState
-      );
+      const { data } = await theEventApi.post("auth/postRegisterUser", {
+        ...formState,
+        phone: RemoveCharacters(formState.phone),
+      });
       showLoading();
       if (!data.status) {
         messageError(data.message);
         return;
       }
-      
+
       onLogin(data.data);
       showRegister();
       onResetForm();
@@ -77,7 +77,7 @@ export const useRegister = () => {
       severity: "error",
       summary: "Error",
       detail: detail,
-      life: 3000
+      life: 3000,
     });
   };
 

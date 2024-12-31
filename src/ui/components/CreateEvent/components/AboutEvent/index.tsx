@@ -1,7 +1,7 @@
 import { InputIcon } from "../../../InputIcon";
 
 import { Dropdown } from "primereact/dropdown";
-import { InputNumber } from "primereact/inputnumber";
+import { InputMask } from "primereact/inputmask";
 
 interface AboutEventProps {
   listCategories: any[];
@@ -13,7 +13,6 @@ interface AboutEventProps {
 }
 
 export const AboutEvent = ({
-  autocompleteOff,
   inputChange,
   data,
   listCategories,
@@ -53,16 +52,17 @@ export const AboutEvent = ({
           </div>
           <div className="col-12">
             <InputIcon icon="pi-phone">
-              <InputNumber
-                inputClassName="py-1 text-white"
-                placeholder="Phone Number"
-                useGrouping={false}
+              <InputMask
+                id="phone"
+                mask="(999) 999-9999"
+                placeholder="(999) 999-9999"
                 required={data?.receiveSms}
                 name="contact_phone"
                 value={data?.contact_phone}
                 onChange={inputChange}
-                inputRef={autocompleteOff("0")}
-              />
+                autoComplete="off"
+                className="py-1 text-white"
+              ></InputMask>
             </InputIcon>
 
             {/* <div className="mt-2 flex align-items-center">

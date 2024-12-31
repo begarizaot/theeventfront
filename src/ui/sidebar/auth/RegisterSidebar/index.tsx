@@ -10,7 +10,7 @@ import { Sidebar } from "primereact/sidebar";
 import { InputText } from "primereact/inputtext";
 import { Password } from "primereact/password";
 import { Button } from "primereact/button";
-import { InputNumber } from "primereact/inputnumber";
+import { InputMask } from "primereact/inputmask";
 
 interface RegisterSidebarProps {
   visible: boolean;
@@ -89,15 +89,17 @@ export const RegisterSidebar = ({
                 <div className="flex flex-column">
                   <span className="mb-2 text-base">Phone</span>
                   <InputIcon icon="pi-phone">
-                    <InputNumber
-                      inputClassName="py-1 text-white"
-                      placeholder="Phone Number"
+                    <InputMask
+                      id="phone"
+                      mask="(999) 999-9999"
+                      placeholder="(999) 999-9999"
                       required
-                      useGrouping={false}
                       name="phone"
                       value={formState.phone}
                       onChange={onInputChange}
-                    />
+                      autoComplete="off"
+                      className="py-1 text-white"
+                    ></InputMask>
                   </InputIcon>
                 </div>
 

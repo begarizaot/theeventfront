@@ -6,7 +6,7 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 import { useForm } from "../../../../../hooks";
-import { PasswordMust } from "../../../../../helpers";
+import { PasswordMust, RemoveCharacters } from "../../../../../helpers";
 import { theEventApi } from "../../../../../apis";
 import { AuthContext, LoadingContext } from "../../../../../context";
 
@@ -65,7 +65,10 @@ export const useProfile = () => {
 
     showLoading(true);
     theEventApi
-      .put("auth/putUpdateUser", formState)
+      .put("auth/putUpdateUser", {
+        ...formState,
+        phone: RemoveCharacters(formState.phone),
+      })
       .then(({ data }) => {
         if (!data.status) {
           messageError(data.message);

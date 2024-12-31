@@ -1,6 +1,6 @@
 import { InputIcon } from "../../../../../components";
 import { InputText } from "primereact/inputtext";
-import { InputNumber } from "primereact/inputnumber";
+import { InputMask } from "primereact/inputmask";
 
 interface ContactInformationProps {
   data: any;
@@ -72,15 +72,17 @@ export const ContactInformation = ({
               Phone <span className="textPrimary text-xl">*</span>
             </span>
             <InputIcon icon="pi-phone">
-              <InputNumber
-                inputClassName="py-1 text-white"
-                placeholder="Phone Number"
+              <InputMask
+                id="phone"
+                mask="(999) 999-9999"
+                placeholder="(999) 999-9999"
                 name="phone"
                 required
-                useGrouping={false}
                 value={data?.phone}
                 onChange={changeUser}
-              />
+                autoComplete="off"
+                className="py-1 text-white"
+              ></InputMask>
             </InputIcon>
           </div>
         </div>

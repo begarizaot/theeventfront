@@ -16,7 +16,7 @@ import {
   postCreatePayment,
 } from "../../../../../../store/slices/orders";
 import { LoadingContext } from "../../../../../../context";
-import { NumberFormat } from "../../../../../../helpers";
+import { NumberFormat, RemoveCharacters } from "../../../../../../helpers";
 
 export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
   const { showMessage, freeTicket } = dataReq;
@@ -108,6 +108,7 @@ export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
     try {
       const reqData = {
         ...formState,
+        phone: RemoveCharacters(formState.phone),
         values: { ...values, total: Number(NumberFormat(values.total, 2)) },
         eventId: dataReq.data.id_event,
         tickets: dataReq.tickets.map((ticket: any) => ({
@@ -146,6 +147,7 @@ export const useCheckoutTickets = (dataReq: CheckoutTicktsProps) => {
     showLoading(true);
     const reqData = {
       ...formState,
+      phone: RemoveCharacters(formState.phone),
       values,
       eventId: dataReq.data.id_event,
       tickets: dataReq.tickets.map((ticket: any) => ({

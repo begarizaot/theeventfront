@@ -4,9 +4,9 @@ import { InputIcon } from "../../../../ui";
 import { useProfile } from "./hooks/useProfile";
 
 import { Password } from "primereact/password";
-import { InputNumber } from "primereact/inputnumber";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
+import { InputMask } from "primereact/inputmask";
 
 export const ProfilePage = () => {
   const {
@@ -87,15 +87,17 @@ export const ProfilePage = () => {
             <div className="col-12 sm:col-5 flex flex-column">
               <span className="mb-2 text-base">Phone</span>
               <InputIcon icon="pi-phone">
-                <InputNumber
-                  inputClassName="py-1 text-white"
-                  placeholder="Phone Number"
+                <InputMask
+                  id="phone"
+                  mask="(999) 999-9999"
+                  placeholder="(999) 999-9999"
                   required
-                  useGrouping={false}
                   name="phone"
                   value={formState.phone}
                   onChange={onInputChange}
-                />
+                  className="py-1 text-white"
+                  autoComplete="off"
+                ></InputMask>
               </InputIcon>
             </div>
             <div className="col-12 sm:col-6 flex flex-column">

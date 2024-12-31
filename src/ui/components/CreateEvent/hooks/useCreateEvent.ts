@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "../../../../hooks";
 import { theEventApi } from "../../../../apis";
+import { RemoveCharacters } from "../../../../helpers";
 
 export const useCreateEvent = ({
   createUpdateEvent,
@@ -80,7 +81,10 @@ export const useCreateEvent = ({
       return;
     }
 
-    createUpdateEvent(formState);
+    createUpdateEvent({
+      ...formState,
+      contact_phone: RemoveCharacters(formState.contact_phone),
+    });
   };
 
   return {
