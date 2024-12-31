@@ -9,9 +9,9 @@ export const AllEventsPage = () => {
   const { onPageChange, events, loading, pages, pagination } = useAllEvents();
 
   return (
-    <div className="allEventsPage grid max-width-80 mx-auto px-4 sm:px-6 pt-8">
+    <div className="allEventsPage grid max-width-80 mx-auto px-4 sm:px-6 pt-7">
       <div className="col-12 text-center">
-        <h1 className="effectPrimary m-0">All Events</h1>
+        <h1 className="effectPrimary m-0 text-3xl">All Events</h1>
       </div>
 
       {!loading && events.length == 0 && <NothingEvent />}

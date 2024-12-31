@@ -20,14 +20,14 @@ export const EventsLits = () => {
     <div className="max-width-80 mx-auto px-4 sm:px-6">
       <div className="grid">
         <div className="col-12 flex align-items-center justify-content-between">
-          <h1 className="effectPrimary text-xl sm:text-4xl">Upcoming Events</h1>
+          <h1 className="effectPrimary text-3xl m-0">Upcoming Events</h1>
           <Link
             to="events"
-            className="text-white no-underline border-1 px-2 sm:px-3 py-1 sm:py-2 border-round-2xl"
+            className="no-underline text-white"
           >
-            <span className="pointer-events-none text-xs sm:text-sm">
+            <p className="ml-2 m-0 cursor-pointer border-1 px-2 py-1 border-round-2xl">
               View All
-            </span>
+            </p>
           </Link>
         </div>
 

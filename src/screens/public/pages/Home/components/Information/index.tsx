@@ -24,7 +24,7 @@ export const InformacionCom = () => {
         </h1>
 
         <div
-          className="w-full bg-white border-round-3xl flex align-items-center py-2 px-3 cursor-pointer w-12 sm:w-10 lg:w-8 mx-auto"
+          className="w-full bg-white border-round-3xl flex align-items-center py-1 px-3 cursor-pointer w-12 sm:w-10 lg:w-8 mx-auto"
           onClick={showModal}
         >
           <span className="text-black-alpha-20 text-sm sm:text-base mr-1 white-space-nowrap overflow-hidden text-overflow-ellipsis pointer-events-none">
