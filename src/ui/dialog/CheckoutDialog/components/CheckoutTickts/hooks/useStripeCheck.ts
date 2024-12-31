@@ -10,29 +10,27 @@ export const useStripeCheck = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const [paymentRequest, setPaymentRequest] = useState(null);
+  const [paymentRequest, setPaymentRequest] = useState<any | null>(null);
 
   const paymentStripe = (total: any) => {
     return new Promise((resolve) => {
-      console.log('paymentStripe');
       if (stripe) {
-        const pr: any = stripe.paymentRequest({
-          country: "US",
-          currency: "usd",
-          total: {
-            label: "Total",
-            amount: Number((parseFloat(total) * 100).toFixed(0)),
-          },
+        const pr = stripe.paymentRequest({
+          country: 'US',
+          currency: 'usd',
+          total: { label: 'Demo Payment', amount: 5000 },
           requestPayerName: true,
-          disableWallets: ["link"],
+          requestPayerEmail: true,
         });
-
-        pr.canMakePayment().then((result: any) => {
-          console.log('canMakePayment', result);
+  
+        pr.canMakePayment().then((result) => {
           if (result) {
             setPaymentRequest(pr);
+          } else {
+            console.log('Método de pago no soportado');
           }
         });
+      
 
         // Maneja el evento de pago
         pr.on(
