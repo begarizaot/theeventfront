@@ -14,6 +14,7 @@ export const useStripeCheck = () => {
 
   const paymentStripe = (total: any) => {
     return new Promise((resolve) => {
+      console.log('paymentStripe');
       if (stripe) {
         const pr: any = stripe.paymentRequest({
           country: "US",
@@ -27,6 +28,7 @@ export const useStripeCheck = () => {
         });
 
         pr.canMakePayment().then((result: any) => {
+          console.log('canMakePayment', result);
           if (result) {
             setPaymentRequest(pr);
           }

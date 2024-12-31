@@ -8,7 +8,7 @@ export const InfoEvent = ({ data }: InfoEventProps) => {
       <div className="col-12 text-center">
         <h1 className="text-lg sm:text-2xl m-0">{data?.event_name}</h1>
       </div>
-      <div className="col-12">
+      {/* <div className="col-12">
         <div className="grid justify-content-center">
           {data?.detail.map((item: any, index: any) => (
             <div
@@ -24,7 +24,7 @@ export const InfoEvent = ({ data }: InfoEventProps) => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

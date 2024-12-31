@@ -17,7 +17,7 @@ export const InformacionCom = () => {
           backgroundImage: `url(${ulrImg})`,
         }}
       ></div>
-      <div className="absolute inset text-center align-content-center text-white px-4 sm:px-6">
+      <div className="absolute inset justify-content-center flex flex-column text-center align-content-center text-white px-4 sm:px-6">
         <h1 className="text-2xl sm:text-4xl lg:text-5xl m-0">Now Boarding</h1>
         <h1 className="text-2xl sm:text-4xl lg:text-5xl m-0 mt-1 mb-3 effectPrimary ">
           Your One Stop For Events
