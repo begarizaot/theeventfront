@@ -16,7 +16,7 @@ export const LoadingProvider = ({ children }: LoadingProviderProps) => {
   const hiddenLoading = () => {
     setTimeout(() => {
       showLoading(false);
-    }, 10);
+    }, 100);
   };
 
   return (
