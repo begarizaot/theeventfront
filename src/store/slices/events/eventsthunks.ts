@@ -264,6 +264,21 @@ export const getEventScannerCreate = (eventId: string, idQr?: any) => {
   });
 };
 
+export const getPublishEvent = (idEvent: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get(`event/getPublishEvent/${idEvent}`);
+      if (!data.status) {
+        return reject(data.message);
+      }
+
+      resolve(data);
+    } catch (error) {
+      reject("Failed to create event");
+    }
+  });
+};
+
 // POSTS
 
 export const postCreateEvent = (dataReq: any) => {

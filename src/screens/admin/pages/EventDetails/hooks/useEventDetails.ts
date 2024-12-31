@@ -9,6 +9,7 @@ import {
   deleteTicketEvent,
   getEventDetailById,
   getListTicketTypeByEvent,
+  getPublishEvent,
   postCreateTicketEvent,
   putUpdateEvent,
   putUpdateEventImage,
@@ -23,7 +24,7 @@ export const useEventDetails = () => {
 
   const errorRes = useRef<any>(null);
 
-  const [dataEvent, setDataEvent] = useState({});
+  const [dataEvent, setDataEvent] = useState<any>({});
 
   const dispatch: AppDispatch = useDispatch();
   const { ticketTypes } = useSelector((state: RootState) => state.ticketType);
@@ -147,13 +148,28 @@ export const useEventDetails = () => {
       });
   };
 
+  const onPublishEvent = async () => {
+    showLoading(true);
+    getPublishEvent(eventId)
+      .then(() => {
+        fetchEventDetails();
+      })
+      .catch(() => {
+        onMessageError("Error updating event");
+      })
+      .finally(() => {
+        hiddenLoading();
+      });
+  };
+
   return {
     dataEvent,
     ticktes: ticketTypes,
     errorRes,
-    onCreateUpdateTicket,
+    onChangeImage,
+    onPublishEvent,
     onDeleteTicket,
     onCreateUpdateEvent,
-    onChangeImage,
+    onCreateUpdateTicket,
   };
 };
