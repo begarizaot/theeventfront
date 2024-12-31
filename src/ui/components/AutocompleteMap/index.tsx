@@ -24,7 +24,7 @@ export const AutocompleteMap = ({
       const autocomplete = new window.google.maps.places.Autocomplete(
         inputRef.current,
         {
-          types: ["address"],
+          types: ["establishment", "geocode"],
         }
       );
 

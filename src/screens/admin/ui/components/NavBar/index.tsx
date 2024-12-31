@@ -57,7 +57,7 @@ export const NavBar = () => {
       link: `/admin/${eventId}/teamAccess`,
     },
     {
-      label: "Free Tickets",
+      label: "Complimentary Tickets",
       icon: "pi pi-ticket",
       template: itemRenderer,
       link: `/admin/${eventId}/freeTickets`,
