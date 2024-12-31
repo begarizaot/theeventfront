@@ -12,7 +12,8 @@ export const useStripeCheck = () => {
 
   const [paymentRequest, setPaymentRequest] = useState<any | null>(null);
 
-  const paymentStripe = (total: any) => {
+  const paymentStripe = (total: any = 0) => {
+    console.log(total);
     return new Promise((resolve) => {
       if (stripe) {
         const pr = stripe.paymentRequest({
