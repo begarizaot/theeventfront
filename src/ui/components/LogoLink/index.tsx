@@ -11,7 +11,7 @@ export const LogoLink = ({ className, classLink, div }: LogoLinkProps) => {
   const image = () => {
     return (
       <img
-        src={`${environment.PUBLIC_URL}/assets/images/bg-white.png`}
+        src={`https://www.theeventjet.com/assets/images/bg-white.png`}
         alt=""
         className={`w-6 sm:w-4 lg:w-3 ${className ? className : ""}`}
       />
