@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Details, ImageEvent } from "./components";
-import { BtnTicket, FromUi, SkeletonDetail, SkeletonImage } from "./ui";
+import { SkeletonDetail, SkeletonImage } from "./ui";
 
 import { MetaTags } from "../../../../hooks";
 import { VideoId } from "../../../../helpers";
