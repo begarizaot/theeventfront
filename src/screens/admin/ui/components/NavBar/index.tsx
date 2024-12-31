@@ -39,9 +39,15 @@ export const NavBar = () => {
         ),
     },
     {
-      label: "Ticket Control",
+      label: "Analytics",
       template: itemRenderer,
       icon: "pi pi-chart-bar",
+      link: `/admin/${eventId}/analytics`,
+    },
+    {
+      label: "Ticket Control",
+      template: itemRenderer,
+      icon: "pi pi-book",
       link: `/admin/${eventId}/ticketControl`,
     },
     {

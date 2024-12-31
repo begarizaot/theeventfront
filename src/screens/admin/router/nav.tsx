@@ -13,6 +13,7 @@ import {
   EventDetails,
   FreeTickets,
   TeamAccess,
+  Analytics,
 } from "../pages";
 import { Error404Page } from "../../pages";
 
@@ -33,6 +34,7 @@ export const Nav = () => {
           >
             <Routes>
               <Route element={<PrivateRouter />}>
+                <Route path="/:id/analytics" element={<Analytics />} />
                 <Route path="/:id/ticketControl" element={<TicketControl />} />
                 <Route path="/:id/eventDetail" element={<EventDetails />} />
                 <Route path="/:id/teamAccess" element={<TeamAccess />} />
