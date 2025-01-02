@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 interface MetaProps {
@@ -7,6 +8,24 @@ interface MetaProps {
 }
 
 export const MetaComp = ({ image, title, url }: MetaProps) => {
+  useEffect(() => {
+    if (title) document.title = title;
+
+    const setMetaTag = (property:any, content:any) => {
+        let metaTag = document.querySelector(`meta[property='${property}']`);
+        if (!metaTag) {
+            metaTag = document.createElement("meta");
+            metaTag.setAttribute("property", property);
+            document.head.appendChild(metaTag);
+        }
+        metaTag.setAttribute("content", content);
+    };
+
+    if (image) setMetaTag("og:image", image);
+    if (url) setMetaTag("og:url", url);
+    if (title) setMetaTag("og:title", title);
+}, [title, image, url]);
+
   return (
     <Helmet>
       <meta charSet="UTF-8" />
