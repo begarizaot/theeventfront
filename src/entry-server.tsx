@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import App from "./App";
+import { Helmet } from "react-helmet";
 
 export function render(_url: string) {
   const html = renderToString(
@@ -11,5 +12,5 @@ export function render(_url: string) {
       </StaticRouter>
     </StrictMode>
   );
-  return { html };
+  return { html, helmet: Helmet.renderStatic() };
 }

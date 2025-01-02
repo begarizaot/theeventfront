@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 const noExternal =
   process.env.NODE_ENV !== "production"
     ? []
-    : ["primereact", "react-helmet-async", "file-saver"];
+    : ["primereact", "file-saver"];
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],

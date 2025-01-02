@@ -1,24 +1,20 @@
 import { AppRouter } from "./routers";
 import { Provider } from "react-redux";
 import { PrimeReactProvider } from "primereact/api";
-import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider, CheckoutProvider, LoadingProvider } from "./context";
-
 import store from "./store/index.ts";
 
 function App() {
   return (
     <Provider store={store}>
       <PrimeReactProvider value={{ ripple: true, inputStyle: "outlined" }}>
-        <HelmetProvider>
-          <LoadingProvider>
-            <AuthProvider>
-              <CheckoutProvider>
-                <AppRouter />
-              </CheckoutProvider>
-            </AuthProvider>
-          </LoadingProvider>
-        </HelmetProvider>
+        <LoadingProvider>
+          <AuthProvider>
+            <CheckoutProvider>
+              <AppRouter />
+            </CheckoutProvider>
+          </AuthProvider>
+        </LoadingProvider>
       </PrimeReactProvider>
     </Provider>
   );

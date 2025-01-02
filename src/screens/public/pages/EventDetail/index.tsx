@@ -6,14 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Details, ImageEvent } from "./components";
 import { SkeletonDetail, SkeletonImage } from "./ui";
 
-import { MetaTags } from "../../../../hooks";
 import { VideoId } from "../../../../helpers";
+import { MetaComp } from "../../../../ui";
 import { environment } from "../../../../environments/environment";
 
 import { getEventDetail } from "../../../../store/slices";
 import { AppDispatch, RootState } from "../../../../store";
 
 import { Skeleton } from "primereact/skeleton";
+import { Helmet } from "react-helmet";
 
 export const EventDetailPage = () => {
   const { id } = useParams();
@@ -29,11 +30,14 @@ export const EventDetailPage = () => {
 
   return (
     <>
-      <MetaTags
-        title={selectedEvent?.event_name || ""}
-        url={`${environment?.PUBLIC_URL || ""}/event/5e55d9aed0b228671144`}
-        image={selectedEvent?.image[0]?.url || ""}
-      />
+      {!loading && (
+        <MetaComp
+          title={selectedEvent?.event_name || ""}
+          url={`${environment?.PUBLIC_URL || ""}/event/5e55d9aed0b228671144`}
+          image={selectedEvent?.image[0]?.url || ""}
+        />
+      )}
+
       <div className="EventDetailPage grid max-width-80 mx-auto px-4 align-content-start sm:px-6 pt-8 text-white">
         <div className="col-12">
           {loading && <SkeletonImage />}
