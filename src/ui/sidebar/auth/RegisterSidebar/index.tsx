@@ -17,10 +17,8 @@ interface RegisterSidebarProps {
   showVisible: () => void;
 }
 
-export const RegisterSidebar = ({
-  showVisible,
-  visible,
-}: RegisterSidebarProps) => {
+export const RegisterSidebar = (props: RegisterSidebarProps) => {
+  const { visible, showVisible } = props;
   const {
     passwordMust,
     checkPassword,

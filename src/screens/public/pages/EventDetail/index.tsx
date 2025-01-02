@@ -24,7 +24,7 @@ export const EventDetailPage = () => {
   );
 
   useEffect(() => {
-    dispatch(getEventDetail(id));
+    id && dispatch(getEventDetail(id));
   }, [dispatch, id]);
 
   return (
