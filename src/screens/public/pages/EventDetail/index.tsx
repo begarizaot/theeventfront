@@ -14,7 +14,6 @@ import { getEventDetail } from "../../../../store/slices";
 import { AppDispatch, RootState } from "../../../../store";
 
 import { Skeleton } from "primereact/skeleton";
-import { Helmet } from "react-helmet";
 
 export const EventDetailPage = () => {
   const { id } = useParams();
@@ -33,7 +32,7 @@ export const EventDetailPage = () => {
       {!loading && (
         <MetaComp
           title={selectedEvent?.event_name || ""}
-          url={`${environment?.PUBLIC_URL || ""}/event/5e55d9aed0b228671144`}
+          url={`${environment?.PUBLIC_URL || ""}/event/${id}`}
           image={selectedEvent?.image[0]?.url || ""}
         />
       )}
