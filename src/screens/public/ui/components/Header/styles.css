@@ -1,0 +1,10 @@
+.bgNav {
+  background: linear-gradient(
+    180deg,
+    #0f0f0f 85%,
+    #0f0f0fd6 85%,
+    #0f0f0f99 90%,
+    #0f0f0f24 100%,
+    #0f0f0f00
+  );
+}

@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+
+* {
+  font-family: Lato, sans-serif;
+}
+
+:root {
+  --colorBody: #0e0e0e;
+  --colorPrimary: #cf0032;
+  --effectPrimary: linear-gradient(
+    267.23deg,
+    #fb776f 24.27%,
+    #ffb4c6 59.74%,
+    #ffa16c 93.15%
+  );
+  --effectBorder: linear-gradient(
+      360deg,
+      #615e9b 7.95%,
+      rgba(36, 35, 51, 0.4) 100%
+    )
+    border-box;
+}
+
+body {
+  background: var(--colorBody);
+}
+
+.effectPrimary {
+  background: var(--effectPrimary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* bgs */
+.bgBorder {
+  background: var(--effectBorder);
+}
+
+.bgGradient {
+  border-image: fill 0
+    linear-gradient(rgba(0, 0, 0, 0.0666666667), var(--colorBody));
+  background-color: linear-gradient(rgba(0, 0, 0, 0.0666666667), var(--colorBody));
+}
+
+/* txts */
+.textPrimary {
+  color: var(--colorPrimary);
+}
