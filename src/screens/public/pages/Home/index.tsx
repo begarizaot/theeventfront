@@ -1,10 +1,8 @@
 import { EventCardComp } from "../../../../ui/components";
-import { FooterComp, HeaderComp } from "../../ui/components";
 
 export const HomePage = () => {
   return (
     <>
-      <HeaderComp />
       {/* info */}
       <div className="relative h-[80vh] mb-3">
         <div
@@ -49,7 +47,6 @@ export const HomePage = () => {
           <EventCardComp />
         </div>
       </div>
-      <FooterComp />
     </>
   );
 };

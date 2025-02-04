@@ -1,9 +1,9 @@
-import { HomePage } from "./screens/public/pages";
+import { AppRouter } from "./routers";
 
 
 function App() {
   return (
-    <HomePage />
+    <AppRouter />
   );
 }
 
