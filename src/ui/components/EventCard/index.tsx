@@ -5,7 +5,7 @@ export const EventCardComp = () => {
         <div
           style={{
             backgroundImage:
-              'linear-gradient(rgba(15, 15, 15, 0) 20%, rgba(15, 15, 15, 0.8) 60%, rgb(15, 15, 15) 80%), url("https://res.cloudinary.com/dii5f60xx/image/upload/v1737242025/events/event_Id_22_a5c675459d.png")',
+              'linear-gradient(rgba(15, 15, 15, 0) 20%, rgba(15, 15, 15, 0.8) 70%, rgb(15, 15, 15) 90%), url("https://res.cloudinary.com/dii5f60xx/image/upload/v1737242025/events/event_Id_22_a5c675459d.png")',
           }}
           className="h-[99.2%] w-[99%] absolute bg-cover bg-center bg-no-repeat rounded-xl"
         ></div>
