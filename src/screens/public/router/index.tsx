@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { FooterComp, HeaderComp } from "../ui/components";
 
-import { EventDetailPage, HomePage } from "../pages";
+import { EventAllPage, EventDetailPage, HomePage } from "../pages";
 
 export const ScreenPublicRouter = ({ ssrEvent }: { ssrEvent?: any }) => {
   return (
@@ -9,6 +9,7 @@ export const ScreenPublicRouter = ({ ssrEvent }: { ssrEvent?: any }) => {
       <HeaderComp />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/events" element={<EventAllPage />} />
         <Route
           path="event/:id"
           element={<EventDetailPage ssrEvent={ssrEvent} />}

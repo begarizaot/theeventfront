@@ -18,7 +18,7 @@ export const HeaderComp = () => {
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 px-10 max-w-[80rem] mx-auto h-full items-center pb-2">
           {/* logo */}
           <div className="col-span-1">
-            <LogoLinkComp />
+            <LogoLinkComp onClick={() => onShownNavsDrawer(false)} />
           </div>
           {/* navs and icon */}
           <div className="hidden lg:flex justify-end gap-6 sm:col-span-3 lg:col-span-5">

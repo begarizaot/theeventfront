@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { EventCardComp } from "../../../../ui/components";
 
 export const HomePage = () => {
@@ -36,9 +37,12 @@ export const HomePage = () => {
             Upcoming Events
           </h1>
           <div className="ml-auto">
-            <p className="border sm:px-3 px-2 py-1 rounded-full text-xs sm:text-sm cursor-pointer text-white">
+            <Link
+              to="/events"
+              className="border sm:px-3 px-2 py-1 rounded-full text-xs sm:text-sm cursor-pointer text-white"
+            >
               View All
-            </p>
+            </Link>
           </div>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -40,10 +40,40 @@ body {
 .bgGradient {
   border-image: fill 0
     linear-gradient(rgba(0, 0, 0, 0.0666666667), var(--colorBody));
-  background-color: linear-gradient(rgba(0, 0, 0, 0.0666666667), var(--colorBody));
+  background-color: linear-gradient(
+    rgba(0, 0, 0, 0.0666666667),
+    var(--colorBody)
+  );
 }
 
 /* txts */
 .textPrimary {
   color: var(--colorPrimary);
+}
+
+/* paginationClass */
+.paginationClass .ant-pagination-item {
+  background: transparent;
+  border: 1px solid white;
+  min-width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paginationClass .ant-pagination-item:hover,
+.paginationClass .ant-pagination-item a:hover {
+  border-color: transparent;
+  color: white;
+}
+.paginationClass .ant-pagination-item-active {
+  background: var(--colorPrimary);
+  border: 1px solid var(--colorPrimary);
+}
+.paginationClass .ant-pagination-item a {
+  color: white;
+}
+.paginationClass .ant-pagination-item-link {
+  border: 1px solid white !important;
+  color: white !important;
 }
