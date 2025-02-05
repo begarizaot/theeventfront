@@ -35,7 +35,7 @@ if (!isProduction) {
 // Serve HTML
 app.use("*all", async (req, res) => {
   try {
-    const url = req.originalUrl.replace(base, "");
+    const url = req.originalUrl;
 
     /** @type {string} */
     let template;
@@ -50,16 +50,21 @@ app.use("*all", async (req, res) => {
       template = templateHtml;
       render = (await import("./dist/server/entry-server.js")).render;
     }
-
-    const { html, helmetContext } = render(url);
+    const { html, helmetContext } = await render(req.originalUrl);
     const { helmet } = helmetContext;
+
+    console.log("Helmet Title:", helmet?.title?.toString());
+    console.log("Helmet Meta:", helmet?.meta?.toString());
+    console.log("Helmet Link:", helmet?.link?.toString());
 
     const responseHtml = template
       .replace(
-        `<!--app-head-->`,
-        `${helmet?.title || ""}${helmet?.meta || ""}${helmet?.link || ""}`
+        "<!--app-head-->",
+        `${helmet?.title?.toString() || ""}${helmet?.meta?.toString() || ""}${
+          helmet?.link?.toString() || ""
+        }`
       )
-      .replace(`<!--app-html-->`, html);
+      .replace("<!--app-html-->", html);
 
     res.status(200).set({ "Content-Type": "text/html" }).send(responseHtml);
   } catch (e) {

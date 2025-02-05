@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 export const EventCardComp = () => {
   return (
-    <div className="text-white rounded-xl bgBorder">
+    <Link to="event/5e55d9aed0b228671044" className="text-white rounded-xl bgBorder">
       <div className="p-[2px] cursor-pointer h-[30rem] relative">
         <div
           style={{
@@ -49,6 +51,6 @@ export const EventCardComp = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

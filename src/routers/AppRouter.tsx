@@ -1,16 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import { ScrollToTop } from "../helpers";
-
-import { ScreenPublicRouter } from "../screens/public/router";
 import { MetaComp } from "../ui/components";
 
-export const AppRouter = () => {
+import { ScreenPublicRouter } from "../screens/public/router";
+
+export const AppRouter = ({ ssrEvent }: { ssrEvent?: any }) => {
   return (
     <>
       <MetaComp />
       <ScrollToTop />
       <Routes>
-        <Route path="/*" element={<ScreenPublicRouter />} />
+        <Route path="/*" element={<ScreenPublicRouter ssrEvent={ssrEvent} />} />
       </Routes>
     </>
   );

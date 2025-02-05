@@ -1,9 +1,9 @@
 import { AppRouter } from "./routers";
 
 
-function App() {
+function App({ ssrEvent }: { ssrEvent?: any }) {
   return (
-    <AppRouter />
+    <AppRouter ssrEvent={ssrEvent} />
   );
 }
 
