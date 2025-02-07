@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
 
-export const EventCardComp = () => {
+interface EventCardProps {
+  onClick?: () => void;
+}
+
+export const EventCardComp = ({ onClick }: EventCardProps) => {
   return (
-    <Link to="/event/5e55d9aed0b228671044" className="text-white rounded-xl bgBorder">
-      <div className="p-[2px] cursor-pointer h-[30rem] relative">
+    <Link
+      to="/event/5e55d9aed0b228671044"
+      className="text-white rounded-xl bgBorder"
+      onClick={onClick}
+    >
+      <div className="p-[2px] cursor-pointer h-[30rem] relative text-white">
         <div
           style={{
             backgroundImage:

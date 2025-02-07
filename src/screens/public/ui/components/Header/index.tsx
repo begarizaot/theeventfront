@@ -5,7 +5,7 @@ import { NavsDrawer } from "../../drawer";
 import { LogoLinkComp } from "../../../../../ui/components";
 
 export const HeaderComp = () => {
-  const { onShownNavsDrawer, showNavsDrawer, navs } = useHeader();
+  const { onShownNavsDrawer, openSearch, showNavsDrawer, navs } = useHeader();
 
   return (
     <>
@@ -31,7 +31,10 @@ export const HeaderComp = () => {
             })}
           </div>
           <div className="flex lg:hidden justify-end gap-6 text-xl sm:col-span-3 lg:col-span-5">
-            <span className="pi pi-search cursor-pointer"></span>
+            <span
+              className="pi pi-search cursor-pointer"
+              onClick={openSearch}
+            ></span>
             <span
               className={`pi cursor-pointer ${
                 showNavsDrawer ? "pi-times rotate-90" : "pi-bars"

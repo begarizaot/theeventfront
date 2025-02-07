@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { EventCardComp } from "../../../../ui/components";
+import { useHome } from "./useHome";
 
 export const HomePage = () => {
+  const { openSearch } = useHome();
+
   return (
     <>
       {/* info */}
@@ -22,7 +25,10 @@ export const HomePage = () => {
             rewarding
           </p>
 
-          <div className="bg-white h-9 justify-between w-full sm:w-[70%] xl:w-[50%] mt-2 rounded-full flex items-center px-3 cursor-pointer">
+          <div
+            className="bg-white h-9 justify-between w-full sm:w-[70%] xl:w-[50%] mt-2 rounded-full flex items-center px-3 cursor-pointer"
+            onClick={openSearch}
+          >
             <p className="text-gray-300 text-sm pointer-events-none">
               Search events by name, artist or genre
             </p>

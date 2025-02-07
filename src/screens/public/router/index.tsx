@@ -1,11 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import { FooterComp, HeaderComp } from "../ui/components";
 
+import { SearchProvider } from "../context/Search";
 import { EventAllPage, EventDetailPage, HomePage } from "../pages";
 
 export const ScreenPublicRouter = ({ ssrEvent }: { ssrEvent?: any }) => {
   return (
-    <>
+    <SearchProvider>
       <HeaderComp />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -16,6 +17,6 @@ export const ScreenPublicRouter = ({ ssrEvent }: { ssrEvent?: any }) => {
         />
       </Routes>
       <FooterComp />
-    </>
+    </SearchProvider>
   );
 };

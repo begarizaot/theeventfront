@@ -51,6 +51,23 @@ body {
   color: var(--colorPrimary);
 }
 
+/* drawer */
+.ant-drawer-body,
+.ant-drawer-header {
+  background: var(--colorBody);
+}
+
+.ant-drawer-header .ant-drawer-header-title{
+  justify-content: flex-end;
+}
+.ant-drawer-header .ant-drawer-close{
+  color: white;
+  margin: 0;
+}
+.ant-drawer-close:hover{
+  color: var(--colorPrimary) !important;
+}
+
 /* paginationClass */
 .paginationClass .ant-pagination-item {
   background: transparent;

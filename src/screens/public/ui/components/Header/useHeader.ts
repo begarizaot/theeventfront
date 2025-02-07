@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { SearchContext } from "../../../context/Search";
 import { NavsDrawerProps } from "./type";
 
 export const useHeader = () => {
+  const { openSearch } = useContext(SearchContext);
+
   const [showNavsDrawer, setShowNavsDrawer] = useState(false);
   const [navs, setNavs] = useState<NavsDrawerProps[]>([]);
 
@@ -25,5 +28,5 @@ export const useHeader = () => {
     setShowNavsDrawer(status);
   };
 
-  return { navs, showNavsDrawer, onShownNavsDrawer };
+  return { navs, showNavsDrawer, onShownNavsDrawer, openSearch };
 };

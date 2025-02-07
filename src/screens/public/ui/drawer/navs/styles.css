@@ -1,8 +1,3 @@
-.navsDrawer .ant-drawer-body,
-.navsDrawer .ant-drawer-header {
-  background: var(--colorBody);
-}
-
 .navsDrawer .ant-drawer-body {
   display: flex;
   flex-direction: column;
