@@ -1,4 +1,7 @@
 import "./styles.css";
+
+import { LinkNavs } from "../../components";
+
 import { ConfigProvider, Drawer } from "antd";
 
 interface NavsDrawerProps {
@@ -21,9 +24,7 @@ export const NavsDrawer = ({ onClose, visible, navs }: NavsDrawerProps) => {
       >
         {navs.map((res, index) => {
           return (
-            <p className={res.class} key={index}>
-              {res.label}
-            </p>
+            <LinkNavs key={index} {...res} />
           );
         })}
       </Drawer>

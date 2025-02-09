@@ -3,6 +3,7 @@ import { useHeader } from "./useHeader";
 
 import { NavsDrawer } from "../../drawer";
 import { LogoLinkComp } from "../../../../../ui/components";
+import { LinkNavs } from "../LinkNav";
 
 export const HeaderComp = () => {
   const { onShownNavsDrawer, openSearch, showNavsDrawer, navs } = useHeader();
@@ -23,11 +24,7 @@ export const HeaderComp = () => {
           {/* navs and icon */}
           <div className="hidden lg:flex justify-end gap-6 sm:col-span-3 lg:col-span-5">
             {navs.map((res, index) => {
-              return (
-                <p className="cursor-pointer" key={index}>
-                  {res.label}
-                </p>
-              );
+              return <LinkNavs key={index} {...res} />;
             })}
           </div>
           <div className="flex lg:hidden justify-end gap-6 text-xl sm:col-span-3 lg:col-span-5">
