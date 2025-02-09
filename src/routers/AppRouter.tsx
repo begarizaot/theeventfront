@@ -4,13 +4,13 @@ import { MetaComp } from "../ui/components";
 
 import { ScreenPublicRouter } from "../screens/public/router";
 
-export const AppRouter = ({ ssrEvent }: { ssrEvent?: any }) => {
+export const AppRouter = () => {
   return (
     <>
       <MetaComp />
       <ScrollToTop />
       <Routes>
-        <Route path="/*" element={<ScreenPublicRouter ssrEvent={ssrEvent} />} />
+        <Route path="/*" element={<ScreenPublicRouter />} />
       </Routes>
     </>
   );

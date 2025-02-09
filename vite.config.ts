@@ -11,6 +11,7 @@ export default defineConfig({
   ssr: {
     noExternal: [
       "react-helmet-async",
+      "react-router-dom",
     ],
   },
 });

@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { MetaComp } from "../../../../../ui/components";
 
 const fetchEventDetails = (id: string) =>
   Promise.resolve({
@@ -15,13 +16,10 @@ type EventDetails = {
   keywords: string;
 };
 
-interface EventDetailPageProps {
-  ssrEvent?: EventDetails; // Datos precargados por SSR
-}
 
-export const EventDetailPage = ({ ssrEvent }: EventDetailPageProps) => {
+export const EventDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const [event, setEvent] = useState<EventDetails | null>(ssrEvent || null);
+  const [event, setEvent] = useState<EventDetails | null>(null);
 
   useEffect(() => {
     if (id && !event) {
@@ -33,11 +31,7 @@ export const EventDetailPage = ({ ssrEvent }: EventDetailPageProps) => {
 
   return (
     <div>
-      <Helmet>
-        <title>{event.title}</title>
-        <meta name="description" content={event.description} />
-        <meta name="keywords" content={event.keywords} />
-      </Helmet>
+      <MetaComp title={event.title} />
       <h1>{event.title}</h1>
       <p>{event.description}</p>
     </div>

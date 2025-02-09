@@ -4,17 +4,15 @@ import { FooterComp, HeaderComp } from "../ui/components";
 import { SearchProvider } from "../context/Search";
 import { EventAllPage, EventDetailPage, HomePage } from "../pages";
 
-export const ScreenPublicRouter = ({ ssrEvent }: { ssrEvent?: any }) => {
+
+export const ScreenPublicRouter = () => {
   return (
     <SearchProvider>
       <HeaderComp />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={<EventAllPage />} />
-        <Route
-          path="event/:id"
-          element={<EventDetailPage ssrEvent={ssrEvent} />}
-        />
+        <Route path="event/:id" element={<EventDetailPage />} />
       </Routes>
       <FooterComp />
     </SearchProvider>

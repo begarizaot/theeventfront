@@ -10,7 +10,6 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
   const [isModal, setIsModal] = useState(false);
 
   const openSearch = () => {
-    console.log('object');
     setIsModal(true);
   };
 
