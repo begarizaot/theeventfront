@@ -52,19 +52,23 @@ body {
 }
 
 /* drawer */
+.drawer .ant-drawer-body {
+  padding-top: 0px;
+}
+
 .ant-drawer-body,
 .ant-drawer-header {
   background: var(--colorBody);
 }
 
-.ant-drawer-header .ant-drawer-header-title{
+.ant-drawer-header .ant-drawer-header-title {
   justify-content: flex-end;
 }
-.ant-drawer-header .ant-drawer-close{
+.ant-drawer-header .ant-drawer-close {
   color: white;
   margin: 0;
 }
-.ant-drawer-close:hover{
+.ant-drawer-close:hover {
   color: var(--colorPrimary) !important;
 }
 

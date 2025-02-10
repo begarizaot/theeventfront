@@ -1,5 +1,3 @@
-import "./styles.css";
-
 import { EventCardComp } from "../../../../../ui/components";
 
 import { useSearch } from "./useSearch";
@@ -26,7 +24,7 @@ export const SearchDrawer = ({ onClose, visible }: SearchDrawerProps) => {
           onClose();
         }}
         open={visible}
-        className="searchDrawer text-white"
+        className="drawer text-white"
       >
         <h2 className="font-bold text-white text-center text-2xl">
           Search <span className="effectPrimary">Events</span>
