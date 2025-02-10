@@ -25,7 +25,7 @@ export const HomePage = () => {
             rewarding
           </p>
 
-          <div
+          <button
             className="bg-white h-9 justify-between w-full sm:w-[70%] xl:w-[50%] mt-2 rounded-full flex items-center px-3 cursor-pointer"
             onClick={openSearch}
           >
@@ -33,7 +33,7 @@ export const HomePage = () => {
               Search events by name, artist or genre
             </p>
             <span className="pi pi-search bg-black p-[5px] sm:p-[6px] rounded-full text-xs"></span>
-          </div>
+          </button>
         </div>
       </div>
       {/* events */}

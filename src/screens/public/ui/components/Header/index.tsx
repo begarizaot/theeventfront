@@ -28,10 +28,10 @@ export const HeaderComp = () => {
             })}
           </div>
           <div className="flex lg:hidden justify-end gap-6 text-xl sm:col-span-3 lg:col-span-5">
-            <span
+            <button
               className="pi pi-search cursor-pointer"
               onClick={openSearch}
-            ></span>
+            ></button>
             <span
               className={`pi cursor-pointer ${
                 showNavsDrawer ? "pi-times rotate-90" : "pi-bars"
