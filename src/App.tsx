@@ -1,18 +1,22 @@
 import { ConfigProvider } from "antd";
 import { AppRouter } from "./routers";
-import { AuthProvider } from "./context";
+import { AuthProvider, CheckoutProvider } from "./context";
 
 function App() {
   return (
-    <ConfigProvider theme={{
-      components: {
-        Segmented: {
-          itemHoverColor: '#ffffff', // Color del texto en hover
+    <ConfigProvider
+      theme={{
+        components: {
+          Segmented: {
+            itemHoverColor: "#ffffff", // Color del texto en hover
+          },
         },
-      },
-    }}>
+      }}
+    >
       <AuthProvider>
-        <AppRouter />;
+        <CheckoutProvider>
+          <AppRouter />
+        </CheckoutProvider>
       </AuthProvider>
     </ConfigProvider>
   );

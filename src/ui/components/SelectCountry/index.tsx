@@ -12,7 +12,7 @@ export const SelectCountry = ({onChange}:SelectCountryProps) => {
   return (
     <Select
       showSearch={countries.length > 10}
-      className="selectCountry"
+      className="selectCountry selectStyle"
       placeholder="Select Country"
       onChange={onChange}
       options={countries}
