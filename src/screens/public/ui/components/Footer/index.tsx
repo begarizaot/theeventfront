@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom";
 import { LogoLinkComp } from "../../../../../ui/components";
+import { useFooter } from "./useFooter";
 
 export const FooterComp = () => {
+  const { navData, redSocial } = useFooter();
+
   return (
     <footer className="flex flex-col px-10 max-w-[80rem] mx-auto py-4 gap-4 text-white text-center items-center">
       <LogoLinkComp
@@ -9,22 +13,25 @@ export const FooterComp = () => {
       />
       {/* navs */}
       <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-        <p className="cursor-pointer text-sm sm:text-base">
-          Terms & Conditions
-        </p>
-        <p className="cursor-pointer text-sm sm:text-base">Privacy Policy</p>
-        <p className="cursor-pointer text-sm sm:text-base">Contact Us</p>
+        {navData.map((res, index) => (
+          <Link to={res.to} className={`text-sm sm:text-base`} key={index}>
+            {res.label}
+          </Link>
+        ))}
       </div>
 
       <div className="flex justify-center gap-10">
-        <span className="pi pi-instagram text-xl cursor-pointer"></span>
-        <span className="pi pi-whatsapp text-xl cursor-pointer"></span>
-        <span className="pi pi-twitter text-xl cursor-pointer"></span>
-        <span className="pi pi-tiktok text-xl cursor-pointer"></span>
+        {redSocial.map((res, index) => (
+          <Link
+            to={res.to}
+            className={`pi ${res.icon} text-xl cursor-pointer`}
+            key={index}
+          />
+        ))}
       </div>
 
       <p className="text-xs sm:text-sm">
-        © 2025 - The Event Jet, All Rights Reserved.
+        © {new Date().getFullYear()} - The Event Jet, All Rights Reserved.
       </p>
     </footer>
   );
