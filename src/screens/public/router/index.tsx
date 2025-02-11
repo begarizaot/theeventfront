@@ -11,7 +11,7 @@ export const ScreenPublicRouter = () => {
       <HeaderComp />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/events" element={<EventAllPage />} />
+        <Route path="/events_all" element={<EventAllPage />} />
         <Route path="event/:id" element={<EventDetailPage />} />
       </Routes>
       <FooterComp />

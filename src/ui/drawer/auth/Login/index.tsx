@@ -16,6 +16,7 @@ export const LoginDrawer = ({ onClose, visible }: LoginDrawerProps) => {
     onSetCountry,
     onResetInfo,
     onNavChange,
+    onRegister,
     onFinish,
   } = useLogin();
 
@@ -33,7 +34,7 @@ export const LoginDrawer = ({ onClose, visible }: LoginDrawerProps) => {
         className="drawer text-white"
       >
         <div className="flex flex-col h-full">
-          <h1 className="text-3xl font-bold flex flex-col">
+          <h1 className="text-2xl font-bold flex flex-col">
             Log in to your
             <span className="effectPrimary">Event Hub.</span>
           </h1>
@@ -103,7 +104,11 @@ export const LoginDrawer = ({ onClose, visible }: LoginDrawerProps) => {
             <h2 className="font-bold text-base">
               New to <span className="effectPrimary">The Event Jet?</span>
             </h2>
-            <ButtonComp className="mt-1" lable="Register" />
+            <ButtonComp
+              className="mt-1"
+              lable="Register"
+              onClick={onRegister}
+            />
           </div>
         </div>
       </Drawer>

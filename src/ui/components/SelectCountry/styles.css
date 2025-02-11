@@ -7,6 +7,7 @@
 .selectCountry .ant-select-selector {
   background: transparent !important;
   border-radius: 30px;
+  border-color: #fff !important;
 }
 .selectCountry .ant-select-selection-placeholder {
   color: rgb(255 255 255 / 20%);

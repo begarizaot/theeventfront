@@ -44,7 +44,7 @@ export const HomePage = () => {
           </h1>
           <div className="ml-auto">
             <Link
-              to="/events"
+              to="/events_all"
               className="border sm:px-3 px-2 py-1 rounded-full text-xs sm:text-sm cursor-pointer text-white"
             >
               View All

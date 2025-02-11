@@ -57,7 +57,8 @@ body {
 }
 
 .ant-drawer-body,
-.ant-drawer-header {
+.ant-drawer-header,
+.ant-drawer-footer {
   background: var(--colorBody);
 }
 

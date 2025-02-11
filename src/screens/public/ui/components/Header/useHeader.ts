@@ -7,7 +7,7 @@ import { NavsDrawerProps } from "../../types";
 
 export const useHeader = () => {
   const { openSearch } = useContext(SearchContext);
-  const { onShowLogin } = useContext(AuthContext);
+  const { onShowLogin, onShowRegister } = useContext(AuthContext);
 
   const [showNavsDrawer, setShowNavsDrawer] = useState(false);
   const [navs, setNavs] = useState<NavsDrawerProps[]>([]);
@@ -61,12 +61,16 @@ export const useHeader = () => {
       {
         label: "Register",
         class: `${classNavs} ${classAdd}`,
-        onClick: () => console.log("Register"),
+        onClick: () => {
+          onShowRegister(true);
+          onHiddenNavsDrawer();
+        },
       },
       {
         label: "All Events",
         class: `${classNavs} ${classAdd}`,
-        onClick: () => console.log("All Events"),
+        to: "/events_all",
+        onClick: () => onShownNavsDrawer(false),
       },
     ]);
   };

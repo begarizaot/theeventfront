@@ -1,8 +1,11 @@
 import { Form } from "antd";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import usePhoneInput from "../../../../hooks/usePhoneInput";
+import { AuthContext } from "../../../../context";
 
 export const useLogin = () => {
+  const { onShowRegister, onShowOtp } = useContext(AuthContext);
+
   const [form] = Form.useForm();
 
   const phoneInput = usePhoneInput();
@@ -20,6 +23,10 @@ export const useLogin = () => {
     setNavIndex(index);
   };
 
+  const onRegister = () => {
+    onShowRegister(true);
+  };
+
   const onResetInfo = () => {
     form.resetFields();
     onReset();
@@ -34,6 +41,7 @@ export const useLogin = () => {
   const onFinish = (values: any) => {
     console.log(country);
     console.log(values);
+    onShowOtp(true);
   };
 
   return {
@@ -44,6 +52,7 @@ export const useLogin = () => {
     onSetCountry,
     onResetInfo,
     onNavChange,
+    onRegister,
     onFinish,
   };
 };
