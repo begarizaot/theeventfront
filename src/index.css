@@ -32,6 +32,16 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.htmlStyle {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
 /* bgs */
 .bgBorder {
   background: var(--effectBorder);
