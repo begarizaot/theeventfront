@@ -1,10 +1,24 @@
 import { Form } from "antd";
-import { ContInformation, RefundableComp } from "./components";
+import {
+  ContInformation,
+  DiscountCodeComp,
+  OrderSummaryComp,
+  PaymentMethodComp,
+  RefundableComp,
+} from "./components";
 import { ButtonComp } from "../../../../components";
 import { useCheck } from "./useCheck";
 
 export const CheckComp = () => {
   const { form, onFinish } = useCheck();
+
+  const viewInputsForm = () => {
+    return (
+      <div className="mt-3">
+        <DiscountCodeComp onFinish={() => console.log("onFinish")} />
+      </div>
+    );
+  };
 
   return (
     <Form
@@ -23,9 +37,21 @@ export const CheckComp = () => {
             <h2 className="text-lg font-bold">Refundable Tickets</h2>
             <RefundableComp />
           </div>
+          <div className="col-span-1 py-2">
+            <h2 className="text-lg font-bold">Payment Method</h2>
+            <PaymentMethodComp />
+          </div>
+          <div className="lg:hidden col-span-1 border-t-2">
+            <OrderSummaryComp />
+            {viewInputsForm()}
+          </div>
         </div>
       </div>
       <div className="col-span-1 pt-2 lg:pt-0 flex flex-col justify-end sticky bottom-0 bgBody">
+        <div className="hidden lg:grid grid-cols-1">
+          <OrderSummaryComp />
+          {viewInputsForm()}
+        </div>
         <div className="mt-2 lg:mt-auto">
           <ButtonComp lable="Complete Purchase" htmlType="submit" />
         </div>

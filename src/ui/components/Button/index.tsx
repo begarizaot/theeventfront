@@ -5,6 +5,7 @@ interface ButtonCompProps {
   className?: string;
   lable?: string;
   disabled?: boolean;
+  loading?: boolean;
   onClick?: () => void;
 }
 
@@ -13,6 +14,7 @@ export const ButtonComp = ({
   className,
   lable,
   disabled,
+  loading,
   onClick,
 }: ButtonCompProps) => {
   return (
@@ -27,7 +29,6 @@ export const ButtonComp = ({
         rounded-3xl! 
         py-4! 
         font-bold! 
-        btnBackground 
         focus:bg-white! 
         focus:text-black! 
         disabled:text-white/60! 
@@ -37,6 +38,7 @@ export const ButtonComp = ({
         ${className}`}
       onClick={onClick}
       disabled={disabled}
+      loading={loading}
     >
       {lable}
     </Button>
