@@ -1,5 +1,5 @@
 import { ConfigProvider, Modal } from "antd";
-import { SelectComp } from "./components";
+import { CheckComp, SelectComp } from "./components";
 import { useCheckout } from "./useCheckout";
 
 interface CheckoutModalProps {
@@ -8,7 +8,8 @@ interface CheckoutModalProps {
 }
 
 export const CheckoutModal = ({ onClose, visible }: CheckoutModalProps) => {
-  const { view, onShowView, onHiddenAll } = useCheckout();
+  const { view, selectTicket, onShowView, onHiddenAll, onCheckTicket } =
+    useCheckout();
 
   return (
     <ConfigProvider
@@ -41,7 +42,8 @@ export const CheckoutModal = ({ onClose, visible }: CheckoutModalProps) => {
           <div className="text-white text-center text-xl sm:text-2xl font-bold border-b-2 pb-2">
             Teodoro Reyes en concierto Tampa
           </div>
-          {view == "select" && <SelectComp />}
+          {view == "select" && <SelectComp onCheckTicket={onCheckTicket} />}
+          {view == "checkout" && <CheckComp />}
         </div>
       </Modal>
     </ConfigProvider>

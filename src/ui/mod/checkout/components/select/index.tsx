@@ -2,7 +2,11 @@ import { ButtonComp } from "../../../../components";
 import { ListSelectsComp, ListTicketsComp } from "./components";
 import { useSelect } from "./useSelect";
 
-export const SelectComp = () => {
+interface SelectCompProps {
+  onCheckTicket: (data: any) => void;
+}
+
+export const SelectComp = ({ onCheckTicket }: SelectCompProps) => {
   const { ticketSelect, listTicket } = useSelect();
 
   return (
@@ -27,7 +31,11 @@ export const SelectComp = () => {
         )}
 
         <div className="mt-2 lg:mt-auto">
-          <ButtonComp lable="Checkout" disabled={ticketSelect.length == 0} />
+          <ButtonComp
+            lable="Checkout"
+            disabled={ticketSelect.length == 0}
+            onClick={() => onCheckTicket(ticketSelect)}
+          />
         </div>
       </div>
     </div>

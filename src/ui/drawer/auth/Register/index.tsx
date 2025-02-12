@@ -96,16 +96,26 @@ export const RegisterDrawer = ({ onClose, visible }: RegisterDrawerProps) => {
                 autoComplete="off"
               />
             </Form.Item>
-            <Form.Item
-              name="phone"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <div className="flex gap-2 grid grid-cols-3">
-                <SelectCountry onChange={onSetCountry} />
+            <div className="flex gap-2 grid grid-cols-3">
+              <Form.Item
+                name="country"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <SelectCountry />
+              </Form.Item>
+              <Form.Item
+                name="phone"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+                className="col-span-2"
+              >
                 <Input
                   placeholder="(999) 999-9999"
                   className="rounded-full! bg-transparent! border-white! text-white! col-span-2"
@@ -119,8 +129,8 @@ export const RegisterDrawer = ({ onClose, visible }: RegisterDrawerProps) => {
                   autoComplete="off"
                   {...phoneInput}
                 />
-              </div>
-            </Form.Item>
+              </Form.Item>
+            </div>
             <Form.Item
               name="email"
               rules={[

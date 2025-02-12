@@ -26,6 +26,7 @@ export const FooterComp = () => {
             to={res.to}
             className={`pi ${res.icon} text-xl cursor-pointer`}
             key={index}
+            target="_blank"
           />
         ))}
       </div>

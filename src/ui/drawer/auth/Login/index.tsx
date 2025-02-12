@@ -49,35 +49,27 @@ export const LoginDrawer = ({ onClose, visible }: LoginDrawerProps) => {
           />
 
           <Form name="login" form={form} onFinish={onFinish}>
-            <Form.Item
-              name="information"
-              rules={[
-                {
-                  required: true,
-                  message: `Please enter ${navIndex == 1 ? "Email" : "Phone"}`,
-                },
-                {
-                  type: navIndex == 1 ? "email" : "string",
-                  message: "The input is not valid E-mail!",
-                },
-              ]}
-            >
-              {navIndex == 1 ? (
-                <Input
-                  placeholder="example@gmail.com"
-                  className="rounded-full! bg-transparent! border-white! text-white!"
-                  classNames={{
-                    input: "placeholder-white/20! py-[2px]!",
-                  }}
-                  prefix={
-                    <span className="pi pi-envelope mr-1 textPrimary"></span>
-                  }
-                  inputMode="email"
-                  autoComplete="off"
-                />
-              ) : (
-                <div className="flex gap-2 grid grid-cols-3">
-                  <SelectCountry onChange={onSetCountry} />
+            {navIndex == 0 ? (
+              <div className="flex gap-2 grid grid-cols-3">
+                <Form.Item
+                  name="country"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <SelectCountry />
+                </Form.Item>
+                <Form.Item
+                  name="phone"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                  className="col-span-2"
+                >
                   <Input
                     placeholder="(999) 999-9999"
                     className="rounded-full! bg-transparent! border-white! text-white! col-span-2"
@@ -91,9 +83,35 @@ export const LoginDrawer = ({ onClose, visible }: LoginDrawerProps) => {
                     autoComplete="off"
                     {...phoneInput}
                   />
-                </div>
-              )}
-            </Form.Item>
+                </Form.Item>
+              </div>
+            ) : (
+              <Form.Item
+                name="email"
+                rules={[
+                  {
+                    required: true,
+                  },
+                  {
+                    type: "email",
+                    message: "The input is not valid E-mail!",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="example@gmail.com"
+                  className="rounded-full! bg-transparent! border-white! text-white!"
+                  classNames={{
+                    input: "placeholder-white/20! py-[2px]!",
+                  }}
+                  prefix={
+                    <span className="pi pi-envelope mr-1 textPrimary"></span>
+                  }
+                  inputMode="email"
+                  autoComplete="off"
+                />
+              </Form.Item>
+            )}
 
             <Form.Item>
               <ButtonComp htmlType="submit" className="mt-1" lable="Log In" />

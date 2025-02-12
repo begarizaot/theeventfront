@@ -3,10 +3,10 @@ import { Select, Space } from "antd";
 import { useSelectCountry } from "./useSelectCountry";
 
 interface SelectCountryProps {
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 }
 
-export const SelectCountry = ({onChange}:SelectCountryProps) => {
+export const SelectCountry = ({ onChange }: SelectCountryProps) => {
   const { countries } = useSelectCountry();
 
   return (
