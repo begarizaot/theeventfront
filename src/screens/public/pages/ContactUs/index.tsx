@@ -1,5 +1,5 @@
 import { Form, Input } from "antd";
-import { ButtonComp } from "../../../../ui/components";
+import { ButtonComp, ReCaptchaComp } from "../../../../ui/components";
 
 export const ContactUsPage = () => {
   return (
@@ -96,6 +96,11 @@ export const ContactUsPage = () => {
               />
             </Form.Item>
           </div>
+
+          <ReCaptchaComp
+            onChange={() => console.log("first")}
+            className="mb-4"
+          />
 
           <div className="col-span-2">
             <Form.Item>

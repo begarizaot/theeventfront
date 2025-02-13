@@ -24,7 +24,6 @@ const usePhoneInput = (initialValue = "") => {
 
   const handleChange = (event: any) => {
     const formattedValue = formatPhoneNumber(event.target.value);
-    console.log(formattedValue)
     setValue(formattedValue);
   };
 

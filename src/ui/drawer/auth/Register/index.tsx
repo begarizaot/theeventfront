@@ -1,5 +1,6 @@
 import { ConfigProvider, Drawer, Form, Input } from "antd";
-import { ButtonComp, SelectCountry } from "../../../components";
+
+import { ButtonComp, ReCaptchaComp, SelectCountry } from "../../../components";
 import { useRegister } from "./useRegister";
 
 interface RegisterDrawerProps {
@@ -13,8 +14,8 @@ export const RegisterDrawer = ({ onClose, visible }: RegisterDrawerProps) => {
     phoneInput,
     onFinish,
     onResetInfo,
-    onSetCountry,
     onBackToLogin,
+    onCaptchaChange,
   } = useRegister();
 
   const onFooter = () => {
@@ -156,6 +157,8 @@ export const RegisterDrawer = ({ onClose, visible }: RegisterDrawerProps) => {
                 autoComplete="off"
               />
             </Form.Item>
+
+            <ReCaptchaComp onChange={onCaptchaChange} className="mb-3" />
 
             <Form.Item>
               <ButtonComp htmlType="submit" className="mt-1" lable="Register" />

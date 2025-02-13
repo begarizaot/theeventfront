@@ -35,7 +35,7 @@ export const RefundableComp = () => {
           </div>
         ))}
       </div>
-      <div className="col-span-1">
+      <div className="col-span-1 mt-2">
         <p className="text-xs">
           <span className="text-xl font-bold">$1.98</span> per ticket
         </p>

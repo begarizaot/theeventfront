@@ -9,11 +9,6 @@ export const useRegister = () => {
   const [form] = Form.useForm();
 
   const phoneInput = usePhoneInput();
-  const [country, setCountry] = useState(null);
-
-  const onSetCountry = (value: any) => {
-    setCountry(value);
-  };
 
   const onBackToLogin = () => {
     onShowLogin(true);
@@ -21,11 +16,13 @@ export const useRegister = () => {
 
   const onResetInfo = () => {
     form.resetFields();
-    setCountry(null);
+  };
+
+  const onCaptchaChange = (ev: any) => {
+    console.log(ev);
   };
 
   const onFinish = (values: any) => {
-    console.log(country);
     console.log(values);
     onShowOtp(true);
   };
@@ -35,7 +32,7 @@ export const useRegister = () => {
     phoneInput,
     onFinish,
     onResetInfo,
-    onSetCountry,
     onBackToLogin,
+    onCaptchaChange,
   };
 };

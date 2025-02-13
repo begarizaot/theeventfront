@@ -7,7 +7,7 @@ interface CheckoutProviderProps {
 }
 
 export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
-  const [isCheckout, setIsCheckout] = useState(true);
+  const [isCheckout, setIsCheckout] = useState(false);
 
   const onShowCheckout = (status: boolean) => {
     onHiddenAll();

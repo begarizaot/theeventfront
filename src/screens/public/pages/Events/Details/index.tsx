@@ -1,8 +1,10 @@
 import "./styles.css";
-import { Link } from "react-router-dom";
+
 import { ButtonComp } from "../../../../../ui/components";
-import { useDetails } from "./useDetails";
 import { DetailsLinkComp, ShareLinkComp } from "./components";
+import { useDetails } from "./useDetails";
+import VideoPlayer from "../../../../../ui/components/VideoPlayer";
+import { Link } from "react-router-dom";
 
 export const EventDetailPage = () => {
   const { shareData, contextHolder, details } = useDetails();
@@ -62,6 +64,26 @@ export const EventDetailPage = () => {
             </div>
             <div className="col-span-1 htmlStyle">
               {`Izaak live en concierto \n Cantando todos sus éxitos \n Viernes 14 De Febrero\n Puertas abren a las 10PM \n Grand Fortune event hall \n 1104 E Fowler Ave Tampa Florida \n Tickets are not refundable`}
+            </div>
+          </div>
+        </div>
+
+        <div className="px-4 my-2">
+          <VideoPlayer url="https://youtu.be/yjdHGmRKz08" />
+        </div>
+
+        <div className="px-10 max-w-[80rem] mx-auto z-1 relative">
+          <div className="grid grid-cols-1">
+            <div className="col-span-1 text-sm">
+              <p>Got questions about the event?</p>
+
+              <p>Phone</p>
+              <Link
+                to={`tel:8132707113`}
+                className="text-white no-underline text-sm"
+              >
+                (813) 270-7113
+              </Link>
             </div>
           </div>
         </div>
