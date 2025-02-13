@@ -24,7 +24,7 @@ export const CheckoutModal = ({ onClose, visible }: CheckoutModalProps) => {
       <Modal
         open={visible}
         onCancel={() => {
-          console.log("first");
+          onClose();
           onHiddenAll();
         }}
         maskClosable={false}

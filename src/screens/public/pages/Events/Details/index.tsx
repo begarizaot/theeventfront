@@ -7,7 +7,7 @@ import VideoPlayer from "../../../../../ui/components/VideoPlayer";
 import { Link } from "react-router-dom";
 
 export const EventDetailPage = () => {
-  const { shareData, contextHolder, details } = useDetails();
+  const { shareData, contextHolder, details, onTicket } = useDetails();
   return (
     <>
       {contextHolder}
@@ -40,7 +40,11 @@ export const EventDetailPage = () => {
                   From
                   <span className="text-lg">$55 - $75</span>
                 </p>
-                <ButtonComp lable="Tickets" className="lg:w-66! sm:w-54!" />
+                <ButtonComp
+                  lable="Tickets"
+                  className="lg:w-66! sm:w-54!"
+                  onClick={onTicket}
+                />
               </div>
 
               <div className="flex flex-col lg:flex-row gap-2 lg:items-center mt-2 sm:mt-0">

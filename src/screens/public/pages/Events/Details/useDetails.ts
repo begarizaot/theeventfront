@@ -1,7 +1,10 @@
 import { message } from "antd";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { CheckoutContext } from "../../../../../context";
 
 export const useDetails = () => {
+  const { onShowCheckout } = useContext(CheckoutContext);
   const { id } = useParams<{ id: string }>();
 
   const [messageApi, contextHolder] = message.useMessage();
@@ -61,5 +64,9 @@ export const useDetails = () => {
     });
   };
 
-  return { shareData, contextHolder, details };
+  const onTicket = () => {
+    onShowCheckout(true);
+  };
+
+  return { shareData, contextHolder, details, onTicket };
 };
