@@ -1,16 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import { ScrollToTop } from "../helpers";
-import { MetaComp } from "../ui/components";
 
-import { ScreenPublicRouter } from "../screens/public/router";
+import { AuthRouter } from "../screens/auth/routers";
 
 export const AppRouter = () => {
   return (
     <>
-      <MetaComp />
       <ScrollToTop />
       <Routes>
-        <Route path="/*" element={<ScreenPublicRouter />} />
+        <Route path="auth/*" element={<AuthRouter />} />
       </Routes>
     </>
   );
