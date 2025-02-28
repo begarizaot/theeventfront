@@ -1,0 +1,8 @@
+@use "./buttons.scss";
+
+.text-primary{
+    color: var(--primary-color);
+    &:hover{
+        color: var(--secondary-color);
+    }
+}

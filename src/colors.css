@@ -1,0 +1,13 @@
+:root {
+  --bg-color: #141414;
+  --text-color: #ffffff;
+  --primary-color: #EE8823;
+  --secondary-color: #CD7013;
+}
+
+[data-theme=dark] {
+  --bg-color: #ffffff;
+  --text-color: #ffffff;
+}
+
+/*# sourceMappingURL=colors.css.map */

@@ -1,9 +1,6 @@
-@use "./colors.scss" as *;
-@use "primeicons/primeicons.css";
-
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "./colors.css";
+@import "tailwindcss";
+@import 'primeicons/primeicons.css';
 
 * {
   font-family: Lato, sans-serif;

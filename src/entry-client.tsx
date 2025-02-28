@@ -1,4 +1,5 @@
-import "./index.scss";
+import "./index.css";
+import "./scss/index.scss";
 import { hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
