@@ -1,6 +1,6 @@
 import "../scss/general.scss";
 import { useState } from "react";
-import { Button, Form, Input } from "antd";
+import { Button, DatePicker, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 
 import { SegmentedCom } from "../../../ui/components";
@@ -62,9 +62,8 @@ export const RegisterPage = () => {
                     placeholder="Full Name"
                     className="rounded-full! bg-transparent! border-white! text-white!"
                     classNames={{
-                      input: "placeholder-white/20! py-[4px]!",
+                      input: "placeholder-white/20! py-[6px]!",
                     }}
-                    prefix={<span className="pi pi-user mr-1"></span>}
                     inputMode="text"
                     autoComplete="off"
                   />
@@ -89,9 +88,8 @@ export const RegisterPage = () => {
                     placeholder="example@gmail.com"
                     className="rounded-full! bg-transparent! border-white! text-white!"
                     classNames={{
-                      input: "placeholder-white/20! py-[4px]!",
+                      input: "placeholder-white/20! py-[6px]!",
                     }}
-                    prefix={<span className="pi pi-envelope mr-1"></span>}
                     inputMode="email"
                     autoComplete="off"
                   />
@@ -100,6 +98,28 @@ export const RegisterPage = () => {
               <div className="col-span-1">
                 <Form.Item
                   className="m-0!"
+                  name="phoneNumber"
+                  label={<span className="text-white">Phone Number</span>}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Enter Phone Number"
+                    className="rounded-full! bg-transparent! border-white! text-white!"
+                    classNames={{
+                      input: "placeholder-white/20! py-[6px]!",
+                    }}
+                    inputMode="text"
+                    autoComplete="off"
+                  />
+                </Form.Item>
+              </div>
+              <div className="col-span-1">
+                <Form.Item
+                  className="m-0!"
                   name="password"
                   label={<span className="text-white">Password</span>}
                   rules={[
@@ -112,9 +132,8 @@ export const RegisterPage = () => {
                     placeholder="**********"
                     className="rounded-full! bg-transparent! border-white! text-white!"
                     classNames={{
-                      input: "placeholder-white/20! py-[4px]!",
+                      input: "placeholder-white/20! py-[1.5px]!",
                     }}
-                    prefix={<span className="pi pi-lock mr-1"></span>}
                     suffix={
                       <span
                         className={`pi pi-${
@@ -143,9 +162,8 @@ export const RegisterPage = () => {
                     placeholder="**********"
                     className="rounded-full! bg-transparent! border-white! text-white!"
                     classNames={{
-                      input: "placeholder-white/20! py-[4px]!",
+                      input: "placeholder-white/20! py-[1.5px]!",
                     }}
-                    prefix={<span className="pi pi-lock mr-1"></span>}
                     suffix={
                       <span
                         className={`pi pi-${
@@ -162,47 +180,15 @@ export const RegisterPage = () => {
               <div className="col-span-1">
                 <Form.Item
                   className="m-0!"
-                  name="address"
-                  label={<span className="text-white">Address</span>}
+                  name="dateOfBirth"
+                  label={<span className="text-white">Date of Birth</span>}
                   rules={[
                     {
                       required: true,
                     },
                   ]}
                 >
-                  <Input
-                    placeholder="Address"
-                    className="rounded-full! bg-transparent! border-white! text-white!"
-                    classNames={{
-                      input: "placeholder-white/20! py-[4px]!",
-                    }}
-                    prefix={<span className="pi pi-user mr-1"></span>}
-                    inputMode="text"
-                    autoComplete="off"
-                  />
-                </Form.Item>
-              </div>
-              <div className="col-span-1">
-                <Form.Item
-                  className="m-0!"
-                  name="adrress"
-                  label={<span className="text-white">Address</span>}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="Address"
-                    className="rounded-full! bg-transparent! border-white! text-white!"
-                    classNames={{
-                      input: "placeholder-white/20! py-[4px]!",
-                    }}
-                    prefix={<span className="pi pi-user mr-1"></span>}
-                    inputMode="text"
-                    autoComplete="off"
-                  />
+                  <DatePicker className="rounded-full! bg-transparent! w-full py-[5px]! border-white! hover:border-white! focus-within:border-white!" />
                 </Form.Item>
               </div>
             </div>

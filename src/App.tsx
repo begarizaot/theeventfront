@@ -12,11 +12,6 @@ function App() {
           currentTheme === "dark"
             ? theme.darkAlgorithm
             : theme.defaultAlgorithm,
-        components: {
-          Segmented: {
-            itemHoverColor: "#ffffff", // Color del texto en hover
-          },
-        },
       }}
     >
       <AppRouter />

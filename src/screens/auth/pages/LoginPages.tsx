@@ -22,6 +22,7 @@ export const LoginPages = () => {
       onFinish={onFinish}
       layout="vertical"
       className="grid grid-cols-1 sm:grid-cols-5 h-screen text-white!"
+      autoFocus={false}
     >
       <BgAuth />
       <div
@@ -66,9 +67,8 @@ export const LoginPages = () => {
                     placeholder="example@gmail.com"
                     className="rounded-full! bg-transparent! border-white! text-white!"
                     classNames={{
-                      input: "placeholder-white/20! py-[4px]!",
+                      input: "placeholder-white/20! py-[6px]!",
                     }}
-                    prefix={<span className="pi pi-envelope mr-1"></span>}
                     inputMode="email"
                     autoComplete="off"
                   />
@@ -89,9 +89,8 @@ export const LoginPages = () => {
                     placeholder="**********"
                     className="rounded-full! bg-transparent! border-white! text-white!"
                     classNames={{
-                      input: "placeholder-white/20! py-[4px]!",
+                      input: "placeholder-white/20! py-[1.6px]!",
                     }}
-                    prefix={<span className="pi pi-lock mr-1"></span>}
                     suffix={
                       <span
                         className={`pi pi-${

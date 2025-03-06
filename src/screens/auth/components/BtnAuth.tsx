@@ -8,9 +8,9 @@ export const BtnAuth = () => {
       <div className="grid grid-cols-3 gap-3">
         <Button
           className="rounded-3xl! uppercase btnStyle"
-          icon={<span className="pi pi-facebook"></span>}
+          icon={<span className="pi pi-google"></span>}
         >
-          <span className="font-bold text-xs hidden sm:block">Facebook</span>
+          <span className="font-bold text-xs hidden sm:block">Google</span>
         </Button>
         <Button
           className="rounded-3xl! uppercase btnStyle"
