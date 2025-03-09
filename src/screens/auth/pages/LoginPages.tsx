@@ -113,7 +113,7 @@ export const LoginPages = () => {
 
           <Button
             htmlType="submit"
-            className="w-full sm:w-28 lg:w-40 rounded-3xl! uppercase btnStyle bgPrimary"
+            className="w-full sm:w-28 lg:w-40 rounded-3xl! uppercase btnStyle btnbgPrimary"
           >
             <span className="font-bold text-xs">Login</span>
           </Button>

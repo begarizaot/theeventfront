@@ -1,1 +1,2 @@
-export * from "./Segmented";
+export * from "./SegmentedCom";
+export * from "./LogoNavCom";

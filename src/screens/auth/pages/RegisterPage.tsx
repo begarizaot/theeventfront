@@ -196,7 +196,7 @@ export const RegisterPage = () => {
 
           <Button
             htmlType="submit"
-            className="w-full sm:w-28 lg:w-40 rounded-3xl! uppercase btnStyle bgPrimary"
+            className="w-full sm:w-28 lg:w-40 rounded-3xl! uppercase btnStyle btnbgPrimary"
           >
             <span className="font-bold text-xs">Sign up</span>
           </Button>

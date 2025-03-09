@@ -7,6 +7,10 @@
   }
 }
 
+.bgPrimary {
+  background-color: var(--primary-color);
+}
+
 .ant-picker-input {
   input {
     color: var(--text-color) !important;
