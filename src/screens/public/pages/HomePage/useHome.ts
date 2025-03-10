@@ -37,9 +37,15 @@ export const useHome = () => {
   }, []);
 
   useEffect(() => {
-    // Cambia el color de la barra del explorador en móvil
     const themeColorMeta = document.querySelector("meta[name='theme-color']");
-    if (themeColorMeta) {
+
+    if (!themeColorMeta) {
+      // Si no existe, la creamos dinámicamente
+      const newMeta = document.createElement("meta");
+      newMeta.name = "theme-color";
+      newMeta.content = bgColor;
+      document.head.appendChild(newMeta);
+    } else {
       themeColorMeta.setAttribute("content", bgColor);
     }
   }, [bgColor]);
