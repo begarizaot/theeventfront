@@ -4,8 +4,11 @@ import image1 from "../../../../assets/home/carousel/1.png";
 import image2 from "../../../../assets/home/carousel/2.png";
 import image3 from "../../../../assets/home/carousel/3.png";
 import image4 from "../../../../assets/home/carousel/4.png";
+import { ColorFromImage } from "../../../../helpers";
 
 export const useHome = () => {
+  const { bgColor, getColorImg } = ColorFromImage();
+
   const [carousel, setCarousel] = useState<any>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [bgImage, setBgImage] = useState(carousel[0]?.image || "");
@@ -17,6 +20,7 @@ export const useHome = () => {
     afterChange: (current: number) => {
       setCurrentSlide(current);
       setBgImage(carousel[current]?.image || "");
+      getColorImg(carousel[current]?.image || "");
     },
     responsive: [
       {
@@ -31,6 +35,14 @@ export const useHome = () => {
   useEffect(() => {
     fetchCarousel();
   }, []);
+
+  useEffect(() => {
+    // Cambia el color de la barra del explorador en móvil
+    const themeColorMeta = document.querySelector("meta[name='theme-color']");
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute("content", bgColor);
+    }
+  }, [bgColor]);
 
   const fetchCarousel = async () => {
     const data = [
@@ -66,6 +78,7 @@ export const useHome = () => {
     setCarousel(data);
 
     setBgImage(data[0]?.image || "");
+    getColorImg(carousel[0]?.image || "");
   };
 
   return { carousel, currentSlide, bgImage, settings };
