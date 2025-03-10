@@ -27,7 +27,7 @@ export const HomePage = () => {
                 indx >= currentSlide && indx < currentSlide + visibleCount;
 
               return (
-                <div key={indx} className="pl-12 sm:pl-10 lg:pl-12 xl:pl-30 py-2">
+                <div key={indx} className="pl-12 sm:pl-10 lg:pl-12 xl:pl-40 py-2">
                   <CardEventsCarousel
                     {...item}
                     className={` ${isVisible ? "" : "blur-xs"}`}

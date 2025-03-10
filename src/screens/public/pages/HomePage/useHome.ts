@@ -33,7 +33,7 @@ export const useHome = () => {
   }, []);
 
   const fetchCarousel = async () => {
-    setCarousel([
+    const data = [
       {
         id: 1,
         title: "Music Event that will Blow your Mind",
@@ -62,7 +62,10 @@ export const useHome = () => {
         fallow: 100,
         image: image4,
       },
-    ]);
+    ];
+    setCarousel(data);
+
+    setBgImage(data[0]?.image || "");
   };
 
   return { carousel, currentSlide, bgImage, settings };
