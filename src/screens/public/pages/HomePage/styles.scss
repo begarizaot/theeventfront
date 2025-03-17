@@ -1,0 +1,12 @@
+.contListEvents {
+  &:hover .cardEventCom {
+    &:not(:hover) {
+      opacity: 0.4;
+    }
+  }
+}
+
+.bgArtists {
+  background-image: url("../../../../assets/home/bgArtists.png");
+  background-size: cover;
+}

@@ -1,13 +1,26 @@
 @import "./colors.css";
 @import "tailwindcss";
-@import 'primeicons/primeicons.css';
+@import "primeicons/primeicons.css";
 
 * {
-  font-family: Lato, sans-serif;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 body {
-  background-color: var(--bg-color);
+  background-color: #121212;
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bebasNeue {
+  font-family: "Bebas Neue", sans-serif !important;
+}
+
+.bgGradient {
+  background: linear-gradient(
+    0deg,
+    rgba(34, 2, 0, 0) 0%,
+    #220200 50%,
+    rgba(34, 2, 0, 0) 100%
+  );
 }

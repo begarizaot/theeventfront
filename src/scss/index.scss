@@ -1,7 +1,7 @@
 @use "./buttons.scss";
 
 .text-primary {
-  color: var(--primary-color);
+  color:  var(--ant-color-primary);;
   &:hover {
     color: var(--secondary-color);
   }
