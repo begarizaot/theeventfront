@@ -1,10 +1,14 @@
 import "./styles.scss";
 import { useHome } from "./useHome";
 
-import { AllArtistsComp, AllEventsComp } from "./components";
+import {
+  AllArtistsComp,
+  AllEventsComp,
+  AllTestimonialsComp,
+} from "./components";
 
 export const HomePage = () => {
-  const { listEvents, listArtists } = useHome();
+  const { listEvents, listArtists, listTestimonials } = useHome();
 
   return (
     <>
@@ -12,8 +16,13 @@ export const HomePage = () => {
       <AllEventsComp list={listEvents} />
 
       {/* all artists */}
-      <div className="my-12 bgArtists">
+      <div className="mt-10 sm:my-12 bgArtists">
         <AllArtistsComp list={listArtists} />
+      </div>
+
+      {/* all testimonials */}
+      <div className="my-5 sm:my-12">
+        <AllTestimonialsComp list={listTestimonials} />
       </div>
     </>
   );

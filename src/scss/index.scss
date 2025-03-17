@@ -1,7 +1,7 @@
 @use "./buttons.scss";
 
 .text-primary {
-  color:  var(--ant-color-primary);;
+  color: var(--primary-color);
   &:hover {
     color: var(--secondary-color);
   }
@@ -11,8 +11,8 @@
   background-color: var(--primary-color);
 }
 
-.textPrimary {
-  color: var(--primary-color);
+.borderPrimary {
+  border-color: var(--primary-color);
 }
 
 .ant-picker-input {
@@ -30,4 +30,9 @@
   &:hover svg {
     fill: var(--text-color) !important;
   }
+}
+
+.ant-rate-star-zero .ant-rate-star-first,
+.ant-rate-star-zero .ant-rate-star-second {
+  color: #ffffff !important; 
 }

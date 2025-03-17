@@ -16,6 +16,10 @@ body {
   font-family: "Bebas Neue", sans-serif !important;
 }
 
+.montserrat{
+  font-family: "Montserrat", sans-serif !important;
+}
+
 .bgGradient {
   background: linear-gradient(
     0deg,
