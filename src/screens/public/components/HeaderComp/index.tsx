@@ -1,6 +1,7 @@
 import { Avatar } from "antd";
 import { Link } from "react-router-dom";
 
+import { SearchComp } from "../";
 import { LogoNavCom } from "../../../../ui/components";
 import { useHeader } from "./useHeader";
 
@@ -14,17 +15,7 @@ export const HeaderComp = () => {
         <div className="items-center col-span-1 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           <LogoNavCom />
           {/* search */}
-          <div className="hidden lg:flex items-center bg-white/10 py-[6px] px-3 rounded-full col-span-2 text-xs justify-between cursor-pointer">
-            <div className="flex items-center gap-2">
-              <span className="pi pi-search"></span>
-              <p>Search</p>
-            </div>
-            <div className="flex items-center gap-1 border-l pl-2">
-              <span className="pi pi-map-marker"></span>
-              <p>New York</p>
-              <span className="pi pi-chevron-down"></span>
-            </div>
-          </div>
+          <SearchComp className="hidden lg:flex" />
         </div>
         {/* nav */}
         <div className="col-span-1 lg:hidden flex justify-end gap-6 items-center">

@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import { HeaderComp } from "../components";
+import { FooterComp, HeaderComp } from "../components";
 import { HomePage } from "../pages";
 
 export const PubliRouter = () => {
@@ -10,6 +10,7 @@ export const PubliRouter = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
       </Routes>
+      <FooterComp />
     </>
   );
 };

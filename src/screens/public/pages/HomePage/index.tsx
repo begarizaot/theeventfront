@@ -3,6 +3,7 @@ import { useHome } from "./useHome";
 
 import {
   AllArtistsComp,
+  AllCarouselComp,
   AllEventsComp,
   AllTestimonialsComp,
 } from "./components";
@@ -23,6 +24,10 @@ export const HomePage = () => {
       {/* all testimonials */}
       <div className="my-5 sm:my-12">
         <AllTestimonialsComp list={listTestimonials} />
+      </div>
+
+      <div className="my-20">
+        <AllCarouselComp />
       </div>
     </>
   );

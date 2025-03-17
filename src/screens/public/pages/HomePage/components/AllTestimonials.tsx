@@ -15,7 +15,7 @@ export const AllTestimonialsComp = ({ list }: AllTestimonialsProps) => {
     dots: false,
     centerMode: true,
     beforeChange: (_: any, next: any) => setActiveIndex(next),
-    responsive: [{ breakpoint: 640, settings: { slidesToShow: 1.1 } }],
+    responsive: [{ breakpoint: 640, settings: { slidesToShow: 1 } }],
   };
 
   const handleAvatar = () => {
