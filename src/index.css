@@ -1,6 +1,8 @@
 @import "./colors.css";
 @import "tailwindcss";
 @import "primeicons/primeicons.css";
+@import 'swiper/css';
+@import 'swiper/css/effect-cards';
 
 * {
   font-family: "Source Sans 3", sans-serif;

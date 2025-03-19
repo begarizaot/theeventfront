@@ -10,3 +10,55 @@
   background-image: url("../../../../assets/home/bgArtists.png");
   background-size: cover;
 }
+
+.borderStyle {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+
+  &::after {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    inset: 0;
+    box-shadow: inset 0 0 0 6px var(--primary-color);
+    animation: clipMe 6s linear infinite;
+    border-radius: 15px;
+  }
+}
+
+@keyframes clipMe {
+  0%,
+  100% {
+    clip: rect(0px, 500px, 400px, 498px); /* Línea derecha */
+  }
+  25% {
+    clip: rect(398px, 500px, 400px, 2px); /* Línea inferior */
+  }
+  50% {
+    clip: rect(0px, 2px, 400px, 0px); /* Línea izquierda */
+  }
+  75% {
+    clip: rect(0px, 500px, 2px, 0px); /* Línea superior */
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  @keyframes clipMe {
+    0%,
+    100% {
+      clip: rect(0px, 300px, 300px, 298px); /* Línea derecha */
+    }
+    25% {
+      clip: rect(298px, 300px, 300px, 2px); /* Línea inferior */
+    }
+    50% {
+      clip: rect(0px, 2px, 300px, 0px); /* Línea izquierda */
+    }
+    75% {
+      clip: rect(0px, 300px, 2px, 0px); /* Línea superior */
+    }
+  }
+}
