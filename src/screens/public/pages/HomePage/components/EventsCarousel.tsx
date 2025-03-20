@@ -17,7 +17,7 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
         <div
           className="absolute inset-0 bg-cover"
           style={{
-            backgroundImage: `linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(${listActive.img})`,
+            backgroundImage: `linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(${listActive?.img || ""})`,
           }}
         ></div>
         <div className="lg:col-span-2 flex items-center justify-center px-8  pt-20 sm:pt-0 z-10">
