@@ -6,6 +6,7 @@ import {
   AllCarouselComp,
   AllEventsComp,
   AllTestimonialsComp,
+  EventsCarouselComp,
   WhoWeareComp,
 } from "./components";
 
@@ -14,7 +15,7 @@ export const HomePage = () => {
 
   return (
     <>
-  <div className="h-screen"></div>
+      <EventsCarouselComp list={listEvents} />
 
       <WhoWeareComp />
 
