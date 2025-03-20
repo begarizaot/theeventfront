@@ -31,7 +31,7 @@ export const AllEventsComp = ({ list }: AllEventsProps) => {
           <div className="hidden lg:grid grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
             {list.map((event: any) => (
               <Link key={event.id} to="" className="col-span-1">
-                <CardEventCom {...event} />
+                <CardEventCom {...event} classNameContainer="cardEventCom" />
               </Link>
             ))}
           </div>
@@ -59,9 +59,11 @@ export const AllEventsComp = ({ list }: AllEventsProps) => {
         </div>
         {/* btn */}
         <div className="px-4 sm:px-6 mt-6 sm:mt-10 text-center">
-          <Button className="w-full sm:w-68 rounded-3xl! uppercase btnStyle btnbordPrimary">
-            <span className="font-bold text-xs">View All</span>
-          </Button>
+          <Link to={"/allEvents"}>
+            <Button className="w-full sm:w-68 rounded-3xl! uppercase btnStyle btnbordPrimary">
+              <span className="font-bold text-xs">View All</span>
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ interface CardEventComProps {
 
 interface CardEventComElemProps {
   classNameContainer?: string;
+  classTitleContainer?: string;
   classTitle?: string;
   classDate?: string;
   hiddenResponsive?: boolean;
@@ -32,6 +33,7 @@ export const CardEventCom = ({
   restriction,
   price,
   classNameContainer,
+  classTitleContainer,
   classTitle,
   classDate,
   hiddenResponsive,
@@ -42,7 +44,7 @@ export const CardEventCom = ({
 }: CardEventComProps & CardEventComElemProps) => {
   return (
     <div
-      className={`cardEventCom group 
+      className={`group 
       h-[400px] sm:h-[500px] 
       bg-cover rounded-2xl shadow-2xl text-white px-4 py-5 relative 
       cursor-pointer
@@ -74,7 +76,7 @@ export const CardEventCom = ({
             : ""
         }`}
       >
-        <div className="flex flex-col">
+        <div className={`flex flex-col ${classTitleContainer}`}>
           <h1
             className={`font-medium 
           text-3xl sm:text-4xl 
