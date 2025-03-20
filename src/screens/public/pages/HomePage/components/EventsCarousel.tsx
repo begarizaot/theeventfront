@@ -1,6 +1,6 @@
 import { SwiperSlide, Swiper } from "swiper/react";
 import { EffectCards } from "swiper/modules";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CardEventCom } from "../../../../../ui/components";
 
@@ -9,7 +9,11 @@ interface EventsCarouselProps {
 }
 
 export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
-  const [listActive, setListActive] = useState(list[0]);
+  const [listActive, setListActive] = useState<any>({});
+
+  useEffect(() => {
+    setListActive(list[0]);
+  }, [list]);
 
   return (
     <div className="h-[90vh] mb-3">
@@ -17,7 +21,9 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
         <div
           className="absolute inset-0 bg-cover"
           style={{
-            backgroundImage: `linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(${listActive?.img || ""})`,
+            backgroundImage: `linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(${
+              listActive?.img || ""
+            })`,
           }}
         ></div>
         <div className="lg:col-span-2 flex items-center justify-center px-8  pt-20 sm:pt-0 z-10">
