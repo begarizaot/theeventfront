@@ -1,8 +1,8 @@
 @import "./colors.css";
 @import "tailwindcss";
 @import "primeicons/primeicons.css";
-@import 'swiper/css';
-@import 'swiper/css/effect-cards';
+@import "swiper/css";
+@import "swiper/css/effect-cards";
 
 * {
   font-family: "Source Sans 3", sans-serif;
@@ -22,7 +22,7 @@ body {
   font-family: "Source Sans 3", sans-serif !important;
 }
 
-.montserrat{
+.montserrat {
   font-family: "Montserrat", sans-serif !important;
 }
 
@@ -33,4 +33,22 @@ body {
     #220200 50%,
     rgba(34, 2, 0, 0) 100%
   );
+}
+
+.customSelect .ant-select-selector {
+  @apply rounded-full bg-transparent! border-white! text-white;
+}
+
+.customSelect .ant-select-selection-placeholder {
+  @apply text-white/20; /* Cambia el color del placeholder */
+}
+
+.customSelect .ant-select-arrow {
+  color: white !important; /* Cambia el color del icono */
+}
+
+.customSelect:hover .ant-select-selector,
+.customSelect:focus-within .ant-select-selector,
+.customSelect .ant-select-selector:focus {
+  @apply border-white! shadow-md;
 }

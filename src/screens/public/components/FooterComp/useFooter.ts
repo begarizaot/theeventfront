@@ -11,8 +11,8 @@ export const useFooter = () => {
 
   const fetchNavs = async () => {
     setNavs([
-      { id: 1, title: "All Events", link: "/" },
-      { id: 1, title: "Contact us", link: "/" },
+      { id: 1, title: "All Events", link: "/allEvents" },
+      { id: 1, title: "Contact us", link: "/contactUs" },
       { id: 1, title: "Gallery", link: "/" },
     ]);
   };

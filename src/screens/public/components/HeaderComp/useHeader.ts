@@ -2,7 +2,7 @@ export const useHeader = () => {
     const navs = [
       {
         title: "All Events",
-        link: "/allEvent",
+        link: "/allEvents",
       },
       {
         title: "Contact us",
@@ -10,7 +10,7 @@ export const useHeader = () => {
       },
       {
         title: "Gallery",
-        link: "/gallery",
+        link: "/",
       },
     ];
   
