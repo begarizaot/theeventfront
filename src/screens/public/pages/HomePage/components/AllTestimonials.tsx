@@ -31,7 +31,7 @@ export const AllTestimonialsComp = ({ list }: AllTestimonialsProps) => {
           </div>
           <div className="w-[78%]">
             <Carousel {...settings} ref={carouselRef}>
-              {list.map((item, index) => (
+              {list?.map((item, index) => (
                 <div key={index} className="flex! flex-col items-center gap-1">
                   <Avatar
                     src={item.img}
@@ -69,7 +69,7 @@ export const AllTestimonialsComp = ({ list }: AllTestimonialsProps) => {
     return (
       <div className="col-span-1 sm:hidden mb-4 order-1">
         <Carousel {...settings}>
-          {list.map((item, index) => (
+          {list?.map((item, index) => (
             <div key={index} className="pl-2">
               <div className="bg-white/10 grid border border-white rounded-xl py-3 mt-1 text-white px-3">
                 <p className="text-9xl h-13 text-primary">“</p>

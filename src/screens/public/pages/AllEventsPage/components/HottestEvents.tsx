@@ -13,8 +13,8 @@ export const HottestEventsComp = ({ list }: HottestEventsProps) => {
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
-        {list.map((event: any) => (
-          <Link key={event.id} to="" className="col-span-1">
+        {list?.map((event: any) => (
+          <Link key={event.id} to={`/event/${event.id}`} className="col-span-1">
             <CardEventCom
               {...event}
               classNameContainer="h-90! hover:shadow-none!"

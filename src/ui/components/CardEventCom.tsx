@@ -18,9 +18,11 @@ interface CardEventComElemProps {
   classDate?: string;
   hiddenResponsive?: boolean;
   hiddenPrice?: boolean;
+  hiddenBtnPrice?: boolean;
   hiddenLocation?: boolean;
   hiddenHour?: boolean;
   showBtn?: boolean;
+  onClick?: () => void;
 }
 
 export const CardEventCom = ({
@@ -38,9 +40,11 @@ export const CardEventCom = ({
   classDate,
   hiddenResponsive,
   hiddenPrice,
+  hiddenBtnPrice,
   hiddenLocation,
   hiddenHour,
   showBtn,
+  onClick,
 }: CardEventComProps & CardEventComElemProps) => {
   return (
     <div
@@ -99,23 +103,28 @@ export const CardEventCom = ({
           </div>
         )}
 
-        <div
-          className={`${
-            !showBtn
-              ? "lg:opacity-0 lg:max-h-0 mt-3 group-hover:opacity-100 group-hover:max-h-32"
-              : ""
-          } overflow-hidden grid grid-cols-2 gap-2 transition-all duration-300 `}
-        >
-          <Button className="w-full rounded-3xl! uppercase btnStyle btnbord">
-            <span className="font-bold text-xs">Book Now!</span>
-          </Button>
+        {!hiddenBtnPrice && (
+          <div
+            className={`${
+              !showBtn
+                ? "lg:opacity-0 lg:max-h-0 mt-3 group-hover:opacity-100 group-hover:max-h-32"
+                : ""
+            } overflow-hidden grid grid-cols-2 gap-2 transition-all duration-300 `}
+          >
+            <Button
+              className="w-full rounded-3xl! uppercase btnStyle btnbord"
+              onClick={onClick}
+            >
+              <span className="font-bold text-xs">Book Now!</span>
+            </Button>
 
-          {!hiddenPrice && (
-            <div className="text-center">
-              <p className="font-bold text-3xl">${price}</p>
-            </div>
-          )}
-        </div>
+            {!hiddenPrice && (
+              <div className="text-center">
+                <p className="font-bold text-3xl">${price}</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

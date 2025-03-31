@@ -24,8 +24,8 @@ export const AllEventsComp = ({ list, title }: AllEventsProps) => {
         {/* events */}
         <div className="col-span-1 mt-2">
           <div className="hidden lg:grid grid-cols-2 lg:grid-cols-4 gap-5 px-4 sm:px-6 contListEvents">
-            {list.map((event: any) => (
-              <Link key={event.id} to="" className="col-span-1">
+            {list?.map((event: any) => (
+              <Link key={event.id} to={`/event/${event.id}`} className="col-span-1">
                 <CardEventCom
                   {...event}
                   classNameContainer="h-90! hover:shadow-none!"
@@ -49,8 +49,8 @@ export const AllEventsComp = ({ list, title }: AllEventsProps) => {
                 },
               ]}
             >
-              {list.map((event: any) => (
-                <Link key={event.id} to="" className="col-span-1 px-3 py-1">
+              {list?.map((event: any) => (
+                <Link key={event.id} to={`/event/${event.id}`} className="col-span-1 px-3 py-1">
                   <CardEventCom
                     {...event}
                     classNameContainer="h-90! hover:shadow-none!"

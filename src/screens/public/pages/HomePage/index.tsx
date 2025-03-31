@@ -3,7 +3,6 @@ import { useHome } from "./useHome";
 
 import {
   AllArtistsComp,
-  AllCarouselComp,
   AllEventsComp,
   AllTestimonialsComp,
   EventsCarouselComp,
@@ -32,9 +31,9 @@ export const HomePage = () => {
         <AllTestimonialsComp list={listTestimonials} />
       </div> */}
 
-      <div className="my-20">
+      {/* <div className="my-20">
         <AllCarouselComp />
-      </div>
+      </div> */}
     </>
   );
 };

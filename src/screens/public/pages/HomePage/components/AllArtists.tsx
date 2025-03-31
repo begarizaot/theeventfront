@@ -10,7 +10,7 @@ export const AllArtistsComp = ({ list }: AllArtistsProps) => {
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 w-full mx-auto max-w-[80rem] gap-3 px-4 sm:px-6">
-      {list.map((artist, index) => (
+      {list?.map((artist, index) => (
         <>
           {index === midIndex && (
             <div

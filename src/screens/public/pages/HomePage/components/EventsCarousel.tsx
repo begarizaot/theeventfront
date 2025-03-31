@@ -1,6 +1,7 @@
 import { SwiperSlide, Swiper } from "swiper/react";
 import { EffectCards } from "swiper/modules";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { CardEventCom } from "../../../../../ui/components";
 
@@ -9,6 +10,8 @@ interface EventsCarouselProps {
 }
 
 export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
+  const navigate = useNavigate();
+
   const [listActive, setListActive] = useState<any>({});
 
   useEffect(() => {
@@ -45,23 +48,26 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
             }}
             onSlideChange={(swiper) => setListActive(list[swiper.activeIndex])}
           >
-            {list.map((event: any) => (
+            {list?.map((event: any) => (
               <SwiperSlide
                 key={event.id}
                 className="py-2 blur-xs transition-opacity duration-300 ease-in-out"
               >
-                <CardEventCom
-                  {...event}
-                  date="23.02.25"
-                  classNameContainer="h-70! sm:h-90! hover:shadow-none!"
-                  classTitle="text-xl! lg:text-2xl! order-2 sourceSans font-bold!"
-                  classDate="order-1"
-                  hiddenResponsive
-                  hiddenPrice
-                  hiddenLocation
-                  hiddenHour
-                  showBtn
-                />
+                <Link to={`/event/${event.id}`}>
+                  <CardEventCom
+                    {...event}
+                    date="23.02.25"
+                    classNameContainer="h-70! sm:h-90! hover:shadow-none!"
+                    classTitle="text-xl! lg:text-2xl! order-2 sourceSans font-bold!"
+                    classDate="order-1"
+                    hiddenResponsive
+                    hiddenPrice
+                    hiddenLocation
+                    hiddenHour
+                    showBtn
+                    onClick={() => navigate(`/event/${event.id}`)}
+                  />
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

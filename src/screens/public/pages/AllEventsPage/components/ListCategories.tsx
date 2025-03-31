@@ -10,7 +10,7 @@ export const ListCategoriesComp = ({ list }: listCategoriesProp) => {
       <h1 className="bebasNeue text-center text-xl sm:text-3xl">Categories</h1>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-[80rem] px-6 mt-3 relative">
-        {list.map((category) => (
+        {list?.map((category) => (
           <div className="col-span-1" key={category.id}>
             <Link to={""} className="group relative">
               <div className="bg-[linear-gradient(90deg,#80001F_0%,rgba(128,0,31,0)_100%)] inset-0 z-10 absolute opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg"></div>

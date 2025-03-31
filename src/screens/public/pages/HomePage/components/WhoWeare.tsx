@@ -135,7 +135,7 @@ export const WhoWeareComp = () => {
   return (
     <div className="relative bg-[linear-gradient(0deg,rgba(34,2,0,0)_0%,#420502_50%,rgba(34,2,0,0)_100%)]">
       <div className="hidden lg:block h-[70vh]">{handleDesktop()}</div>
-      <div className="lg:hidden">{handleMovil()}</div>
+      {/* <div className="lg:hidden">{handleMovil()}</div> */}
     </div>
   );
 };
