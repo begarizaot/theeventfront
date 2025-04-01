@@ -1,46 +1,61 @@
-import { Button } from "antd";
+import { Carousel } from "antd";
+import { Link } from "react-router-dom";
 
-import allEventsImg from "../../../../assets/allevents/allEvents.jpeg";
 import { useAllEvents } from "./useAllEvents";
-import { AllEventsComp, HottestEventsComp, ListCategoriesComp } from "./components";
+
+import { CardEventCom } from "../../../../ui/components";
 
 export const AllEventsPage = () => {
-  const { allcategories, listEvents } = useAllEvents();
+  const { listEvents } = useAllEvents();
 
   return (
-    <div className="grid grid-cols-1 mb-6">
-      <div
-        className="absolute left-0 top-0 bg-cover inset-0"
-        style={{
-          backgroundImage: `linear-gradient(180deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(${allEventsImg})`,
-        }}
-      ></div>
-      <div className="col-span-1 h-screen mx-auto max-w-[80rem] relative">
-        <div className="flex flex-col items-center justify-end sm:justify-center h-full sm:w-110 gap-4 px-6 sm:px-0 pb-20 sm:pb-0 z-10 relative">
-          <h1 className="text-4xl text-center bebasNeue">
-            Explore <span className="bebasNeue text-primary">All Events</span> -
-            Find What Excites You!
+    <div className="bgGradient pt-16">
+      <div className="grid grid-cols-1 w-full mx-auto  max-w-[80rem]">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6">
+          <h1 className="text-xl sm:text-3xl font-bold bebasNeue">
+            All events
           </h1>
-          <p className="text-xs text-center">
-            Discover a variety of events, from local gatherings to major
-            festivals. Whether you're into music, business networking, or family
-            fun, we’ve got something for everyone.
-          </p>
-          <Button className="w-full rounded-3xl! uppercase btnStyle sm:w-40">
-            <span className="font-bold text-xs">Starts from $99</span>
-          </Button>
+        </div>
+        {/* events */}
+        <div className="col-span-1 mt-6">
+          <div className="hidden lg:grid grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
+            {listEvents?.map((event: any) => (
+              <Link
+                key={event.id}
+                to={`/event/${event.id}`}
+                className="col-span-1"
+              >
+                <CardEventCom {...event} classNameContainer="cardEventCom" />
+              </Link>
+            ))}
+          </div>
+          <div className="lg:hidden">
+            <Carousel
+              slidesToShow={1.8}
+              dots={false}
+              infinite={false}
+              responsive={[
+                {
+                  breakpoint: 640, // Para dispositivos móviles
+                  settings: {
+                    slidesToShow: 1.1,
+                  },
+                },
+              ]}
+            >
+              {listEvents?.map((event: any) => (
+                <Link
+                  key={event.id}
+                  to={`/event/${event.id}`}
+                  className="col-span-1 px-3 py-1"
+                >
+                  <CardEventCom {...event} />
+                </Link>
+              ))}
+            </Carousel>
+          </div>
         </div>
       </div>
-      {/* categories */}
-      <ListCategoriesComp list={allcategories} />
-
-      {/* popular events */}
-      <AllEventsComp title="Popular Events" list={listEvents} />
-      <div className="my-3">
-        <AllEventsComp title="Cumbia" list={listEvents} />
-      </div>
-
-      <HottestEventsComp list={listEvents} />
     </div>
   );
 };

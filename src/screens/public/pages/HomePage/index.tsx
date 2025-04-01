@@ -4,36 +4,26 @@ import { useHome } from "./useHome";
 import {
   AllArtistsComp,
   AllEventsComp,
-  AllTestimonialsComp,
   EventsCarouselComp,
-  WhoWeareComp,
+  ListCategoriesComp,
 } from "./components";
 
 export const HomePage = () => {
-  const { listEvents, listArtists, listTestimonials } = useHome();
+  const { allEvents, listEvents, listArtists, allcategories } = useHome();
 
   return (
     <>
       <EventsCarouselComp list={listEvents} />
 
-      <WhoWeareComp />
-
       {/* all events */}
-      <AllEventsComp list={listEvents} />
+      <ListCategoriesComp list={allcategories} />
+
+      <AllEventsComp list={allEvents} />
 
       {/* all artists */}
       <div className="mt-10 sm:my-12 bgArtists">
         <AllArtistsComp list={listArtists} />
       </div>
-
-      {/* all testimonials */}
-      {/* <div className="my-5 sm:my-12">
-        <AllTestimonialsComp list={listTestimonials} />
-      </div> */}
-
-      {/* <div className="my-20">
-        <AllCarouselComp />
-      </div> */}
     </>
   );
 };

@@ -23,8 +23,8 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
             <p className="flex items-center gap-1">
               <span className="pi pi-map-marker"></span> {dataEvent?.city}
             </p>
-            <p>{dataEvent?.hour}</p>
           </div>
+          <p>{dataEvent?.hour}</p>
 
           <div className="flex flex-wrap gap-2 text-xs">
             {dataEvent?.categories?.map((category: any, index: any) => (

@@ -20,12 +20,12 @@ export const EventDetailsPage = () => {
         {/* details */}
         <DetailsComp dataEvent={{ ...eventDatail, ...defaultProps }} />
 
-        {/* other events */}
-        <OtherEventsComp list={listOtherEvent} />
-
         <div className="my-20">
           <AllCarouselComp />
         </div>
+
+        {/* other events */}
+        <OtherEventsComp list={listOtherEvent} />
       </div>
     </>
   );

@@ -40,7 +40,7 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
             slidesPerView={1.3}
             spaceBetween={16}
             centeredSlides={true}
-            className="group"
+            className="group w-full"
             modules={[EffectCards]}
             autoplay={{
               //   delay: 2000,

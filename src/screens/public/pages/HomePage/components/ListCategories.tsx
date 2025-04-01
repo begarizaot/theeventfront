@@ -7,7 +7,7 @@ interface listCategoriesProp {
 export const ListCategoriesComp = ({ list }: listCategoriesProp) => {
   return (
     <div className="col-span-1 my-6 bg-[linear-gradient(0deg,rgba(34,2,0,0)_0%,#420502_50%,rgba(34,2,0,0)_100%)]">
-      <h1 className="bebasNeue text-center text-xl sm:text-3xl">Categories</h1>
+      {/* <h1 className="bebasNeue text-center text-xl sm:text-3xl">Genre</h1> */}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-[80rem] px-6 mt-3 relative">
         {list?.map((category) => (

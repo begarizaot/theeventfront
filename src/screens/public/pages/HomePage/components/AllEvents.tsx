@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Button, Carousel } from "antd";
 
 import { CardEventCom } from "../../../../../ui/components";
-import { ListCategoriesComp, TitleComp } from "../../../components";
 
 interface AllEventsProps {
   list: any;
@@ -14,17 +13,17 @@ export const AllEventsComp = ({ list }: AllEventsProps) => {
       <div className="grid grid-cols-1 w-full mx-auto  max-w-[80rem]">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6">
           <div className="flex flex-col gap-3">
-            <div className="flex">
+            {/* <div className="flex">
               <TitleComp title="events" />
-            </div>
+            </div> */}
             <h1 className="text-xl sm:text-3xl font-bold bebasNeue">
-              All events
+              Browsing events in <span className="uppercase bebasNeue text-primary">Barranquilla</span>
             </h1>
           </div>
 
-          <div className="flex flex-wrap sm:flex-nowrap gap-2 sm:gap-3 overflow-hidden">
+          {/* <div className="flex flex-wrap sm:flex-nowrap gap-2 sm:gap-3 overflow-hidden">
             <ListCategoriesComp />
-          </div>
+          </div> */}
         </div>
         {/* events */}
         <div className="col-span-1 mt-6">

@@ -1,30 +1,32 @@
 import { useEffect, useState } from "react";
 import { dataListEvents } from "../../../../data/listEvents";
 import { dataListArtists } from "../../../../data/listArtists";
-import { dataListTestimonials } from "../../../../data/listTestimonials";
+import { dataListCategories } from "../../../../data/listCategories";
 
 export const useHome = () => {
   const [listEvents, setlistEvents] = useState<any>([]);
+  const [allEvents, setAllEvents] = useState<any>([]);
   const [listArtists, setlistArtists] = useState<any>([]);
-  const [listTestimonials, setlistTestimonials] = useState<any>([]);
+  const [allcategories, setAllcategories] = useState<any[]>([]);
 
   useEffect(() => {
     fetchListEvents();
     fetchListArtists();
-    fetchListTestimonials();
+    fetchAllCategories();
   }, []);
 
   const fetchListEvents = async () => {
-    setlistEvents(dataListEvents);
+    setlistEvents([dataListEvents[0]]);
+    setAllEvents(dataListEvents);
   };
 
   const fetchListArtists = async () => {
     setlistArtists(dataListArtists);
   };
 
-  const fetchListTestimonials = async () => {
-    setlistTestimonials(dataListTestimonials);
+  const fetchAllCategories = async () => {
+    setAllcategories(dataListCategories);
   };
 
-  return { listEvents, listArtists, listTestimonials };
+  return { allEvents, listEvents, listArtists, allcategories };
 };
