@@ -1,10 +1,17 @@
 import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 interface ImgTitleCompProps {
   dataEvent: any;
 }
 
 export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
+  const navigate = useNavigate();
+
+  const onBookTicket = () => {
+    navigate(`/book-tickets/${dataEvent?.id}`);
+  };
+
   return (
     <div className="sm:h-[50vh] lg:h-[42vh] mx-auto max-w-[80rem] px-4 sm:px-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -37,13 +44,19 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
             ))}
           </div>
 
-          <Button className="w-full sm:w-40 rounded-3xl! uppercase btnStyle mt-4 hidden! sm:block!">
+          <Button
+            className="w-full sm:w-40 rounded-3xl! uppercase btnStyle mt-4 hidden! sm:block!"
+            onClick={onBookTicket}
+          >
             <span className="font-bold text-xs">Book Tickets</span>
           </Button>
         </div>
 
         <div className="col-span-1 lg:col-span-2 flex flex-col justify-center gap-2 order-3 mb-3 sm:hidden!">
-          <Button className="w-full sm:w-40 rounded-3xl! uppercase btnStyle">
+          <Button
+            className="w-full sm:w-40 rounded-3xl! uppercase btnStyle"
+            onClick={onBookTicket}
+          >
             <span className="font-bold text-xs">Book Tickets</span>
           </Button>
         </div>

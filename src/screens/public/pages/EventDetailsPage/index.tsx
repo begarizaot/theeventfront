@@ -1,5 +1,5 @@
 import { useEventDetails } from "./useEventDetails";
-import { DetailsComp, ImgTitleComp, OtherEventsComp } from "./components";
+import { DetailsComp, ImgTitleComp, OtherEventsComp, YoutubeComp } from "./components";
 import { AllCarouselComp } from "../../../../ui/components";
 
 export const EventDetailsPage = () => {
@@ -19,6 +19,8 @@ export const EventDetailsPage = () => {
 
         {/* details */}
         <DetailsComp dataEvent={{ ...eventDatail, ...defaultProps }} />
+
+        <YoutubeComp />
 
         <div className="my-20">
           <AllCarouselComp />
