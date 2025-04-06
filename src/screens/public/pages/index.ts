@@ -3,3 +3,4 @@ export * from "./AllEventsPage";
 export * from "./ContactUsPage";
 export * from "./EventDetailsPage";
 export * from "./BookTicketsPage";
+export * from "./ProfilePage";

@@ -1,4 +1,3 @@
-import { Carousel } from "antd";
 import { Link } from "react-router-dom";
 
 import { useAllEvents } from "./useAllEvents";
@@ -18,7 +17,7 @@ export const AllEventsPage = () => {
         </div>
         {/* events */}
         <div className="col-span-1 mt-6">
-          <div className="hidden lg:grid grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
             {listEvents?.map((event: any) => (
               <Link
                 key={event.id}
@@ -28,31 +27,6 @@ export const AllEventsPage = () => {
                 <CardEventCom {...event} classNameContainer="cardEventCom" />
               </Link>
             ))}
-          </div>
-          <div className="lg:hidden">
-            <Carousel
-              slidesToShow={1.8}
-              dots={false}
-              infinite={false}
-              responsive={[
-                {
-                  breakpoint: 640, // Para dispositivos móviles
-                  settings: {
-                    slidesToShow: 1.1,
-                  },
-                },
-              ]}
-            >
-              {listEvents?.map((event: any) => (
-                <Link
-                  key={event.id}
-                  to={`/event/${event.id}`}
-                  className="col-span-1 px-3 py-1"
-                >
-                  <CardEventCom {...event} />
-                </Link>
-              ))}
-            </Carousel>
           </div>
         </div>
       </div>

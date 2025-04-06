@@ -36,14 +36,17 @@ export const HeaderComp = () => {
               </Link>
             ))}
           </div>
-          <div className="flex items-center gap-1 bgPrimary px-2 py-1 rounded-full cursor-pointer">
+          <Link
+            to={"/profile"}
+            className="flex items-center gap-1 bgPrimary px-2 py-1 rounded-full cursor-pointer"
+          >
             <Avatar
               icon={<span className="pi pi-user"></span>}
               className="bg-white! text-black!"
               size="small"
             />
-            <h1 className="font-bold uppercase text-xs">DAvid Jones</h1>
-          </div>
+            <h1 className="font-bold uppercase text-xs">David Jones</h1>
+          </Link>
         </div>
       </div>
     </div>

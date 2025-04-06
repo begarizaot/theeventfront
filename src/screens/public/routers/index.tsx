@@ -7,6 +7,7 @@ import {
   ContactUsPage,
   EventDetailsPage,
   HomePage,
+  ProfilePage,
 } from "../pages";
 
 export const PubliRouter = () => {
@@ -19,6 +20,7 @@ export const PubliRouter = () => {
         <Route path="/event/:id" element={<EventDetailsPage />} />
         <Route path="/book-tickets/:id" element={<BookTicketsPage />} />
         <Route path="/contactUs" element={<ContactUsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
       <FooterComp />
     </>
