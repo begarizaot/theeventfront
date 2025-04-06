@@ -1,6 +1,7 @@
 import { ConfigProvider, theme } from "antd";
 import { AppRouter } from "./routers";
 import { useTheme } from "./hooks";
+import { CardProvider } from "./provider/CardProvider";
 
 function App() {
   const { theme: currentTheme } = useTheme();
@@ -14,7 +15,9 @@ function App() {
             : theme.defaultAlgorithm,
       }}
     >
-      <AppRouter />
+      <CardProvider>
+        <AppRouter />
+      </CardProvider>
     </ConfigProvider>
   );
 }

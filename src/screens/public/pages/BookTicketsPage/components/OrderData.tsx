@@ -1,6 +1,10 @@
 import { Button, Input, InputNumber } from "antd";
 
-export const OrderDataComp = () => {
+interface OrderDataCompProps {
+  onCheckOut: () => void;
+}
+
+export const OrderDataComp = ({ onCheckOut }: OrderDataCompProps) => {
   return (
     <div className="bgCard p-3 rounded-xl h-full overflow-auto flex flex-col">
       <div className="grid">
@@ -77,7 +81,8 @@ export const OrderDataComp = () => {
       <div className=" mt-4 lg:mt-auto">
         <Button
           className="w-full rounded-3xl! uppercase btnStyle disabled:bg-white/70! disabled:border-none! disabled:text-black!"
-          disabled
+          // disabled
+          onClick={onCheckOut}
         >
           <span className="font-bold text-xs">Check Out</span>
         </Button>

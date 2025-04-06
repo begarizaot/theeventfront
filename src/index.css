@@ -35,6 +35,14 @@ body {
   );
 }
 
+.textGradientPrimary {
+  background: linear-gradient(90deg, #e6af86 0%, #d55e78 44.5%, #c8ac3b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
 .customSelect .ant-select-selector {
   @apply rounded-full bg-transparent! border-white! text-white;
 }

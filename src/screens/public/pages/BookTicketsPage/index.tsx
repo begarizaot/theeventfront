@@ -12,7 +12,8 @@ import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPEKEY);
 
 export const BookTicketsPage = () => {
-  const { checkoutInit, listRefundable, onCheckoutInit } = useBookTickets();
+  const { checkoutInit, listRefundable, onCheckoutInit, onCheckOut } =
+    useBookTickets();
 
   return (
     <Elements stripe={stripePromise}>
@@ -54,7 +55,7 @@ export const BookTicketsPage = () => {
             )}
           </div>
           <div className="col-span-1">
-            <OrderDataComp />
+            <OrderDataComp onCheckOut={onCheckOut} />
           </div>
         </div>
       </div>

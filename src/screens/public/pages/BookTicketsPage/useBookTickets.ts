@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { useStripe } from '@stripe/react-stripe-js';
+import { useContext, useEffect, useState } from "react";
 
 import { dataListRefundable } from "../../../../data/listRefundable";
+import { CardContext } from "../../../../context";
 
 export const useBookTickets = () => {
-  // const stripe = useStripe();
+  const { onShowSuccess } = useContext(CardContext);
+
   const [checkoutInit, setCheckoutInit] = useState(1);
   const [listRefundable, setListRefundable] = useState<any[]>([]);
 
@@ -20,5 +21,9 @@ export const useBookTickets = () => {
     setCheckoutInit(value);
   };
 
-  return { checkoutInit, listRefundable, onCheckoutInit };
+  const onCheckOut = async () => {
+    onShowSuccess();
+  };
+
+  return { checkoutInit, listRefundable, onCheckoutInit, onCheckOut };
 };
