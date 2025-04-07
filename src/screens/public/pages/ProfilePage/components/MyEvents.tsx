@@ -40,7 +40,7 @@ export const MyEventsComp = ({ listEvents }: NavMyEvents) => {
       {navActive == 1 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
           {listEvents?.map((event: any) => (
-            <Link key={event.id} to={``} className="col-span-1">
+            <Link key={event.id} to={`/admin/eventDetails/1`} className="col-span-1">
               <CardEventCom
                 {...event}
                 classNameContainer="h-100! lg:h-80! hover:shadow-none!"

@@ -1,11 +1,12 @@
 :root {
   --bg-color: #141414;
   --text-color: #ffffff;
-  --primary-color: #EE8823;
-  --secondary-color: #CD7013;
+  --primary-color: #ee8823;
+  --secondary-color: #cd7013;
+  --bg-nav: #2e2e2e;
 }
 
-[data-theme=dark] {
+[data-theme="dark"] {
   --bg-color: #ffffff;
   --text-color: #ffffff;
 }
