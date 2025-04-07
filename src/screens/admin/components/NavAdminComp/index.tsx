@@ -11,8 +11,14 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
   const { navs } = useHeader();
 
   return (
-    <div className="grid pt-5 bg-nav h-screen sticky top-0">
+    <div className="grid pt-5 bg-nav h-screen-m sticky top-0">
       <div className="flex flex-col">
+        <div className=" justify-end px-8 mb-6 flex sm:hidden">
+          <span
+            className="pi pi-times text-xl text-white cursor-pointer"
+            onClick={onShowNav}
+          ></span>
+        </div>
         <Link to={""} className="px-4">
           <img src={logoImage} alt="" className="w-[90%]! ml-auto" />
         </Link>
