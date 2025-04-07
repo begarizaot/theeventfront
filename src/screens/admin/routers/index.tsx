@@ -6,7 +6,7 @@ import { Drawer } from "antd";
 import { useState } from "react";
 
 export const AdminRouter = () => {
-  const [openNav, setOpenNav] = useState(true);
+  const [openNav, setOpenNav] = useState(false);
 
   return (
     <>
