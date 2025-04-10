@@ -1,0 +1,62 @@
+.contTable {
+  .ant-table-expanded-row-fixed{
+    background-color: var(--bg-nav);
+    .ant-empty-description{
+      color: white;
+    }
+    
+  }
+  .ant-table-container {
+    padding: 1px;
+    border: 0 !important;
+  }
+  .ant-table {
+    border-radius: 0 !important;
+  }
+  .ant-table-thead {
+    .ant-table-cell {
+      background: white;
+      border-radius: 0 !important;
+    }
+  }
+
+  .ant-table-tbody {
+    .ant-table-row {
+      background-color: var(--bg-nav);
+      color: white;
+    }
+  }
+
+  .ant-pagination-item {
+    a {
+      color: #595959;
+    }
+  }
+
+  .ant-pagination-item-active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color) !important;
+    a {
+      color: white !important;
+    }
+  }
+
+  .ant-pagination {
+    gap: calc(var(--spacing) * 3);
+    .ant-pagination-prev {
+      border: 1px solid white;
+      svg {
+        fill: #595959;
+        height: 20px;
+      }
+    }
+
+    .ant-pagination-next {
+      border: 1px solid white;
+      svg {
+        fill: white;
+        height: 20px;
+      }
+    }
+  }
+}

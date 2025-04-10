@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import { HeaderComp, NavAdminComp } from "../components";
-import { EventDetailsPage } from "../pages";
+import { EventDetailsPage, TicketControlPage } from "../pages";
 import { Drawer } from "antd";
 import { useState } from "react";
 
@@ -30,6 +30,7 @@ export const AdminRouter = () => {
           <HeaderComp onShowNav={() => setOpenNav(true)} />
           <Routes>
             <Route path="/eventDetails/:id" element={<EventDetailsPage />} />
+            <Route path="/ticketControl/:id" element={<TicketControlPage />} />
           </Routes>
         </div>
       </div>
