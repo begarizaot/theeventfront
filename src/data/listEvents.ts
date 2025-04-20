@@ -6,7 +6,7 @@ export const dataListEvents = [
   {
     id: 1,
     img: imag1,
-    title: "Music Event that will Blow your Mind",
+    name: "Music Event that will Blow your Mind",
     date: "Saturday, 15th February",
     following: "2k Going",
     location: "San Francisco, CA",
@@ -39,7 +39,7 @@ export const dataListEvents = [
   {
     id: 2,
     img: imag2,
-    title: "Valentine’s Day party top of tower 2 ",
+    name: "Valentine’s Day party top of tower 2 ",
     date: "Friday, 14th February",
     following: "2k Going",
     location: "New York",
@@ -50,7 +50,7 @@ export const dataListEvents = [
   {
     id: 3,
     img: imag3,
-    title: "OFF-Shore event in Hawaii Island",
+    name: "OFF-Shore event in Hawaii Island",
     date: "Sunday, 16th February",
     following: "2k Going",
     location: "New York",

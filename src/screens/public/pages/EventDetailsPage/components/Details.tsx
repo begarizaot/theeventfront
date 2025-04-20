@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import GoogleMapReact from "google-map-react";
+import { TextPrimary } from "../../../../../components";
 
 interface DescriptionCompProps {
   dataEvent: any;
@@ -37,17 +38,32 @@ export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
               <div className="flex gap-2">
                 <Link
                   to={`tel:${dataEvent?.organizer?.phone}`}
-                  className="bg-white flex items-center text-primary px-2 py-[3px] rounded-full text-xs gap-2"
+                  className="bg-white px-2 py-[3px] rounded-full"
                 >
-                  <span className="pi pi-phone text-[10px]"></span>
-                  {dataEvent?.organizer?.phone}
+                  <TextPrimary
+                    label={
+                      <>
+                        <span className="pi pi-phone text-[10px]"></span>
+                        {dataEvent?.organizer?.phone}
+                      </>
+                    }
+                    className="text-xs gap-2 flex items-center"
+                  />
                 </Link>
+
                 <Link
                   to={`mailto:${dataEvent?.organizer?.email}`}
-                  className="bg-white flex items-center text-primary px-2 py-[3px] rounded-full text-xs gap-2"
+                  className="bg-white px-2 py-[3px] rounded-full"
                 >
-                  <span className="pi pi-envelope text-[10px]"></span>
-                  {dataEvent?.organizer?.email}
+                  <TextPrimary
+                    label={
+                      <>
+                        <span className="pi pi-envelope text-[10px]"></span>
+                        {dataEvent?.organizer?.email}
+                      </>
+                    }
+                    className="text-xs gap-2 flex items-center"
+                  />
                 </Link>
               </div>
             </div>

@@ -23,19 +23,17 @@ export const TicketControlPage = () => {
           </div>
         );
       },
-      className: "w-auto",
+      className: "w-10",
     },
     {
       title: "Customer",
       dataIndex: "customer",
       key: "customer",
-      className: "w-100",
     },
     {
       title: "Phone",
       dataIndex: "phone",
       key: "phone",
-      className: "w-100",
     },
     {
       title: "Tickets",

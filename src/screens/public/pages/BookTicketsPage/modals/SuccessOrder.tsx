@@ -1,5 +1,6 @@
 import { Button, Modal } from "antd";
 import { Link } from "react-router-dom";
+import { TextPrimary } from "../../../../../components";
 
 interface SuccessOrderModlProps {
   isOpen: boolean;
@@ -21,7 +22,9 @@ export const SuccessOrderModl = ({
         content: "w-full bgModal bg-cover text-white rounded-2xl! border!",
         mask: "backdrop-blur-xs",
       }}
-      closeIcon={<span className="pi pi-times bg-white text-black p-1 text-[9px] rounded-full"></span>}
+      closeIcon={
+        <span className="pi pi-times bg-white text-black p-1 text-[9px] rounded-full"></span>
+      }
     >
       <div className="grid">
         <div className="text-center">
@@ -42,14 +45,17 @@ export const SuccessOrderModl = ({
 
         <p className="text-xs text-center">
           If you experience any issues, please send us a message
-          <Link to={""} className="mx-1 text-primary">
-            here
+          <Link to={""}>
+            <TextPrimary label="here" className="mx-1"/>
           </Link>
           and one of our team members will make sure to quickly respond.
         </p>
 
         <div className="text-center mt-4">
-          <Button className="w-full sm:w-38 lg:w-50 rounded-3xl! uppercase btnStyle" onClick={onClose}>
+          <Button
+            className="w-full sm:w-38 lg:w-50 rounded-3xl! uppercase btnStyle"
+            onClick={onClose}
+          >
             <span className="font-bold text-xs">Download Tickets</span>
           </Button>
         </div>

@@ -1,14 +1,7 @@
 @use "./buttons.scss";
 
-.text-primary {
-  color: var(--primary-color);
-  &:hover {
-    color: var(--secondary-color);
-  }
-}
-
 .bgPrimary {
-  background-color: var(--primary-color);
+  background-color: var(--ant-color-primary);
 }
 
 .bg-nav{
@@ -16,7 +9,7 @@
 }
 
 .borderPrimary {
-  border-color: var(--primary-color);
+  border-color: var(--ant-color-primary);
 }
 
 .h-screen-m{

@@ -1,10 +1,11 @@
 import { Button } from "antd";
+import { useGoingLabel, useMoment } from "../hooks";
 
 interface CardEventComProps {
   img: string;
-  title: string;
-  date: string;
-  following: string;
+  name: string;
+  start_time: string;
+  following: any;
   location: string;
   hour: string;
   restriction: string;
@@ -22,14 +23,15 @@ interface CardEventComElemProps {
   hiddenLocation?: boolean;
   hiddenHour?: boolean;
   showBtn?: boolean;
+  formatDate?: string;
   onClick?: () => void;
 }
 
 export const CardEventCom = ({
   img,
-  title,
+  name,
   following,
-  date,
+  start_time,
   hour,
   location,
   restriction,
@@ -44,6 +46,7 @@ export const CardEventCom = ({
   hiddenLocation,
   hiddenHour,
   showBtn,
+  formatDate = "dddd, Do MMMM",
   onClick,
 }: CardEventComProps & CardEventComElemProps) => {
   return (
@@ -58,12 +61,14 @@ export const CardEventCom = ({
       }}
     >
       <div className="flex items-center justify-between">
-        <p
-          className="bg-white/20 px-3 py-1 rounded-4xl 
+        {following && (
+          <p
+            className="bg-white/20 px-3 py-1 rounded-4xl 
         text-sm sm:text-base"
-        >
-          {following}
-        </p>
+          >
+            {useGoingLabel(following ?? 0)}
+          </p>
+        )}
 
         {!hiddenResponsive && (
           <div className="flex items-center gap-2">
@@ -86,9 +91,11 @@ export const CardEventCom = ({
           text-3xl sm:text-4xl 
           uppercase bebasNeue line-clamp-2 overflow-hidden text-ellipsis ${classTitle}`}
           >
-            {title}
+            {name}
           </h1>
-          <p className={`text-base ${classDate}`}>{date}</p>
+          <p className={`text-base ${classDate}`}>
+            {useMoment(start_time).format(formatDate)}
+          </p>
         </div>
         {!hiddenLocation && !hiddenHour && (
           <div className="flex items-center gap-2 sm:text-sm">

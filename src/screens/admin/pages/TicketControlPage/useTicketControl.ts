@@ -19,7 +19,7 @@ export const useTicketControl = () => {
         total: 200,
       },
       {
-        key: "1",
+        key: "2",
         customer: "Andrew Jackson",
         phone: "+1 456-546-5465",
         tickets: 2,
@@ -28,7 +28,7 @@ export const useTicketControl = () => {
         total: 200,
       },
       {
-        key: "1",
+        key: "3",
         customer: "Andrew Jackson",
         phone: "+1 456-546-5465",
         tickets: 2,

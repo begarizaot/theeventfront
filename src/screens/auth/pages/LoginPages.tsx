@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 
-import { SegmentedCom } from "../../../ui/components";
+import { SegmentedCom, TextPrimary } from "../../../components";
 import { BgAuth, BtnAuth } from "../components";
 
 export const LoginPages = () => {
@@ -104,8 +104,8 @@ export const LoginPages = () => {
                   />
                 </Form.Item>
 
-                <Link to={`/forgot-password`} className="text-sm text-primary">
-                  Forgot password?
+                <Link to={`/forgot-password`}>
+                  <TextPrimary label="Forgot password?" className="text-sm" />
                 </Link>
               </div>
             </div>
@@ -120,8 +120,8 @@ export const LoginPages = () => {
 
           <p className="mt-3 text-center sm:text-left">
             Don’t have an account?
-            <Link to="/auth/register" className="text-primary ml-1">
-              Sign Up
+            <Link to="/auth/register">
+              <TextPrimary label="Sign Up" className="ml-1" />
             </Link>
           </p>
 

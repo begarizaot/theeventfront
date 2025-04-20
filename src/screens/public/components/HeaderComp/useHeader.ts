@@ -1,19 +1,10 @@
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store";
+
 export const useHeader = () => {
-    const navs = [
-      {
-        title: "All Events",
-        link: "/allEvents",
-      },
-      {
-        title: "Contact us",
-        link: "/contactUs",
-      },
-      {
-        title: "Gallery",
-        link: "/",
-      },
-    ];
-  
-    return {navs};
-  };
-  
+  const { globalDate, loading } = useSelector(
+    (state: RootState) => state.global
+  );
+
+  return { ...globalDate, loading };
+};

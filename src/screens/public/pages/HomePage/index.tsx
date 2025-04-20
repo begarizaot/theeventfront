@@ -5,15 +5,27 @@ import {
   AllArtistsComp,
   AllEventsComp,
   EventsCarouselComp,
+  HeroComp,
   ListCategoriesComp,
 } from "./components";
 
 export const HomePage = () => {
-  const { allEvents, listEvents, listArtists, allcategories } = useHome();
+  const { allEvents, listArtists, allcategories, homeDate } =
+    useHome();
 
   return (
     <>
-      <EventsCarouselComp list={listEvents} />
+      {(homeDate?.eventCarruselItem ?? []).length > 0 && (
+        <EventsCarouselComp list={homeDate?.eventCarruselItem} />
+      )}
+
+      {(homeDate?.eventCarruselItem ?? []).length == 0 && (
+        <HeroComp
+          title={homeDate?.title ?? ""}
+          imageUrl={homeDate?.url_image}
+          description={homeDate?.description}
+        />
+      )}
 
       {/* all events */}
       <ListCategoriesComp list={allcategories} />

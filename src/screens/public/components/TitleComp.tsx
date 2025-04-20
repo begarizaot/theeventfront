@@ -4,7 +4,7 @@ interface TitleCompProps {
 
 const styles = {
   background:
-    "linear-gradient(180deg, rgba(238, 119, 35, 0) 50%, var(--primary-color) 100%)",
+    "linear-gradient(180deg, rgba(238, 119, 35, 0) 50%, var(--ant-color-primary) 100%)",
 };
 
 export const TitleComp = ({ title }: TitleCompProps) => {

@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { dataListEvents } from "../../../../data/listEvents";
 import { dataListArtists } from "../../../../data/listArtists";
 import { dataListCategories } from "../../../../data/listCategories";
 
+import { AppDispatch, RootState } from "../../../../store";
+import { getHome } from "../../../../store/thunks";
+
 export const useHome = () => {
-  const [listEvents, setlistEvents] = useState<any>([]);
   const [allEvents, setAllEvents] = useState<any>([]);
   const [listArtists, setlistArtists] = useState<any>([]);
   const [allcategories, setAllcategories] = useState<any[]>([]);
+
+  const dispatch: AppDispatch = useDispatch();
+  const { homeDate, loading } = useSelector((state: RootState) => state.home);
+
+  useEffect(() => {
+    dispatch(getHome());
+  }, [dispatch]);
 
   useEffect(() => {
     fetchListEvents();
@@ -16,7 +27,6 @@ export const useHome = () => {
   }, []);
 
   const fetchListEvents = async () => {
-    setlistEvents([dataListEvents[0]]);
     setAllEvents(dataListEvents);
   };
 
@@ -28,5 +38,5 @@ export const useHome = () => {
     setAllcategories(dataListCategories);
   };
 
-  return { allEvents, listEvents, listArtists, allcategories };
+  return { allEvents, listArtists, allcategories, homeDate };
 };

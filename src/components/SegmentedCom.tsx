@@ -14,7 +14,7 @@ export const SegmentedCom = ({ options, onChange }: SegmentedProps) => {
       theme={{
         components: {
           Segmented: {
-            itemSelectedBg: "var(--primary-color)",
+            itemSelectedBg: "var(--ant-color-primary)",
             itemSelectedColor: "var(--text-color)",
             itemHoverBg: "transparent",
             borderRadiusSM: 20,

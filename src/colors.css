@@ -1,9 +1,8 @@
 :root {
   --bg-color: #141414;
   --text-color: #ffffff;
-  --primary-color: #ee8823;
-  --secondary-color: #cd7013;
   --bg-nav: #2e2e2e;
+  --bg-black: #2e2e2e;
 }
 
 [data-theme="dark"] {

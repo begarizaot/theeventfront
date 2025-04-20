@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { useAllEvents } from "./useAllEvents";
 
-import { CardEventCom } from "../../../../ui/components";
+import { CardEventCom } from "../../../../components";
 
 export const AllEventsPage = () => {
   const { listEvents } = useAllEvents();

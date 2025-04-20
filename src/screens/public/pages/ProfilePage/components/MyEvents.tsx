@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CardEventCom } from "../../../../../ui/components";
+import { CardEventCom } from "../../../../../components";
 
 interface NavMyEvents {
   listEvents: any[];

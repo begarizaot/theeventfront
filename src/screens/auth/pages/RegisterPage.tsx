@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button, DatePicker, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 
-import { SegmentedCom } from "../../../ui/components";
+import { SegmentedCom, TextPrimary } from "../../../components";
 import { BgAuth, BtnAuth } from "../components";
 
 export const RegisterPage = () => {
@@ -203,8 +203,8 @@ export const RegisterPage = () => {
 
           <p className="mt-3 text-center sm:text-left">
             Already have an account?
-            <Link to="/auth/login" className="text-primary ml-1">
-              Login
+            <Link to="/auth/login">
+              <TextPrimary label="Login" className="ml-1" />
             </Link>
           </p>
 

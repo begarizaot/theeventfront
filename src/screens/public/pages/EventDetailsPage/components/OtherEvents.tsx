@@ -1,7 +1,7 @@
 import "../scss/OtheEvenets.scss";
 import { Link } from "react-router-dom";
 
-import { CardEventCom } from "../../../../../ui/components";
+import { CardEventCom } from "../../../../../components";
 
 interface OtherEventsProps {
   list: any;

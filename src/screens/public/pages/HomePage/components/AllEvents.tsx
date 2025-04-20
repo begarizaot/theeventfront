@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button, Carousel } from "antd";
 
-import { CardEventCom } from "../../../../../ui/components";
+import { CardEventCom, TextPrimary } from "../../../../../components";
 
 interface AllEventsProps {
   list: any;
@@ -17,7 +17,11 @@ export const AllEventsComp = ({ list }: AllEventsProps) => {
               <TitleComp title="events" />
             </div> */}
             <h1 className="text-xl sm:text-3xl font-bold bebasNeue">
-              Browsing events in <span className="uppercase bebasNeue text-primary">Barranquilla</span>
+              Browsing events in
+              <TextPrimary
+                label="Barranquilla"
+                className="uppercase bebasNeue ml-1"
+              />
             </h1>
           </div>
 

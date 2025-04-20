@@ -1,19 +1,25 @@
 import { Avatar } from "antd";
 import { Link } from "react-router-dom";
+import { theme } from "antd";
+const { useToken } = theme;
 
 import { SearchComp } from "../";
-import { LogoNavCom } from "../../../../ui/components";
+import { LogoNavCom } from "../../../../components";
 import { useHeader } from "./useHeader";
 
 export const HeaderComp = () => {
-  const { navs } = useHeader();
+  const { header } = useHeader();
+  const { token } = useToken();
 
   return (
     <div className="absolute w-full z-20">
       <div className="max-w-[80rem] mx-auto grid grid-cols-2 py-3 px-4 sm:px-6">
         {/* logo and search */}
         <div className="items-center col-span-1 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <LogoNavCom />
+          <LogoNavCom
+            navLogo={header?.logo.href}
+            urlLogo={header?.logo.urlImage}
+          />
           {/* search */}
           <SearchComp className="hidden lg:flex" />
         </div>
@@ -26,19 +32,20 @@ export const HeaderComp = () => {
         </div>
         <div className="col-span-1 hidden lg:flex justify-end gap-3">
           <div className="flex items-center lg:gap-5 xl:gap-8">
-            {navs.map((nav) => (
+            {header?.navItems.map((nav) => (
               <Link
-                key={nav.title}
-                to={nav.link}
+                key={nav.id}
+                to={nav.href}
                 className="text-white uppercase text-sm"
               >
-                {nav.title}
+                {nav.label}
               </Link>
             ))}
           </div>
           <Link
             to={"/profile"}
-            className="flex items-center gap-1 bgPrimary px-2 py-1 rounded-full cursor-pointer"
+            className="flex items-center gap-1  px-2 py-1 rounded-full cursor-pointer"
+            style={{backgroundColor: token.colorPrimary}}
           >
             <Avatar
               icon={<span className="pi pi-user"></span>}

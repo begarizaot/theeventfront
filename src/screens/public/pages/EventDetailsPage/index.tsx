@@ -1,6 +1,6 @@
 import { useEventDetails } from "./useEventDetails";
 import { DetailsComp, ImgTitleComp, OtherEventsComp, YoutubeComp } from "./components";
-import { AllCarouselComp } from "../../../../ui/components";
+import { AllCarouselComp } from "../../../../components";
 
 export const EventDetailsPage = () => {
   const { eventDatail, defaultProps, listOtherEvent } = useEventDetails();
