@@ -68,8 +68,6 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
                   <Link to={`/event/${event?.event_id?.id_event}`}>
                     <CardEventCom
                       {...event.event_id}
-                      img={event?.event_id?.url_image || ""}
-                      date="23.02.25"
                       classNameContainer="h-70! sm:h-90! hover:shadow-none!"
                       classTitle="text-xl! lg:text-2xl! order-2 sourceSans font-bold!"
                       classDate="order-1"

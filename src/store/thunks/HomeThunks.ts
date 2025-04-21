@@ -1,6 +1,6 @@
 import { AppDispatch } from "..";
 import { theEventApi } from "../../lib";
-import { HomeRes } from "../interfaces/HomeInterface";
+import { HomeRes } from "../../interfaces/HomeInterface";
 import { homeFailure, homeStart, homeSuccess } from "../slices/HomeSlices";
 
 export const getHome = () => {

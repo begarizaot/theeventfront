@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { HomeData, InitialHome } from "../interfaces/HomeInterface";
+import { HomeData, InitialHome } from "../../interfaces/HomeInterface";
 
 const initialState: InitialHome = {
   homeDate: null,

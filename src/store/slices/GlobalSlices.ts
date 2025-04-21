@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GlobalData, InitialGlobal } from "../interfaces/GlobalInterface";
+import { GlobalData, InitialGlobal } from "../../interfaces/GlobalInterface";
 
 const initialState: InitialGlobal = {
   globalDate: null,

@@ -1,15 +1,15 @@
 import { Button } from "antd";
-import { useGoingLabel, useMoment } from "../hooks";
+import { useGoingLabel, useMoment, usePriceRangeText } from "../hooks";
 
 interface CardEventComProps {
-  img: string;
+  url_image: string;
   name: string;
-  start_time: string;
+  start_date: string;
+  end_date?: string;
   following: any;
   location: string;
-  hour: string;
   restriction: string;
-  price: string;
+  price: any[];
 }
 
 interface CardEventComElemProps {
@@ -28,14 +28,14 @@ interface CardEventComElemProps {
 }
 
 export const CardEventCom = ({
-  img,
+  url_image,
   name,
   following,
-  start_time,
-  hour,
+  start_date,
+  end_date,
   location,
   restriction,
-  price,
+  price = [],
   classNameContainer,
   classTitleContainer,
   classTitle,
@@ -57,7 +57,7 @@ export const CardEventCom = ({
       cursor-pointer
       hover:shadow-[0px_0px_7.5px_0px_#25b7ec] ${classNameContainer}`}
       style={{
-        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),url(${img})`,
+        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),url(${url_image})`,
       }}
     >
       <div className="flex items-center justify-between">
@@ -94,7 +94,7 @@ export const CardEventCom = ({
             {name}
           </h1>
           <p className={`text-base ${classDate}`}>
-            {useMoment(start_time).format(formatDate)}
+            {useMoment(start_date).format(formatDate)}
           </p>
         </div>
         {!hiddenLocation && !hiddenHour && (
@@ -106,7 +106,11 @@ export const CardEventCom = ({
               </div>
             )}
 
-            {!hiddenHour && <p>{hour}</p>}
+            {!hiddenHour && (
+              <p>{`${useMoment(start_date).format("HH:mm a")} - ${useMoment(
+                end_date
+              ).format("HH:mm a")}`}</p>
+            )}
           </div>
         )}
 
@@ -127,7 +131,7 @@ export const CardEventCom = ({
 
             {!hiddenPrice && (
               <div className="text-center">
-                <p className="font-bold text-3xl">${price}</p>
+                <p className="font-bold text-3xl">{usePriceRangeText(price)}</p>
               </div>
             )}
           </div>

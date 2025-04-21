@@ -1,6 +1,6 @@
 import { AppDispatch } from "..";
 import { theEventApi } from "../../lib";
-import { GlobalRes } from "../interfaces/GlobalInterface";
+import { GlobalRes } from "../../interfaces/GlobalInterface";
 import { globalFailure, globalStart, globalSuccess } from "../slices";
 
 export const getGlobal = () => {

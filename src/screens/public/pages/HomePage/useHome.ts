@@ -1,34 +1,31 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { dataListEvents } from "../../../../data/listEvents";
 import { dataListArtists } from "../../../../data/listArtists";
 import { dataListCategories } from "../../../../data/listCategories";
 
 import { AppDispatch, RootState } from "../../../../store";
-import { getHome } from "../../../../store/thunks";
+import { getArtist, getEventHome, getHome } from "../../../../store/thunks";
 
 export const useHome = () => {
-  const [allEvents, setAllEvents] = useState<any>([]);
   const [listArtists, setlistArtists] = useState<any>([]);
   const [allcategories, setAllcategories] = useState<any[]>([]);
 
   const dispatch: AppDispatch = useDispatch();
-  const { homeDate, loading } = useSelector((state: RootState) => state.home);
+  const { homeDate } = useSelector((state: RootState) => state.home);
+  const { eventDate } = useSelector((state: RootState) => state.eventHome);
+  const { artistDate } = useSelector((state: RootState) => state.artist);
 
   useEffect(() => {
     dispatch(getHome());
+    dispatch(getEventHome());
+    dispatch(getArtist());
   }, [dispatch]);
 
   useEffect(() => {
-    fetchListEvents();
     fetchListArtists();
     fetchAllCategories();
   }, []);
-
-  const fetchListEvents = async () => {
-    setAllEvents(dataListEvents);
-  };
 
   const fetchListArtists = async () => {
     setlistArtists(dataListArtists);
@@ -38,5 +35,5 @@ export const useHome = () => {
     setAllcategories(dataListCategories);
   };
 
-  return { allEvents, listArtists, allcategories, homeDate };
+  return { listArtists, allcategories, homeDate, eventDate, artistDate };
 };

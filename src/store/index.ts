@@ -1,10 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { globalSlice, homeSlice } from "./slices";
+import {
+  artistSlices,
+  eventHomeSlices,
+  globalSlice,
+  homeSlice,
+} from "./slices";
 
 const store = configureStore({
   reducer: {
     global: globalSlice.reducer,
     home: homeSlice.reducer,
+    eventHome: eventHomeSlices.reducer,
+    artist: artistSlices.reducer,
   },
 });
 

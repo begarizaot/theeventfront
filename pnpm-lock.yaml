@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@nuyhman/react-spotify-player':
+        specifier: ^1.0.2
+        version: 1.0.2
       '@react-google-maps/api':
         specifier: ^2.20.3
         version: 2.20.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -531,6 +534,9 @@ packages:
 
   '@mapbox/point-geometry@0.1.0':
     resolution: {integrity: sha512-6j56HdLTwWGO0fJPlrZtdU/B13q8Uwmo18Ck2GnGgN9PCFyKTZ3UbXeEdRFh18i9XQ92eH2VdtpJHpBD3aripQ==}
+
+  '@nuyhman/react-spotify-player@1.0.2':
+    resolution: {integrity: sha512-h6Ir+Bvg9PpnA+jkJmQCfRRx67MfXqc+Y0P512v5p1BLh4KPETpItgZ6KZn4ygRW6CQp2DpK50TjN0V4NUOTjw==}
 
   '@parcel/watcher-android-arm64@2.5.1':
     resolution: {integrity: sha512-KF8+j9nNbUN8vzOFDpRMsaKBHZ/mcjEjMToVMJOhTozkDonQFFrRcfdLWn6yWKCmJKmdVxSgHiYvTCef4/qcBA==}
@@ -2523,6 +2529,11 @@ snapshots:
   '@lokesh.dhakar/quantize@1.4.0': {}
 
   '@mapbox/point-geometry@0.1.0': {}
+
+  '@nuyhman/react-spotify-player@1.0.2':
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   '@parcel/watcher-android-arm64@2.5.1':
     optional: true

@@ -12,6 +12,7 @@
     "preview": "cross-env NODE_ENV=production node server"
   },
   "dependencies": {
+    "@nuyhman/react-spotify-player": "^1.0.2",
     "@react-google-maps/api": "^2.20.3",
     "@reduxjs/toolkit": "^2.6.1",
     "@strapi/blocks-react-renderer": "^1.0.2",

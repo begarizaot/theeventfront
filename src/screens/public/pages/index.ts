@@ -4,3 +4,5 @@ export * from "./ContactUsPage";
 export * from "./EventDetailsPage";
 export * from "./BookTicketsPage";
 export * from "./ProfilePage";
+export * from "./ArtistDetailsPage";
+export * from "./AllArtistPage";

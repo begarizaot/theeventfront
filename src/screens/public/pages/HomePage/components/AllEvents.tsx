@@ -8,6 +8,7 @@ interface AllEventsProps {
 }
 
 export const AllEventsComp = ({ list }: AllEventsProps) => {
+
   return (
     <div className="bgGradient">
       <div className="grid grid-cols-1 w-full mx-auto  max-w-[80rem]">
@@ -34,11 +35,17 @@ export const AllEventsComp = ({ list }: AllEventsProps) => {
           <div className="hidden lg:grid grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
             {list?.map((event: any) => (
               <Link
-                key={event.id}
-                to={`/event/${event.id}`}
+                key={event.id_event}
+                to={`/event/${event.id_event}`}
                 className="col-span-1"
               >
-                <CardEventCom {...event} classNameContainer="cardEventCom" />
+                <CardEventCom
+                  {...event}
+                  restriction={event?.event_restriction_id?.title ?? ""}
+                  location={event?.event_locations_id?.vicinity ?? ""}
+                  price={event?.event_tickets_ids ?? []}
+                  classNameContainer="cardEventCom"
+                />
               </Link>
             ))}
           </div>
@@ -58,11 +65,16 @@ export const AllEventsComp = ({ list }: AllEventsProps) => {
             >
               {list?.map((event: any) => (
                 <Link
-                  key={event.id}
-                  to={`/event/${event.id}`}
+                  key={event.id_event}
+                  to={`/event/${event.id_event}`}
                   className="col-span-1 px-3 py-1"
                 >
-                  <CardEventCom {...event} />
+                  <CardEventCom
+                    {...event}
+                    restriction={event?.event_restriction_id?.title ?? ""}
+                    location={event?.event_locations_id?.vicinity ?? ""}
+                    price={event?.event_tickets_ids ?? []}
+                  />
                 </Link>
               ))}
             </Carousel>
