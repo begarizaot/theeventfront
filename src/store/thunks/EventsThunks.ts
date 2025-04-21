@@ -18,3 +18,19 @@ export const getEventHome = () => {
     }
   };
 };
+
+export const getEventMeta = async (url?: any) => {
+  const match = url.match(/^\/event\/(.+)/);
+  if (match && match.length > 0) {
+    const eventId = match[1] || "";
+    try {
+      const { data } = await theEventApi.get(`event/getEventMeta/${eventId}`);
+      const res = data.data || {};
+      return res;
+    } catch (error) {
+      return {};
+    }
+  } else {
+    return {};
+  }
+};

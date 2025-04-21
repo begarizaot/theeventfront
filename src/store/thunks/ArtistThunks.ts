@@ -18,3 +18,35 @@ export const getArtist = () => {
     }
   };
 };
+
+export const getArtistDetail = (id_artist?: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<ArtistRes>(
+        `artist/getArtistDetail/${id_artist}`
+      );
+
+      if (!data.status) return reject("Error al cargar los datos");
+
+      resolve(data.data);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
+export const getArtistMeta = async (url?: any) => {
+  const match = url.match(/^\/artist\/(.+)/);
+  if (match && match.length > 0) {
+    const eventId = match[1] || "";
+    try {
+      const { data } = await theEventApi.get(`artist/getArtistMeta/${eventId}`);
+      const res = data.data || {};
+      return res;
+    } catch (error) {
+      return {};
+    }
+  } else {
+    return {};
+  }
+};

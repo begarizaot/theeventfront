@@ -8,16 +8,15 @@ import { Link } from "react-router-dom";
 const { VITE_APITHEEVENT } = import.meta.env;
 
 export const ArtistDetailsPage = () => {
-  const { artistDetail } = useArtist();
+  const { artistDetail, artistMeta } = useArtist();
 
   const lengthArtist = (artistDetail?.events_ids ?? []).length;
 
   return (
     <>
       <MetaDataCom
-        title={artistDetail?.name}
-        urlImage={artistDetail?.url_image}
-        url={`${VITE_APITHEEVENT}/artist/${artistDetail?.id_artist ?? ""}`}
+        {...artistMeta}
+        url={`${VITE_APITHEEVENT}/artist/${artistMeta?.id ?? ""}`}
       />
 
       <div
@@ -65,7 +64,7 @@ export const ArtistDetailsPage = () => {
           <div className="grid">
             {lengthArtist > 0 &&
               artistDetail?.events_ids.map((event) => (
-                <div className="col-span-1">
+                <div className="col-span-1" key={event.id_event}>
                   <div className="bg-white rounded-sm shadow-md">
                     <div className="grid grid-cols-1 sm:grid-cols-6 text-black gap-3">
                       <div className="col-span-1 bg-black/20 flex items-center justify-center py-2">
