@@ -44,7 +44,7 @@ export const GlobalProvider = ({ children }: CheckoutProviderProps) => {
           hashed: true,
         }}
       >
-        <MetaDataCom {...globalDate?.metas} title={globalDate?.metas.title} />
+        {/* <MetaDataCom {...globalDate?.metas} title={globalDate?.metas.title} /> */}
 
         {children}
       </ConfigProvider>

@@ -1,28 +1,58 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { dataListEvents } from "../../../../data/listEvents";
+import { useContext, useEffect, useState } from "react";
+
+import { MetaContext } from "../../../../context/MetaContext";
+import { getLocalStorage } from "../../../../hooks";
+import { getEventDetail } from "../../../../store/thunks";
+
+import { EventData } from "../../../../interfaces/EventsInterface";
 
 export const useEventDetails = () => {
   const { id } = useParams();
-  const [eventDatail, setEventDatail] = useState<any>({});
-  const [listOtherEvent, setlistOtherEvent] = useState<any>([]);
+  const { eventMeta } = useContext(MetaContext);
 
-  const defaultProps = {
-    center: {
-      lat: 4.710989,
-      lng: -74.072092,
-    },
-    zoom: 11,
-  };
+  const [eventDetail, setEventDetail] = useState<EventData>();
+  const [eventShare, setEventShare] = useState<any[]>([]);
 
   useEffect(() => {
-    setEventDatail(dataListEvents[0]);
-    fetchListEvents();
+    getEventDetailStorage();
+    getArtistDetailApi();
   }, []);
 
-  const fetchListEvents = async () => {
-    setlistOtherEvent(dataListEvents);
+  const getEventDetailStorage = () => {
+    setEventDetail(getLocalStorage("event"));
   };
 
-  return { eventDatail, defaultProps, listOtherEvent };
+  const getArtistDetailApi = async () => {
+    const res = await getEventDetail(id);
+    setEventDetail(res);
+    getShareLink();
+  };
+
+  const getShareLink = () => {
+    setEventShare([
+      {
+        icon: "pi pi-instagram",
+        link: "https://www.instagram.com/",
+      },
+      {
+        icon: "pi pi-whatsapp",
+        link: "https://web.whatsapp.com/",
+      },
+      {
+        icon: "pi pi-twitter",
+        link: "https://x.com/?lang=es",
+      },
+    ]);
+  };
+
+  // const defaultProps = {
+  //   center: {
+  //     lat: 4.710989,
+  //     lng: -74.072092,
+  //   },
+  //   zoom: 11,
+  // };
+
+  return { eventDetail, eventMeta, eventShare };
 };

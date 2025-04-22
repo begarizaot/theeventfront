@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CardEventCom } from "../../../../../components";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Button } from "antd";
+import { setLocalStorage } from "../../../../../hooks";
 
 interface EventsCarouselProps {
   list: any;
@@ -19,6 +20,10 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
   useEffect(() => {
     setListActive(list[0]);
   }, [list]);
+
+  const onSaveLocalStorage = (event: string) => {
+    setLocalStorage("event", event);
+  };
 
   return (
     <div className="h-[90vh] mb-3">
@@ -65,7 +70,10 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
                   key={event.id}
                   className="py-2 blur-xs transition-opacity duration-300 ease-in-out"
                 >
-                  <Link to={`/event/${event?.event_id?.id_event}`}>
+                  <Link
+                    to={`/event/${event?.event_id?.id_event}`}
+                    onClick={() => onSaveLocalStorage(event.event_id)}
+                  >
                     <CardEventCom
                       {...event.event_id}
                       classNameContainer="h-70! sm:h-90! hover:shadow-none!"

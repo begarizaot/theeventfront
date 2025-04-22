@@ -25,6 +25,8 @@ export interface EventData {
   start_date: string;
   end_date: string;
   isEndDate: boolean;
+  url_youtube: any[];
+  urls_images_advertising: any[];
   event_tickets_ids: EventTicketsId[];
   categories_id: any[];
   event_locations_id: EventLocationsId;

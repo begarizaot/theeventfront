@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import { Button, Carousel } from "antd";
 
 import { CardEventCom, TextPrimary } from "../../../../../components";
+import { setLocalStorage } from "../../../../../hooks";
 
 interface AllEventsProps {
   list: any;
 }
 
 export const AllEventsComp = ({ list }: AllEventsProps) => {
+  const onSaveLocalStorage = (event: string) => {
+    setLocalStorage("event", event);
+  };
 
   return (
     <div className="bgGradient">
@@ -38,6 +42,7 @@ export const AllEventsComp = ({ list }: AllEventsProps) => {
                 key={event.id_event}
                 to={`/event/${event.id_event}`}
                 className="col-span-1"
+                onClick={() => onSaveLocalStorage(event)}
               >
                 <CardEventCom
                   {...event}
@@ -68,6 +73,7 @@ export const AllEventsComp = ({ list }: AllEventsProps) => {
                   key={event.id_event}
                   to={`/event/${event.id_event}`}
                   className="col-span-1 px-3 py-1"
+                  onClick={() => onSaveLocalStorage(event)}
                 >
                   <CardEventCom
                     {...event}

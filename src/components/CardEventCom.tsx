@@ -49,6 +49,7 @@ export const CardEventCom = ({
   formatDate = "dddd, Do MMMM",
   onClick,
 }: CardEventComProps & CardEventComElemProps) => {
+  
   return (
     <div
       className={`group 

@@ -1,5 +1,6 @@
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useMoment } from "../../../../../hooks";
 
 interface ImgTitleCompProps {
   dataEvent: any;
@@ -9,7 +10,7 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
   const navigate = useNavigate();
 
   const onBookTicket = () => {
-    navigate(`/book-tickets/${dataEvent?.id}`);
+    navigate(`/book-tickets/${dataEvent?.id_event}`);
   };
 
   return (
@@ -19,19 +20,24 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
           <div
             className="h-90 bg-cover rounded-xl shadow"
             style={{
-              backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),url(${dataEvent?.img})`,
+              backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),url(${
+                dataEvent?.url_image ?? ""
+              })`,
             }}
           ></div>
         </div>
         <div className="col-span-1 lg:col-span-2 flex flex-col justify-center gap-2 order-1 sm:order-2">
-          <h1 className="text-4xl bebasNeue">{dataEvent?.title}</h1>
-          <p>{dataEvent?.date}</p>
+          <h1 className="text-4xl bebasNeue">{dataEvent?.name}</h1>
+          <p>{useMoment(dataEvent?.start_date).format("dddd, Do MMMM")}</p>
           <div className="flex items-center gap-3 text-sm">
             <p className="flex items-center gap-1">
-              <span className="pi pi-map-marker"></span> {dataEvent?.city}
+              <span className="pi pi-map-marker"></span>{" "}
+              {dataEvent?.event_locations_id?.vicinity ?? ""}
             </p>
+            <p>{`${useMoment(dataEvent?.start_date).format(
+              "HH:mm a"
+            )} - ${useMoment(dataEvent?.end_date).format("HH:mm a")}`}</p>
           </div>
-          <p>{dataEvent?.hour}</p>
 
           <div className="flex flex-wrap gap-2 text-xs">
             {dataEvent?.categories?.map((category: any, index: any) => (
@@ -45,7 +51,7 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
           </div>
 
           <Button
-            className="w-full sm:w-40 rounded-3xl! uppercase btnStyle mt-4 hidden! sm:block!"
+            className="w-full sm:w-40 rounded-3xl! uppercase btnStyle mt-2 hidden! sm:block!"
             onClick={onBookTicket}
           >
             <span className="font-bold text-xs">Book Tickets</span>
