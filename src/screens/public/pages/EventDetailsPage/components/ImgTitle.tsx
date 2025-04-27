@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useMoment } from "../../../../../hooks";
+import { setLocalStorage, useMoment } from "../../../../../hooks";
 
 interface ImgTitleCompProps {
   dataEvent: any;
@@ -10,6 +10,7 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
   const navigate = useNavigate();
 
   const onBookTicket = () => {
+    setLocalStorage("event", dataEvent);
     navigate(`/book-tickets/${dataEvent?.id_event}`);
   };
 

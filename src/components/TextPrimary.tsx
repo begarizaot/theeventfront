@@ -2,7 +2,7 @@ import { theme } from "antd";
 const { useToken } = theme;
 
 interface TextPrimaryProps {
-  label: any;
+  label?: any;
   className?: string;
 }
 

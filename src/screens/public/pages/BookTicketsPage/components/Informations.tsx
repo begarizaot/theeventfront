@@ -1,21 +1,35 @@
 import { Button, Checkbox, Form, Input } from "antd";
 
 interface InformationsCompProps {
+  userData: any;
+  values: any;
   listRefundable: any[];
-  onProceedToPayment?: () => void;
+  onProceedToPayment: (ev: any) => void;
+  onValueChangeUser?: (ev: any) => void;
+  onFinish?: (ev: any) => void;
 }
 
 export const InformationsComp = ({
+  userData,
+  values,
   listRefundable,
   onProceedToPayment,
+  onValueChangeUser,
+  onFinish,
 }: InformationsCompProps) => {
   return (
-    <div className="bgCard py-3 rounded-xl h-full overflow-auto flex flex-col">
+    <Form
+      id="formUserData"
+      form={userData}
+      className="bgCard py-3! rounded-xl h-full overflow-auto flex flex-col text-white!"
+      onFinish={onFinish}
+      onValuesChange={onValueChangeUser}
+    >
       <div className="grid">
         {/* information data */}
         <div className="grid px-3 grid-cols-1">
           <div className="col-span-1">
-            <h1 className="font-bold">Shipping Information</h1>
+            <h1 className="font-bold text-base">Shipping Information</h1>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -120,7 +134,7 @@ export const InformationsComp = ({
         {/* refundable policy */}
         <div className="grid px-3 grid-cols-1 mt-4">
           <div className="col-span-1">
-            <h1 className="font-bold">Refundable Tickets</h1>
+            <h1 className="font-bold text-base">Refundable Tickets</h1>
 
             <p className="mt-1 text-sm">
               Receive a 100% refund If you are unable to attend and can provide
@@ -143,21 +157,31 @@ export const InformationsComp = ({
 
         <div className="px-3 mt-4 bgPay py-1 flex items-center">
           <h1 className="text-base text-black font-bold bebasNeue">
-            Pay $1.52 per ticket
+            Pay ${values.refundable} per ticket
           </h1>
         </div>
 
         <div className="px-3 mt-3">
-          <Checkbox className="text-white! text-xs!">
-            Yes, make my tickets refundable!{" "}
-          </Checkbox>
+          <Form.Item name="refundable" valuePropName="checked" noStyle>
+            <Checkbox className="text-white! text-xs!">
+              Yes, make my tickets refundable!
+            </Checkbox>
+          </Form.Item>
         </div>
       </div>
 
-      <div className="px-3 mt-4 lg:mt-auto">
+      <div className="px-3 mt-4 lg:mt-auto flex justify-between">
         <Button
           className="w-full sm:w-70 rounded-3xl! uppercase btnStyle"
-          onClick={onProceedToPayment}
+          onClick={() => onProceedToPayment(1)}
+        >
+          <span className="font-bold text-sm pi pi-angle-double-left"></span>
+          <span className="font-bold text-sm bebasNeue">Go Back</span>
+        </Button>
+
+        <Button
+          className="w-full sm:w-70 rounded-3xl! uppercase btnStyle"
+          htmlType="submit"
         >
           <span className="font-bold text-sm bebasNeue">
             Proceed To Payment
@@ -165,6 +189,6 @@ export const InformationsComp = ({
           <span className="font-bold text-sm pi pi-angle-double-right"></span>
         </Button>
       </div>
-    </div>
+    </Form>
   );
 };

@@ -55,6 +55,10 @@ body {
   color: white !important; /* Cambia el color del icono */
 }
 
+.customSelect .ant-select-selection-item{
+  color: white !important;
+}
+
 .customSelect:hover .ant-select-selector,
 .customSelect:focus-within .ant-select-selector,
 .customSelect .ant-select-selector:focus {
