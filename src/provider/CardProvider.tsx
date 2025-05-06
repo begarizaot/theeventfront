@@ -9,13 +9,18 @@ interface CheckoutProviderProps {
 
 export const CardProvider = ({ children }: CheckoutProviderProps) => {
   const [isSuccess, setIsSuccess] = useState(false);
+  const [valueOrder, setValueOrder] = useState("");
 
   const onShowSuccess = (open = true) => {
     setIsSuccess(open);
   };
 
+  const onValueOrder = (value: string) => {
+    setValueOrder(value);
+  };
+
   return (
-    <CardContext.Provider value={{ onShowSuccess }}>
+    <CardContext.Provider value={{ valueOrder, onShowSuccess, onValueOrder }}>
       <SuccessOrderModl
         isOpen={isSuccess}
         onClose={() => onShowSuccess(false)}

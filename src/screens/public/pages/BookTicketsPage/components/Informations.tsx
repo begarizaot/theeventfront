@@ -1,4 +1,5 @@
 import { Button, Checkbox, Form, Input } from "antd";
+import { getValidateEmail } from "../../../../../store/thunks";
 
 interface InformationsCompProps {
   userData: any;
@@ -6,7 +7,7 @@ interface InformationsCompProps {
   listRefundable: any[];
   onProceedToPayment: (ev: any) => void;
   onValueChangeUser?: (ev: any) => void;
-  onFinish?: (ev: any) => void;
+  onFinish: (ev: any) => void;
 }
 
 export const InformationsComp = ({
@@ -17,12 +18,26 @@ export const InformationsComp = ({
   onValueChangeUser,
   onFinish,
 }: InformationsCompProps) => {
+  const onValidateEmail = async (ev: any) => {
+    try {
+      await getValidateEmail(ev.email);
+      onFinish(ev);
+    } catch (error: any) {
+      userData.setFields([
+        {
+          name: "email",
+          errors: [error],
+        },
+      ]);
+    }
+  };
+
   return (
     <Form
       id="formUserData"
       form={userData}
       className="bgCard py-3! rounded-xl h-full overflow-auto flex flex-col text-white!"
-      onFinish={onFinish}
+      onFinish={(ev) => onValidateEmail(ev)}
       onValuesChange={onValueChangeUser}
     >
       <div className="grid">

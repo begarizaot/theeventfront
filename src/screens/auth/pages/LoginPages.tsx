@@ -21,7 +21,7 @@ export const LoginPages = () => {
       form={form}
       onFinish={onFinish}
       layout="vertical"
-      className="grid grid-cols-1 sm:grid-cols-5 h-screen text-white!"
+      className="grid grid-cols-1 sm:grid-cols-5 min-h-screen text-white!"
       autoFocus={false}
     >
       <BgAuth />

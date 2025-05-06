@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const ContactUsPage = () => {
   return (
-    <div className="sm:h-screen relative">
+    <div className="min-h-screen relative">
       <div
         className="bg-cover absolute inset-0 opacity-30"
         style={{

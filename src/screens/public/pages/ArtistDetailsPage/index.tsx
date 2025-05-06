@@ -20,9 +20,7 @@ export const ArtistDetailsPage = () => {
       />
 
       <div
-        className={`grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 pt-16 w-full mx-auto max-w-[80rem] px-4 sm:px-6 gap-3 pb-6 ${
-          lengthArtist < 8 ? "sm:h-screen" : ""
-        }`}
+        className={`grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 pt-16 w-full mx-auto max-w-[80rem] px-4 sm:px-6 gap-3 pb-6 min-h-screen`}
       >
         <div className="col-span-1">
           <div className="bg-white rounded-sm shadow-md">

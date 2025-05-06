@@ -51,14 +51,14 @@ export const SuccessOrderModl = ({
           and one of our team members will make sure to quickly respond.
         </p>
 
-        <div className="text-center mt-4">
+        {/* <div className="text-center mt-4">
           <Button
             className="w-full sm:w-38 lg:w-50 rounded-3xl! uppercase btnStyle"
             onClick={onClose}
           >
             <span className="font-bold text-xs">Download Tickets</span>
           </Button>
-        </div>
+        </div> */}
       </div>
     </Modal>
   );

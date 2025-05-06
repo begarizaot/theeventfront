@@ -16,7 +16,7 @@ export const ProfilePage = () => {
           backgroundImage: `linear-gradient(180deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(${bgImage})`,
         }}
       ></div>
-      <div className="pt-16 lg:pt-12 w-full mx-auto max-w-[80rem] lg:h-screen z-10 relative pb-10">
+      <div className="pt-16 lg:pt-12 w-full mx-auto max-w-[80rem] min-h-screen z-10 relative pb-10">
         {/* infouser */}
         <div className="flex justify-between items-center gap-2 px-4 sm:px-8">
           {/* img,name */}

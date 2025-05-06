@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { Form } from "antd";
+import { Form, message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 import { dataListRefundable } from "../../../../data/listRefundable";
 
@@ -7,25 +8,41 @@ import { EventData } from "../../../../interfaces/EventsInterface";
 import { ServiceFeeData } from "../../../../interfaces/ServiceFeeInterface";
 
 import { CardContext } from "../../../../context";
-import { getLocalStorage } from "../../../../hooks";
+import { getLocalStorage, useParseNumbers } from "../../../../hooks";
 
 import { useStripeComplete } from "./useStripeComplete";
 
 import {
+  getSendMail,
   getServiceFee,
   getTicketEvents,
+  postCreateOrder,
+  postCreatePayment,
   postEventsDiscountCode,
 } from "../../../../store/thunks";
 
 export const useBookTickets = () => {
-  const { onShowSuccess } = useContext(CardContext);
-  const { paymentCard } = useStripeComplete();
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const navigate = useNavigate();
+
+  const { onShowSuccess, onValueOrder } = useContext(CardContext);
+  const {
+    // payment
+    paymentRequest,
+    abortPayment,
+    paymentStripe,
+    // cardElement,
+    paymentCard,
+    confirmCardPayment,
+  } = useStripeComplete();
 
   const [userForm] = Form.useForm();
 
   const [isLoading, setIsLoading] = useState({
     seats: true,
     values: true,
+    complete: false,
   });
   const [isError, setIsError] = useState({
     discountCode: "",
@@ -53,12 +70,17 @@ export const useBookTickets = () => {
     checkoutInit == 2 && fechServiceFee();
     if (checkoutInit == 1) {
       setIsError({ ...isError, discountCode: "" });
+      eventDetail?.url_map && onRemoveSelected();
     }
   }, [checkoutInit]);
 
   useEffect(() => {
     onValuesTotal(serviceFee);
   }, [serviceFee, refundable, discountCode]);
+
+  useEffect(() => {
+    values?.total && checkoutInit == 3 && onPaymentStripe();
+  }, [values]);
 
   const fechEventDetail = () => {
     const event = getLocalStorage("event");
@@ -98,6 +120,8 @@ export const useBookTickets = () => {
       Number(values?.subTotal ?? 0) <= discountCode
         ? setDiscountCode(0)
         : setDiscountCode(discountCode);
+
+      setUserData({ ...userData, discountCode: code });
     } catch (error: any) {
       setDiscountCode(0);
       setIsError({ ...isError, discountCode: error });
@@ -106,11 +130,30 @@ export const useBookTickets = () => {
 
   const fechCompletePurchase = async ({ paymentId, type }: any) => {
     try {
-      console.log(userData);
-      console.log({ paymentId, type });
-      console.log(values);
-      console.log(listSeats);
-    } catch (error) {}
+      setIsLoading({ ...isLoading, complete: true });
+      const data = {
+        eventId: eventDetail?.id_event,
+        tickets: listSeats.filter((item) => item.select > 0),
+        userData,
+        values: useParseNumbers(values),
+        paymentId,
+        type,
+      };
+      const resPayment = await postCreatePayment(data);
+      await confirmCardPayment(resPayment?.client_secret || "");
+      const order = await postCreateOrder({ ...data, payment: resPayment });
+      getSendMail(order);
+      onValueOrder(order);
+      onShowSuccess();
+      navigate(`/event/${eventDetail?.id_event}`, { replace: true });
+    } catch (error: any) {
+      setIsLoading({ ...isLoading, complete: false });
+      abortPayment();
+      messageApi.open({
+        type: "error",
+        content: error,
+      });
+    }
   };
 
   // checkouts
@@ -118,15 +161,30 @@ export const useBookTickets = () => {
     setCheckoutInit(value);
   };
 
+  const onPaymentStripe = async () => {
+    const paymentId = await paymentStripe(Number(values.total));
+    fechCompletePurchase({ paymentId, type: "stripe" });
+  };
+
   const onCompletePurchase = async () => {
     setIsError({ ...isError, card: "" });
     try {
       const paymentId = await paymentCard();
       fechCompletePurchase({ paymentId, type: "card" });
-      // onShowSuccess();
     } catch (error: any) {
       setIsError({ ...isError, card: error });
     }
+  };
+
+  const onRemoveSelected = () => {
+    const newList = listSeats.map((item) => {
+      return {
+        ...item,
+        select: 0,
+        seatId: [],
+      };
+    });
+    setListSeats(newList);
   };
 
   // actions
@@ -183,8 +241,38 @@ export const useBookTickets = () => {
   };
 
   const onValuesChange = (values: any) => {
-    setUserData(values);
+    setUserData({ ...userData, ...values });
     setCheckoutInit(3);
+  };
+
+  const onSelectMap = (val: any) => {
+    const newList = listSeats.map((item: any) => {
+      if (item.order == val.category.key) {
+        return {
+          ...item,
+          select: item.select
+            ? item.select + (val.numSelected || 1)
+            : val.numSelected || 1,
+          seatId: [...(item.seatId || ""), val.seatId],
+        };
+      }
+      return item;
+    });
+    setListSeats(newList);
+  };
+
+  const onRmSelectMap = (val: any) => {
+    const newList = listSeats.map((item: any) => {
+      if (item.order == val.category.key) {
+        return {
+          ...item,
+          select: item.select ? item.select - 1 : 0,
+          seatId: item.seatId?.filter((e: any) => e != val.seatId),
+        };
+      }
+      return item;
+    });
+    setListSeats(newList);
   };
 
   return {
@@ -195,12 +283,16 @@ export const useBookTickets = () => {
     isLoading,
     eventDetail,
     checkoutInit,
+    contextHolder,
     listRefundable,
+    paymentRequest,
     eventsDiscountCode,
     onCompletePurchase,
     onValueChangeUser,
     onCheckoutInit,
     onValuesChange,
     onSelectSeats,
+    onRmSelectMap,
+    onSelectMap,
   };
 };

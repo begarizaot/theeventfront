@@ -5,3 +5,5 @@ export * from "./ArtistThunks";
 export * from "./TicketsEventsThunks";
 export * from "./ServiceFeeThunks";
 export * from "./DiscountCodeThunks";
+export * from "./OrderThunks";
+export * from "./UsersThunks";

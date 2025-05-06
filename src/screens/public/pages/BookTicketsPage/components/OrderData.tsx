@@ -148,7 +148,7 @@ export const OrderDataComp = ({
         )}
       </div>
 
-      <div className=" mt-4 lg:mt-auto">
+      <div className=" mt-4">
         {checkoutInit == 1 && (
           <Button
             className="w-full rounded-3xl! uppercase btnStyle disabled:bg-white/70! disabled:border-none! disabled:text-black!"

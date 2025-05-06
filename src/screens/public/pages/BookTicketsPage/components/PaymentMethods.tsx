@@ -7,20 +7,46 @@ import {
 import { Button } from "antd";
 
 interface PaymentMethodsCompProps {
+  paymentRequest: any;
   error: any;
   onProceedToPayment?: () => void;
 }
 
 export const PaymentMethodsComp = ({
   error,
+  paymentRequest,
   onProceedToPayment,
 }: PaymentMethodsCompProps) => {
   return (
     <div className="bgCard p-3 rounded-xl h-full overflow-auto flex flex-col">
       <h1 className="text-xl font-bold">
         Payment Methods
-        {error?.card && <span className="ml-1 text-xs text-red-500">{error?.card}</span>}
+        {error?.card && (
+          <span className="ml-1 text-xs text-red-500">{error?.card}</span>
+        )}
       </h1>
+
+      {paymentRequest && (
+        <div className="grid grid-cols-2 mt-2 gap-3">
+          <div className="col-span-2">
+            <h1 className="text-sm font-bold">Payment Request Button</h1>
+          </div>
+
+          <div className="col-span-2">
+            <PaymentRequestButtonElement
+              options={{
+                paymentRequest,
+                style: {
+                  paymentRequestButton: {
+                    theme: "light",
+                    type: "buy",
+                  },
+                },
+              }}
+            />
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 mt-2 gap-3">
         <div className="col-span-2">

@@ -21,7 +21,7 @@ export const RegisterPage = () => {
       form={form}
       onFinish={onFinish}
       layout="vertical"
-      className="grid grid-cols-1 sm:grid-cols-5 h-screen text-white!"
+      className="grid grid-cols-1 sm:grid-cols-5 min-h-screen text-white!"
     >
       <BgAuth />
       <div

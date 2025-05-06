@@ -49,14 +49,14 @@ export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
               <h2 className="text-2xl bebasNeue">Contact Organizers</h2>
               <div className="flex gap-2">
                 <Link
-                  to={`tel:${dataEvent?.organizer?.phone}`}
+                  to={`tel:${dataEvent?.users_id?.country_id?.code}${dataEvent?.users_id?.phoneNumber}`}
                   className="bg-white px-2 py-[3px] rounded-full flex items-center"
                 >
                   <TextPrimary
                     label={
                       <>
                         <span className="pi pi-phone text-[10px]"></span>
-                        {dataEvent?.organizer?.phone}
+                        {dataEvent?.users_id?.country_id?.code} {dataEvent?.users_id?.phoneNumber}
                       </>
                     }
                     className="text-xs gap-2 flex items-center"
@@ -64,14 +64,14 @@ export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
                 </Link>
 
                 <Link
-                  to={`mailto:${dataEvent?.organizer?.email}`}
+                  to={`mailto:${dataEvent?.users_id?.email}`}
                   className="bg-white px-2 py-[3px] rounded-full flex items-center"
                 >
                   <TextPrimary
                     label={
                       <>
                         <span className="pi pi-envelope text-[10px]"></span>
-                        {dataEvent?.organizer?.email}
+                        {dataEvent?.users_id?.email}
                       </>
                     }
                     className="text-xs gap-2 flex items-center"
