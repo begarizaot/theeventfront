@@ -1,5 +1,6 @@
-import { Button } from "antd";
+import { Button, theme } from "antd";
 import { useGoingLabel, useMoment, usePriceRangeText } from "../hooks";
+const { useToken } = theme;
 
 interface CardEventComProps {
   url_image: string;
@@ -7,6 +8,8 @@ interface CardEventComProps {
   start_date: string;
   end_date?: string;
   following: any;
+  organizer?: any;
+  isActive?: any;
   location: string;
   restriction: string;
   price: any[];
@@ -31,6 +34,8 @@ export const CardEventCom = ({
   url_image,
   name,
   following,
+  organizer,
+  isActive,
   start_date,
   end_date,
   location,
@@ -49,94 +54,111 @@ export const CardEventCom = ({
   formatDate = "dddd, Do MMMM",
   onClick,
 }: CardEventComProps & CardEventComElemProps) => {
-  
+  const { token } = useToken();
   return (
-    <div
-      className={`group 
+    <div className="relative">
+      {isActive && (
+        <div
+          className="absolute right-0 z-10 px-3 rotate-40 top-6 rounded-xs"
+          style={{ backgroundColor: token.colorPrimary }}
+        >
+          Inactive
+        </div>
+      )}
+      <div
+        className={`group 
       h-[400px] sm:h-[500px] 
       bg-cover rounded-2xl shadow-2xl text-white px-4 py-5 relative 
       cursor-pointer
       hover:shadow-[0px_0px_7.5px_0px_#25b7ec] ${classNameContainer}`}
-      style={{
-        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),url(${url_image})`,
-      }}
-    >
-      <div className="flex items-center justify-between">
-        {following && (
-          <p
-            className="bg-white/20 px-3 py-1 rounded-4xl 
-        text-sm sm:text-base"
-          >
-            {useGoingLabel(following ?? 0)}
-          </p>
-        )}
-
-        {!hiddenResponsive && (
-          <div className="flex items-center gap-2">
-            <span className="pi pi-id-card text-xl"></span>
-            <p className="font-bold">{restriction}</p>
-          </div>
-        )}
-      </div>
-
-      <div
-        className={`absolute bottom-5 left-0 px-4 grid gap-2 ${
-          !showBtn
-            ? " lg:h-[160px] lg:group-hover:h-[196px] transition-all duration-300"
-            : ""
-        }`}
+        style={{
+          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),url(${url_image})`,
+        }}
       >
-        <div className={`flex flex-col ${classTitleContainer}`}>
-          <h1
-            className={`font-medium 
+        <div className="flex items-center justify-between">
+          {!organizer && following && (
+            <p
+              className="bg-white/20 px-3 py-1 rounded-4xl 
+        text-sm sm:text-base"
+            >
+              {useGoingLabel(following ?? 0)}
+            </p>
+          )}
+          {organizer && (
+            <p className="bg-white/20 px-3 py-1 rounded-4xl text-sm sm:text-base">
+              {organizer}
+            </p>
+          )}
+
+          {!hiddenResponsive && (
+            <div className="flex items-center gap-2">
+              <span className="pi pi-id-card text-xl"></span>
+              <p className="font-bold">{restriction}</p>
+            </div>
+          )}
+        </div>
+
+        <div
+          className={`absolute bottom-5 left-0 px-4 grid gap-2 ${
+            !showBtn
+              ? " lg:h-[160px] lg:group-hover:h-[196px] transition-all duration-300"
+              : ""
+          }`}
+        >
+          <div className={`flex flex-col ${classTitleContainer}`}>
+            <h1
+              className={`font-medium 
           text-3xl sm:text-4xl 
           uppercase bebasNeue line-clamp-2 overflow-hidden text-ellipsis ${classTitle}`}
-          >
-            {name}
-          </h1>
-          <p className={`text-base ${classDate}`}>
-            {useMoment(start_date).format(formatDate)}
-          </p>
-        </div>
-        {!hiddenLocation && !hiddenHour && (
-          <div className="flex items-center gap-2 sm:text-sm">
-            {!hiddenLocation && (
-              <div className="flex items-center gap-2">
-                <span className="pi pi-map-marker"></span>
-                <p>{location}</p>
-              </div>
-            )}
-
-            {!hiddenHour && (
-              <p>{`${useMoment(start_date).format("HH:mm a")} - ${useMoment(
-                end_date
-              ).format("HH:mm a")}`}</p>
-            )}
-          </div>
-        )}
-
-        {!hiddenBtnPrice && (
-          <div
-            className={`${
-              !showBtn
-                ? "lg:opacity-0 lg:max-h-0 mt-3 group-hover:opacity-100 group-hover:max-h-32"
-                : ""
-            } overflow-hidden grid grid-cols-2 gap-2 transition-all duration-300 `}
-          >
-            <Button
-              className="w-full rounded-3xl! uppercase btnStyle btnbord"
-              onClick={onClick}
             >
-              <span className="font-bold text-xs">Book Now!</span>
-            </Button>
-
-            {!hiddenPrice && (
-              <div className="text-center">
-                <p className="font-bold text-3xl">{usePriceRangeText(price)}</p>
-              </div>
-            )}
+              {name}
+            </h1>
+            <p className={`text-base ${classDate}`}>
+              {useMoment(start_date).format(formatDate)}
+            </p>
           </div>
-        )}
+          {!hiddenLocation && !hiddenHour && (
+            <div className="flex items-center gap-2 sm:text-sm">
+              {!hiddenLocation && (
+                <div className="flex items-center gap-2">
+                  <span className="pi pi-map-marker"></span>
+                  <p>{location}</p>
+                </div>
+              )}
+
+              {!hiddenHour && (
+                <p>{`${useMoment(start_date).format("HH:mm a")} - ${useMoment(
+                  end_date
+                ).format("HH:mm a")}`}</p>
+              )}
+            </div>
+          )}
+
+          {!hiddenBtnPrice && (
+            <div
+              className={`${
+                !showBtn
+                  ? "lg:opacity-0 lg:max-h-0 mt-3 group-hover:opacity-100 group-hover:max-h-32"
+                  : ""
+              } overflow-hidden grid grid-cols-2 gap-2 transition-all duration-300 `}
+            >
+              <Button
+                className="w-full rounded-3xl! uppercase btnStyle btnbord"
+                onClick={onClick}
+              >
+                <span className="font-bold text-xs">Book Now!</span>
+              </Button>
+
+              {!hiddenPrice && (
+                <div className="text-center">
+                  <p className="font-bold text-3xl">
+                    {usePriceRangeText(price)}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

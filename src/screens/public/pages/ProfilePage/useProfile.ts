@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react";
-import { dataListEvents } from "../../../../data/listEvents";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../../../context";
 
 export const useProfile = () => {
+  const { userData } = useContext(UserContext);
+
   const [navProfile, setNavProfile] = useState<any[]>([]);
   const [navActive, setNavActive] = useState(1);
 
-  const [listEvents, setlistEvents] = useState<any>([]);
-
   useEffect(() => {
     fetchProfile();
-    fetchListEvents();
   }, []);
 
   const fetchProfile = async () => {
     setNavProfile([
       { id: 1, name: "my events", active: true },
-      { id: 2, name: "about me", active: false },
-      { id: 3, name: "contact info", active: false },
+      { id: 2, name: "My Tickes", active: false },
+      { id: 3, name: "about me", active: false },
+      { id: 4, name: "contact info", active: false },
     ]);
-  };
-
-  const fetchListEvents = async () => {
-    setlistEvents([...dataListEvents].slice(0, 2));
   };
 
   const handleActive = (id: number) => {
@@ -32,5 +28,10 @@ export const useProfile = () => {
     setNavActive(id);
   };
 
-  return { navProfile, navActive, listEvents, handleActive };
+  return {
+    userData,
+    navProfile,
+    navActive,
+    handleActive,
+  };
 };

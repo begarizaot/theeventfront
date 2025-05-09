@@ -1,4 +1,10 @@
+import { AppDispatch } from "..";
 import { theEventApi } from "../../lib";
+import {
+  myOrdersFailure,
+  myOrdersStart,
+  myOrdersSuccess,
+} from "../slices/OrdersSlices";
 
 interface paymentRes {
   data: DataRes;
@@ -28,6 +34,22 @@ export const getSendMail = (idOrder: any) => {
       reject(`Failed to fetch events`);
     }
   });
+};
+
+export const getMyOrders = () => {
+  return async (dispatch: AppDispatch) => {
+    dispatch(myOrdersStart());
+    try {
+      const { data } = await theEventApi.get<any>(`order/getMyOrders`);
+
+      if (!data.status)
+        return dispatch(myOrdersFailure("Error al cargar los datos"));
+
+      dispatch(myOrdersSuccess(data.data));
+    } catch (error) {
+      dispatch(myOrdersFailure("Error al cargar los datos"));
+    }
+  };
 };
 
 export const postCreatePayment = (dataReq: any) => {

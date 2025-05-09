@@ -1,12 +1,17 @@
 import "./styles.scss";
-import { Avatar, Button } from "antd";
+import { Avatar } from "antd";
 import { useProfile } from "./useProfile";
 
 import bgImage from "../../../../assets/profilebg.jpeg";
-import { MyEventsComp } from "./components";
+import { MyEventsComp, MyTicketsComp } from "./components";
 
 export const ProfilePage = () => {
-  const { navProfile, navActive, listEvents, handleActive } = useProfile();
+  const {
+    userData,
+    navProfile,
+    navActive,
+    handleActive,
+  } = useProfile();
 
   return (
     <>
@@ -27,24 +32,22 @@ export const ProfilePage = () => {
                 icon={<span className="pi pi-user"></span>}
                 className="bg-white! text-black! border-2! border-red-500!"
               />
-              <span className="pi pi-camera bgPrimary p-1 absolute bottom-0 text-xs right-0 rounded-full cursor-pointer"></span>
+              {/* <span className="pi pi-camera bgPrimary p-1 absolute bottom-0 text-xs right-0 rounded-full cursor-pointer"></span> */}
             </div>
 
             <div className="grid">
-              <h1 className="bebasNeue text-3xl">David Jones</h1>
-              <p className="text-xs">
-                <span className="pi pi-map-marker mr-1"></span>7887, Old
-                Greystone Drive Lindenhurst, New York
-              </p>
+              <h1 className="bebasNeue text-3xl">
+                {userData.firstName} {userData.lastName}
+              </h1>
             </div>
           </div>
           {/* btn */}
-          <div>
+          {/* <div>
             <Button className="w-full rounded-3xl! uppercase btnStyle">
               <span className="text-xs pi pi-pen-to-square"></span>
               <span className="font-bold text-xs">Edit</span>
             </Button>
-          </div>
+          </div> */}
         </div>
         {/* data */}
         <div className="grid grid-cols-1 lg:grid-cols-4 mt-8">
@@ -64,7 +67,8 @@ export const ProfilePage = () => {
             </div>
           </div>
           <div className="col-span-3 px-4 lg:pl-0 mt-4 lg:mt-0">
-            {navActive == 1 && <MyEventsComp listEvents={listEvents} />}
+            {navActive == 1 && <MyEventsComp />}
+            {navActive == 2 && <MyTicketsComp />}
           </div>
         </div>
       </div>

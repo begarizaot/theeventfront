@@ -1,7 +1,17 @@
 import { AppDispatch } from "..";
 import { theEventApi } from "../../lib";
 import { EventRes } from "../../interfaces/EventsInterface";
-import { eventHomeFailure, eventHomeStart, eventHomeSuccess } from "../slices";
+import {
+  eventHomeFailure,
+  eventHomeStart,
+  eventHomeSuccess,
+  myEventFailure,
+  myEventStart,
+  myEventSuccess,
+  sharedEventFailure,
+  sharedEventStart,
+  sharedEventSuccess,
+} from "../slices";
 
 export const getEventHome = () => {
   return async (dispatch: AppDispatch) => {
@@ -15,6 +25,38 @@ export const getEventHome = () => {
       dispatch(eventHomeSuccess(data.data));
     } catch (error) {
       dispatch(eventHomeFailure("Error al cargar los datos"));
+    }
+  };
+};
+
+export const getMyEvent = () => {
+  return async (dispatch: AppDispatch) => {
+    dispatch(myEventStart());
+    try {
+      const { data } = await theEventApi.get<EventRes>(`event/getMyEvents`);
+
+      if (!data.status)
+        return dispatch(myEventFailure("Error al cargar los datos"));
+
+      dispatch(myEventSuccess(data.data));
+    } catch (error) {
+      dispatch(myEventFailure("Error al cargar los datos"));
+    }
+  };
+};
+
+export const getSharedEvents = () => {
+  return async (dispatch: AppDispatch) => {
+    dispatch(sharedEventStart());
+    try {
+      const { data } = await theEventApi.get<EventRes>(`event/getSharedEvents`);
+
+      if (!data.status)
+        return dispatch(sharedEventFailure("Error al cargar los datos"));
+
+      dispatch(sharedEventSuccess(data.data));
+    } catch (error) {
+      dispatch(sharedEventFailure("Error al cargar los datos"));
     }
   };
 };

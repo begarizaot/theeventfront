@@ -6,3 +6,4 @@ export * from "./useMoment";
 export * from "./usePriceRangeText";
 export * from "./useLocalStorage";
 export * from "./useParseNumbers";
+export * from "./useCapitalize";

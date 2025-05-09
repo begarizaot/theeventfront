@@ -63,7 +63,9 @@ export const HeaderComp = () => {
                 className="bg-white! text-black!"
                 size="small"
               />
-              <h1 className="font-bold uppercase text-xs">David Jones</h1>
+              <h1 className="font-bold uppercase text-xs">
+                {userData.firstName} {userData.lastName}
+              </h1>
             </Link>
           )}
         </div>

@@ -4,6 +4,9 @@ import {
   eventHomeSlices,
   globalSlice,
   homeSlice,
+  myEventSlices,
+  myOrdersSlices,
+  sharedEventSlices,
 } from "./slices";
 
 const store = configureStore({
@@ -11,7 +14,10 @@ const store = configureStore({
     global: globalSlice.reducer,
     home: homeSlice.reducer,
     eventHome: eventHomeSlices.reducer,
+    myEvent: myEventSlices.reducer,
+    sharedEvent: sharedEventSlices.reducer,
     artist: artistSlices.reducer,
+    myOrders: myOrdersSlices.reducer,
   },
 });
 
