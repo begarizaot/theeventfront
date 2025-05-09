@@ -1,18 +1,41 @@
 import "../scss/general.scss";
-import { useState } from "react";
-import { Button, DatePicker, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Button, Form, Input, Select } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 
-import { SegmentedCom, TextPrimary } from "../../../components";
-import { BgAuth, BtnAuth } from "../components";
+import { BgAuth } from "../components";
+import { AuthContext } from "../../../context";
+import { TextPrimary } from "../../../components";
+import { getListCountries, postRegister } from "../../../store/thunks";
 
 export const RegisterPage = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
 
-  const [passwordShow, setPasswordShow] = useState(false);
+  const { onLoading, onError, onValueInfo } = useContext(AuthContext);
 
-  const onFinish = (values: any) => {
-    console.log(values);
+  const [listCoutries, setListCoutries] = useState([]);
+
+  useEffect(() => {
+    listCountries();
+  }, []);
+
+  const listCountries = async () => {
+    const countries = await getListCountries();
+    setListCoutries(countries);
+  };
+
+  const onFinish = async (values: any) => {
+    onLoading(true);
+    try {
+      const res = await postRegister(values);
+      await onValueInfo(res);
+      onLoading(false);
+      navigate(`/auth/otp`);
+    } catch (error) {
+      onError(error as string);
+      onLoading(false);
+    }
   };
 
   return (
@@ -33,25 +56,14 @@ export const RegisterPage = () => {
       >
         <div className="grid grid-cols-1 w-full">
           <h1 className="font-bold text-2xl sm:text-3xl">Create an account</h1>
-          <p className="text-xs sm:mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac
-            lectus nec enim tempor suscipit.
-          </p>
-          <div className="mt-4">
-            <p className="mb-1">Select user type</p>
-            <SegmentedCom
-              options={["Event Goers", "Organizers"]}
-              onChange={(e) => console.log(e)}
-            />
-          </div>
           <div className="mt-4 sm:mt-6 mb-6 sm:mb-8">
             <p className="text-sm font-black">Enter details</p>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="col-span-1">
                 <Form.Item
                   className="m-0!"
-                  name="fullName"
-                  label={<span className="text-white">Full Name</span>}
+                  name="firstName"
+                  label={<span className="text-white">First Name</span>}
                   rules={[
                     {
                       required: true,
@@ -59,7 +71,7 @@ export const RegisterPage = () => {
                   ]}
                 >
                   <Input
-                    placeholder="Full Name"
+                    placeholder="First Name"
                     className="rounded-full! bg-transparent! border-white! text-white!"
                     classNames={{
                       input: "placeholder-white/20! py-[6px]!",
@@ -70,6 +82,78 @@ export const RegisterPage = () => {
                 </Form.Item>
               </div>
               <div className="col-span-1">
+                <Form.Item
+                  className="m-0!"
+                  name="lastName"
+                  label={<span className="text-white">Last Name</span>}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Last Name"
+                    className="rounded-full! bg-transparent! border-white! text-white!"
+                    classNames={{
+                      input: "placeholder-white/20! py-[6px]!",
+                    }}
+                    inputMode="text"
+                    autoComplete="off"
+                  />
+                </Form.Item>
+              </div>
+              <div className="col-span-2">
+                <div className="grid gap-2">
+                  <span className="text-white">
+                    <span className="text-red-400">*</span> Phone
+                  </span>
+                  <div className="col-span-1 grid grid-cols-3 gap-2">
+                    <Form.Item
+                      className="m-0! col-span-1"
+                      name="country"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please select your type phone",
+                        },
+                      ]}
+                    >
+                      <Select
+                        showSearch
+                        placeholder="Select Query"
+                        className="customSelect col-span-1"
+                        filterOption={(input, option: any) =>
+                          (option?.label ?? "")
+                            .toLowerCase()
+                            .includes(input.toLowerCase())
+                        }
+                        options={listCoutries}
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      className="m-0! col-span-2"
+                      name="phone"
+                      rules={[
+                        {
+                          required: true,
+                        },
+                      ]}
+                    >
+                      <Input
+                        placeholder="Phone Number"
+                        className="rounded-full! bg-transparent! border-white! text-white! col-span-2"
+                        classNames={{
+                          input: "placeholder-white/20! py-[4px]!",
+                        }}
+                        inputMode="numeric"
+                        autoComplete="off"
+                      />
+                    </Form.Item>
+                  </div>
+                </div>
+              </div>
+              <div className="col-span-2">
                 <Form.Item
                   className="m-0!"
                   name="email"
@@ -95,102 +179,6 @@ export const RegisterPage = () => {
                   />
                 </Form.Item>
               </div>
-              <div className="col-span-1">
-                <Form.Item
-                  className="m-0!"
-                  name="phoneNumber"
-                  label={<span className="text-white">Phone Number</span>}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="Enter Phone Number"
-                    className="rounded-full! bg-transparent! border-white! text-white!"
-                    classNames={{
-                      input: "placeholder-white/20! py-[6px]!",
-                    }}
-                    inputMode="text"
-                    autoComplete="off"
-                  />
-                </Form.Item>
-              </div>
-              <div className="col-span-1">
-                <Form.Item
-                  className="m-0!"
-                  name="password"
-                  label={<span className="text-white">Password</span>}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="**********"
-                    className="rounded-full! bg-transparent! border-white! text-white!"
-                    classNames={{
-                      input: "placeholder-white/20! py-[1.5px]!",
-                    }}
-                    suffix={
-                      <span
-                        className={`pi pi-${
-                          !passwordShow ? "eye" : "eye-slash"
-                        }`}
-                        onClick={() => setPasswordShow(!passwordShow)}
-                      ></span>
-                    }
-                    type={passwordShow ? "text" : "password"}
-                    autoComplete="off"
-                  />
-                </Form.Item>
-              </div>
-              <div className="col-span-1">
-                <Form.Item
-                  className="m-0!"
-                  name="password"
-                  label={<span className="text-white">Password</span>}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="**********"
-                    className="rounded-full! bg-transparent! border-white! text-white!"
-                    classNames={{
-                      input: "placeholder-white/20! py-[1.5px]!",
-                    }}
-                    suffix={
-                      <span
-                        className={`pi pi-${
-                          !passwordShow ? "eye" : "eye-slash"
-                        }`}
-                        onClick={() => setPasswordShow(!passwordShow)}
-                      ></span>
-                    }
-                    type={passwordShow ? "text" : "password"}
-                    autoComplete="off"
-                  />
-                </Form.Item>
-              </div>
-              <div className="col-span-1">
-                <Form.Item
-                  className="m-0!"
-                  name="dateOfBirth"
-                  label={<span className="text-white">Date of Birth</span>}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <DatePicker className="rounded-full! bg-transparent! w-full py-[5px]! border-white! hover:border-white! focus-within:border-white!" />
-                </Form.Item>
-              </div>
             </div>
           </div>
 
@@ -208,7 +196,7 @@ export const RegisterPage = () => {
             </Link>
           </p>
 
-          <BtnAuth />
+          {/* <BtnAuth /> */}
         </div>
       </div>
     </Form>

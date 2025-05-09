@@ -3,7 +3,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
 import { AppRouter } from "./routers";
-import { CardProvider, GlobalProvider } from "./provider";
+import { UserProvider, CardProvider, GlobalProvider } from "./provider";
 
 import store from "./store";
 
@@ -13,11 +13,13 @@ function App() {
   return (
     <Provider store={store}>
       <GlobalProvider>
-        <CardProvider>
-          <Elements stripe={stripePromise}>
-            <AppRouter />
-          </Elements>
-        </CardProvider>
+        <UserProvider>
+          <CardProvider>
+            <Elements stripe={stripePromise}>
+              <AppRouter />
+            </Elements>
+          </CardProvider>
+        </UserProvider>
       </GlobalProvider>
     </Provider>
   );

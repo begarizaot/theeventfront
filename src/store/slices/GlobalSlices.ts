@@ -14,6 +14,7 @@ export const globalSlice = createSlice({
     globalStart(state) {
       state.loading = true;
       state.error = "";
+      state.globalDate = null;
     },
     globalSuccess(state, action: PayloadAction<GlobalData>) {
       state.globalDate = action.payload;

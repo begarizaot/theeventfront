@@ -15,6 +15,7 @@ export const artistSlices = createSlice({
     artistStart(state) {
       state.loading = true;
       state.error = "";
+      state.artistDate = null;
     },
     artistSuccess(state, action: PayloadAction<ArtistData[]>) {
       state.artistDate = action.payload;

@@ -1,15 +1,18 @@
 import { Avatar } from "antd";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { theme } from "antd";
 const { useToken } = theme;
 
 import { SearchComp } from "../";
-import { LogoNavCom } from "../../../../components";
 import { useHeader } from "./useHeader";
+import { UserContext } from "../../../../context";
+import { LogoNavCom } from "../../../../components";
 
 export const HeaderComp = () => {
   const { header } = useHeader();
   const { token } = useToken();
+  const { userData } = useContext(UserContext);
 
   return (
     <div className="absolute w-full z-20">
@@ -42,18 +45,27 @@ export const HeaderComp = () => {
               </Link>
             ))}
           </div>
-          <Link
-            to={"/profile"}
-            className="flex items-center gap-1  px-2 py-1 rounded-full cursor-pointer"
-            style={{backgroundColor: token.colorPrimary}}
-          >
-            <Avatar
-              icon={<span className="pi pi-user"></span>}
-              className="bg-white! text-black!"
-              size="small"
-            />
-            <h1 className="font-bold uppercase text-xs">David Jones</h1>
-          </Link>
+          {!userData?.id && (
+            <div className="flex items-center lg:gap-5 xl:gap-8">
+              <Link to={`/auth/login`} className="text-white uppercase text-sm">
+                Login
+              </Link>
+            </div>
+          )}
+          {userData?.id && (
+            <Link
+              to={"/profile"}
+              className="flex items-center gap-1  px-2 py-1 rounded-full cursor-pointer"
+              style={{ backgroundColor: token.colorPrimary }}
+            >
+              <Avatar
+                icon={<span className="pi pi-user"></span>}
+                className="bg-white! text-black!"
+                size="small"
+              />
+              <h1 className="font-bold uppercase text-xs">David Jones</h1>
+            </Link>
+          )}
         </div>
       </div>
     </div>

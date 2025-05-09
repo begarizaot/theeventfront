@@ -18,15 +18,17 @@ export interface HomeData {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  eventCarruselItem: EventItem[];
+  locale: any;
+  eventCarruselItem: EventCarruselItem[];
+  categories: Category[];
 }
 
-export interface EventItem {
+export interface EventCarruselItem {
   id: number;
   isVisible: boolean;
   title: string;
   description: Description[];
-  btn: Btn;
+  btn: any;
 }
 
 export interface Description {
@@ -46,6 +48,20 @@ export interface Btn {
   isExternal: boolean;
   isButtonLink: boolean;
   isLogin: boolean;
+}
+
+export interface Category {
+  id: number;
+  isVisible: boolean;
+  category_id: CategoryId;
+}
+
+export interface CategoryId {
+  id: number;
+  documentId: string;
+  title: string;
+  url_image: string;
+  slug: any;
 }
 
 export interface Meta {}

@@ -10,8 +10,14 @@ import {
 } from "./components";
 
 export const HomePage = () => {
-  const { listArtists, allcategories, homeDate, eventDate, artistDate } =
-    useHome();
+  const {
+    homeDate,
+    eventDate,
+    artistDate,
+    loadingEvents,
+    loadingArtist,
+    loadingHome,
+  } = useHome();
 
   return (
     <>
@@ -28,16 +34,15 @@ export const HomePage = () => {
       )}
 
       {/* all events */}
-      <ListCategoriesComp list={allcategories} />
+      <ListCategoriesComp
+        loading={loadingHome}
+        list={(homeDate?.categories ?? []).map((inf) => inf.category_id)}
+      />
 
-      {(eventDate ?? [])?.length > 0 && <AllEventsComp list={eventDate} />}
+      <AllEventsComp loading={loadingEvents} list={eventDate} />
 
       {/* all artists */}
-      {(artistDate ?? []).length > 0 && (
-        <div className="mt-10 sm:my-12 bgArtists">
-          <AllArtistsComp list={artistDate} />
-        </div>
-      )}
+      <AllArtistsComp loading={loadingArtist} list={artistDate} />
     </>
   );
 };

@@ -64,3 +64,7 @@ body {
 .customSelect .ant-select-selector:focus {
   @apply border-white! shadow-md;
 }
+
+.ant-otp{
+  width: 100%;
+}

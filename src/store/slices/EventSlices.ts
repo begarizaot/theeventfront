@@ -16,6 +16,7 @@ export const eventHomeSlices = createSlice({
     eventHomeStart(state) {
       state.loading = true;
       state.error = "";
+      state.eventDate = null;
     },
     eventHomeSuccess(state, action: PayloadAction<EventData[]>) {
       state.eventDate = action.payload;

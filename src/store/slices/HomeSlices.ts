@@ -14,6 +14,7 @@ export const homeSlice = createSlice({
     homeStart(state) {
       state.loading = true;
       state.error = "";
+      state.homeDate = null;
     },
     homeSuccess(state, action: PayloadAction<HomeData>) {
       state.homeDate = action.payload;
