@@ -1,14 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
+import { Skeleton, theme } from "antd";
+import { useContext } from "react";
 
-import logoImage from "../../../../assets/logoWhite.png";
 import { useHeader } from "./useHeader";
+import { GlobalContext } from "../../../../context";
+
+const { useToken } = theme;
 
 interface NavAdminCompProp {
   onShowNav: () => void;
 }
 
 export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
-  const { navs } = useHeader();
+  const { token } = useToken();
+
+  const { globalDate } = useContext(GlobalContext);
+  const { adminDate, loadingAdmin } = useHeader();
 
   return (
     <div className="grid pt-5 bg-nav h-screen-m sticky top-0">
@@ -19,27 +26,42 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
             onClick={onShowNav}
           ></span>
         </div>
-        <Link to={""} className="px-4">
-          <img src={logoImage} alt="" className="w-[90%]! ml-auto" />
+        <Link to={"/"} className="px-4">
+          <img
+            src={globalDate?.url_image_logo}
+            alt=""
+            className="w-[90%]! ml-auto"
+          />
         </Link>
 
         <div className="mt-20 pl-8">
           <div className="grid gap-3">
-            {navs.map((nav) => (
-              <NavLink
-                to={nav.path}
-                key={nav.id}
-                className={({ isActive }) =>
-                  ` flex items-center gap-2 py-2 pl-2 text-sm rounded-tl-2xl rounded-bl-2xl  ${
-                    isActive ? "bg-white! text-black!" : "text-white/30!"
-                  }`
-                }
-                onClick={onShowNav}
-              >
-                <span className={`pi ${nav.icon}`} />
-                <span>{nav.name}</span>
-              </NavLink>
-            ))}
+            {loadingAdmin &&
+              [1, 2, 3, 4, 5].map((ind: any) => (
+                <div className="col-span-1 h-9!" key={ind}>
+                  <Skeleton.Node
+                    active
+                    className="bg-white/20 w-full! rounded-tl-2xl rounded-bl-2xl h-full!"
+                  />
+                </div>
+              ))}
+
+            {!loadingAdmin &&
+              (adminDate?.Nav ?? [])?.map((nav: any) => (
+                <NavLink
+                  to={String(nav.path).replace("{idEvent}", adminDate.id_event)}
+                  key={nav.id}
+                  className={({ isActive }) =>
+                    ` flex items-center gap-2 py-2 pl-2 text-sm rounded-tl-2xl rounded-bl-2xl  ${
+                      isActive ? "bg-white! text-black!" : "text-white/30!"
+                    }`
+                  }
+                  onClick={onShowNav}
+                >
+                  <span className={`pi ${nav.icon}`} />
+                  <span>{nav.name}</span>
+                </NavLink>
+              ))}
 
             <div className="border-t border-white pt-3">
               <NavLink
@@ -59,8 +81,9 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
         </div>
       </div>
       <div
-        className="flex items-center mt-auto mb-5 gap-2 pl-8 bg-red-700 py-3 cursor-pointer text-white"
+        className="flex items-center mt-auto mb-5 gap-2 pl-8 py-3 cursor-pointer text-white"
         onClick={onShowNav}
+        style={{ backgroundColor: token.colorPrimary }}
       >
         <span className="pi pi-sign-out"></span>
         <span>Logout</span>

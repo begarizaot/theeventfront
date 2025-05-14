@@ -1,3 +1,11 @@
 import { createContext } from "react";
+import { GlobalData } from "../interfaces/GlobalInterface";
 
-export const GlobalContext = createContext<any>({});
+interface GlobalContextProps {
+  globalDate: GlobalData | null;
+  loading: boolean;
+}
+export const GlobalContext = createContext<GlobalContextProps>({
+  globalDate: null,
+  loading: false,
+});

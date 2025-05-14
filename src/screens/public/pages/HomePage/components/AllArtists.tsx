@@ -108,7 +108,7 @@ export const AllArtistsComp = ({ list, loading }: AllArtistsProps) => {
               </Link>
             </>
           ))}
-        {!showAll && loading && list?.length > 0 && (
+        {!showAll && !loading && list?.length > 0 && (
           <div className="col-span-1 sm:col-span-2 lg:col-span-4">
             {ViewAllArt()}
           </div>

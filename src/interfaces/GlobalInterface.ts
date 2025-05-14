@@ -19,6 +19,7 @@ export interface GlobalData {
   footer: Footer
   metas: Metas
   colors: Color[]
+  url_image_logo: string
 }
 
 export interface Header {

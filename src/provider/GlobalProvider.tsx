@@ -27,7 +27,7 @@ export const GlobalProvider = ({ children }: CheckoutProviderProps) => {
   }, [dispatch]);
 
   return (
-    <GlobalContext.Provider value={{}}>
+    <GlobalContext.Provider value={{ globalDate, loading }}>
       <ConfigProvider
         theme={{
           algorithm:

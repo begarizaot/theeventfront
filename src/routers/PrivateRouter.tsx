@@ -1,6 +1,6 @@
-import { useContext } from "react";
+
 import { Navigate, Outlet } from "react-router-dom";
-import { UserContext } from "../context";
+import { getLocalStorage } from "../hooks";
 
 interface PrivateRouterProps {
   redirectPath?: string;
@@ -9,9 +9,9 @@ interface PrivateRouterProps {
 export const PrivateUserRouter = ({
   redirectPath = "/",
 }: PrivateRouterProps) => {
-  const { userData } = useContext(UserContext);
+  const data = getLocalStorage("userData");
   
-  if (!userData?.token) {
+  if (!data?.token) {
     return <Navigate to={redirectPath} replace />;
   }
 

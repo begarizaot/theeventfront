@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
+  adminSlices,
   artistSlices,
   eventHomeSlices,
   globalSlice,
@@ -11,6 +12,7 @@ import {
 
 const store = configureStore({
   reducer: {
+    admin: adminSlices.reducer,
     global: globalSlice.reducer,
     home: homeSlice.reducer,
     eventHome: eventHomeSlices.reducer,

@@ -1,12 +1,15 @@
-import { Avatar, Badge, Dropdown } from "antd";
-import { useHeader } from "./useHeader";
+// import { Avatar, Badge, Dropdown } from "antd";
+// import { useHeader } from "./useHeader";
+import { useContext } from "react";
+import { UserContext } from "../../../../context";
 
 interface HeaderCompProp {
   onShowNav: () => void;
 }
 
 export const HeaderComp = ({ onShowNav }: HeaderCompProp) => {
-  const { navUser } = useHeader();
+  // const { navUser } = useHeader();
+  const { userData } = useContext(UserContext);
 
   return (
     <div className="bg-nav px-4 sm:px-6 py-2 flex items-center justify-between sticky top-0 z-10">
@@ -17,12 +20,11 @@ export const HeaderComp = ({ onShowNav }: HeaderCompProp) => {
         ></span>
 
         <div className="hidden sm:block">
-          <h1 className="font-bold bebasNeue text-2xl">Good Morning, Admin</h1>
-          <p className="text-xs">Here is your daily preview</p>
+          <h1 className="font-bold bebasNeue text-2xl">Hello, {userData.firstName} {userData.lastName}</h1>
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      {/* <div className="flex items-center gap-4">
         <span className="pi pi-search bg-white p-[10px] rounded-full text-black text-sm cursor-pointer"></span>
         <span className="pi pi-bell bg-white p-[10px] rounded-full text-black text-sm cursor-pointer relative">
           <Badge status="error" className="absolute! top-[2px] right-[8px]" />
@@ -41,7 +43,7 @@ export const HeaderComp = ({ onShowNav }: HeaderCompProp) => {
             <span className="pi pi-angle-down"></span>
           </div>
         </Dropdown>
-      </div>
+      </div> */}
     </div>
   );
 };

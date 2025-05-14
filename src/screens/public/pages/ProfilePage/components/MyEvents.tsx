@@ -5,7 +5,11 @@ import { Skeleton } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../../store";
 import { getMyEvent, getSharedEvents } from "../../../../../store/thunks";
-import { useCapitalize, useMoment } from "../../../../../hooks";
+import {
+  setLocalStorage,
+  useCapitalize,
+  useMoment,
+} from "../../../../../hooks";
 
 export const MyEventsComp = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -35,6 +39,10 @@ export const MyEventsComp = () => {
     );
     setNavMyEvents(updatedNavMyEvents);
     setNavActive(id);
+  };
+
+  const onSaveMyEventShared = (data: any) => {
+    setLocalStorage("eventShared", data);
   };
 
   return (
@@ -70,6 +78,7 @@ export const MyEventsComp = () => {
                 key={event.id}
                 to={`/admin/eventDetails/${event?.id_event}`}
                 className="col-span-1"
+                onClick={() => onSaveMyEventShared(event)}
               >
                 <CardEventCom
                   {...event}
@@ -110,6 +119,7 @@ export const MyEventsComp = () => {
                       : ""
                   }
                   className="col-span-1"
+                  onClick={() => onSaveMyEventShared(event)}
                 >
                   <CardEventCom
                     {...event.event_id}

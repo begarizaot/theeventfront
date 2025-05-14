@@ -1,10 +1,15 @@
 import { Button, Image } from "antd";
 
-export const EventImageComp = () => {
+interface EventImageProps {
+  imageUrl: string;
+  isOrganizer?: boolean;
+}
+
+export const EventImageComp = ({ imageUrl, isOrganizer }: EventImageProps) => {
   return (
     <div className="bg-nav p-3 rounded-xl">
       <img
-        src="https://storage.googleapis.com/eventjetimg/events/40/event_Id_40_4ed4dc47d3.png"
+        src={imageUrl ?? ""}
         className="h-110 w-full rounded-lg sm:hidden"
         alt=""
       />
@@ -13,13 +18,15 @@ export const EventImageComp = () => {
         className="h-110! w-full! rounded-lg bg-cover bg-center hidden sm:block"
         rootClassName="w-full"
         src="error"
-        fallback="https://storage.googleapis.com/eventjetimg/events/40/event_Id_40_4ed4dc47d3.png"
+        fallback={imageUrl ?? ""}
       />
-      <div className="text-center mt-3">
-        <Button className="rounded-3xl! btnStyle font-bold! px-7!">
-          Upload File
-        </Button>
-      </div>
+      {isOrganizer && (
+        <div className="text-center mt-3">
+          <Button className="rounded-3xl! btnStyle font-bold! px-7!">
+            Upload File
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

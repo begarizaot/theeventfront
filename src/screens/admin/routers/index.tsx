@@ -1,15 +1,17 @@
 import { Route, Routes } from "react-router-dom";
-
-import { HeaderComp, NavAdminComp } from "../components";
-import { EventDetailsPage, TicketControlPage } from "../pages";
 import { Drawer } from "antd";
 import { useState } from "react";
+
+import { AdminProvider } from "../../../provider";
+import { HeaderComp, NavAdminComp } from "../components";
+import { EventDetailsPage, TicketControlPage } from "../pages";
+import { EventAnalyticsPage } from "../pages/EventAnalytics";
 
 export const AdminRouter = () => {
   const [openNav, setOpenNav] = useState(false);
 
   return (
-    <>
+    <AdminProvider>
       <Drawer
         closable={false}
         onClose={() => setOpenNav(false)}
@@ -31,9 +33,13 @@ export const AdminRouter = () => {
           <Routes>
             <Route path="/eventDetails/:id" element={<EventDetailsPage />} />
             <Route path="/ticketControl/:id" element={<TicketControlPage />} />
+            <Route
+              path="/eventAnalytics/:id"
+              element={<EventAnalyticsPage />}
+            />
           </Routes>
         </div>
       </div>
-    </>
+    </AdminProvider>
   );
 };
