@@ -1,6 +1,5 @@
 @import "./colors.css";
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
 @import "primeicons/primeicons.css";
 @import "swiper/css";
 @import "swiper/css/effect-cards";
