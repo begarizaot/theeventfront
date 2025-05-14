@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node server",
-    "build": "NODE_OPTIONS='--max-old-space-size=2048' npm run build:client && npm run build:server",
+    "build": "npm run build:client && npm run build:server",
     "start": "npm run build:client && npm run build:server && node server",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
@@ -52,6 +52,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "cross-env": "^7.0.3",
     "sass": "^1.85.1",
+    "tailwindcss": "^4.1.6",
     "typescript": "~5.7.2",
     "vite": "^6.0.1"
   }

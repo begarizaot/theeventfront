@@ -12,7 +12,7 @@ export const ListCategoriesComp = ({ list, loading }: listCategoriesProp) => {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-[80rem] px-6 mt-3 relative">
         {loading &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-            <div className="col-span-1 h-15 sm:h-17">
+            <div className="col-span-1 h-15 sm:h-17" key={i}>
               <Skeleton.Node
                 key={i}
                 active
