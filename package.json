@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node server",
-    "build": "NODE_OPTIONS='--max-old-space-size=1024' npm run build:client && npm run build:server",
+    "build": "NODE_OPTIONS='--max-old-space-size=2048' npm run build:client && npm run build:server",
     "start": "npm run build:client && npm run build:server && node server",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
