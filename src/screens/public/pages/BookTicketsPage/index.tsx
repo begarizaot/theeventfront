@@ -37,7 +37,7 @@ export const BookTicketsPage = () => {
       {contextHolder}
       <div
         className={`pt-12 w-full mx-auto max-w-[80rem] px-4 sm:px-6 ${
-          checkoutInit == 1 ? "h-screen sm:h-auto" : "min-h-screen"
+          checkoutInit == 1 ? "h-screen" : "min-h-screen"
         }`}
       >
         <div className="flex gap-4 items-center">
