@@ -24,7 +24,7 @@
     "axios": "^1.8.4",
     "chart.js": "^4.4.9",
     "colorthief": "^2.6.0",
-    "compression": "^1.7.5",
+    "compression": "^1.8.0",
     "express": "^5.0.1",
     "google-map-react": "^2.2.1",
     "lodash.debounce": "^4.0.8",
@@ -38,6 +38,7 @@
     "react-player": "^2.16.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.28.0",
+    "sirv": "^3.0.1",
     "swiper": "^11.2.6",
     "tailwindcss": "^4.1.6"
   },
