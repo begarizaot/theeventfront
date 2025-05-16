@@ -1,7 +1,17 @@
 import { Progress, theme } from "antd";
 const { useToken } = theme;
 
-export const AnalyticDashboardComp = () => {
+interface AnalyticDashboardProps {
+  active: any;
+  inActive: any;
+  porcentage: any;
+}
+
+export const AnalyticDashboardComp = ({
+  active,
+  inActive,
+  porcentage,
+}: AnalyticDashboardProps) => {
   const { token } = useToken();
 
   return (
@@ -14,17 +24,17 @@ export const AnalyticDashboardComp = () => {
         <div className="col-span-1 flex flex-col gap-1 ">
           <div className="flex items-center justify-between text-sm">
             <p>Checked In</p>
-            <p>1,100</p>
+            <p>{active ?? 0}</p>
           </div>
           <div className="flex items-center justify-between text-sm">
             <p>Didn’t Arrive</p>
-            <p>90</p>
+            <p>{inActive ?? 0}</p>
           </div>
         </div>
         <div className="col-span-1 flex justify-center items-center ">
           <Progress
             type="dashboard"
-            percent={80}
+            percent={Number(porcentage)}
             format={
               ((percent: number) => {
                 return (
@@ -40,7 +50,7 @@ export const AnalyticDashboardComp = () => {
             trailColor="#ffffff"
             strokeWidth={15}
             gapDegree={170}
-            strokeLinecap="butt" 
+            strokeLinecap="butt"
           />
         </div>
       </div>

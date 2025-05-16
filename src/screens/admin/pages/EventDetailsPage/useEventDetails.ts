@@ -1,10 +1,8 @@
-import { useContext, useEffect, useState } from "react";
-import { AdminContext } from "../../../../context";
+import { useEffect, useState } from "react";
 import { getLocalStorage, useMoment } from "../../../../hooks";
+import { getAdminEventDetail } from "../../../../store/thunks";
 
 export const useEventDetails = () => {
-  const { adminDate } = useContext(AdminContext);
-
   const [eventData, setEventData] = useState<any>({});
   const [isOrganizer, setIsOrganizer] = useState<any>(false);
 
@@ -16,17 +14,24 @@ export const useEventDetails = () => {
     onOrganizer();
   }, []);
 
-  const getEventData = () => {
+  const getEventData = async () => {
     const { event_id } = eventShared;
+    onSetEventData(event_id);
+
+    const dataEvent = await getAdminEventDetail(event_id.id_event);
+    onSetEventData(dataEvent);
+  };
+
+  const onSetEventData = (data: any) => {
     setEventData({
-      ...event_id,
-      location: event_id.event_locations_id.formatted_address,
-      vicinity: event_id.event_locations_id.vicinity,
-      startDate: useMoment(event_id.start_date).format("YYYY-MM-DD HH:mm a"),
-      ticketTypes: event_id.event_tickets_ids.filter(
+      ...data,
+      location: data.event_locations_id.formatted_address,
+      vicinity: data.event_locations_id.vicinity,
+      startDate: useMoment(data.start_date).format("YYYY-MM-DD HH:mm a"),
+      ticketTypes: data.event_tickets_ids.filter(
         (ticket: any) => !ticket.isTable
       ),
-      tableTypes: event_id.event_tickets_ids.filter(
+      tableTypes: data.event_tickets_ids.filter(
         (ticket: any) => ticket.isTable
       ),
     });

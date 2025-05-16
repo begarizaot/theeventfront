@@ -77,6 +77,38 @@ export const getEventDetail = (id_event?: any) => {
   });
 };
 
+export const getAdminEventDetail = (id_event?: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<EventRes>(
+        `event/getAdminEventDetail/${id_event}`
+      );
+
+      if (!data.status) return reject("Error al cargar los datos");
+
+      resolve(data.data);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
+export const getAdminEventAnality = (id_event?: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<EventRes>(
+        `event/getAdminEventAnality/${id_event}`
+      );
+
+      if (!data.status) return reject("Error al cargar los datos");
+
+      resolve(data.data);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
 export const getEventMeta = async (url?: any) => {
   const match = url.match(/^\/event\/(.+)/);
   if (match && match.length > 0) {

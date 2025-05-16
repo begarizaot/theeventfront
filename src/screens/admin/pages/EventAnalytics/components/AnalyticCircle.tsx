@@ -28,17 +28,25 @@ const centerTextPlugin = {
 
 ChartJS.register(centerTextPlugin);
 
-export const AnalyticCircleComp = () => {
+interface AnalyticCircleCompProps {
+  data?: any;
+}
+
+export const AnalyticCircleComp = ({ data }: AnalyticCircleCompProps) => {
   const { token } = useToken();
   const { hexToRgba } = useHexToRgba();
 
-  const data = {
-    labels: ["Red", "Blue"],
+  const dataAnality = {
+    labels: (data?.ticketsGrouped ?? [{ title: "" }]).map(
+      (item: any) => item.title ?? ""
+    ),
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19],
-        backgroundColor: [1, 2, 3, 4].map((_, i) => {
+        label: "Quantity",
+        data: (data?.ticketsGrouped ?? [{ quantity: data.totalQuantity }]).map(
+          (item: any) => item.quantity ?? ""
+        ),
+        backgroundColor: (data?.ticketsGrouped ?? [1]).map((_: any, i: any) => {
           if (i === 0) return token.colorPrimary;
           const opacity = 1 - i * 0.5;
           return hexToRgba(token.colorPrimary, opacity);
@@ -53,7 +61,7 @@ export const AnalyticCircleComp = () => {
         display: false,
       },
       centerText: {
-        text: "$100.000.00",
+        text: `$${data.totalValue ?? ""}`,
         fontSize: 25,
       },
     },
@@ -63,21 +71,22 @@ export const AnalyticCircleComp = () => {
     <div className="bg-nav p-3! rounded-xl text-white! flex flex-col gap-3">
       <div className="flex items-center gap-3">
         <span className="pi pi-chart-line text-3xl rounded-2xl"></span>
-        <p className="text-xl bebasNeue">Event Comp</p>
+        <p className="text-xl bebasNeue">{data.type ?? ""}</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 min-h-23">
         <div className="col-span-1 flex flex-col gap-1 ">
-          <div className="flex items-center justify-between text-sm">
-            <p>Number of tickets Sold</p>
-            <p>$1.00</p>
-          </div>
-          <div className="flex items-center justify-between text-sm">
-            <p>Ticket Price</p>
-            <p>$1.00</p>
-          </div>
+          {(data?.ticketsGrouped ?? []).map((item: any, ind: any) => (
+            <div
+              className="flex items-center justify-between text-sm"
+              key={ind}
+            >
+              <p>{item.title ?? ""}</p>
+              <p>${item.totalValue ?? ""}</p>
+            </div>
+          ))}
         </div>
         <div className="col-span-1 flex justify-center items-center max-h-40">
-          <Doughnut data={data} options={options} />
+          <Doughnut data={dataAnality} options={options} />
         </div>
       </div>
     </div>
