@@ -7,9 +7,9 @@ import { AppDispatch, RootState } from "../../../../../store";
 import { getMyEvent, getSharedEvents } from "../../../../../store/thunks";
 import {
   setLocalStorage,
-  useCapitalize,
   useMoment,
 } from "../../../../../hooks";
+import { FirstUpperCase } from "../../../../../helpers";
 
 export const MyEventsComp = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -19,8 +19,6 @@ export const MyEventsComp = () => {
   const { eventDate: sharedList, loading: loadingShared } = useSelector(
     (state: RootState) => state.sharedEvent
   );
-
-  const { FirstLetter } = useCapitalize();
 
   const [navMyEvents, setNavMyEvents] = useState([
     { id: 1, name: "My Events", active: true },
@@ -130,9 +128,9 @@ export const MyEventsComp = () => {
                       event?.event_id.event_locations_id?.vicinity ?? ""
                     }
                     price={event?.event_id.event_tickets_ids ?? []}
-                    organizer={`${FirstLetter(
+                    organizer={`${FirstUpperCase(
                       event?.event_id.users_id.firstName || ""
-                    )} ${FirstLetter(event?.event_id.users_id.lastName || "")}`}
+                    )} ${FirstUpperCase(event?.event_id.users_id.lastName || "")}`}
                     classNameContainer={`h-100! lg:h-80! hover:shadow-none! ${
                       isDate ? "opacity-40" : ""
                     }`}
