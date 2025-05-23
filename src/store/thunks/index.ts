@@ -8,3 +8,5 @@ export * from "./DiscountCodeThunks";
 export * from "./OrderThunks";
 export * from "./UsersThunks";
 export * from "./CountriesThunks";
+export * from "./TeamTypeRoleThunks";
+export * from "./TeamAccessThunks";

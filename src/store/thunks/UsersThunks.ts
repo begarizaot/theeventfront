@@ -12,7 +12,7 @@ export const getValidateEmail = (email: any) => {
         return;
       }
 
-      resolve(true);
+      resolve(data?.data ?? {});
     } catch (error: any) {
       reject(`Failed to fetch events`);
     }

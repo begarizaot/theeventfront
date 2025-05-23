@@ -1,7 +1,7 @@
 import { Button, Popconfirm, Spin, TableProps, Tag } from "antd";
-import { useTicketControl } from "./useTicketControl";
+import { useTeamAccess } from "./useTicketControl";
 import { TableComp } from "../../components";
-import { BanknoteX, Mail } from "lucide-react";
+import { BanknoteX } from "lucide-react";
 
 export const TicketControlPage = () => {
   const {
@@ -13,9 +13,9 @@ export const TicketControlPage = () => {
     contextHolder,
     onPageChange,
     onRefundOrder,
-    onSendMail,
+    onRefresh,
     onDebouncedSearch,
-  } = useTicketControl();
+  } = useTeamAccess();
 
   const columns: TableProps["columns"] = [
     {
@@ -42,7 +42,7 @@ export const TicketControlPage = () => {
                 ) : (
                   ""
                 )}
-                <Popconfirm
+                {/* <Popconfirm
                   title="Send mail?"
                   description="Are you sure you want to send this order?"
                   onConfirm={() => onSendMail(data.order_id)}
@@ -52,7 +52,7 @@ export const TicketControlPage = () => {
                   <Button className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2!">
                     <Mail width={18} />
                   </Button>
-                </Popconfirm>
+                </Popconfirm> */}
               </>
             )}
           </div>
@@ -145,6 +145,9 @@ export const TicketControlPage = () => {
             }}
             onSearch={(search) => {
               onDebouncedSearch(search);
+            }}
+            onRefresh={() => {
+              onRefresh();
             }}
           />
         </div>

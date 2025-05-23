@@ -1,0 +1,26 @@
+.contMenuAdmin {
+  .menuItemAdmin,
+  .ant-menu {
+    background: transparent !important;
+  }
+  .menuItemAdmin {
+    .ant-menu-submenu-title {
+      padding: 0 !important;
+      padding-left: 4px !important;
+      color: #fff !important;
+      opacity: 0.4 !important;
+    }
+    .ant-menu-item {
+      padding-left: 8px !important;
+      color: #fff !important;
+    }
+    .ant-menu-item:not(.ant-menu-item-selected):active {
+      background: transparent !important;
+      color: #fff !important;
+    }
+    .ant-menu-item-selected {
+      background: transparent !important;
+      color: black !important;
+    }
+  }
+}

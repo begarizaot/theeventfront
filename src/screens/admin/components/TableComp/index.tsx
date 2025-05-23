@@ -10,6 +10,7 @@ interface TableCompProps {
   loading?: boolean;
   onPageChange: (page: number) => void;
   onSearch?: (search: string) => void;
+  onRefresh?: () => void;
 }
 
 export const TableComp = ({
@@ -20,6 +21,7 @@ export const TableComp = ({
   loading,
   onPageChange,
   onSearch,
+  onRefresh,
 }: TableCompProps) => {
   const [page, setPage] = useState(1);
 
@@ -37,16 +39,24 @@ export const TableComp = ({
   return (
     <div className="grid grid-cols-1 containerTable">
       {/* header table */}
-      <div className="col-span-1 bg-nav px-3 py-2 rounded-tl-xl rounded-tr-xl flex items-center justify-between">
-        <div className="flex items-center gap-3 flex-1/4">
+      <div className="col-span-1 bg-nav px-3 py-2 rounded-tl-xl rounded-tr-xl grid sm:flex sm:items-center sm:justify-between gap-2 w-full">
+        <div className="flex items-center gap-3">
           <p className="text-sm sm:text-base font-bold">{title}</p>
           <p className="bg-white text-black px-2 rounded-full text-xs sm:text-sm">
             {totalData || 0}
           </p>
         </div>
 
-        <div className="flex-1/3 flex items-center justify-end gap-2">
-          <div className="bg-white rounded-full items-center pr-2 hidden sm:flex">
+        <div className="flex items-center justify-end gap-2">
+          {onRefresh && (
+            <Button
+              className="bg-white text-black px-2 rounded-full! text-xs sm:text-sm w-7! h-7! "
+              onClick={onRefresh}
+            >
+              <span className="pi pi-refresh"></span>
+            </Button>
+          )}
+          <div className="bg-white rounded-full items-center pr-2 flex">
             <Input
               placeholder="Search..."
               className="focus:shadow-none! bg-transparent! border-transparent!"
@@ -59,10 +69,6 @@ export const TableComp = ({
             />
             <span className="pi pi-search text-black/40 text-xs"></span>
           </div>
-
-          <Button className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2! sm:px-4! sm:hidden!">
-            <span className="pi pi-search text-xs"></span>
-          </Button>
         </div>
       </div>
       {/* body table */}

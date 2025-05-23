@@ -2,12 +2,11 @@ import { message } from "antd";
 import debounce from "lodash/debounce";
 
 import { useCallback, useEffect, useState } from "react";
-import {
-  getAllOrders,
-  getRefundOrder,
-  getSendMail,
-} from "../../../../store/thunks";
 import { getLocalStorage } from "../../../../hooks";
+import {
+  getListTeamAccess,
+  putUpdateTeamAccess,
+} from "../../../../store/thunks";
 
 export const useTeamAccess = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -24,7 +23,7 @@ export const useTeamAccess = () => {
   const eventShared = getLocalStorage("eventShared");
 
   useEffect(() => {
-    fechDataTickes();
+    fechDataTeamAccess();
   }, [page, search]);
 
   const onDebouncedSearch = useCallback(
@@ -34,18 +33,14 @@ export const useTeamAccess = () => {
     []
   );
 
-  const fechDataTickes = async () => {
+  const fechDataTeamAccess = async () => {
     const { event_id } = eventShared;
     setLoading(true);
     try {
-      const data = await getAllOrders(
-        event_id.id_event,
-        {
-          page,
-          size: 10,
-        },
-        search
-      );
+      const data = await getListTeamAccess(event_id.id_event, {
+        page,
+        size: 10,
+      });
       setDataTickes(data.data);
       setSizePage(data.pagination);
       setLoading(false);
@@ -60,29 +55,15 @@ export const useTeamAccess = () => {
     }
   };
 
-  const onRefundOrder = async (orderId: any) => {
+  const onUpdateActive = async (data: any) => {
     try {
-      setIsLoading(true);
+      setLoading(true);
       const { event_id } = eventShared;
-      await getRefundOrder(event_id.id_event, orderId);
-      setIsLoading(false);
-      fechDataTickes();
+      await putUpdateTeamAccess(event_id.id_event, data);
+      setLoading(false);
+      fechDataTeamAccess();
     } catch (error: any) {
-      setIsLoading(false);
-      messageApi.open({
-        type: "error",
-        content: error,
-      });
-    }
-  };
-
-  const onSendMail = async (orderId: any) => {
-    try {
-      setIsLoading(true);
-      await getSendMail(orderId);
-      setIsLoading(false);
-    } catch (error: any) {
-      setIsLoading(false);
+      setLoading(false);
       messageApi.open({
         type: "error",
         content: error,
@@ -95,7 +76,7 @@ export const useTeamAccess = () => {
   };
 
   const onRefresh = () => {
-    fechDataTickes();
+    fechDataTeamAccess();
   };
 
   return {
@@ -106,9 +87,8 @@ export const useTeamAccess = () => {
     loading,
     contextHolder,
     onPageChange,
-    onRefundOrder,
-    onSendMail,
     onRefresh,
+    onUpdateActive,
     onDebouncedSearch,
   };
 };

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { AdminProvider } from "../../../provider";
 import { HeaderComp, NavAdminComp } from "../components";
-import { EventDetailsPage, TicketControlPage } from "../pages";
+import { EventDetailsPage, TeamAccessPage, TicketControlPage } from "../pages";
 import { EventAnalyticsPage } from "../pages/EventAnalytics";
 
 export const AdminRouter = () => {
@@ -37,6 +37,7 @@ export const AdminRouter = () => {
               path="/eventAnalytics/:id"
               element={<EventAnalyticsPage />}
             />
+            <Route path="/teamAccess/:id" element={<TeamAccessPage />} />
           </Routes>
         </div>
       </div>
