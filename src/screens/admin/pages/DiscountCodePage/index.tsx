@@ -1,12 +1,12 @@
 import { Button, TableProps, Tag } from "antd";
-import { useTeamAccess } from "./useTeamAccess";
+import { useDiscountCode } from "./useDiscountCode";
 import { TableComp } from "../../components";
 import { useState } from "react";
-import { CreateEditTeamDrawer } from "./components";
+import { CreateEditCodeDrawer } from "./components";
 
-export const TeamAccessPage = () => {
-  const [opNewTeam, setOpNewTeam] = useState(false);
-  const [dataTeam, setDataTeam] = useState<any>();
+export const DiscountCodePage = () => {
+  const [opNewCode, setOpNewCode] = useState(false);
+  const [dataCode, setDataCode] = useState<any>();
 
   const {
     dataTickes,
@@ -17,7 +17,7 @@ export const TeamAccessPage = () => {
     onPageChange,
     onUpdateActive,
     onDebouncedSearch,
-  } = useTeamAccess();
+  } = useDiscountCode();
 
   const columns: TableProps["columns"] = [
     {
@@ -30,8 +30,8 @@ export const TeamAccessPage = () => {
             <Button
               className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2!"
               onClick={() => {
-                setOpNewTeam(true);
-                setDataTeam(data);
+                setOpNewCode(true);
+                setDataCode(data);
               }}
             >
               <span className="pi pi-pen-to-square"></span>
@@ -65,73 +65,75 @@ export const TeamAccessPage = () => {
       width: 100,
     },
     {
-      title: "Customer",
-      dataIndex: "customer",
-      key: "customer",
-      render: (text: string, data) => {
-        return (
-          <div className="flex flex-col">
-            <span>{text}</span>
-            <span className="text-sm/3">{data?.user_id?.email}</span>
-          </div>
-        );
-      },
-      width: 250,
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
     },
     {
-      title: "Team Role",
-      dataIndex: "teamRole",
-      key: "teamRole",
+      title: "Value",
+      dataIndex: "value",
+      key: "value",
+      render: (text: string, data: any) => (
+        <span className="font-bold">
+          {data.state == "val" && "$"}
+          {text}
+          {data.state == "por" && "%"}
+        </span>
+      ),
     },
     {
-      title: "Purchased Date",
-      dataIndex: "purchasedDate",
-      key: "purchasedDate",
+      title: "Stock",
+      dataIndex: "stock",
+      key: "stock",
+      render: (text: string, data: any) => (
+        <span className="font-bold">
+          {Number(data.stock_max) - Number(text)}
+        </span>
+      ),
+    },
+    {
+      title: "Date start-end",
+      dataIndex: "dateStartEnd",
+      key: "dateStartEnd",
     },
   ];
 
   return (
     <>
-      <CreateEditTeamDrawer
-        dataTeam={dataTeam}
-        openNav={opNewTeam}
+      <CreateEditCodeDrawer
+        dataCode={dataCode}
+        openNav={opNewCode}
         setOpenNav={() => {
-          setOpNewTeam(false);
-          setDataTeam(null);
+          setOpNewCode(false);
+          setDataCode(null);
         }}
-        onEditCreateTeam={() => {
+        onEditCreateCode={() => {
           onRefresh();
-          setOpNewTeam(false);
+          setOpNewCode(false);
         }}
       />
       {contextHolder}
       <div className="px-4 sm:px-6 py-3 grid gap-3">
         <div className="col-span-1 grid sm:flex items-center justify-between gap-2">
           <div className="grid">
-            <h1 className="text-2xl font-bold bebasNeue">Team Access</h1>
-            <div className="grid">
-              <span>Do you have logistics staff for your event?</span>
-              <span className="text-base/4 sm:text-base/2">
-                Create access for Co-Organizer or Operator users.
-              </span>
-            </div>
+            <h1 className="text-2xl font-bold bebasNeue">Discount Code</h1>
           </div>
 
           <Button
             className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2!"
             onClick={() => {
-              setOpNewTeam(true);
-              setDataTeam(null);
+              setOpNewCode(true);
+              setDataCode(null);
             }}
           >
             <span className="pi pi-plus"></span>
-            Create Access
+            Create Code
           </Button>
         </div>
 
         <div className="">
           <TableComp
-            title="All Team"
+            title="All Codes"
             columns={columns}
             data={dataTickes}
             totalData={sizePage?.total || 0}

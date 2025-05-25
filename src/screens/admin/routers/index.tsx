@@ -4,8 +4,13 @@ import { useState } from "react";
 
 import { AdminProvider } from "../../../provider";
 import { HeaderComp, NavAdminComp } from "../components";
-import { EventDetailsPage, TeamAccessPage, TicketControlPage } from "../pages";
-import { EventAnalyticsPage } from "../pages/EventAnalytics";
+import {
+  DiscountCodePage,
+  EventAnalyticsPage,
+  EventDetailsPage,
+  TeamAccessPage,
+  TicketControlPage,
+} from "../pages";
 
 export const AdminRouter = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -38,6 +43,7 @@ export const AdminRouter = () => {
               element={<EventAnalyticsPage />}
             />
             <Route path="/teamAccess/:id" element={<TeamAccessPage />} />
+            <Route path="/discountcode/:id" element={<DiscountCodePage />} />
           </Routes>
         </div>
       </div>

@@ -19,7 +19,6 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
   const { adminDate, loadingAdmin } = useHeader();
 
   const onNavLinkClick = (nav: any) => {
-    console.log(nav);
     return (
       <NavLink
         to={String(nav?.path).replace("{idEvent}", adminDate.id_event)}
@@ -83,32 +82,11 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
                           key: item.id,
                           label: onNavLinkClick(item),
                         })),
-                        // [
-                        //   { key: "9", label: "Option 9" },
-                        //   { key: "10", label: "Option 10" },
-                        //   { key: "11", label: "Option 11" },
-                        //   { key: "12", label: "Option 12" },
-                        // ],
                       },
                     ]}
                   />
                 )
               )}
-
-            <div className="border-t border-white pt-3">
-              <NavLink
-                to={"/admin/qrScanner/1"}
-                className={({ isActive }) =>
-                  ` flex items-center gap-2 py-2 pl-2 text-sm rounded-tl-2xl rounded-bl-2xl  ${
-                    isActive ? "bg-white! text-black!" : "text-white/30!"
-                  }`
-                }
-                onClick={onShowNav}
-              >
-                <span className={`pi pi-cog`} />
-                <span>Settings</span>
-              </NavLink>
-            </div>
           </div>
         </div>
       </div>

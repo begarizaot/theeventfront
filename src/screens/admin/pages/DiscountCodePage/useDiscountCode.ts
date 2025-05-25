@@ -4,11 +4,11 @@ import debounce from "lodash/debounce";
 import { useCallback, useEffect, useState } from "react";
 import { getLocalStorage } from "../../../../hooks";
 import {
-  getListTeamAccess,
-  putUpdateTeamAccess,
+  getListDiscountCode,
+  putUpdateDiscountCode,
 } from "../../../../store/thunks";
 
-export const useTeamAccess = () => {
+export const useDiscountCode = () => {
   const [messageApi, contextHolder] = message.useMessage();
 
   const [dataTickes, setDataTickes] = useState<any[]>([]);
@@ -21,7 +21,7 @@ export const useTeamAccess = () => {
   const eventShared = getLocalStorage("eventShared");
 
   useEffect(() => {
-    fechDataTeamAccess();
+    fechDataDiscountCode();
   }, [page, search]);
 
   const onDebouncedSearch = useCallback(
@@ -31,11 +31,11 @@ export const useTeamAccess = () => {
     []
   );
 
-  const fechDataTeamAccess = async () => {
+  const fechDataDiscountCode = async () => {
     const { event_id } = eventShared;
     setLoading(true);
     try {
-      const data = await getListTeamAccess(
+      const data = await getListDiscountCode(
         event_id.id_event,
         {
           page,
@@ -61,9 +61,9 @@ export const useTeamAccess = () => {
     try {
       setLoading(true);
       const { event_id } = eventShared;
-      await putUpdateTeamAccess(event_id.id_event, data);
+      await putUpdateDiscountCode(event_id.id_event, data);
       setLoading(false);
-      fechDataTeamAccess();
+      fechDataDiscountCode();
     } catch (error: any) {
       setLoading(false);
       messageApi.open({
@@ -78,7 +78,7 @@ export const useTeamAccess = () => {
   };
 
   const onRefresh = () => {
-    fechDataTeamAccess();
+    fechDataDiscountCode();
   };
 
   return {
