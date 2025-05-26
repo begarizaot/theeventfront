@@ -8,6 +8,8 @@ import {
   DiscountCodePage,
   EventAnalyticsPage,
   EventDetailsPage,
+  FreeTicketsPage,
+  MarcketingPage,
   TeamAccessPage,
   TicketControlPage,
 } from "../pages";
@@ -44,6 +46,8 @@ export const AdminRouter = () => {
             />
             <Route path="/teamAccess/:id" element={<TeamAccessPage />} />
             <Route path="/discountcode/:id" element={<DiscountCodePage />} />
+            <Route path="/freeTickets/:id" element={<FreeTicketsPage />} />
+            <Route path="/marcketing/:id" element={<MarcketingPage />} />
           </Routes>
         </div>
       </div>

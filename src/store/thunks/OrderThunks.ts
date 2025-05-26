@@ -54,6 +54,25 @@ export const getMyOrders = () => {
   };
 };
 
+export const getAllOrdersList = (idOrder: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<any>(
+        `order/getAllOrdersList/${idOrder}`
+      );
+
+      if (!data.status) {
+        reject(data.message);
+        return;
+      }
+
+      resolve(data.data);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
 export const getAllOrders = (
   idOrder: any,
   sizePage = {
@@ -86,6 +105,54 @@ export const getAllOrders = (
           .map((item: any) => `${item.quantity ?? ""} ${item.title ?? ""}`)
           .join(", ");
         item.discountCode = item.event_discount_code_id?.name ?? "";
+        item.purchasedDate = useMoment(item.createdAt).format("DD/MM/YYYY");
+        item.table = (item.tickets_id ?? [])
+          .map((item: any) => `${item.table ?? ""}`)
+          .filter((item: any) => item !== "")
+          .join(", ");
+        return item;
+      });
+
+      resolve({
+        data: res,
+        pagination: data.pagination,
+      });
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
+export const getAllOrdersFree = (
+  idOrder: any,
+  sizePage = {
+    page: 1,
+    size: 10,
+  },
+  search = ""
+) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<any>(
+        `order/getAllOrdersFree/${idOrder}?size=${sizePage.size}&page=${
+          sizePage.page
+        }${search ? `&search=${search}` : ""}`
+      );
+
+      if (!data.status) {
+        reject(data.message);
+        return;
+      }
+
+      const res = (data.data ?? []).map((item: any) => {
+        item.key = item.id;
+        item.customer = `${FirstUpperCase(
+          item.users_id?.firstName
+        )} ${FirstUpperCase(item.users_id?.lastName)}`;
+        item.phone = `${item.users_id?.country_id?.code}${item.users_id?.phoneNumber}`;
+        item.tickets = GroupedTickets(item.tickets_id)
+          .map((item: any) => `${item.quantity ?? ""} ${item.title ?? ""}`)
+          .join(", ");
         item.purchasedDate = useMoment(item.createdAt).format("DD/MM/YYYY");
         item.table = (item.tickets_id ?? [])
           .map((item: any) => `${item.table ?? ""}`)
@@ -143,11 +210,51 @@ export const postCreatePayment = (dataReq: any) => {
   });
 };
 
+export const postCreatePaymentFree = (dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.post<paymentRes>(
+        `order/postCreatePaymentFree`,
+        dataReq
+      );
+
+      if (!data.status) {
+        reject(data.message);
+        return;
+      }
+
+      resolve(data.data);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
 export const postCreateOrder = (dataReq: any) => {
   return new Promise<any>(async (resolve, reject) => {
     try {
       const { data } = await theEventApi.post<paymentRes>(
         `order/postCreateOrder`,
+        dataReq
+      );
+
+      if (!data.status) {
+        reject(data.message);
+        return;
+      }
+
+      resolve(data.data);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
+export const postCreateOrderFree = (dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.post<paymentRes>(
+        `order/postCreateOrderFree`,
         dataReq
       );
 

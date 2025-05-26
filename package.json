@@ -43,7 +43,8 @@
     "react-router-dom": "^6.28.0",
     "sirv": "^3.0.1",
     "swiper": "^11.2.6",
-    "tailwindcss": "^4.1.6"
+    "tailwindcss": "^4.1.6",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",

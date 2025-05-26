@@ -9,6 +9,7 @@ interface OrderDataCompProps {
   loading: any;
   seats: any[];
   checkoutInit: any;
+  freeTicket: any;
   onCheckOut: () => void;
   onProceedToPayment: () => void;
   onDiscountCode: (code: string) => void;
@@ -20,6 +21,7 @@ export const OrderDataComp = ({
   seats,
   values,
   loading,
+  freeTicket,
   checkoutInit,
   onProceedToPayment,
   onDiscountCode,
@@ -94,11 +96,13 @@ export const OrderDataComp = ({
               </div>
               <div className="flex justify-between items-center text-sm">
                 <p>Service Fee</p>
-                <p>${!loading.values ? values.serviceFee : 0}</p>
+                <p>${!loading.values && !freeTicket ? values.serviceFee : 0}</p>
               </div>
               <div className="flex justify-between items-center text-sm">
                 <p>Processing Fee</p>
-                <p>${!loading.values ? values.processingFee : 0}</p>
+                <p>
+                  ${!loading.values && !freeTicket ? values.processingFee : 0}
+                </p>
               </div>
               {values.totalRefundable > 0 && (
                 <div className="flex justify-between items-center text-sm">
@@ -112,38 +116,40 @@ export const OrderDataComp = ({
             <div className="flex justify-between items-center text-sm">
               <p className="font-bold">Total</p>
               <p className="font-bold text-lg">
-                ${!loading.values ? values.total : 0}
+                ${!loading.values && !freeTicket ? values.total : 0}
               </p>
             </div>
 
             {/* discont code */}
-            <div className="mt-5 ">
-              <h1 className="text-sm">Discount Code</h1>
-              <div className="border-white border rounded-3xl flex items-center mt-2 pr-2">
-                <Input
-                  placeholder="Enter Code"
-                  className="rounded-full! bg-transparent! border-transparent! text-white!"
-                  classNames={{
-                    input: "placeholder-white/20! py-[6px]!",
-                  }}
-                  inputMode="text"
-                  autoComplete="off"
-                  value={discountCode}
-                  onChange={(e) => setDiscountCode(e.target.value)}
-                />
-                <Button
-                  className="rounded-full! bg-white! border-transparent! h-6!"
-                  onClick={() => {
-                    onDiscountCode(discountCode);
-                  }}
-                >
-                  Apply
-                </Button>
+            {!freeTicket && (
+              <div className="mt-5 ">
+                <h1 className="text-sm">Discount Code</h1>
+                <div className="border-white border rounded-3xl flex items-center mt-2 pr-2">
+                  <Input
+                    placeholder="Enter Code"
+                    className="rounded-full! bg-transparent! border-transparent! text-white!"
+                    classNames={{
+                      input: "placeholder-white/20! py-[6px]!",
+                    }}
+                    inputMode="text"
+                    autoComplete="off"
+                    value={discountCode}
+                    onChange={(e) => setDiscountCode(e.target.value)}
+                  />
+                  <Button
+                    className="rounded-full! bg-white! border-transparent! h-6!"
+                    onClick={() => {
+                      onDiscountCode(discountCode);
+                    }}
+                  >
+                    Apply
+                  </Button>
+                </div>
+                {error.discountCode && (
+                  <p className="text-sm text-red-500">{error.discountCode}</p>
+                )}
               </div>
-              {error.discountCode && (
-                <p className="text-sm text-red-500">{error.discountCode}</p>
-              )}
-            </div>
+            )}
           </>
         )}
       </div>
@@ -160,7 +166,7 @@ export const OrderDataComp = ({
             <span className="font-bold text-xs">Check Out</span>
           </Button>
         )}
-        {checkoutInit == 3 && (
+        {checkoutInit == (freeTicket ? 2 : 3) && (
           <Button
             className="w-full rounded-3xl! uppercase btnStyle disabled:bg-white/70! disabled:border-none! disabled:text-black!"
             onClick={() => {

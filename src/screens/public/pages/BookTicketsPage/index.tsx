@@ -16,6 +16,7 @@ export const BookTicketsPage = () => {
     userForm,
     listSeats,
     isLoading,
+    freeTicket,
     eventDetail,
     checkoutInit,
     contextHolder,
@@ -45,11 +46,11 @@ export const BookTicketsPage = () => {
             Checkout
           </h1>
           <div className="flex gap-3">
-            {[1, 2, 3].map((item) => (
+            {(freeTicket ? [1, 2] : [1, 2, 3]).map((item) => (
               <span
                 key={item}
                 className={`h-2 w-14 rounded-2xl ${
-                  checkoutInit == item ? "bg-white" : "bg-white/20"
+                  checkoutInit === item ? "bg-white" : "bg-white/20"
                 }`}
               ></span>
             ))}
@@ -80,6 +81,7 @@ export const BookTicketsPage = () => {
               <InformationsComp
                 userData={userForm}
                 values={values}
+                freeTicket={freeTicket}
                 listRefundable={listRefundable}
                 onProceedToPayment={(e) => onCheckoutInit(e)}
                 onValueChangeUser={onValueChangeUser}
@@ -101,6 +103,7 @@ export const BookTicketsPage = () => {
               seats={listSeats}
               event={eventDetail}
               loading={isLoading}
+              freeTicket={freeTicket}
               checkoutInit={checkoutInit}
               onProceedToPayment={() => onCheckoutInit(2)}
               onCheckOut={onCompletePurchase}

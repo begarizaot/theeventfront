@@ -4,6 +4,7 @@ import { getValidateEmail } from "../../../../../store/thunks";
 interface InformationsCompProps {
   userData: any;
   values: any;
+  freeTicket: any;
   listRefundable: any[];
   onProceedToPayment: (ev: any) => void;
   onValueChangeUser?: (ev: any) => void;
@@ -11,8 +12,9 @@ interface InformationsCompProps {
 }
 
 export const InformationsComp = ({
-  userData,
   values,
+  userData,
+  freeTicket,
   listRefundable,
   onProceedToPayment,
   onValueChangeUser,
@@ -147,45 +149,53 @@ export const InformationsComp = ({
           </div>
         </div>
         {/* refundable policy */}
-        <div className="grid px-3 grid-cols-1 mt-4">
-          <div className="col-span-1">
-            <h1 className="font-bold text-base">Refundable Tickets</h1>
+        {!freeTicket && (
+          <>
+            <div className="grid px-3 grid-cols-1 mt-4">
+              <div className="col-span-1">
+                <h1 className="font-bold text-base">Refundable Tickets</h1>
 
-            <p className="mt-1 text-sm">
-              Receive a 100% refund If you are unable to attend and can provide
-              evidence related to one of the many reasons listed in our Terms
-              and Conditions.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-3 mt-2 gap-3">
-            {listRefundable?.map((item, index) => (
-              <div className="col-span-1 flex" key={index}>
-                <div className="flex items-center gap-2 bg-white px-2 py-1 rounded-full">
-                  <span className="pi pi-check bg-green-500 text-[8px] p-[3px] rounded-full font-bold"></span>
-                  <p className="text-black text-xs  line-clamp-1">{item}</p>
-                </div>
+                <p className="mt-1 text-sm">
+                  Receive a 100% refund If you are unable to attend and can
+                  provide evidence related to one of the many reasons listed in
+                  our Terms and Conditions.
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
 
-        <div className="px-3 mt-4 bgPay py-1 flex items-center">
-          <h1 className="text-base text-black font-bold bebasNeue">
-            Pay ${values.refundable} per ticket
-          </h1>
-        </div>
+              <div className="grid grid-cols-2 lg:grid-cols-3 mt-2 gap-3">
+                {listRefundable?.map((item, index) => (
+                  <div className="col-span-1 flex" key={index}>
+                    <div className="flex items-center gap-2 bg-white px-2 py-1 rounded-full">
+                      <span className="pi pi-check bg-green-500 text-[8px] p-[3px] rounded-full font-bold"></span>
+                      <p className="text-black text-xs  line-clamp-1">{item}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-        <div className="px-3 mt-3">
-          <Form.Item name="refundable" valuePropName="checked" noStyle>
-            <Checkbox className="text-white! text-xs!">
-              Yes, make my tickets refundable!
-            </Checkbox>
-          </Form.Item>
-        </div>
+            <div className="px-3 mt-4 bgPay py-1 flex items-center">
+              <h1 className="text-base text-black font-bold bebasNeue">
+                Pay ${values.refundable} per ticket
+              </h1>
+            </div>
+
+            <div className="px-3 mt-3">
+              <Form.Item name="refundable" valuePropName="checked" noStyle>
+                <Checkbox className="text-white! text-xs!">
+                  Yes, make my tickets refundable!
+                </Checkbox>
+              </Form.Item>
+            </div>
+          </>
+        )}
       </div>
 
-      <div className="px-3 mt-4 lg:mt-auto flex justify-between">
+      <div
+        className={`px-3 ${
+          freeTicket ? "mt-auto" : "mt-4"
+        } flex justify-between`}
+      >
         <Button
           className="w-full sm:w-70 rounded-3xl! uppercase btnStyle"
           onClick={() => onProceedToPayment(1)}
@@ -194,15 +204,17 @@ export const InformationsComp = ({
           <span className="font-bold text-sm bebasNeue">Go Back</span>
         </Button>
 
-        <Button
-          className="w-full sm:w-70 rounded-3xl! uppercase btnStyle"
-          htmlType="submit"
-        >
-          <span className="font-bold text-sm bebasNeue">
-            Proceed To Payment
-          </span>
-          <span className="font-bold text-sm pi pi-angle-double-right"></span>
-        </Button>
+        {!freeTicket && (
+          <Button
+            className="w-full sm:w-70 rounded-3xl! uppercase btnStyle"
+            htmlType="submit"
+          >
+            <span className="font-bold text-sm bebasNeue">
+              Proceed To Payment
+            </span>
+            <span className="font-bold text-sm pi pi-angle-double-right"></span>
+          </Button>
+        )}
       </div>
     </Form>
   );

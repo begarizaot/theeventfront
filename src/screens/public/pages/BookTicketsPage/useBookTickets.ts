@@ -17,7 +17,9 @@ import {
   getServiceFee,
   getTicketEvents,
   postCreateOrder,
+  postCreateOrderFree,
   postCreatePayment,
+  postCreatePaymentFree,
   postEventsDiscountCode,
 } from "../../../../store/thunks";
 
@@ -26,7 +28,7 @@ export const useBookTickets = () => {
 
   const navigate = useNavigate();
 
-  const { onShowSuccess, onValueOrder } = useContext(CardContext);
+  const { onShowSuccess, onValueOrder, freeTicket } = useContext(CardContext);
   const {
     // payment
     paymentRequest,
@@ -156,6 +158,33 @@ export const useBookTickets = () => {
     }
   };
 
+  const fechCompletePurchaseFree = async () => {
+    try {
+      setIsLoading({ ...isLoading, complete: true });
+      const data = {
+        eventId: eventDetail?.id_event,
+        tickets: listSeats.filter((item) => item.select > 0),
+        userData,
+        values: useParseNumbers(values),
+      };
+      await postCreatePaymentFree(data);
+      const order = await postCreateOrderFree(data);
+      getSendMail(order);
+      onValueOrder(order);
+      onShowSuccess();
+      navigate(`/admin/freeTickets/${eventDetail?.id_event}`, {
+        replace: true,
+      });
+    } catch (error: any) {
+      setIsLoading({ ...isLoading, complete: false });
+      abortPayment();
+      messageApi.open({
+        type: "error",
+        content: error,
+      });
+    }
+  };
+
   // checkouts
   const onCheckoutInit = (value: number) => {
     setCheckoutInit(value);
@@ -167,6 +196,10 @@ export const useBookTickets = () => {
   };
 
   const onCompletePurchase = async () => {
+    if (freeTicket) {
+      fechCompletePurchaseFree();
+      return;
+    }
     setIsError({ ...isError, card: "" });
     try {
       const paymentId = await paymentCard();
@@ -190,6 +223,8 @@ export const useBookTickets = () => {
   // actions
   const onValueChangeUser = (val: any) => {
     setRefundable(val?.refundable);
+    console.log(val);
+    freeTicket && setUserData({ ...userData, ...val });
   };
 
   const onSelectSeats = (val: any) => {
@@ -281,6 +316,7 @@ export const useBookTickets = () => {
     userForm,
     listSeats,
     isLoading,
+    freeTicket,
     eventDetail,
     checkoutInit,
     contextHolder,

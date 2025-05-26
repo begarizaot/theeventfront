@@ -9,10 +9,15 @@ interface CheckoutProviderProps {
 
 export const CardProvider = ({ children }: CheckoutProviderProps) => {
   const [isSuccess, setIsSuccess] = useState(false);
+  const [freeTicket, setFreeTicket] = useState(false);
   const [valueOrder, setValueOrder] = useState("");
 
   const onShowSuccess = (open = true) => {
     setIsSuccess(open);
+  };
+
+  const onFreeTicket = (open = true) => {
+    setFreeTicket(open);
   };
 
   const onValueOrder = (value: string) => {
@@ -20,7 +25,15 @@ export const CardProvider = ({ children }: CheckoutProviderProps) => {
   };
 
   return (
-    <CardContext.Provider value={{ valueOrder, onShowSuccess, onValueOrder }}>
+    <CardContext.Provider
+      value={{
+        valueOrder,
+        freeTicket,
+        onShowSuccess,
+        onValueOrder,
+        onFreeTicket,
+      }}
+    >
       <SuccessOrderModl
         isOpen={isSuccess}
         onClose={() => onShowSuccess(false)}
