@@ -4,7 +4,7 @@
   background-color: var(--ant-color-primary);
 }
 
-.bg-nav{
+.bg-nav {
   background-color: var(--bg-nav);
 }
 
@@ -12,7 +12,7 @@
   border-color: var(--ant-color-primary);
 }
 
-.h-screen-m{
+.h-screen-m {
   height: 100dvh;
 }
 
@@ -35,9 +35,13 @@
 
 .ant-rate-star-zero .ant-rate-star-first,
 .ant-rate-star-zero .ant-rate-star-second {
-  color: #ffffff !important; 
+  color: #ffffff !important;
 }
 
 .swiper-slide-active {
   filter: none !important;
+}
+
+.bgModal {
+  background-image: url("../assets/bookTicket/modalCheck.jpeg");
 }

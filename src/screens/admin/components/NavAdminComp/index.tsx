@@ -73,9 +73,10 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
                   <Menu
                     mode="inline"
                     className="menuItemAdmin"
+                    key={nav?.menu?.name}
                     items={[
                       {
-                        key: nav.id,
+                        key: nav?.menu?.name,
                         label: nav?.menu?.name,
                         icon: <span className={`pi ${nav?.menu?.icon}`} />,
                         children: nav?.menuItems?.map((item: any) => ({

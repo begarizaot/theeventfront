@@ -10,6 +10,7 @@ import {
   EventDetailsPage,
   FreeTicketsPage,
   MarcketingPage,
+  QrScannerPage,
   TeamAccessPage,
   TicketControlPage,
 } from "../pages";
@@ -48,6 +49,7 @@ export const AdminRouter = () => {
             <Route path="/discountcode/:id" element={<DiscountCodePage />} />
             <Route path="/freeTickets/:id" element={<FreeTicketsPage />} />
             <Route path="/marcketing/:id" element={<MarcketingPage />} />
+            <Route path="/qrScanner/:id" element={<QrScannerPage />} />
           </Routes>
         </div>
       </div>
