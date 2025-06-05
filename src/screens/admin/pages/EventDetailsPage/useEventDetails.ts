@@ -1,10 +1,14 @@
+import { message } from "antd";
 import { useEffect, useState } from "react";
 import { getLocalStorage, useMoment } from "../../../../hooks";
-import { getAdminEventDetail } from "../../../../store/thunks";
+import { getAdminEventDetail, putUpdateEvent } from "../../../../store/thunks";
 
 export const useEventDetails = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+
   const [eventData, setEventData] = useState<any>({});
   const [isOrganizer, setIsOrganizer] = useState<any>(false);
+  const [loading, setLoading] = useState(false);
 
   const userData = getLocalStorage("userData");
   const eventShared = getLocalStorage("eventShared");
@@ -15,10 +19,10 @@ export const useEventDetails = () => {
   }, []);
 
   const getEventData = async () => {
-    const { event_id } = eventShared;
-    onSetEventData(event_id);
+    const { id_event } = eventShared;
+    onSetEventData(eventShared);
 
-    const dataEvent = await getAdminEventDetail(event_id.id_event);
+    const dataEvent = await getAdminEventDetail(id_event);
     onSetEventData(dataEvent);
   };
 
@@ -38,8 +42,32 @@ export const useEventDetails = () => {
   };
 
   const onOrganizer = () => {
-    setIsOrganizer(userData?.id == eventShared?.event_id?.users_id?.id);
+    setIsOrganizer(userData?.id == eventShared?.users_id?.id);
   };
 
-  return { eventData, isOrganizer };
+  const onPublichEvent = async () => {
+    const { id_event } = eventShared;
+    setLoading(true);
+    try {
+      await putUpdateEvent(id_event, {
+        isVisible: !eventData.isVisible,
+      });
+      getEventData();
+      messageApi.open({
+        type: "success",
+        content: `Event ${
+          !eventData.isVisible ? "published" : "unpublished"
+        } successfully`,
+      });
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+      messageApi.open({
+        type: "error",
+        content: error,
+      });
+    }
+  };
+
+  return { eventData, isOrganizer, contextHolder, loading, onPublichEvent };
 };

@@ -13,10 +13,10 @@ export const useEventAnalytics = () => {
   }, []);
 
   const getEventAnality = async () => {
-    const { event_id } = eventShared;
+    const { id_event } = eventShared;
     setIsLoading(true);
     try {
-      const data = await getAdminEventAnality(event_id.id_event);
+      const data = await getAdminEventAnality(id_event);
       setDataAnalityc(data);
       setIsLoading(false);
     } catch (error) {

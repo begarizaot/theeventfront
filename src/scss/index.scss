@@ -42,6 +42,39 @@
   filter: none !important;
 }
 
+.ant-form-item {
+  margin-bottom: 0 !important;
+}
+
 .bgModal {
   background-image: url("../assets/bookTicket/modalCheck.jpeg");
+}
+
+.ant-picker-suffix,
+.ant-picker-clear {
+  svg {
+    fill: white !important;
+  }
+}
+
+.ant-select-multiple {
+  .ant-select-selection-item {
+    background: #ffffff38 !important;
+    border-radius: 10px !important;
+    svg {
+      fill: white !important;
+    }
+  }
+}
+
+.styleNumberInput {
+  .ant-input-number-input {
+    color: white !important;
+    &::placeholder {
+      color: #ffffff33 !important;
+    }
+  }
+  .ant-input-number-handler-wrap{
+    display: none !important;
+  }
 }

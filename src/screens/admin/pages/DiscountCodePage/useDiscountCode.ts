@@ -32,11 +32,11 @@ export const useDiscountCode = () => {
   );
 
   const fechDataDiscountCode = async () => {
-    const { event_id } = eventShared;
+    const { id_event } = eventShared;
     setLoading(true);
     try {
       const data = await getListDiscountCode(
-        event_id.id_event,
+        id_event,
         {
           page,
           size: 10,
@@ -60,8 +60,8 @@ export const useDiscountCode = () => {
   const onUpdateActive = async (data: any) => {
     try {
       setLoading(true);
-      const { event_id } = eventShared;
-      await putUpdateDiscountCode(event_id.id_event, data);
+      const { id_event } = eventShared;
+      await putUpdateDiscountCode(id_event, data);
       setLoading(false);
       fechDataDiscountCode();
     } catch (error: any) {
@@ -84,7 +84,7 @@ export const useDiscountCode = () => {
   return {
     dataTickes,
     sizePage,
-    eventDate: eventShared.event_id,
+    eventDate: eventShared,
     loading,
     contextHolder,
     onPageChange,

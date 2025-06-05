@@ -2,7 +2,6 @@ import { useEventDetails } from "./useEventDetails";
 import {
   DetailsComp,
   ImgTitleComp,
-  OtherEventsComp,
   YoutubeComp,
 } from "./components";
 import { AllCarouselComp, MetaDataCom } from "../../../../components";

@@ -44,14 +44,20 @@ export const HeaderComp = () => {
                 {nav.label}
               </Link>
             ))}
-          </div>
-          {!userData?.id && (
-            <div className="flex items-center lg:gap-5 xl:gap-8">
+            {!userData?.id && (
               <Link to={`/auth/login`} className="text-white uppercase text-sm">
                 Login
               </Link>
-            </div>
-          )}
+            )}
+            {/* {userData?.isOrganizer && ( */}
+            <Link
+              to={"/createEvent"}
+              className="text-black uppercase text-sm bg-white px-3 py-1 rounded-full"
+            >
+              Create Event
+            </Link>
+          </div>
+          {/* )} */}
           {userData?.id && (
             <Link
               to={"/profile"}

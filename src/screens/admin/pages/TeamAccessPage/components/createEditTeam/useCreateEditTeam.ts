@@ -79,10 +79,10 @@ export const useCreateEditTeam = ({ data, onEditCreateTeam }: any) => {
       id: data.id,
       type_role_id: dataTeam.typeRol,
     };
-    const { event_id } = eventShared;
+    const { id_event } = eventShared;
     setLoading(true);
     try {
-      await putUpdateTeamAccess(event_id.id_event, dataEdit);
+      await putUpdateTeamAccess(id_event, dataEdit);
       setLoading(false);
       onEditCreateTeam();
     } catch (error: any) {
@@ -95,10 +95,10 @@ export const useCreateEditTeam = ({ data, onEditCreateTeam }: any) => {
   };
 
   const onCreateTeam = async (dataTeam: any) => {
-    const { event_id } = eventShared;
+    const { id_event } = eventShared;
     setLoading(true);
     try {
-      await postCreateTeamAccess(event_id.id_event, dataTeam);
+      await postCreateTeamAccess(id_event, dataTeam);
       setLoading(false);
       onEditCreateTeam();
     } catch (error: any) {

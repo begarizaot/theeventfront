@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   postCreateDiscountCode,
   putUpdateDiscountCode,
-  putUpdateTeamAccess,
 } from "../../../../../../store/thunks";
 import { Form, message } from "antd";
 import { getLocalStorage } from "../../../../../../hooks";
@@ -29,10 +28,10 @@ export const useCreateEditCode = ({ data, onEditCreateCode }: any) => {
       id: data.id,
       ...dataTeam,
     };
-    const { event_id } = eventShared;
+    const { id_event } = eventShared;
     setLoading(true);
     try {
-      await putUpdateDiscountCode(event_id.id_event, dataEdit);
+      await putUpdateDiscountCode(id_event, dataEdit);
       setLoading(false);
       onEditCreateCode();
     } catch (error: any) {
@@ -45,10 +44,10 @@ export const useCreateEditCode = ({ data, onEditCreateCode }: any) => {
   };
 
   const onCreateCode = async (dataTeam: any) => {
-    const { event_id } = eventShared;
+    const { id_event } = eventShared;
     setLoading(true);
     try {
-      await postCreateDiscountCode(event_id.id_event, dataTeam);
+      await postCreateDiscountCode(id_event, dataTeam);
       setLoading(false);
       onEditCreateCode();
     } catch (error: any) {

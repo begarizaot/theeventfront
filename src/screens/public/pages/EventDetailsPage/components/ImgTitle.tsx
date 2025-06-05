@@ -1,5 +1,7 @@
 import { Button } from "antd";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { CardContext } from "../../../../../context";
 import { setLocalStorage, useMoment } from "../../../../../hooks";
 
 interface ImgTitleCompProps {
@@ -7,9 +9,11 @@ interface ImgTitleCompProps {
 }
 
 export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
+  const { onFreeTicket } = useContext(CardContext);
   const navigate = useNavigate();
 
   const onBookTicket = () => {
+    onFreeTicket(false);
     setLocalStorage("event", dataEvent);
     navigate(`/book-tickets/${dataEvent?.id_event}`);
   };

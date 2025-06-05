@@ -1,4 +1,6 @@
-import { Button } from "antd";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, Spin } from "antd";
 import {
   EventDetailsComp,
   EventImageComp,
@@ -8,58 +10,71 @@ import {
 import { useEventDetails } from "./useEventDetails";
 
 export const EventDetailsPage = () => {
-  const { eventData, isOrganizer } = useEventDetails();
+  const navigate = useNavigate();
+
+  const { eventData, isOrganizer, contextHolder, loading, onPublichEvent } =
+    useEventDetails();
 
   return (
-    <div className="px-4 sm:px-6 py-3 grid">
-      {isOrganizer && (
+    <>
+      {contextHolder}
+      <Spin spinning={loading} fullscreen size="large" />
+      <div className="px-4 sm:px-6 py-3 grid">
         <div className="col-span-1 flex items-center justify-between">
           <h1 className="text-2xl font-bold bebasNeue">Event Flyer</h1>
 
-          <Button className="rounded-3xl! btnStyle">Unpublish</Button>
+          {isOrganizer && (
+            <div className="flex gap-3">
+              <Button
+                className="rounded-3xl! btnStyle"
+                onClick={onPublichEvent}
+              >
+                {eventData?.isVisible ? "Unpublish Event" : "Publish Event"}
+              </Button>
+              <Button
+                className="rounded-3xl! btnStyle"
+                onClick={() => {
+                  navigate(`/editEvent/${eventData?.id_event}`);
+                }}
+              >
+                Edit Event
+              </Button>
+            </div>
+          )}
         </div>
-      )}
 
-      <div className="col-span-1 my-3">
-        <EventImageComp
-          isOrganizer={isOrganizer}
-          imageUrl={eventData.url_image}
-        />
-      </div>
+        <div className="col-span-1 my-3">
+          <EventImageComp imageUrl={eventData.url_image} />
+        </div>
 
-      <div className="col-span-1 flex items-center justify-between">
-        <h1 className="text-2xl font-bold bebasNeue">Event Details</h1>
-      </div>
+        <div className="col-span-1 flex items-center justify-between">
+          <h1 className="text-2xl font-bold bebasNeue">Event Details</h1>
+        </div>
 
-      <div className="col-span-1 my-3">
-        <EventDetailsComp isOrganizer={isOrganizer} eventData={eventData} />
-      </div>
+        <div className="col-span-1 my-3">
+          <EventDetailsComp eventData={eventData} />
+        </div>
 
-      <div className="col-span-1 flex items-center justify-between">
-        <h1 className="text-2xl font-bold bebasNeue">Event Ticket Type(s)</h1>
-      </div>
-      <div className="col-span-1 my-3">
-        <EventTicketComp
-          isOrganizer={isOrganizer}
-          eventData={eventData?.ticketTypes ?? []}
-        />
-      </div>
+        <div className="col-span-1 flex items-center justify-between">
+          <h1 className="text-2xl font-bold bebasNeue">Event Ticket Type(s)</h1>
+        </div>
+        <div className="col-span-1 my-3">
+          <EventTicketComp eventData={eventData?.ticketTypes ?? []} />
+        </div>
 
-      {eventData?.url_map && (
-        <>
-          <div className="col-span-1 flex items-center justify-between">
-            <h1 className="text-2xl font-bold bebasNeue">
-              Event Table Type(s)
-            </h1>
-          </div>
-          <div className="col-span-1 my-3">
-            <EventTableComp
-              isOrganizer={isOrganizer}
-              eventData={eventData?.tableTypes ?? []}
-            />
-          </div>
-        </>
-      )}
-    </div>
+        {eventData?.url_map && (
+          <>
+            <div className="col-span-1 flex items-center justify-between">
+              <h1 className="text-2xl font-bold bebasNeue">
+                Event Table Type(s)
+              </h1>
+            </div>
+            <div className="col-span-1 my-3">
+              <EventTableComp eventData={eventData?.tableTypes ?? []} />
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 };

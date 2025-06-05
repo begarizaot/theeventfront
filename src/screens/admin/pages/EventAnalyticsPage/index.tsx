@@ -44,7 +44,7 @@ export const EventAnalyticsPage = () => {
       {!isLoading && (
         <div className="col-span-1 grid grid-cols-1 lg:grid-cols-2 mt-2 gap-3">
           {dataAnalityc?.eventSales && (
-            <div className="col-span-2">
+            <div className="col-span-1 lg:col-span-2">
               <AnalyticTextComp data={dataAnalityc?.eventSales} />
             </div>
           )}

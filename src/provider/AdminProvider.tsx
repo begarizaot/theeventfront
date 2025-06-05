@@ -23,7 +23,7 @@ export const AdminProvider = ({ children }: CheckoutProviderProps) => {
 
   const getAdminData = async () => {
     const eventShared = getLocalStorage("eventShared");
-    dispatch(getAdmin(eventShared?.event_id?.id_event));
+    dispatch(getAdmin(eventShared?.id_event));
   };
 
   return (

@@ -32,11 +32,11 @@ export const useTeamAccess = () => {
   );
 
   const fechDataTeamAccess = async () => {
-    const { event_id } = eventShared;
+    const { id_event } = eventShared;
     setLoading(true);
     try {
       const data = await getListTeamAccess(
-        event_id.id_event,
+        id_event,
         {
           page,
           size: 10,
@@ -60,8 +60,8 @@ export const useTeamAccess = () => {
   const onUpdateActive = async (data: any) => {
     try {
       setLoading(true);
-      const { event_id } = eventShared;
-      await putUpdateTeamAccess(event_id.id_event, data);
+      const { id_event } = eventShared;
+      await putUpdateTeamAccess(id_event, data);
       setLoading(false);
       fechDataTeamAccess();
     } catch (error: any) {
@@ -84,7 +84,7 @@ export const useTeamAccess = () => {
   return {
     dataTickes,
     sizePage,
-    eventDate: eventShared.event_id,
+    eventDate: eventShared,
     loading,
     contextHolder,
     onPageChange,

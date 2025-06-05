@@ -35,11 +35,11 @@ export const useTeamAccess = () => {
   );
 
   const fechDataTickes = async () => {
-    const { event_id } = eventShared;
+    const { id_event } = eventShared;
     setLoading(true);
     try {
       const data = await getAllOrders(
-        event_id.id_event,
+        id_event,
         {
           page,
           size: 10,
@@ -63,8 +63,8 @@ export const useTeamAccess = () => {
   const onRefundOrder = async (orderId: any) => {
     try {
       setIsLoading(true);
-      const { event_id } = eventShared;
-      await getRefundOrder(event_id.id_event, orderId);
+      const { id_event } = eventShared;
+      await getRefundOrder(id_event, orderId);
       setIsLoading(false);
       fechDataTickes();
     } catch (error: any) {
@@ -102,7 +102,7 @@ export const useTeamAccess = () => {
     dataTickes,
     sizePage,
     isLoading,
-    eventDate: eventShared.event_id,
+    eventDate: eventShared,
     loading,
     contextHolder,
     onPageChange,

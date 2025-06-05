@@ -21,7 +21,7 @@ export const useMarcketing = () => {
   };
 
   const downloadSvgQRCode = () => {
-    const { slug } = eventShared.event_id;
+    const { slug } = eventShared;
     const svg = document
       .getElementById("myMarcketing")
       ?.querySelector<SVGElement>("svg");
@@ -33,7 +33,7 @@ export const useMarcketing = () => {
   };
 
   const downloadExcel = async () => {
-    const { id_event, slug } = eventShared.event_id;
+    const { id_event, slug } = eventShared;
     setLoading(true);
     try {
       const data = await getAllOrdersList(id_event);
@@ -49,7 +49,7 @@ export const useMarcketing = () => {
   };
 
   return {
-    eventDate: eventShared.event_id,
+    eventDate: eventShared,
     contextHolder,
     loading,
     downloadSvgQRCode,

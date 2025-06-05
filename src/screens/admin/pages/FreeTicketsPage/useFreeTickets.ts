@@ -34,11 +34,11 @@ export const useFreeTickets = () => {
   );
 
   const fechDataTickes = async () => {
-    const { event_id } = eventShared;
+    const { id_event } = eventShared;
     setLoading(true);
     try {
       const data = await getAllOrdersFree(
-        event_id.id_event,
+        id_event,
         {
           page,
           size: 10,
@@ -68,15 +68,15 @@ export const useFreeTickets = () => {
   };
 
   const onCreateFreeTicket = async () => {
-    const { event_id } = eventShared;
+    const { id_event } = eventShared;
     onFreeTicket(true);
-    navigate(`/book-tickets/${event_id?.id_event}`);
+    navigate(`/book-tickets/${id_event}`);
   };
 
   return {
     dataTickes,
     sizePage,
-    eventDate: eventShared.event_id,
+    eventDate: eventShared,
     loading,
     contextHolder,
     onPageChange,

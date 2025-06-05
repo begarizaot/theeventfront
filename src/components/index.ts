@@ -4,3 +4,4 @@ export * from "./CardEventCom";
 export * from "./AllCarousel";
 export * from "./MetaDataCom";
 export * from "./TextPrimary";
+export * from "./LocationField";

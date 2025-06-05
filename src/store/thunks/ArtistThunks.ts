@@ -19,6 +19,25 @@ export const getArtist = () => {
   };
 };
 
+export const getListArtist = () => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<ArtistRes>(`artist/getListArtist`);
+
+      if (!data.status) return reject("Error al cargar los datos");
+
+      const res = ((data?.data as any) ?? []).map((item: any) => ({
+        label: item?.name || "",
+        value: item?.id,
+      }));
+
+      resolve(res);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
 export const getArtistDetail = (id_artist?: any) => {
   return new Promise<any>(async (resolve, reject) => {
     try {

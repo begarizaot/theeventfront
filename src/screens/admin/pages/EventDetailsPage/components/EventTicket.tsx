@@ -3,13 +3,11 @@ import { TextPrimary } from "../../../../../components";
 import { useMoment } from "../../../../../hooks";
 
 interface EventTicketProps {
-  isOrganizer?: boolean;
   eventData?: any[];
 }
 
 export const EventTicketComp = ({
   eventData,
-  isOrganizer,
 }: EventTicketProps) => {
   return (
     <div className="bg-nav p-3! rounded-xl text-white!">
@@ -45,29 +43,10 @@ export const EventTicketComp = ({
                 <div className="col-span-1">
                   {useMoment(ticket?.start_date).format("MMM D, YYYY, HH:mm A")}
                 </div>
-                {isOrganizer && (
-                  <div className="col-span-1 flex gap-2 justify-end">
-                    <Button className="rounded-3xl! btnStyle ">
-                      <span className="pi pi-pen-to-square text-xs"></span>
-                      <span className="font-bold text-base">Edit</span>
-                    </Button>
-                    <Button className="rounded-3xl! btnStyle ">
-                      <span className="pi pi-trash text-xs"></span>
-                    </Button>
-                  </div>
-                )}
               </div>
             </div>
           </div>
         ))}
-
-        {isOrganizer && (
-          <div className="col-span-1 text-right">
-            <Button className="rounded-3xl! btnStyle ">
-              <span className="font-bold text-base">Add Ticket Type</span>
-            </Button>
-          </div>
-        )}
       </div>
     </div>
   );

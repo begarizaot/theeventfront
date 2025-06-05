@@ -109,6 +109,39 @@ export const getAdminEventAnality = (id_event?: any) => {
   });
 };
 
+export const putUpdateEventFollowing = (id_event?: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.put<any>(
+        `event/putUpdateEventFollowing/${id_event}`
+      );
+
+      if (!data.status) return reject("Error al cargar los datos");
+
+      resolve(data.message);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
+export const putUpdateEvent = (id_event: any, dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.put<any>(
+        `event/putUpdateEvent/${id_event}`,
+        dataReq
+      );
+
+      if (!data.status) return reject("Error al cargar los datos");
+
+      resolve(data.message);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
 export const getEventMeta = async (url?: any) => {
   const match = url.match(/^\/event\/(.+)/);
   if (match && match.length > 0) {

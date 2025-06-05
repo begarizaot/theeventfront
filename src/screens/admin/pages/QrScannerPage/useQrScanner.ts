@@ -16,7 +16,7 @@ export const useQrScanner = () => {
   const eventShared = getLocalStorage("eventShared");
 
   const onScannerOrder = async (result: string) => {
-    const { id_event } = eventShared.event_id;
+    const { id_event } = eventShared;
     setIsLoading(true);
     setStopScanner(true);
     try {
@@ -34,7 +34,7 @@ export const useQrScanner = () => {
   };
 
   const onContinueOrder = async () => {
-    const { id_event } = eventShared.event_id;
+    const { id_event } = eventShared;
     setIsLoading(true);
     try {
       const dataRes = await getScannerTicket(id_event, orderData.id_ticket);
@@ -64,7 +64,7 @@ export const useQrScanner = () => {
     orderData,
     stopScanner,
     contextHolder,
-    eventDate: eventShared.event_id,
+    eventDate: eventShared,
     onContinueOrder,
     onScannerOrder,
     onClearOrder,

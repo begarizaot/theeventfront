@@ -1,11 +1,10 @@
-import { Button, Image } from "antd";
+import { Image } from "antd";
 
 interface EventImageProps {
   imageUrl: string;
-  isOrganizer?: boolean;
 }
 
-export const EventImageComp = ({ imageUrl, isOrganizer }: EventImageProps) => {
+export const EventImageComp = ({ imageUrl }: EventImageProps) => {
   return (
     <div className="bg-nav p-3 rounded-xl">
       <img
@@ -20,13 +19,6 @@ export const EventImageComp = ({ imageUrl, isOrganizer }: EventImageProps) => {
         src="error"
         fallback={imageUrl ?? ""}
       />
-      {isOrganizer && (
-        <div className="text-center mt-3">
-          <Button className="rounded-3xl! btnStyle font-bold! px-7!">
-            Upload File
-          </Button>
-        </div>
-      )}
     </div>
   );
 };
