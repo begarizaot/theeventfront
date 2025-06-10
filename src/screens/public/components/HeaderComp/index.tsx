@@ -49,15 +49,15 @@ export const HeaderComp = () => {
                 Login
               </Link>
             )}
-            {/* {userData?.isOrganizer && ( */}
-            <Link
-              to={"/createEvent"}
-              className="text-black uppercase text-sm bg-white px-3 py-1 rounded-full"
-            >
-              Create Event
-            </Link>
+            {userData?.isOrganizer && (
+              <Link
+                to={"/createEvent"}
+                className="text-black uppercase text-sm bg-white px-3 py-1 rounded-full"
+              >
+                Create Event
+              </Link>
+            )}
           </div>
-          {/* )} */}
           {userData?.id && (
             <Link
               to={"/profile"}
