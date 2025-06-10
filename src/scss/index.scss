@@ -74,7 +74,64 @@
       color: #ffffff33 !important;
     }
   }
-  .ant-input-number-handler-wrap{
+  .ant-input-number-handler-wrap {
     display: none !important;
   }
+}
+
+.ant-pagination-item-link {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.ant-pagination-item {
+  a {
+    color: #595959;
+  }
+}
+
+.ant-pagination-item:hover {
+  background-color: transparent !important;
+  border-color: white !important;
+  a {
+    color: white !important;
+  }
+}
+.ant-pagination-item-active {
+  background-color: var(--ant-color-primary) !important;
+  border-color: var(--ant-color-primary) !important;
+  a {
+    color: white !important;
+  }
+}
+
+.ant-pagination {
+  gap: calc(var(--spacing) * 3);
+  .ant-pagination-prev {
+    border: 1px solid white;
+    svg {
+      fill: #595959;
+      height: 20px;
+    }
+  }
+
+  .ant-pagination-next {
+    border: 1px solid white;
+    svg {
+      fill: white;
+      height: 20px;
+    }
+  }
+}
+
+.ant-pagination-options {
+  display: none !important;
+}
+.ant-pagination-item-ellipsis {
+  color: white !important;
+}
+
+.ant-table-column-sort {
+  background: transparent !important;
 }

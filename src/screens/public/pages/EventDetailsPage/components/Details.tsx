@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import GoogleMapReact from "google-map-react";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { theme } from "antd";
 
-import { TextPrimary } from "../../../../../components";
+import { ComDescription, TextPrimary } from "../../../../../components";
 import { useMoment } from "../../../../../hooks";
 
 const { useToken } = theme;
@@ -33,7 +32,7 @@ export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
             {/* description */}
             <div className="grid gap-1">
               <h2 className="text-2xl bebasNeue">Description</h2>
-              <BlocksRenderer content={dataEvent?.description || []} />
+              <ComDescription contenido={dataEvent?.description} />
             </div>
             {/* hours */}
             <div className="grid gap-1">

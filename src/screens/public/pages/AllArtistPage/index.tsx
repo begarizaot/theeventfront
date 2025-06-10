@@ -4,7 +4,7 @@ import { useAllEvents } from "./useAllEvents";
 
 import { CardEventCom } from "../../../../components";
 
-export const AllEventsPage = () => {
+export const AllArtistPage = () => {
   const { listEvents } = useAllEvents();
 
   return (

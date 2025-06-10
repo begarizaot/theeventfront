@@ -93,6 +93,20 @@ export const EventDetailsComp = ({
             />
           </Form.Item>
         </div>
+        <div className="col-span-1 sm:col-span-2">
+            <Form.Item
+              className="m-0!"
+              name="description"
+              label={<span className="text-white">Description</span>}
+              labelCol={{ span: 24, className: "pb-0!" }}
+            >
+              <Input.TextArea
+                rows={4}
+                placeholder="Message"
+                className="rounded-xl! bg-transparent! border-white! text-white! placeholder:text-white/20!"
+              />
+            </Form.Item>
+          </div>
       </div>
     </Form>
   );

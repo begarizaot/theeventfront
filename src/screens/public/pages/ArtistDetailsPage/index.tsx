@@ -59,7 +59,7 @@ export const ArtistDetailsPage = () => {
           )}
         </div>
         <div className="col-span-1 sm:col-span-2 lg:col-span-3">
-          <div className="grid">
+          <div className="grid gap-2">
             {lengthArtist > 0 &&
               artistDetail?.events_ids.map((event) => (
                 <div className="col-span-1" key={event.id_event}>

@@ -76,13 +76,15 @@ export const CardEventCom = ({
         }}
       >
         <div className="flex items-center justify-between">
-          {!organizer && following && (
+          {!organizer && following ? (
             <p
               className="bg-white/20 px-3 py-1 rounded-4xl 
         text-sm sm:text-base"
             >
               {useGoingLabel(following ?? 0)}
             </p>
+          ) : (
+            <p></p>
           )}
           {organizer && (
             <p className="bg-white/20 px-3 py-1 rounded-4xl text-sm sm:text-base">

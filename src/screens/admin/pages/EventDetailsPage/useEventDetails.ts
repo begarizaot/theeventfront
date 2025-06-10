@@ -29,13 +29,13 @@ export const useEventDetails = () => {
   const onSetEventData = (data: any) => {
     setEventData({
       ...data,
-      location: data.event_locations_id.formatted_address,
-      vicinity: data.event_locations_id.vicinity,
-      startDate: useMoment(data.start_date).format("YYYY-MM-DD HH:mm a"),
-      ticketTypes: data.event_tickets_ids.filter(
+      location: data?.event_locations_id?.formatted_address,
+      vicinity: data?.event_locations_id?.vicinity,
+      startDate: useMoment(data?.start_date).format("YYYY-MM-DD HH:mm a"),
+      ticketTypes: data?.event_tickets_ids?.filter(
         (ticket: any) => !ticket.isTable
       ),
-      tableTypes: data.event_tickets_ids.filter(
+      tableTypes: data?.event_tickets_ids?.filter(
         (ticket: any) => ticket.isTable
       ),
     });

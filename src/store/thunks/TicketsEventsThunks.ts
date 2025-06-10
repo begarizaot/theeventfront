@@ -17,11 +17,28 @@ export const getTicketEvents = (id_event?: any) => {
   });
 };
 
-export const putTicketEvents = (id_event: any, dataReq: any) => {
+export const createTicketEvents = (id_event: any, dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.post<any>(
+        `event-ticket/createTicketEvents/${id_event}`,
+        dataReq
+      );
+
+      if (!data.status) return reject("Error al cargar los datos");
+
+      resolve(data.message);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
+export const editTicketEvents = (id_event: any, dataReq: any) => {
   return new Promise<any>(async (resolve, reject) => {
     try {
       const { data } = await theEventApi.put<any>(
-        `event-ticket/putTicketEvents/${id_event}`,
+        `event-ticket/editTicketEvents/${id_event}`,
         dataReq
       );
 

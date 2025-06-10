@@ -69,10 +69,11 @@ export const CreateEditTicket = ({
         form={form}
         onFinish={(ev) => {
           onFinish({
-            ...(data?.idItem && {
-              ...data,
-            }),
             ...ev,
+            ...(data?.idItem && {
+              idItem: data?.idItem,
+              id: data?.id,
+            }),
           });
           form.resetFields();
           setShowInputs({});

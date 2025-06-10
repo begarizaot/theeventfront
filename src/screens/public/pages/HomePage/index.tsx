@@ -8,6 +8,9 @@ import {
   HeroComp,
   ListCategoriesComp,
 } from "./components";
+import { MetaDataCom } from "../../../../components";
+
+const { VITE_APITHEEVENT, VITE_TITLE } = import.meta.env;
 
 export const HomePage = () => {
   const {
@@ -21,6 +24,7 @@ export const HomePage = () => {
 
   return (
     <>
+      <MetaDataCom title={VITE_TITLE} url={`${VITE_APITHEEVENT}`} />
       {(homeDate?.eventCarruselItem ?? []).length > 0 && (
         <EventsCarouselComp list={homeDate?.eventCarruselItem} />
       )}

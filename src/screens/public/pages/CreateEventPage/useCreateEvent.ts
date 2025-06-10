@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
-import { useMoment } from "../../../../hooks";
 import { Form, message } from "antd";
-import { useParams } from "react-router-dom";
-import { getAdminEventDetail, putTicketEvents } from "../../../../store/thunks";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  getAdminEventDetail,
+  editTicketEvents,
+  createTicketEvents,
+  putUpdateEvent,
+  putUpdateEventImage,
+  postCreateEvent,
+} from "../../../../store/thunks";
 import dayjs from "dayjs";
+import { useImageUpload } from "../../../../hooks";
 
 export const useCreateEvent = () => {
   const { id } = useParams();
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
   const [messageApi, contextHolder] = message.useMessage();
+  const { beforeUpload, file, preview } = useImageUpload();
 
   const [isCreateEditTable, setIsCreateEditTable] = useState(false);
   const [isCreateEditTicket, setIsCreateEditTicket] = useState(false);
@@ -33,6 +42,14 @@ export const useCreateEvent = () => {
     }
   }, [id]);
 
+  useEffect(() => {
+    preview &&
+      setEventData((prev: any) => ({
+        ...prev,
+        image: preview,
+      }));
+  }, [preview]);
+
   const onClearForm = () => {
     form.resetFields();
     setEventData({});
@@ -50,12 +67,8 @@ export const useCreateEvent = () => {
       location: event?.event_locations_id?.formatted_address || "",
       venue: event?.event_locations_id?.vicinity || "",
       age_restrictions: event?.event_restriction_id?.id || undefined,
-      categories: event?.event_categories_id?.id || undefined,
+      categories: event?.categories_id?.id || undefined,
       artists: event?.artists_ids?.map((artist: any) => artist.id) || undefined,
-      description:
-        (event?.description ?? [])
-          .map((desc: any) => desc?.children[0]?.text || "")
-          .join("\n") || "",
     });
 
     setEventData({
@@ -68,10 +81,6 @@ export const useCreateEvent = () => {
         ...ticket,
         startEndDate: [dayjs(ticket.start_date), dayjs(ticket.end_date)],
         price: Number(ticket.price),
-        description:
-          (ticket?.description ?? [])
-            .map((desc: any) => desc?.children[0]?.text || "")
-            .join("\n") || "",
         codePassword: ticket?.codePassword || "",
         enableAdv: true,
         requitePass: ticket?.requitePass ? true : false,
@@ -105,14 +114,27 @@ export const useCreateEvent = () => {
     setDataTicketType(ev || {});
   };
 
-  const formatItem = (ev: any) => ({
-    ...ev,
-    start_date: useMoment(ev.start_date).format("YYYY-MM-DD HH:mm:ss"),
-    end_date: useMoment(ev.end_date).format("YYYY-MM-DD HH:mm:ss"),
-    price: Number(ev.price),
-  });
+  const onFormatDate = (date?: any) => {
+    return dayjs(date).format("YYYY-MM-DD HH:mm:ss");
+  };
+
+  const formatItem = (ev: any) => {
+    return {
+      ...ev,
+      start_date: ev?.startEndDate
+        ? onFormatDate(ev.startEndDate[0])
+        : onFormatDate(form.getFieldValue("startEndDate")?.[0]),
+      end_date: ev?.startEndDate
+        ? onFormatDate(ev.startEndDate[1])
+        : onFormatDate(form.getFieldValue("startEndDate")?.[0]),
+      price: Number(ev.price),
+    };
+  };
 
   const createItem = (setList: any) => (ev: any) => {
+    if (id) {
+      onFechCreateTicketEvents(ev);
+    }
     setList((prev: any[]) => [
       ...prev,
       {
@@ -125,9 +147,9 @@ export const useCreateEvent = () => {
 
   const editItem = (setList: any) => (ev: any) => {
     if (id) {
-      onFechTicketEvents(id, ev);
+      onFechEditTicketEvents(ev);
     }
-    
+
     setList((prev: any[]) =>
       prev.map((item) =>
         item.idItem === ev.idItem ? { ...item, ...formatItem(ev) } : item
@@ -147,10 +169,7 @@ export const useCreateEvent = () => {
   };
 
   const onImageChange = (image: any) => {
-    setEventData((prev: any) => ({
-      ...prev,
-      image,
-    }));
+    beforeUpload(image);
   };
 
   // Uso
@@ -160,7 +179,7 @@ export const useCreateEvent = () => {
   const onCreateTableType = createItem(setListTables);
   const onEditTableType = editItem(setListTables);
 
-  const onCreateEvent = (ev: any) => {
+  const onCreateEvent = async (ev: any) => {
     if (!eventData.image) {
       messageApi.open({
         type: "error",
@@ -177,17 +196,67 @@ export const useCreateEvent = () => {
       return;
     }
 
-    console.log({ ...ev, ...eventData, listTickets, listTables });
-  };
-
-  const onEditEvent = (ev: any) => {
-    console.log(ev);
-  };
-
-  const onFechTicketEvents = async (id_event: any, data: any) => {
     try {
       setIsLoading(true);
-      await putTicketEvents(id_event, data);
+      const res = {
+        ...ev,
+        ...eventData,
+        tickests: [...listTickets, ...listTables],
+      };
+      delete res.image;
+      const idEvent = await postCreateEvent(res);
+      file && putUpdateEventImage(idEvent, file);
+      setIsLoading(false);
+      navigate(`/admin/eventDetails/${idEvent}`, {
+        replace: true,
+      });
+    } catch (error) {
+      setIsLoading(false);
+      messageApi.open({
+        type: "error",
+        content: "Failed to update ticket events",
+      });
+    }
+  };
+
+  const onEditEvent = async (ev: any) => {
+    try {
+      setIsLoading(true);
+      const res = { ...ev, ...eventData };
+      delete res.image;
+      await putUpdateEvent(id, res);
+      file && putUpdateEventImage(id, file);
+      setIsLoading(false);
+      navigate(`/admin/eventDetails/${id}`, {
+        replace: true,
+      });
+    } catch (error) {
+      setIsLoading(false);
+      messageApi.open({
+        type: "error",
+        content: "Failed to update ticket events",
+      });
+    }
+  };
+
+  const onFechEditTicketEvents = async (data: any) => {
+    try {
+      setIsLoading(true);
+      await editTicketEvents(id, data);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      messageApi.open({
+        type: "error",
+        content: "Failed to update ticket events",
+      });
+    }
+  };
+
+  const onFechCreateTicketEvents = async (data: any) => {
+    try {
+      setIsLoading(true);
+      await createTicketEvents(id, data);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);

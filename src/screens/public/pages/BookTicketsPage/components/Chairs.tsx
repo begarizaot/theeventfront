@@ -1,6 +1,6 @@
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Select } from "antd";
 import { useMemo } from "react";
+import { ComDescription } from "../../../../../components";
 
 interface ChairsCompProp {
   loading: boolean;
@@ -31,7 +31,7 @@ export const ChairsComp = ({ loading, seats, onSelect }: ChairsCompProp) => {
                   <div className="col-span-4">
                     <h1 className="font-bold">{val.title}</h1>
                     {val?.description && (
-                      <BlocksRenderer content={val?.description || []} />
+                      <ComDescription contenido={val?.description} />
                     )}
                   </div>
                   <div className="col-span-1 flex items-center">
@@ -42,9 +42,7 @@ export const ChairsComp = ({ loading, seats, onSelect }: ChairsCompProp) => {
                       options={useSelectOptions(
                         (val.stock < val.limit ? val.stock : val.limit) || 0
                       )}
-                      onChange={(e) =>
-                        onSelect?.({ id: val.id, value: e })
-                      }
+                      onChange={(e) => onSelect?.({ id: val.id, value: e })}
                     />
                   </div>
                 </div>

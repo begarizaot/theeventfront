@@ -67,10 +67,12 @@ export const CreateEditTable = ({
         form={form}
         onFinish={(ev) => {
           onFinish({
-            ...(data?.idItem && {
-              ...data,
-            }),
             ...ev,
+            ...(data?.idItem && {
+              idItem: data?.idItem,
+              id: data?.id,
+            }),
+            isTable: true,
           });
           form.resetFields();
           setShowInputs({});

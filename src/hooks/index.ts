@@ -7,3 +7,4 @@ export * from "./usePriceRangeText";
 export * from "./useLocalStorage";
 export * from "./useParseNumbers";
 export * from "./useHexToRgba";
+export * from "./useImageUpload";

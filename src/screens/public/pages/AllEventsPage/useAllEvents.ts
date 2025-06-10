@@ -1,16 +1,32 @@
 import { useEffect, useState } from "react";
-import { dataListEvents } from "../../../../data/listEvents";
+import { getEventAllPage } from "../../../../store/thunks";
 
 export const useAllEvents = () => {
   const [listEvents, setlistEvents] = useState<any>([]);
+  const [sizePage, setSizePage] = useState<any>({});
+
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     fetchListEvents();
-  }, []);
+  }, [page]);
 
   const fetchListEvents = async () => {
-    setlistEvents(dataListEvents);
+    try {
+      setLoading(true);
+      const resEvents = await getEventAllPage();
+      setlistEvents(resEvents.data);
+      setSizePage(resEvents.pagination);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
-  return { listEvents };
+  const onPageChange = (page: number) => {
+    setPage(page);
+  };
+
+  return { page, sizePage, loading, listEvents, onPageChange };
 };

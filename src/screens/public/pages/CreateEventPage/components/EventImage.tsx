@@ -2,19 +2,10 @@ import { Button, Empty, Image, Upload } from "antd";
 
 interface EventImageProps {
   image: any;
-  onImageChange: (image: string) => void;
+  onImageChange: (image: any) => void;
 }
 
 export const EventImageComp = ({ image, onImageChange }: EventImageProps) => {
-  const beforeUpload = (file: any) => {
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      onImageChange(e.target.result);
-    };
-    reader.readAsDataURL(file);
-    return false;
-  };
-
   return (
     <div className="bg-nav p-3 rounded-xl">
       {image ? (
@@ -37,7 +28,7 @@ export const EventImageComp = ({ image, onImageChange }: EventImageProps) => {
           accept=".jpg,.jpeg,.png"
           listType="picture"
           maxCount={1}
-          beforeUpload={beforeUpload}
+          beforeUpload={onImageChange}
           showUploadList={false} // Oculta lista de archivos
         >
           <Button className="rounded-3xl! btnStyle sm:w-100">

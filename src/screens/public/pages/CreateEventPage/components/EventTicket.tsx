@@ -32,8 +32,8 @@ export const EventTicketComp = ({
               />
             </div>
           )}
-          {(eventData ?? [])?.map((ticket: any) => (
-            <div className="col-span-1" key={ticket?.id}>
+          {(eventData ?? [])?.map((ticket: any, index: any) => (
+            <div className="col-span-1" key={index}>
               <div className="grid grid-cols-1 gap-2 border p-2 rounded-sm">
                 <div className="col-span-1 grid grid-cols-3">
                   <div className="col-span-1 flex items-center gap-2">

@@ -70,7 +70,7 @@ export const CreateEventPage = () => {
         </div>
         <div className="col-span-1">
           <EventImageComp
-            image={eventData?.imageEvent || eventData?.image}
+            image={eventData?.image || eventData?.imageEvent}
             onImageChange={onImageChange}
           />
         </div>

@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Spin } from "antd";
 import {
@@ -55,14 +54,20 @@ export const EventDetailsPage = () => {
           <EventDetailsComp eventData={eventData} />
         </div>
 
-        <div className="col-span-1 flex items-center justify-between">
-          <h1 className="text-2xl font-bold bebasNeue">Event Ticket Type(s)</h1>
-        </div>
-        <div className="col-span-1 my-3">
-          <EventTicketComp eventData={eventData?.ticketTypes ?? []} />
-        </div>
+        {(eventData?.ticketTypes ?? []).length > 0 && (
+          <>
+            <div className="col-span-1 flex items-center justify-between">
+              <h1 className="text-2xl font-bold bebasNeue">
+                Event Ticket Type(s)
+              </h1>
+            </div>
+            <div className="col-span-1 my-3">
+              <EventTicketComp eventData={eventData?.ticketTypes ?? []} />
+            </div>
+          </>
+        )}
 
-        {eventData?.url_map && (
+        {(eventData?.tableTypes ?? []).length > 0 && (
           <>
             <div className="col-span-1 flex items-center justify-between">
               <h1 className="text-2xl font-bold bebasNeue">

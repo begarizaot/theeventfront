@@ -3,7 +3,7 @@ import { EffectCards } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { CardEventCom } from "../../../../../components";
+import { CardEventCom, ComDescription } from "../../../../../components";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Button } from "antd";
 import { setLocalStorage } from "../../../../../hooks";
@@ -40,7 +40,7 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
           <h1 className=" text-4xl lg:text-5xl text-white font-bold uppercase bebasNeue xl:columns-2">
             {listActive.title}
           </h1>
-          <BlocksRenderer content={listActive?.description || []} />
+          <ComDescription contenido={listActive?.description} />
 
           {listActive?.btn && (
             <Button

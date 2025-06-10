@@ -77,6 +77,30 @@ export const getEventDetail = (id_event?: any) => {
   });
 };
 
+export const getEventAllPage = (
+  sizePage = {
+    page: 1,
+    size: 10,
+  },
+  search = ""
+) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<any>(
+        `event/getEventAllPage?size=${sizePage.size}&page=${sizePage.page}${
+          search ? `&search=${search}` : ""
+        }`
+      );
+
+      if (!data.status) return reject("Error al cargar los datos");
+
+      resolve(data);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
 export const getAdminEventDetail = (id_event?: any) => {
   return new Promise<any>(async (resolve, reject) => {
     try {
@@ -98,6 +122,23 @@ export const getAdminEventAnality = (id_event?: any) => {
     try {
       const { data } = await theEventApi.get<EventRes>(
         `event/getAdminEventAnality/${id_event}`
+      );
+
+      if (!data.status) return reject("Error al cargar los datos");
+
+      resolve(data.data);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
+export const postCreateEvent = (dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.post<any>(
+        `event/postCreateEvent`,
+        dataReq
       );
 
       if (!data.status) return reject("Error al cargar los datos");
@@ -131,6 +172,25 @@ export const putUpdateEvent = (id_event: any, dataReq: any) => {
       const { data } = await theEventApi.put<any>(
         `event/putUpdateEvent/${id_event}`,
         dataReq
+      );
+
+      if (!data.status) return reject("Error al cargar los datos");
+
+      resolve(data.message);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
+export const putUpdateEventImage = (id_event: any, dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", dataReq);
+      const { data } = await theEventApi.put<any>(
+        `event/putUpdateEventImage/${id_event}`,
+        formData
       );
 
       if (!data.status) return reject("Error al cargar los datos");
