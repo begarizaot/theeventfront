@@ -28,6 +28,7 @@ export const PubliRouter = () => {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/createEvent" element={<CreateEventPage />} />
         <Route path="/editEvent/:id" element={<CreateEventPage />} />
+        <Route path="/cotegory/:category" element={<AllEventsPage />} />
       </Routes>
       <FooterComp />
     </>

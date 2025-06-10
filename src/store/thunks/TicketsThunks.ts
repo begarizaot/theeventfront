@@ -7,7 +7,7 @@ export const getTicketData = (id_event: any, id_order: any) => {
         `ticket/getTicketData/${id_event}/${id_order}`
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject(data.message);
 
       resolve(data.data);
     } catch (error: any) {
@@ -23,7 +23,7 @@ export const getScannerTicket = (id_event: any, id_order: any) => {
         `ticket/getScannerTicket/${id_event}/${id_order}`
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject(data.message);
 
       resolve(data.message);
     } catch (error: any) {

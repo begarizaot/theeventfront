@@ -56,7 +56,7 @@ export const postEventsDiscountCode = (id_event: any, body?: any) => {
       );
 
       if (!data.status || data.message)
-        return reject(data.message || "Error al cargar los datos");
+        return reject(data.message || data.message);
 
       resolve(data.data);
     } catch (error: any) {

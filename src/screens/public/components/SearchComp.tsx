@@ -10,11 +10,11 @@ export const SearchComp = ({ className }: SearchCompProps) => {
         <span className="pi pi-search"></span>
         <p>Search</p>
       </div>
-      <div className="flex items-center gap-1 border-l pl-2">
+      {/* <div className="flex items-center gap-1 border-l pl-2">
         <span className="pi pi-map-marker"></span>
         <p>New York</p>
         <span className="pi pi-chevron-down"></span>
-      </div>
+      </div> */}
     </div>
   );
 };

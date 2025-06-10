@@ -18,7 +18,7 @@ export const getHome = () => {
       } catch (error) {
         attempt++;
         if (attempt > maxRetries) {
-          dispatch(homeFailure("Error al cargar los datos"));
+          dispatch(homeFailure("Failed to fetch home data after multiple attempts"));
         }
       }
     }

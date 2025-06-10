@@ -8,7 +8,7 @@ export const getTicketEvents = (id_event?: any) => {
         `event-ticket/getTicketEvents/${id_event}`
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject("Failed to fetch events");
 
       resolve(data.data);
     } catch (error: any) {
@@ -25,7 +25,7 @@ export const createTicketEvents = (id_event: any, dataReq: any) => {
         dataReq
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject(data.message);
 
       resolve(data.message);
     } catch (error: any) {
@@ -42,7 +42,7 @@ export const editTicketEvents = (id_event: any, dataReq: any) => {
         dataReq
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject(data.message);
 
       resolve(data.message);
     } catch (error: any) {

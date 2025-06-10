@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { getEventAllPage } from "../../../../store/thunks";
+import { useParams } from "react-router-dom";
 
 export const useAllEvents = () => {
+  const { category } = useParams();
   const [listEvents, setlistEvents] = useState<any>([]);
   const [sizePage, setSizePage] = useState<any>({});
 
@@ -15,7 +17,14 @@ export const useAllEvents = () => {
   const fetchListEvents = async () => {
     try {
       setLoading(true);
-      const resEvents = await getEventAllPage();
+      const resEvents = await getEventAllPage(
+        {
+          page: page,
+          size: 10,
+        },
+        "",
+        category ? { category } : null
+      );
       setlistEvents(resEvents.data);
       setSizePage(resEvents.pagination);
       setLoading(false);

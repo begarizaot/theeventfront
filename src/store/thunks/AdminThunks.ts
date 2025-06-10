@@ -20,7 +20,7 @@ export const getAdmin = (idEvent: any) => {
       } catch (error) {
         attempt++;
         if (attempt > maxRetries) {
-          dispatch(adminFailure("Error al cargar los datos"));
+          dispatch(adminFailure("Failed to fetch admin data"));
         }
       }
     }

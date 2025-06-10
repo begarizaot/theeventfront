@@ -19,12 +19,11 @@ export const getEventHome = () => {
     try {
       const { data } = await theEventApi.get<EventRes>(`event/getEventsHome`);
 
-      if (!data.status)
-        return dispatch(eventHomeFailure("Error al cargar los datos"));
+      if (!data.status) return dispatch(eventHomeFailure("Failed to fetch events"));
 
       dispatch(eventHomeSuccess(data.data));
     } catch (error) {
-      dispatch(eventHomeFailure("Error al cargar los datos"));
+      dispatch(eventHomeFailure("Failed to fetch events"));
     }
   };
 };
@@ -35,12 +34,11 @@ export const getMyEvent = () => {
     try {
       const { data } = await theEventApi.get<EventRes>(`event/getMyEvents`);
 
-      if (!data.status)
-        return dispatch(myEventFailure("Error al cargar los datos"));
+      if (!data.status) return dispatch(myEventFailure("Failed to fetch events"));
 
       dispatch(myEventSuccess(data.data));
     } catch (error) {
-      dispatch(myEventFailure("Error al cargar los datos"));
+      dispatch(myEventFailure("Failed to fetch events"));
     }
   };
 };
@@ -51,12 +49,11 @@ export const getSharedEvents = () => {
     try {
       const { data } = await theEventApi.get<EventRes>(`event/getSharedEvents`);
 
-      if (!data.status)
-        return dispatch(sharedEventFailure("Error al cargar los datos"));
+      if (!data.status) return dispatch(sharedEventFailure("Failed to fetch events"));
 
       dispatch(sharedEventSuccess(data.data));
     } catch (error) {
-      dispatch(sharedEventFailure("Error al cargar los datos"));
+      dispatch(sharedEventFailure("Failed to fetch events"));
     }
   };
 };
@@ -68,7 +65,7 @@ export const getEventDetail = (id_event?: any) => {
         `event/getEventDetail/${id_event}`
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject("Failed to fetch events");
 
       resolve(data.data);
     } catch (error: any) {
@@ -82,17 +79,18 @@ export const getEventAllPage = (
     page: 1,
     size: 10,
   },
-  search = ""
+  search = "",
+  filter: any = null
 ) => {
   return new Promise<any>(async (resolve, reject) => {
     try {
       const { data } = await theEventApi.get<any>(
         `event/getEventAllPage?size=${sizePage.size}&page=${sizePage.page}${
           search ? `&search=${search}` : ""
-        }`
+        }${filter ? `&filter=${JSON.stringify(filter)}` : ""}`
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject("Failed to fetch events");
 
       resolve(data);
     } catch (error: any) {
@@ -108,7 +106,7 @@ export const getAdminEventDetail = (id_event?: any) => {
         `event/getAdminEventDetail/${id_event}`
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject("Failed to fetch events");
 
       resolve(data.data);
     } catch (error: any) {
@@ -124,7 +122,7 @@ export const getAdminEventAnality = (id_event?: any) => {
         `event/getAdminEventAnality/${id_event}`
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject("Failed to fetch events");
 
       resolve(data.data);
     } catch (error: any) {
@@ -141,7 +139,7 @@ export const postCreateEvent = (dataReq: any) => {
         dataReq
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject("Failed to fetch events");
 
       resolve(data.data);
     } catch (error: any) {
@@ -157,9 +155,9 @@ export const putUpdateEventFollowing = (id_event?: any) => {
         `event/putUpdateEventFollowing/${id_event}`
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject("Failed to fetch events");
 
-      resolve(data.message);
+      resolve("Failed to fetch events");
     } catch (error: any) {
       reject(`Failed to fetch events`);
     }
@@ -174,9 +172,9 @@ export const putUpdateEvent = (id_event: any, dataReq: any) => {
         dataReq
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject("Failed to fetch events");
 
-      resolve(data.message);
+      resolve("Failed to fetch events");
     } catch (error: any) {
       reject(`Failed to fetch events`);
     }
@@ -193,9 +191,9 @@ export const putUpdateEventImage = (id_event: any, dataReq: any) => {
         formData
       );
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject("Failed to fetch events");
 
-      resolve(data.message);
+      resolve("Failed to fetch events");
     } catch (error: any) {
       reject(`Failed to fetch events`);
     }

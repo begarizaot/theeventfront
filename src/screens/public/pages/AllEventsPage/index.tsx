@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { useAllEvents } from "./useAllEvents";
 
 import { CardEventCom, MetaDataCom } from "../../../../components";
-import { Pagination, Skeleton } from "antd";
+import { Empty, Pagination, Skeleton } from "antd";
 
 const { VITE_APITHEEVENT } = import.meta.env;
 
 export const AllEventsPage = () => {
+  const { category } = useParams();
   const { page, sizePage, loading, listEvents, onPageChange } = useAllEvents();
 
   return (
@@ -17,11 +18,21 @@ export const AllEventsPage = () => {
         <div className="grid grid-cols-1 w-full mx-auto  max-w-[80rem]">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6">
             <h1 className="text-xl sm:text-3xl font-bold bebasNeue">
-              All events
+              {category ? `Events in ${category}` : "All Events"}
             </h1>
           </div>
           {/* events */}
           <div className="col-span-1 mt-6">
+            {!loading && !listEvents?.length && (
+              <div className="col-span-1 h-60 flex items-center justify-center">
+                <Empty
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                  classNames={{ description: "text-white!" }}
+                  className="m-2!"
+                  description="No events found"
+                />
+              </div>
+            )}
             {loading && (
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
                 {[1, 2, 3].map((ind: any) => (
@@ -49,14 +60,16 @@ export const AllEventsPage = () => {
               ))}
             </div>
           </div>
-          <div className="col-span-1 mt-6">
-            <Pagination
-              align="center"
-              defaultCurrent={page}
-              total={sizePage.total}
-              onChange={(ev) => onPageChange(ev)}
-            />
-          </div>
+          {listEvents?.length ? (
+            <div className="col-span-1 mt-6">
+              <Pagination
+                align="center"
+                defaultCurrent={page}
+                total={sizePage.total}
+                onChange={(ev) => onPageChange(ev)}
+              />
+            </div>
+          ): null}
         </div>
       </div>
     </>

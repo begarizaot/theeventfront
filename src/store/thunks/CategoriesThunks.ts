@@ -5,7 +5,7 @@ export const getListCategories = () => {
     try {
       const { data } = await theEventApi.get<any>(`category/getListCategories`);
 
-      if (!data.status) return reject("Error al cargar los datos");
+      if (!data.status) return reject(data.message);
 
       const res = ((data?.data as any) ?? []).map((item: any) => ({
         label: item?.title || "",

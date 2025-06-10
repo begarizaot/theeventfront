@@ -23,9 +23,9 @@ export const AllEventsComp = ({ list, loading }: AllEventsProps) => {
               <TitleComp title="events" />
             </div> */}
             <h1 className="text-xl sm:text-3xl font-bold bebasNeue">
-              Browsing events in
+              Upcoming
               <TextPrimary
-                label="Barranquilla"
+                label="Events"
                 className="uppercase bebasNeue ml-1"
               />
             </h1>

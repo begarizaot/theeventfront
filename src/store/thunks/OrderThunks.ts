@@ -45,11 +45,11 @@ export const getMyOrders = () => {
       const { data } = await theEventApi.get<any>(`order/getMyOrders`);
 
       if (!data.status)
-        return dispatch(myOrdersFailure("Error al cargar los datos"));
+        return dispatch(myOrdersFailure(data.message));
 
       dispatch(myOrdersSuccess(data.data));
     } catch (error) {
-      dispatch(myOrdersFailure("Error al cargar los datos"));
+      dispatch(myOrdersFailure("Failed to fetch orders"));
     }
   };
 };

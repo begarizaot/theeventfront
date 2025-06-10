@@ -18,7 +18,7 @@ export const getGlobal = () => {
         } catch (error) {
           attempt++;
           if (attempt > maxRetries) {
-            dispatch(globalFailure("Error al cargar los datos"));
+            dispatch(globalFailure("Failed to fetch global data after multiple attempts"));
           }
         }
       }

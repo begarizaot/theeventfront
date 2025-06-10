@@ -131,10 +131,17 @@ export const useCreateEvent = () => {
     };
   };
 
-  const createItem = (setList: any) => (ev: any) => {
+  const createItem = (setList: any) => async (ev: any) => {
     if (id) {
-      onFechCreateTicketEvents(ev);
+      onFechCreateTicketEvents(ev).then(() => {
+        onCreateItem(setList)(ev);
+      });
+      return;
     }
+    onCreateItem(setList)(ev);
+  };
+
+  const onCreateItem = (setList: any) => async (ev: any) => {
     setList((prev: any[]) => [
       ...prev,
       {
@@ -145,11 +152,18 @@ export const useCreateEvent = () => {
     ]);
   };
 
-  const editItem = (setList: any) => (ev: any) => {
+  const editItem = (setList: any) => async (ev: any) => {
     if (id) {
-      onFechEditTicketEvents(ev);
+      await onFechEditTicketEvents(ev).then(() => {
+        resEditItem(setList)(ev);
+      });
+      return;
     }
 
+    resEditItem(setList)(ev);
+  };
+
+  const resEditItem = (setList: any) => (ev: any) => {
     setList((prev: any[]) =>
       prev.map((item) =>
         item.idItem === ev.idItem ? { ...item, ...formatItem(ev) } : item
@@ -210,11 +224,11 @@ export const useCreateEvent = () => {
       navigate(`/admin/eventDetails/${idEvent}`, {
         replace: true,
       });
-    } catch (error) {
+    } catch (error: any) {
       setIsLoading(false);
       messageApi.open({
         type: "error",
-        content: "Failed to update ticket events",
+        content: error,
       });
     }
   };
@@ -230,41 +244,49 @@ export const useCreateEvent = () => {
       navigate(`/admin/eventDetails/${id}`, {
         replace: true,
       });
-    } catch (error) {
+    } catch (error: any) {
       setIsLoading(false);
       messageApi.open({
         type: "error",
-        content: "Failed to update ticket events",
+        content: error,
       });
     }
   };
 
   const onFechEditTicketEvents = async (data: any) => {
-    try {
-      setIsLoading(true);
-      await editTicketEvents(id, data);
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      messageApi.open({
-        type: "error",
-        content: "Failed to update ticket events",
-      });
-    }
+    return new Promise(async (resolve, reject) => {
+      try {
+        setIsLoading(true);
+        await editTicketEvents(id, data);
+        setIsLoading(false);
+        resolve(true);
+      } catch (error: any) {
+        setIsLoading(false);
+        messageApi.open({
+          type: "error",
+          content: error,
+        });
+        reject(error);
+      }
+    });
   };
 
   const onFechCreateTicketEvents = async (data: any) => {
-    try {
-      setIsLoading(true);
-      await createTicketEvents(id, data);
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      messageApi.open({
-        type: "error",
-        content: "Failed to update ticket events",
-      });
-    }
+    return new Promise(async (resolve, reject) => {
+      try {
+        setIsLoading(true);
+        await createTicketEvents(id, data);
+        setIsLoading(false);
+        resolve(true);
+      } catch (error: any) {
+        setIsLoading(false);
+        messageApi.open({
+          type: "error",
+          content: error,
+        });
+        reject(error);
+      }
+    });
   };
 
   return {

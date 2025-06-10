@@ -6,3 +6,4 @@ export * from "./MetaDataCom";
 export * from "./TextPrimary";
 export * from "./LocationField";
 export * from "./ComDescription";
+export * from "./CardArtistCom";
