@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { CardEventCom, ComDescription } from "../../../../../components";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Button } from "antd";
 import { setLocalStorage } from "../../../../../hooks";
 
