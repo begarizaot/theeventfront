@@ -1,6 +1,5 @@
-import { Button, theme } from "antd";
+import { Button } from "antd";
 import { useGoingLabel, useMoment, usePriceRangeText } from "../hooks";
-const { useToken } = theme;
 
 interface CardEventComProps {
   url_image: string;
@@ -10,6 +9,7 @@ interface CardEventComProps {
   following: any;
   organizer?: any;
   isActive?: any;
+  event_status_id?: any;
   location: string;
   restriction: string;
   price: any[];
@@ -36,6 +36,7 @@ export const CardEventCom = ({
   following,
   organizer,
   isActive,
+  event_status_id,
   start_date,
   end_date,
   location,
@@ -54,15 +55,13 @@ export const CardEventCom = ({
   formatDate = "dddd, Do MMMM",
   onClick,
 }: CardEventComProps & CardEventComElemProps) => {
-  const { token } = useToken();
+  const isEventInActive = event_status_id && event_status_id?.id != 1;
+
   return (
     <div className="relative">
-      {isActive && (
-        <div
-          className="absolute right-0 z-10 px-3 rotate-40 top-6 rounded-xs"
-          style={{ backgroundColor: token.colorPrimary }}
-        >
-          Inactive
+      {(isActive || isEventInActive) && (
+        <div className="absolute right-0 z-10 px-5 py-1 rotate-40 top-10 rounded-sm bg-black">
+          {isEventInActive ? `${event_status_id?.title || ""} event` : "Inactive"}
         </div>
       )}
       <div

@@ -16,7 +16,7 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
   const { token } = useToken();
 
   const { globalDate } = useContext(GlobalContext);
-  const { adminDate, loadingAdmin } = useHeader();
+  const { adminDate, loadingAdmin, onBack } = useHeader();
 
   const onNavLinkClick = (nav: any) => {
     return (
@@ -93,11 +93,14 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
       </div>
       <div
         className="flex items-center mt-auto mb-5 gap-2 pl-8 py-3 cursor-pointer text-white"
-        onClick={onShowNav}
+        onClick={() => {
+          onShowNav();
+          onBack();
+        }}
         style={{ backgroundColor: token.colorPrimary }}
       >
-        <span className="pi pi-sign-out"></span>
-        <span>Logout</span>
+        <span className="pi pi-arrow-left"></span>
+        <span>Back</span>
       </div>
     </div>
   );

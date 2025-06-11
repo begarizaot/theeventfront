@@ -14,7 +14,7 @@ export const EventImageComp = ({ imageUrl }: EventImageProps) => {
       />
 
       <Image
-        className="h-110! w-full! rounded-lg bg-cover bg-center hidden sm:block"
+        className="h-210! w-full! rounded-lg bg-cover bg-center hidden sm:block"
         rootClassName="w-full"
         src="error"
         fallback={imageUrl ?? ""}

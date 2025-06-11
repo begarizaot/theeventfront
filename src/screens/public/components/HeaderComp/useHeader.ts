@@ -16,6 +16,25 @@ export const useHeader = () => {
     if (userData?.id) fetchUserData();
   }, [userData]);
 
+  const [openNav, setOpenNav] = useState(false);
+
+  const handleMediaQueryChange = (e: MediaQueryListEvent) => {
+    if (e.matches) {
+      setOpenNav(false);
+    }
+  };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    if (mediaQuery.matches) {
+      setOpenNav(false);
+    }
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
+
   const fetchUserData = async () => {
     try {
       const res = await getUserData();
@@ -23,5 +42,9 @@ export const useHeader = () => {
     } catch (error) {}
   };
 
-  return { ...globalDate, loading, userData: userRes };
+  const onOpenNav = (open: boolean) => {
+    setOpenNav(open);
+  };
+
+  return { ...globalDate, loading, userData: userRes, onOpenNav, openNav };
 };
