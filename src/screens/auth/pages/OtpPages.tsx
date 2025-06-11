@@ -52,8 +52,8 @@ export const OtpPages = () => {
               Enter your OTP code
             </h1>
 
-            <div className="mt-2 sm:mt-6 mb-6 sm:mb-8">
-              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="mt-0 sm:mt-6 mb-6 sm:mb-8">
+              {/* <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3"> */}
                 <div className="col-span-1">
                   <Form.Item
                     className="m-0!"
@@ -69,9 +69,10 @@ export const OtpPages = () => {
                       formatter={(str) => str.toUpperCase()}
                       length={4}
                       className="w-full!"
+                      type="number"
                     />
                   </Form.Item>
-                </div>
+                {/* </div> */}
               </div>
             </div>
 
