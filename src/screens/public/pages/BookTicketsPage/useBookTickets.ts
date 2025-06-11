@@ -82,7 +82,7 @@ export const useBookTickets = () => {
 
   useEffect(() => {
     values?.total && checkoutInit == 3 && onPaymentStripe();
-  }, [values]);
+  }, [values, checkoutInit]);
 
   const fechEventDetail = () => {
     const event = getLocalStorage("event");

@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, InputNumber } from "antd";
 import { getValidateEmail } from "../../../../../store/thunks";
 
 interface InformationsCompProps {
@@ -135,14 +135,14 @@ export const InformationsComp = ({
                   },
                 ]}
               >
-                <Input
-                  placeholder="Enter Phone Number"
-                  className="rounded-full! bg-transparent! border-white! text-white!"
-                  classNames={{
-                    input: "placeholder-white/20! py-[6px]!",
-                  }}
-                  inputMode="text"
-                  autoComplete="off"
+                <InputNumber
+                  formatter={(value) =>
+                    `${value}`
+                      .replace(/\D/g, "")
+                      .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2 $3")
+                  }
+                  className="rounded-full! bg-transparent! w-full! text-white! py-[0px]! border-white! styleNumberInput"
+                  placeholder="Phone Number"
                 />
               </Form.Item>
             </div>

@@ -4,16 +4,20 @@ import { useMoment } from "../../../../../hooks";
 import { FormatUSDLatino } from "../../../../../helpers";
 
 interface EventTicketProps {
+  isNew?: boolean;
   eventData?: any[];
   onCreate?: () => void;
   onEdit: (ticket: any) => void;
   onStatusChange: (ticket: any) => void;
+  onDelete: (ticket: any) => void;
 }
 
 export const EventTicketComp = ({
+  isNew,
   eventData,
   onCreate,
   onEdit,
+  onDelete,
   onStatusChange,
 }: EventTicketProps) => {
   return (
@@ -54,7 +58,7 @@ export const EventTicketComp = ({
                 <div className="col-span-1 grid grid-cols-3 items-center">
                   <div className="col-span-1">
                     {useMoment(ticket?.start_date).format(
-                      "MMM D, YYYY, HH:mm A"
+                      "MMM D, YYYY, hh:mm A"
                     )}
                   </div>
                   <div className="col-span-1 text-center">
@@ -71,7 +75,7 @@ export const EventTicketComp = ({
                       {ticket?.isVisible ? "Active" : "Inactive"}
                     </Tag>
                   </div>
-                  <div className="col-span-1 text-right">
+                  <div className="col-span-1 text-right flex gap-2 justify-end">
                     <Button
                       className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2!"
                       onClick={() => {
@@ -81,6 +85,16 @@ export const EventTicketComp = ({
                       <span className="pi pi-pen-to-square"></span>
                       Edit
                     </Button>
+                    {isNew && (
+                      <Button
+                        className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2!"
+                        onClick={() => {
+                          onDelete(ticket);
+                        }}
+                      >
+                        <span className="pi pi-trash"></span>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>

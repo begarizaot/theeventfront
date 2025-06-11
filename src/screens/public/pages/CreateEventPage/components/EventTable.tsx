@@ -4,17 +4,21 @@ import { useMoment } from "../../../../../hooks";
 import { FormatUSDLatino } from "../../../../../helpers";
 
 interface EventTicketProps {
+  isNew?: boolean;
   eventData?: any[];
   onCreate?: () => void;
   onEdit: (ticket: any) => void;
   onStatusChange: (ticket: any) => void;
+  onDelete: (ticket: any) => void;
 }
 
 export const EventTableComp = ({
+  isNew,
   eventData,
   onCreate,
   onEdit,
   onStatusChange,
+  onDelete,
 }: EventTicketProps) => {
   return (
     <>
@@ -32,7 +36,7 @@ export const EventTableComp = ({
               />
             </div>
           )}
-          {(eventData ?? [])?.map((table: any,index:any) => (
+          {(eventData ?? [])?.map((table: any, index: any) => (
             <div className="col-span-1" key={index}>
               <div className="grid grid-cols-1 gap-2 border p-2 rounded-sm">
                 <div className="col-span-1 grid grid-cols-3">
@@ -54,7 +58,7 @@ export const EventTableComp = ({
                 <div className="col-span-1 grid grid-cols-3 items-center">
                   <div className="col-span-1">
                     {useMoment(table?.start_date).format(
-                      "MMM D, YYYY, HH:mm A"
+                      "MMM D, YYYY, hh:mm A"
                     )}
                   </div>
                   <div className="col-span-1 text-center">
@@ -71,7 +75,7 @@ export const EventTableComp = ({
                       {table?.isVisible ? "Active" : "Inactive"}
                     </Tag>
                   </div>
-                  <div className="col-span-1 text-right">
+                  <div className="col-span-1 text-right flex gap-2 justify-end">
                     <Button
                       className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2!"
                       onClick={() => {
@@ -81,6 +85,16 @@ export const EventTableComp = ({
                       <span className="pi pi-pen-to-square"></span>
                       Edit
                     </Button>
+                    {isNew && (
+                      <Button
+                        className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2!"
+                        onClick={() => {
+                          onDelete(table);
+                        }}
+                      >
+                        <span className="pi pi-trash"></span>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>

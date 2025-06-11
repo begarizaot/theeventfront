@@ -10,7 +10,7 @@ import {
   postCreateEvent,
 } from "../../../../store/thunks";
 import dayjs from "dayjs";
-import { useImageUpload } from "../../../../hooks";
+import { setLocalStorage, useImageUpload } from "../../../../hooks";
 
 export const useCreateEvent = () => {
   const { id } = useParams();
@@ -65,7 +65,7 @@ export const useCreateEvent = () => {
       ...event,
       startEndDate: [dayjs(event.start_date), dayjs(event.end_date)],
       location: event?.event_locations_id?.formatted_address || "",
-      venue: event?.event_locations_id?.vicinity || "",
+      vanue: event?.event_locations_id?.vicinity || "",
       age_restrictions: event?.event_restriction_id?.id || undefined,
       categories: event?.categories_id?.id || undefined,
       artists: event?.artists_ids?.map((artist: any) => artist.id) || undefined,
@@ -109,13 +109,35 @@ export const useCreateEvent = () => {
     setDataTableType(ev || {});
   };
 
+  const onShowDeleteTable = (ev: any) => {
+    setListTables((prev: any[]) =>
+      prev
+        .filter((item) => item.idItem !== ev.idItem)
+        .map((item, index) => ({
+          ...item,
+          idItem: index + 1,
+        }))
+    );
+  };
+
   const onShowCreateEditTicket = (ev?: any) => {
     setIsCreateEditTicket(!isCreateEditTicket);
     setDataTicketType(ev || {});
   };
 
+  const onShowDeleteTicket = (ev: any) => {
+    setListTickets((prev: any[]) =>
+      prev
+        .filter((item) => item.idItem !== ev.idItem)
+        .map((item, index) => ({
+          ...item,
+          idItem: index + 1,
+        }))
+    );
+  };
+
   const onFormatDate = (date?: any) => {
-    return dayjs(date).format("YYYY-MM-DD HH:mm:ss");
+    return dayjs(date).format("YYYY-MM-DD hh:mm:ss");
   };
 
   const formatItem = (ev: any) => {
@@ -174,7 +196,7 @@ export const useCreateEvent = () => {
   const onPlaceSelected = (place: any, field: string) => {
     form.setFieldsValue({
       [field]: place.formatted_address,
-      venue: place.vicinity,
+      vanue: place.vicinity,
     });
     setEventData((prev: any) => ({
       ...prev,
@@ -218,10 +240,11 @@ export const useCreateEvent = () => {
         tickests: [...listTickets, ...listTables],
       };
       delete res.image;
-      const idEvent = await postCreateEvent(res);
-      file && putUpdateEventImage(idEvent, file);
+      const dataRes = await postCreateEvent(res);
+      file && await putUpdateEventImage(dataRes?.id_event, file);
       setIsLoading(false);
-      navigate(`/admin/eventDetails/${idEvent}`, {
+      await setLocalStorage("eventShared", dataRes);
+      navigate(`/admin/eventDetails/${dataRes?.id_event}`, {
         replace: true,
       });
     } catch (error: any) {
@@ -305,6 +328,8 @@ export const useCreateEvent = () => {
     onShowCreateEditTicket,
     onCreateTicketType,
     onCreateTableType,
+    onShowDeleteTable,
+    onShowDeleteTicket,
     onEditTicketType,
     onEditTableType,
     onPlaceSelected,

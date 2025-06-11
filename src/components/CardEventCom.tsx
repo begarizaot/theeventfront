@@ -129,9 +129,9 @@ export const CardEventCom = ({
               )}
 
               {!hiddenHour && (
-                <p>{`${useMoment(start_date).format("HH:mm a")} - ${useMoment(
+                <p>{`${useMoment(start_date).format("hh:mm a")} - ${useMoment(
                   end_date
-                ).format("HH:mm a")}`}</p>
+                ).format("hh:mm a")}`}</p>
               )}
             </div>
           )}

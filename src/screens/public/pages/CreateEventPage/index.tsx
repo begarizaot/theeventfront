@@ -26,6 +26,8 @@ export const CreateEventPage = () => {
     onShowCreateEditTicket,
     onCreateTicketType,
     onCreateTableType,
+    onShowDeleteTable,
+    onShowDeleteTicket,
     onEditTicketType,
     onEditTableType,
     onPlaceSelected,
@@ -43,7 +45,7 @@ export const CreateEventPage = () => {
         openNav={isCreateEditTicket}
         setOpenNav={onShowCreateEditTicket}
         onFinish={(ev) => {
-          ev.id ? onEditTicketType(ev) : onCreateTicketType(ev);
+          ev.idItem ? onEditTicketType(ev) : onCreateTicketType(ev);
           onShowCreateEditTicket();
         }}
       />
@@ -52,7 +54,7 @@ export const CreateEventPage = () => {
         openNav={isCreateEditTable}
         setOpenNav={onShowCreateEditTable}
         onFinish={(ev) => {
-          ev.id ? onEditTableType(ev) : onCreateTableType(ev);
+          ev.idItem ? onEditTableType(ev) : onCreateTableType(ev);
           onShowCreateEditTable();
         }}
       />
@@ -85,18 +87,22 @@ export const CreateEventPage = () => {
         </div>
         <div className="col-span-1">
           <EventTicketComp
+            isNew={!eventData?.id_event}
             eventData={listTickets}
             onCreate={() => onShowCreateEditTicket()}
             onEdit={onShowCreateEditTicket}
             onStatusChange={(ev) => onEditTicketType(ev)}
+            onDelete={onShowDeleteTicket}
           />
         </div>
         <div className="col-span-1">
           <EventTableComp
+            isNew={!eventData?.id_event}
             eventData={listTables}
             onCreate={() => onShowCreateEditTable()}
             onEdit={onShowCreateEditTable}
             onStatusChange={(ev) => onEditTableType(ev)}
+            onDelete={onShowDeleteTable}
           />
         </div>
         <div className="col-span-1 text-right mt-4">
