@@ -18,6 +18,29 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
     navigate(`/book-tickets/${dataEvent?.id_event}`);
   };
 
+  const isEventInActive =
+    dataEvent?.event_status_id && dataEvent?.event_status_id?.id != 1;
+
+  const onBtn = ({ className }: any) => {
+    return (
+      <Button
+        className={`w-full sm:w-40 rounded-3xl! uppercase btnStyle ${className}`}
+        onClick={onBookTicket}
+        disabled={isEventInActive}
+      >
+        <span
+          className={`font-bold text-xs ${
+            isEventInActive ? "text-white" : "text-black"
+          }`}
+        >
+          {isEventInActive
+            ? `${dataEvent?.event_status_id?.title} event`
+            : "Book Tickets"}
+        </span>
+      </Button>
+    );
+  };
+
   return (
     <div className="sm:h-[50vh] lg:h-[42vh] mx-auto max-w-[80rem] px-4 sm:px-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -53,21 +76,11 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
           )}
           <p className="text-sm">Views: {dataEvent?.following ?? 0}</p>
 
-          <Button
-            className="w-full sm:w-40 rounded-3xl! uppercase btnStyle mt-2 hidden! sm:block!"
-            onClick={onBookTicket}
-          >
-            <span className="font-bold text-xs">Book Tickets</span>
-          </Button>
+          {onBtn({ className: "mt-2 hidden! sm:block!" })}
         </div>
 
         <div className="col-span-1 lg:col-span-2 flex flex-col justify-center gap-2 order-3 mb-3 sm:hidden!">
-          <Button
-            className="w-full sm:w-40 rounded-3xl! uppercase btnStyle"
-            onClick={onBookTicket}
-          >
-            <span className="font-bold text-xs">Book Tickets</span>
-          </Button>
+          {onBtn({})}
         </div>
       </div>
     </div>
