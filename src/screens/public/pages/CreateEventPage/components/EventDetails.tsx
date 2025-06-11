@@ -78,7 +78,7 @@ export const EventDetailsComp = ({
           <div className="col-span-1">
             <Form.Item
               className="m-0!"
-              name="venue"
+              name="vanue"
               label={<span className="text-white">Vanue</span>}
               labelCol={{ span: 24, className: "pb-0!" }}
               rules={[
@@ -114,7 +114,7 @@ export const EventDetailsComp = ({
             >
               <DatePicker.RangePicker
                 showTime
-                format="YYYY-MM-DD HH:mm"
+                format="YYYY-MM-DD hh:mm"
                 className="rounded-full! bg-transparent! w-full py-[5px]! border-white! hover:border-white! focus-within:border-white!"
               />
             </Form.Item>

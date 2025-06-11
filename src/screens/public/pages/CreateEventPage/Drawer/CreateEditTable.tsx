@@ -208,7 +208,7 @@ export const CreateEditTable = ({
                 >
                   <DatePicker.RangePicker
                     showTime
-                    format="YYYY-MM-DD HH:mm"
+                    format="YYYY-MM-DD hh:mm"
                     className="rounded-full! bg-transparent! w-full py-[5px]! border-white! hover:border-white! focus-within:border-white!"
                   />
                 </Form.Item>

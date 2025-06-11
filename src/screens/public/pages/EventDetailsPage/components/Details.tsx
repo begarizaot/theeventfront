@@ -39,8 +39,8 @@ export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
               <h2 className="text-2xl bebasNeue">Hours</h2>
               <p className="text-sm">{`${useMoment(
                 dataEvent?.start_date
-              ).format("HH:mm a")} - ${useMoment(dataEvent?.end_date).format(
-                "HH:mm a"
+              ).format("hh:mm a")} - ${useMoment(dataEvent?.end_date).format(
+                "hh:mm a"
               )}`}</p>
             </div>
             {/* contact */}
@@ -106,7 +106,7 @@ export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
 
                 <div className="grid gap-1">
                   <p className="text-sm">
-                    {dataEvent.event_locations_id.vicinity}
+                    {dataEvent.vanue}
                   </p>
                   <p className="text-sm">
                     {dataEvent.event_locations_id.formatted_address}

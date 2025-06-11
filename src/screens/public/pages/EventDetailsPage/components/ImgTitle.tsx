@@ -40,20 +40,18 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
               {dataEvent?.event_locations_id?.vicinity ?? ""}
             </p>
             <p>{`${useMoment(dataEvent?.start_date).format(
-              "HH:mm a"
-            )} - ${useMoment(dataEvent?.end_date).format("HH:mm a")}`}</p>
+              "hh:mm a"
+            )} - ${useMoment(dataEvent?.end_date).format("hh:mm a")}`}</p>
           </div>
 
-          <div className="flex flex-wrap gap-2 text-xs">
-            {dataEvent?.categories?.map((category: any, index: any) => (
-              <p
-                key={index}
-                className="border border-white px-2 py-[2px] rounded-full"
-              >
-                {category}
+          {dataEvent?.categories_id && (
+            <div className="flex flex-wrap gap-2 text-xs">
+              <p className="border border-white px-2 py-[2px] rounded-full">
+                {dataEvent?.categories_id?.title}
               </p>
-            ))}
-          </div>
+            </div>
+          )}
+          <p className="text-sm">Views: {dataEvent?.following ?? 0}</p>
 
           <Button
             className="w-full sm:w-40 rounded-3xl! uppercase btnStyle mt-2 hidden! sm:block!"
