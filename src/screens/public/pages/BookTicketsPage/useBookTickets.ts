@@ -191,8 +191,10 @@ export const useBookTickets = () => {
   };
 
   const onPaymentStripe = async () => {
-    const paymentId = await paymentStripe(Number(values.total));
-    fechCompletePurchase({ paymentId, type: "stripe" });
+    setTimeout(async() => {
+      const paymentId = await paymentStripe(Number(values.total));
+      fechCompletePurchase({ paymentId, type: "stripe" });
+    }, 100);
   };
 
   const onCompletePurchase = async () => {
