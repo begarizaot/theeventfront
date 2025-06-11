@@ -6,13 +6,11 @@ const { useToken } = theme;
 
 import { SearchComp } from "../";
 import { useHeader } from "./useHeader";
-import { UserContext } from "../../../../context";
 import { LogoNavCom } from "../../../../components";
 
 export const HeaderComp = () => {
-  const { header } = useHeader();
+  const { header, userData } = useHeader();
   const { token } = useToken();
-  const { userData } = useContext(UserContext);
 
   return (
     <div className="absolute w-full z-20">

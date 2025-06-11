@@ -1,6 +1,6 @@
 import "../scss/general.scss";
 import { useContext, useEffect, useState } from "react";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, InputNumber, Select } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
 import { getListCountries, postLogin } from "../../../store/thunks";
@@ -141,14 +141,12 @@ export const LoginPages = () => {
                           },
                         ]}
                       >
-                        <Input
+                        <InputNumber
+                          formatter={(value) =>
+                            `${value}`.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2 $3')
+                          }
+                          className="rounded-full! bg-transparent! w-full! text-white! py-[0px]! border-white! styleNumberInput"
                           placeholder="Phone Number"
-                          className="rounded-full! bg-transparent! border-white! text-white! col-span-2"
-                          classNames={{
-                            input: "placeholder-white/20! py-[4px]!",
-                          }}
-                          inputMode="numeric"
-                          autoComplete="off"
                         />
                       </Form.Item>
                     </div>
