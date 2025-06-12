@@ -2,6 +2,7 @@ import { AppDispatch } from "..";
 import { theEventApi } from "../../lib";
 import { GlobalRes } from "../../interfaces/GlobalInterface";
 import { globalFailure, globalStart, globalSuccess } from "../slices";
+import { setLocalStorage } from "../../hooks";
 
 export const getGlobal = () => {
     return async (dispatch: AppDispatch) => {
@@ -14,6 +15,7 @@ export const getGlobal = () => {
         try {
           const { data } = await theEventApi.get<GlobalRes>(`global`);
           dispatch(globalSuccess(data.data));
+          setLocalStorage("global", data.data);
           return; // Éxito, salimos de la función
         } catch (error) {
           attempt++;
