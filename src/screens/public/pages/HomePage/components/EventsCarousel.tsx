@@ -37,18 +37,18 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
         ></div>
         <div className="lg:col-span-2 px-8 flex flex-col justify-center pt-20 sm:pt-0 z-10">
           <h1 className=" text-4xl lg:text-5xl text-white font-bold uppercase bebasNeue xl:columns-2">
-            {listActive.title}
+            {listActive.title ?? ""}
           </h1>
-          <ComDescription contenido={listActive?.description} />
+          <ComDescription contenido={listActive?.description ?? ""} />
 
-          {listActive?.btn && (
+          {listActive?.btn ? (
             <Button
               className="w-45 rounded-3xl! uppercase btnStyle mt-3"
               // onClick={onClick}
             >
               <span className="font-bold text-xs">{listActive.btn.label}</span>
             </Button>
-          )}
+          ) : null}
         </div>
         <div className="lg:col-span-1 flex items-center group">
           <Swiper

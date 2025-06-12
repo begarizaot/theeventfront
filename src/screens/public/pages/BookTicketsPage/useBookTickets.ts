@@ -34,6 +34,7 @@ export const useBookTickets = () => {
     paymentRequest,
     abortPayment,
     paymentStripe,
+    clearPaymentRequest,
     // cardElement,
     paymentCard,
     confirmCardPayment,
@@ -191,10 +192,9 @@ export const useBookTickets = () => {
   };
 
   const onPaymentStripe = async () => {
-    setTimeout(async() => {
-      const paymentId = await paymentStripe(Number(values.total));
-      fechCompletePurchase({ paymentId, type: "stripe" });
-    }, 100);
+    await clearPaymentRequest();
+    const paymentId = await paymentStripe(Number(values.total));
+    fechCompletePurchase({ paymentId, type: "stripe" });
   };
 
   const onCompletePurchase = async () => {
@@ -225,7 +225,6 @@ export const useBookTickets = () => {
   // actions
   const onValueChangeUser = (val: any) => {
     setRefundable(val?.refundable);
-    console.log(val);
     freeTicket && setUserData({ ...userData, ...val });
   };
 
