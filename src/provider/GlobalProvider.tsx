@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ConfigProvider, theme } from "antd";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { AppDispatch, RootState } from "../store";
 import { getGlobal } from "../store/thunks";
 
 import { GlobalContext } from "../context";
-import { useTheme } from "../hooks";
+import { getLocalStorage, useTheme } from "../hooks";
 
 import { MetaDataCom } from "../components";
 
@@ -22,12 +22,23 @@ export const GlobalProvider = ({ children }: CheckoutProviderProps) => {
     (state: RootState) => state.global
   );
 
+  const [globalRes, setGlobalRes] = useState(globalDate);
+
   useEffect(() => {
     dispatch(getGlobal());
   }, [dispatch]);
 
+  useEffect(() => {
+    fechGlobalData();
+  }, []);
+
+  const fechGlobalData = async () => {
+    const res = await getLocalStorage("global");
+    setGlobalRes(res ?? {});
+  };
+
   return (
-    <GlobalContext.Provider value={{ globalDate, loading }}>
+    <GlobalContext.Provider value={{ globalDate: globalRes, loading }}>
       <ConfigProvider
         theme={{
           algorithm:
@@ -35,7 +46,7 @@ export const GlobalProvider = ({ children }: CheckoutProviderProps) => {
               ? theme.darkAlgorithm
               : theme.defaultAlgorithm,
           token: {
-            ...globalDate?.colors.reduce((acc: any, item) => {
+            ...globalRes?.colors.reduce((acc: any, item) => {
               acc[item.label] = item.color;
               return acc;
             }, {}),
