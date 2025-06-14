@@ -7,7 +7,7 @@ export const useHeader = () => {
   const { adminDate, loadingAdmin } = useContext(AdminContext);
 
   const onBack = () => {
-    navigate(-1);
+    navigate("/profile", { replace: true });
   };
 
   return { adminDate, loadingAdmin, onBack };

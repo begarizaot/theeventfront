@@ -55,7 +55,13 @@ export const AllEventsPage = () => {
                   to={`/event/${event.id_event}`}
                   className="col-span-1"
                 >
-                  <CardEventCom {...event} classNameContainer="cardEventCom" />
+                  <CardEventCom
+                    {...event}
+                    restriction={event?.event_restriction_id?.title ?? ""}
+                    location={event?.event_locations_id?.vicinity ?? ""}
+                    price={event?.event_tickets_ids ?? []}
+                    classNameContainer="cardEventCom"
+                  />
                 </Link>
               ))}
             </div>
@@ -69,7 +75,7 @@ export const AllEventsPage = () => {
                 onChange={(ev) => onPageChange(ev)}
               />
             </div>
-          ): null}
+          ) : null}
         </div>
       </div>
     </>
