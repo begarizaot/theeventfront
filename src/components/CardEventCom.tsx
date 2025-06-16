@@ -61,7 +61,9 @@ export const CardEventCom = ({
     <div className="relative">
       {(isActive || isEventInActive) && (
         <div className="absolute right-0 z-10 px-5 py-1 rotate-40 top-10 rounded-sm bg-black">
-          {isEventInActive ? `${event_status_id?.title || ""} event` : "Inactive"}
+          {isEventInActive
+            ? `${event_status_id?.title || ""} event`
+            : "Inactive"}
         </div>
       )}
       <div
@@ -75,15 +77,13 @@ export const CardEventCom = ({
         }}
       >
         <div className="flex items-center justify-between">
-          {!organizer && following ? (
+          {!organizer && following && (
             <p
               className="bg-white/20 px-3 py-1 rounded-4xl 
         text-sm sm:text-base"
             >
               {useGoingLabel(following ?? 0)}
             </p>
-          ) : (
-            <p></p>
           )}
           {organizer && (
             <p className="bg-white/20 px-3 py-1 rounded-4xl text-sm sm:text-base">
@@ -92,7 +92,7 @@ export const CardEventCom = ({
           )}
 
           {!hiddenResponsive && (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ml-auto">
               <span className="pi pi-id-card text-xl"></span>
               <p className="font-bold">{restriction}</p>
             </div>

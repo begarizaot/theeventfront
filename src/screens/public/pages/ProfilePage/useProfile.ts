@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../../context";
+import { useNavigate } from "react-router-dom";
 
 export const useProfile = () => {
-  const { userData } = useContext(UserContext);
+  const navigate = useNavigate();
+  const { userData, onValueUser } = useContext(UserContext);
 
   const [navProfile, setNavProfile] = useState<any[]>([]);
   const [navActive, setNavActive] = useState(1);
@@ -28,10 +30,16 @@ export const useProfile = () => {
     setNavActive(id);
   };
 
+  const onLogout = async () => {
+    await onValueUser({});
+    navigate("/", { replace: true });
+  };
+
   return {
     userData,
     navProfile,
     navActive,
     handleActive,
+    onLogout,
   };
 };

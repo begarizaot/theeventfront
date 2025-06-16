@@ -1,5 +1,9 @@
-import { Button, Checkbox, Form, Input, InputNumber } from "antd";
-import { getValidateEmail } from "../../../../../store/thunks";
+import { Button, Checkbox, Form, Input, InputNumber, Select } from "antd";
+import {
+  getListCountries,
+  getValidateEmail,
+} from "../../../../../store/thunks";
+import { useEffect, useState } from "react";
 
 interface InformationsCompProps {
   userData: any;
@@ -20,6 +24,8 @@ export const InformationsComp = ({
   onValueChangeUser,
   onFinish,
 }: InformationsCompProps) => {
+  const [listCoutries, setListCoutries] = useState<any[]>([]);
+
   const onValidateEmail = async (ev: any) => {
     try {
       await getValidateEmail(ev.email);
@@ -32,6 +38,15 @@ export const InformationsComp = ({
         },
       ]);
     }
+  };
+
+  useEffect(() => {
+    listCountries();
+  }, []);
+
+  const listCountries = async () => {
+    const countries = await getListCountries();
+    setListCoutries(countries);
   };
 
   return (
@@ -123,28 +138,53 @@ export const InformationsComp = ({
                 />
               </Form.Item>
             </div>
-            <div className="col-span-1">
-              <Form.Item
-                className="m-0!"
-                name="phoneNumber"
-                label={<span className="text-white">Phone Number</span>}
-                labelCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber
-                  formatter={(value) =>
-                    `${value}`
-                      .replace(/\D/g, "")
-                      .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2 $3")
-                  }
-                  className="rounded-full! bg-transparent! w-full! text-white! py-[0px]! border-white! styleNumberInput"
-                  placeholder="Phone Number"
-                />
-              </Form.Item>
+            <div className="col-span-1 grid">
+              <span className="text-white mb-2 mt-2">
+                <span className="text-red-400">*</span> Phone
+              </span>
+              <div className="col-span-1 grid grid-cols-3 gap-2">
+                <Form.Item
+                  className="m-0! col-span-1"
+                  name="country"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please select your type phone",
+                    },
+                  ]}
+                >
+                  <Select
+                    showSearch
+                    placeholder="Select Query"
+                    className="customSelect col-span-1"
+                    filterOption={(input, option: any) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    options={listCoutries}
+                  />
+                </Form.Item>
+                <Form.Item
+                  className="m-0! col-span-2"
+                  name="phoneNumber"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <InputNumber
+                    formatter={(value) =>
+                      `${value}`
+                        .replace(/\D/g, "")
+                        .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2 $3")
+                    }
+                    className="rounded-full! bg-transparent! w-full! text-white! py-[1px]! border-white! styleNumberInput"
+                    placeholder="Phone Number"
+                  />
+                </Form.Item>
+              </div>
             </div>
           </div>
         </div>
