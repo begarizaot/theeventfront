@@ -20,8 +20,13 @@ export const UserProvider = ({ children }: CheckoutProviderProps) => {
   };
 
   const onValueUser = async (value: string) => {
-    await setLocalStorage("userData", value);
-    setUserData(value);
+    return new Promise(async(resolve) => {
+      await setLocalStorage("userData", value);
+      setUserData(value);
+      setTimeout(() => {
+        resolve(value);
+      }, 100);
+    });
   };
 
   return (

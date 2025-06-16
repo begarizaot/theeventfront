@@ -1,17 +1,13 @@
 import "./styles.scss";
-import { Avatar } from "antd";
+import { Avatar, Popconfirm } from "antd";
 import { useProfile } from "./useProfile";
 
 import bgImage from "../../../../assets/profilebg.jpeg";
 import { MyEventsComp, MyTicketsComp } from "./components";
 
 export const ProfilePage = () => {
-  const {
-    userData,
-    navProfile,
-    navActive,
-    handleActive,
-  } = useProfile();
+  const { userData, navProfile, navActive, handleActive, onLogout } =
+    useProfile();
 
   return (
     <>
@@ -64,6 +60,22 @@ export const ProfilePage = () => {
                   <span className="bebasNeue text-base">{item.name}</span>
                 </div>
               ))}
+
+              <div
+                className={`flex items-center gap-2 cursor-pointer justify-end pr-2 uppercase py-[1px] mt-8`}
+              >
+                <Popconfirm
+                  title="Logout"
+                  description="Are you sure you want to logout?"
+                  onConfirm={onLogout}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <span className="bebasNeue text-base flex items-center gap-2">
+                    <span className="pi pi-sign-out"></span> Logout
+                  </span>
+                </Popconfirm>
+              </div>
             </div>
           </div>
           <div className="col-span-3 px-4 lg:pl-0 mt-4 lg:mt-0">

@@ -1,4 +1,4 @@
-import { Button, TableProps, Tag } from "antd";
+import { Button, Popconfirm, TableProps, Tag } from "antd";
 import { useTeamAccess } from "./useTeamAccess";
 import { TableComp } from "../../components";
 import { useState } from "react";
@@ -82,6 +82,35 @@ export const TeamAccessPage = () => {
       title: "Team Role",
       dataIndex: "teamRole",
       key: "teamRole",
+    },
+    {
+      title: "Admin",
+      dataIndex: "admin",
+      key: "admin",
+      render: (_, data) => {
+        return (
+          <Popconfirm
+            title="Grant Administrator Permission"
+            description="Are you sure you want to grant administrator permission?"
+            onConfirm={() =>
+              onUpdateActive({
+                id: data.id,
+                isAdmin: !data.isAdmin,
+              })
+            }
+            okText="Yes"
+            cancelText="No"
+          >
+            <Tag
+              color={data?.isAdmin ? "green" : "red"}
+              className="text-xs flex items-center justify-center cursor-pointer"
+            >
+              {data?.isAdmin ? "Yes" : "No"}
+            </Tag>
+          </Popconfirm>
+        );
+      },
+      width: 100,
     },
     {
       title: "Purchased Date",
