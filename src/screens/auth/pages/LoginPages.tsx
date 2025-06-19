@@ -61,10 +61,6 @@ export const LoginPages = () => {
             <h1 className="font-bold text-2xl sm:text-3xl">
               Login to your account
             </h1>
-            {/* <p className="text-xs sm:mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac
-            lectus nec enim tempor suscipit.
-          </p> */}
 
             <div className="mt-4">
               <p className="mb-1">Select </p>
@@ -122,7 +118,7 @@ export const LoginPages = () => {
                       >
                         <Select
                           showSearch
-                          placeholder="Select Query"
+                          placeholder="Select Country"
                           className="customSelect col-span-1"
                           filterOption={(input, option: any) =>
                             (option?.label ?? "")

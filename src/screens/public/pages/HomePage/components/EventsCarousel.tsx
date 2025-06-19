@@ -30,9 +30,7 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(${
-              listActive?.event_id?.url_image || ""
-            })`,
+            backgroundImage: `linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(https://res.cloudinary.com/det46rxjs/image/upload/v1732042088/background_Home_56bde4bae7.svg)`,
           }}
         ></div>
         <div className="lg:col-span-2 px-8 flex flex-col justify-center pt-20 sm:pt-0 z-10">

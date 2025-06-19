@@ -20,7 +20,7 @@ export const BgAuth = () => {
           <img src={logo} alt="logo" />
         </Link>
 
-        <div className="mt-10 sm:mt-auto">
+        {/* <div className="mt-10 sm:mt-auto">
           <h1 className="text-2xl font-bold">Lorem ipsum</h1>
           <p className="text-xs mt-4 h-8 sm:h-auto overflow-hidden overflow-ellipsis">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit
@@ -30,7 +30,7 @@ export const BgAuth = () => {
             mauris. Mauris condimentum blandit eros, ac dignissim lectus
             malesuada luctus.
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
