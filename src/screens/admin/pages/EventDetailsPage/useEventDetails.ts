@@ -1,7 +1,11 @@
 import { message } from "antd";
 import { useEffect, useState } from "react";
 import { getLocalStorage, useMoment } from "../../../../hooks";
-import { getAdminEventDetail, putUpdateEvent } from "../../../../store/thunks";
+import {
+  getAdminEventDetail,
+  getTeamAccess,
+  putUpdateEvent,
+} from "../../../../store/thunks";
 
 export const useEventDetails = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -41,8 +45,10 @@ export const useEventDetails = () => {
     });
   };
 
-  const onOrganizer = () => {
+  const onOrganizer = async () => {
     setIsOrganizer(userData?.id == eventShared?.users_id?.id);
+    const res = await getTeamAccess(eventShared?.id_event);
+    setIsOrganizer(res);
   };
 
   const onPublichEvent = async () => {

@@ -63,6 +63,7 @@ export const BookTicketsPage = () => {
           <div className="col-span-1 lg:col-span-2">
             {!eventDetail?.url_map && checkoutInit == 1 && (
               <ChairsComp
+                imgMap={eventDetail?.map_img_url}
                 loading={isLoading.seats}
                 seats={listSeats}
                 onSelect={onSelectSeats}

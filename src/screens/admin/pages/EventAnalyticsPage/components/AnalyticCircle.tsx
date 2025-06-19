@@ -70,7 +70,9 @@ export const AnalyticCircleComp = ({ data }: AnalyticCircleCompProps) => {
   return (
     <div className="bg-nav p-3! rounded-xl text-white! flex flex-col gap-3">
       <div className="flex items-center gap-3">
-        <span className="pi pi-chart-line text-3xl rounded-2xl"></span>
+        <span
+          className={`pi ${data.icon ?? "pi-chart-line"} text-3xl rounded-2xl`}
+        ></span>
         <p className="text-xl bebasNeue">{data.type ?? ""}</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 min-h-23">

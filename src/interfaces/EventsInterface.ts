@@ -35,6 +35,7 @@ export interface EventData {
   event_restriction_id: EventRestrictionId;
   event_status_id: EventStatusId;
   users_id: UsersId;
+  map_img_url?: any;
 }
 
 export interface Description {

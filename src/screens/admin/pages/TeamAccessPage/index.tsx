@@ -41,6 +41,7 @@ export const TeamAccessPage = () => {
         );
       },
       className: "w-10",
+      width: 100,
     },
     {
       title: "Status",
@@ -65,7 +66,7 @@ export const TeamAccessPage = () => {
       width: 100,
     },
     {
-      title: "Customer",
+      title: "Team Member",
       dataIndex: "customer",
       key: "customer",
       render: (text: string, data) => {
@@ -76,15 +77,15 @@ export const TeamAccessPage = () => {
           </div>
         );
       },
-      width: 250,
     },
     {
       title: "Team Role",
       dataIndex: "teamRole",
       key: "teamRole",
+      width: 100,
     },
     {
-      title: "Admin",
+      title: "Admin?",
       dataIndex: "admin",
       key: "admin",
       render: (_, data) => {
@@ -113,7 +114,7 @@ export const TeamAccessPage = () => {
       width: 100,
     },
     {
-      title: "Purchased Date",
+      title: "Created Date",
       dataIndex: "purchasedDate",
       key: "purchasedDate",
     },

@@ -1,14 +1,22 @@
-import { Select } from "antd";
-import { useMemo } from "react";
+import { Image, Select } from "antd";
+import { useMemo, useState } from "react";
 import { ComDescription } from "../../../../../components";
 
 interface ChairsCompProp {
+  imgMap?: any;
   loading: boolean;
   seats: any[];
   onSelect?: (val: any) => void;
 }
 
-export const ChairsComp = ({ loading, seats, onSelect }: ChairsCompProp) => {
+export const ChairsComp = ({
+  imgMap,
+  loading,
+  seats,
+  onSelect,
+}: ChairsCompProp) => {
+  const [visible, setVisible] = useState(false);
+
   const useSelectOptions = (max: number): any[] => {
     return useMemo(() => {
       return Array.from({ length: max + 1 }, (_, i) => ({
@@ -49,6 +57,23 @@ export const ChairsComp = ({ loading, seats, onSelect }: ChairsCompProp) => {
               </div>
             ))}
         </div>
+
+        <div
+          className="hidden sm:block h-70 w-70 bg-cover bg-center rounded-lg cursor-pointer hover:opacity-80 mt-8"
+          onClick={() => setVisible(true)}
+          style={{ backgroundImage: `url(${imgMap})` }}
+        ></div>
+
+        <Image
+          className="hidden"
+          rootClassName="w-full"
+          src="error"
+          fallback={imgMap ?? ""}
+          preview={{
+            visible: visible,
+            onVisibleChange: (vis) => setVisible(vis),
+          }}
+        />
       </div>
     </div>
   );
