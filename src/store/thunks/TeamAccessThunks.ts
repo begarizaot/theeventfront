@@ -42,6 +42,22 @@ export const getListTeamAccess = (
   });
 };
 
+export const getTeamAccess = (id_event?: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.get<any>(
+        `team-access/getTeamAccess/${id_event}`
+      );
+
+      if (!data.status) return reject(data?.message);
+
+      resolve(data.data);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
 export const postCreateTeamAccess = (id_event: any, dataReq: any) => {
   return new Promise<any>(async (resolve, reject) => {
     try {
