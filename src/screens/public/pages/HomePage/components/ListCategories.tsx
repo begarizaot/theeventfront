@@ -9,7 +9,7 @@ interface listCategoriesProp {
 export const ListCategoriesComp = ({ list, loading }: listCategoriesProp) => {
   return (
     <div className="col-span-1 my-6 bg-[linear-gradient(0deg,rgba(34,2,0,0)_0%,#420502_50%,rgba(34,2,0,0)_100%)]">
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mx-auto max-w-[80rem] px-6 mt-3 relative">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-[80rem] px-6 mt-3 relative">
         {loading &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
             <div className="col-span-1 h-15 sm:h-17" key={i}>

@@ -92,7 +92,7 @@ export const ArtistDetailsPage = () => {
                           className="w-full"
                         >
                           <Button className="w-full rounded-3xl! uppercase btnStyle bg-black/20!">
-                            <span className="font-bold text-xs">Details</span>
+                            <span className="font-bold text-xs">View Ticket</span>
                           </Button>
                         </Link>
                       </div>
