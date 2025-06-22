@@ -260,7 +260,8 @@ export const useBookTickets = () => {
       ticket * (sFee?.desiredProfit ?? 0) + (sFee?.fixedFee ?? 0);
     const subtotal = (discountCode ? discountCode : ticket) + serviceFee;
     const processingFee = subtotal * (sFee?.percentageFee ?? 0);
-    const refundableRes = (ticket * (sFee?.refundable ?? 0)) / 10;
+    const refundableRes =
+      (sFee?.minRefundable ?? 0) + (ticket * (sFee?.refundable ?? 0)) / 10;
     const totalRefundable = refundable ? refundableRes * ticketCount : 0;
     const total = subtotal + processingFee + totalRefundable;
 

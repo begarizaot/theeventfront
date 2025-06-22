@@ -165,7 +165,7 @@ export const CreateEditCodeDrawer = ({
                   ]}
                 >
                   <DatePicker
-                    showTime
+                    showTime={{  use12Hours: true }}
                     className="rounded-full! bg-transparent! w-full py-[5px]! border-white! hover:border-white! focus-within:border-white!"
                   />
                 </Form.Item>
@@ -182,7 +182,7 @@ export const CreateEditCodeDrawer = ({
                   ]}
                 >
                   <DatePicker
-                    showTime
+                    showTime={{  use12Hours: true }}
                     className="rounded-full! bg-transparent! w-full py-[5px]! border-white! hover:border-white! focus-within:border-white!"
                   />
                 </Form.Item>

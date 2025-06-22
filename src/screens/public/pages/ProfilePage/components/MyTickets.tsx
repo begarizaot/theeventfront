@@ -18,7 +18,7 @@ export const MyTicketsComp = () => {
   }, [dispatch]);
 
   return (
-    <div className="grid grid-cols-1 gap-3">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
       {loading &&
         [1, 2, 3].map((ind: any) => (
           <div className="col-span-1 h-50 lg:h-40!" key={ind}>
@@ -34,13 +34,13 @@ export const MyTicketsComp = () => {
             key={order.id}
             to={order?.url_pdf}
             target="_blank"
-            className="col-span-1 bg-center rounded-xl shadow-2xl"
-            style={{
-              backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),url(${order?.event_id?.url_image})`,
-            }}
+            className="col-span-1 bg-center rounded-xl shadow-2xl bg-black/70"
+            // style={{
+            //   backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),url(${order?.event_id?.url_image})`,
+            // }}
           >
-            <div className="grid grid-cols-2 h-50! lg:h-40! p-2 content-center gap-2">
-              <div className="col-span-2 text-2xl bebasNeue">
+            <div className="grid grid-cols-2 h-40! lg:h-35! p-2 content-center gap-2">
+              <div className="col-span-2 text-xl bebasNeue">
                 {order?.event_id?.name}
               </div>
               <div className="col-span-1">
@@ -49,8 +49,13 @@ export const MyTicketsComp = () => {
               <div className="col-span-1 text-right">ID: {order?.order_id}</div>
               <div className="col-span-1 mt-2">
                 <p className="text-sm/1">Amount paid</p>
-                <h1 className="font-bold text-2xl">${order.total_price}</h1>
+                <h1 className="font-bold text-xl">${order.total_price}</h1>
               </div>
+              {order?.isRefundable && (
+                <div className="col-span-1 text-right">
+                  Status: <span className="font-bold">Refunded</span>
+                </div>
+              )}
             </div>
           </Link>
         ))}

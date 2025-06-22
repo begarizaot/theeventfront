@@ -12,9 +12,9 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
   const { onFreeTicket } = useContext(CardContext);
   const navigate = useNavigate();
 
-  const onBookTicket = () => {
+  const onBookTicket = async() => {
     onFreeTicket(false);
-    setLocalStorage("event", dataEvent);
+    await setLocalStorage("event", dataEvent);
     navigate(`/book-tickets/${dataEvent?.id_event}`);
   };
 
