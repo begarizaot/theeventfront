@@ -6,6 +6,7 @@ import { AdminProvider } from "../../../provider";
 import { HeaderComp, NavAdminComp } from "../components";
 import {
   DiscountCodePage,
+  EventAffiliatesPage,
   EventAnalyticsPage,
   EventDetailsPage,
   FreeTicketsPage,
@@ -55,6 +56,7 @@ export const AdminRouter = () => {
               <Route path="/freeTickets/:id" element={<FreeTicketsPage />} />
               <Route path="/marcketing/:id" element={<MarcketingPage />} />
               <Route path="/qrScanner/:id" element={<QrScannerPage />} />
+              <Route path="/eventAffiliates/:id" element={<EventAffiliatesPage />} />
             </Route>
           </Routes>
         </div>
