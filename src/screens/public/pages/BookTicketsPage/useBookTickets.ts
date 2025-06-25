@@ -13,7 +13,6 @@ import { getLocalStorage, useParseNumbers, useQuery } from "../../../../hooks";
 import { useStripeComplete } from "./useStripeComplete";
 
 import {
-  getSendMail,
   getServiceFee,
   getTicketEvents,
   postCreateOrder,
@@ -21,6 +20,7 @@ import {
   postCreatePayment,
   postCreatePaymentFree,
   postEventsDiscountCode,
+  postSendMail,
 } from "../../../../store/thunks";
 
 export const useBookTickets = () => {
@@ -147,7 +147,7 @@ export const useBookTickets = () => {
       const resPayment = await postCreatePayment(data);
       await confirmCardPayment(resPayment?.client_secret || "");
       const order = await postCreateOrder({ ...data, payment: resPayment });
-      getSendMail(order);
+      postSendMail(order, userData);
       onValueOrder(order);
       onShowSuccess();
       navigate(`/event/${eventDetail?.id_event}`, { replace: true });
@@ -172,7 +172,7 @@ export const useBookTickets = () => {
       };
       await postCreatePaymentFree(data);
       const order = await postCreateOrderFree(data);
-      getSendMail(order);
+      postSendMail(order, userData);
       onValueOrder(order);
       onShowSuccess();
       navigate(`/admin/freeTickets/${eventDetail?.id_event}`, {

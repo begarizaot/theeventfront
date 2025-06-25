@@ -269,3 +269,24 @@ export const postCreateOrderFree = (dataReq: any) => {
     }
   });
 };
+
+
+export const postSendMail = (idOrder: any, dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.post<any>(
+        `order/postSendMail/${idOrder}`,
+        dataReq
+      );
+
+      if (!data.status) {
+        reject(data.message);
+        return;
+      }
+
+      resolve(data.message);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
