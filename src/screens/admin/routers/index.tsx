@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Drawer } from "antd";
 import { useState } from "react";
 
@@ -6,6 +6,7 @@ import { AdminProvider } from "../../../provider";
 import { HeaderComp, NavAdminComp } from "../components";
 import {
   DiscountCodePage,
+  EventAffiliatesPage,
   EventAnalyticsPage,
   EventDetailsPage,
   FreeTicketsPage,
@@ -55,7 +56,12 @@ export const AdminRouter = () => {
               <Route path="/freeTickets/:id" element={<FreeTicketsPage />} />
               <Route path="/marcketing/:id" element={<MarcketingPage />} />
               <Route path="/qrScanner/:id" element={<QrScannerPage />} />
+              <Route
+                path="/eventAffiliates/:id"
+                element={<EventAffiliatesPage />}
+              />
             </Route>
+            <Route path="*" element={<Navigate to="/admin/eventDetails/1" replace />} />
           </Routes>
         </div>
       </div>

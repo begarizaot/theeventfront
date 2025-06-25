@@ -207,7 +207,7 @@ export const CreateEditTable = ({
                   labelCol={{ span: 24, className: "pb-0!" }}
                 >
                   <DatePicker.RangePicker
-                    showTime
+                    showTime={{  use12Hours: true, format: "hh:mm" }}
                     format="YYYY-MM-DD hh:mm"
                     className="rounded-full! bg-transparent! w-full py-[5px]! border-white! hover:border-white! focus-within:border-white!"
                   />

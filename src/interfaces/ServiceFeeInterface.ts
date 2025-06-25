@@ -9,4 +9,5 @@ export interface ServiceFeeData {
   refundable: number;
   percentageFee: number;
   desiredProfit: number;
+  minRefundable: number;
 }

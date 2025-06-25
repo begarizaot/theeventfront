@@ -8,3 +8,5 @@ export * from "./useLocalStorage";
 export * from "./useParseNumbers";
 export * from "./useHexToRgba";
 export * from "./useImageUpload";
+export * from "./useDownloadQr";
+export * from "./useQuery";

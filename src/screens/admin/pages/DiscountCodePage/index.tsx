@@ -110,6 +110,7 @@ export const DiscountCodePage = () => {
         onEditCreateCode={() => {
           onRefresh();
           setOpNewCode(false);
+          setDataCode(null);
         }}
       />
       {contextHolder}
@@ -122,8 +123,8 @@ export const DiscountCodePage = () => {
           <Button
             className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2!"
             onClick={() => {
-              setOpNewCode(true);
               setDataCode(null);
+              setOpNewCode(true);
             }}
           >
             <span className="pi pi-plus"></span>

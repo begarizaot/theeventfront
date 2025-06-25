@@ -17,7 +17,6 @@ export const useStripeComplete = () => {
   const paymentStripe = (total: any) => {
     return new Promise((resolve) => {
       if (stripe) {
-        console.log(total);
         const pr: any = stripe.paymentRequest({
           country: "US",
           currency: "usd",

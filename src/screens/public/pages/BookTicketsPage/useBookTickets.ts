@@ -8,7 +8,7 @@ import { EventData } from "../../../../interfaces/EventsInterface";
 import { ServiceFeeData } from "../../../../interfaces/ServiceFeeInterface";
 
 import { CardContext } from "../../../../context";
-import { getLocalStorage, useParseNumbers } from "../../../../hooks";
+import { getLocalStorage, useParseNumbers, useQuery } from "../../../../hooks";
 
 import { useStripeComplete } from "./useStripeComplete";
 
@@ -25,6 +25,7 @@ import {
 
 export const useBookTickets = () => {
   const [messageApi, contextHolder] = message.useMessage();
+  const query = useQuery();
 
   const navigate = useNavigate();
 
@@ -141,6 +142,7 @@ export const useBookTickets = () => {
         values: useParseNumbers(values),
         paymentId,
         type,
+        aff: query.get("aff") || "",
       };
       const resPayment = await postCreatePayment(data);
       await confirmCardPayment(resPayment?.client_secret || "");
@@ -260,7 +262,8 @@ export const useBookTickets = () => {
       ticket * (sFee?.desiredProfit ?? 0) + (sFee?.fixedFee ?? 0);
     const subtotal = (discountCode ? discountCode : ticket) + serviceFee;
     const processingFee = subtotal * (sFee?.percentageFee ?? 0);
-    const refundableRes = (ticket * (sFee?.refundable ?? 0)) / 10;
+    const refundableRes =
+      (sFee?.minRefundable ?? 0) + (ticket * (sFee?.refundable ?? 0)) / 10;
     const totalRefundable = refundable ? refundableRes * ticketCount : 0;
     const total = subtotal + processingFee + totalRefundable;
 

@@ -46,9 +46,8 @@ export const useEventDetails = () => {
   };
 
   const onOrganizer = async () => {
-    setIsOrganizer(userData?.id == eventShared?.users_id?.id);
     const res = await getTeamAccess(eventShared?.id_event);
-    setIsOrganizer(res);
+    setIsOrganizer(res || userData?.id == eventShared?.users_id?.id);
   };
 
   const onPublichEvent = async () => {
