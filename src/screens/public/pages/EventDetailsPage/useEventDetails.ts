@@ -14,6 +14,7 @@ const { VITE_PUBLIC_URL } = import.meta.env;
 
 export const useEventDetails = () => {
   const { id } = useParams();
+
   const { eventMeta } = useContext(MetaContext);
 
   const [eventDetail, setEventDetail] = useState<EventData>();

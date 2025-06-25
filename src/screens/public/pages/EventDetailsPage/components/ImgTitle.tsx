@@ -2,7 +2,7 @@ import { Button } from "antd";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardContext } from "../../../../../context";
-import { setLocalStorage, useMoment } from "../../../../../hooks";
+import { setLocalStorage, useMoment, useQuery } from "../../../../../hooks";
 
 interface ImgTitleCompProps {
   dataEvent: any;
@@ -11,11 +11,13 @@ interface ImgTitleCompProps {
 export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
   const { onFreeTicket } = useContext(CardContext);
   const navigate = useNavigate();
+  const query = useQuery();
+  const aff = query.get("aff") ? `?aff=${query.get("aff")}` : "";
 
-  const onBookTicket = async() => {
+  const onBookTicket = async () => {
     onFreeTicket(false);
     await setLocalStorage("event", dataEvent);
-    navigate(`/book-tickets/${dataEvent?.id_event}`);
+    navigate(`/book-tickets/${dataEvent?.id_event}${aff}`);
   };
 
   const isEventInActive =

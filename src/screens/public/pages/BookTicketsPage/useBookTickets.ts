@@ -8,7 +8,7 @@ import { EventData } from "../../../../interfaces/EventsInterface";
 import { ServiceFeeData } from "../../../../interfaces/ServiceFeeInterface";
 
 import { CardContext } from "../../../../context";
-import { getLocalStorage, useParseNumbers } from "../../../../hooks";
+import { getLocalStorage, useParseNumbers, useQuery } from "../../../../hooks";
 
 import { useStripeComplete } from "./useStripeComplete";
 
@@ -25,6 +25,7 @@ import {
 
 export const useBookTickets = () => {
   const [messageApi, contextHolder] = message.useMessage();
+  const query = useQuery();
 
   const navigate = useNavigate();
 
@@ -141,6 +142,7 @@ export const useBookTickets = () => {
         values: useParseNumbers(values),
         paymentId,
         type,
+        aff: query.get("aff") || "",
       };
       const resPayment = await postCreatePayment(data);
       await confirmCardPayment(resPayment?.client_secret || "");

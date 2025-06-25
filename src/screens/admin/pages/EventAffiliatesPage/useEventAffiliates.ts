@@ -99,7 +99,7 @@ export const useEventAffiliates = () => {
     copy(link);
     messageApi.open({
       type: "success",
-      content: "Affiliate link copy!",
+      content: "Affiliate link copied!",
     });
   };
 
