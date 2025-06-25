@@ -22,6 +22,11 @@ export const ArtistDetailsPage = () => {
         {...artistMeta}
         url={`${VITE_APITHEEVENT}/artist/${artistMeta?.id ?? ""}`}
       />
+      <MetaDataCom
+        title={artistDetail?.name ?? ""}
+        urlImage={artistDetail?.url_image ?? ""}
+        url={`${VITE_APITHEEVENT}/artist/${artistDetail?.id_artist ?? ""}`}
+      />
 
       <div
         className={`grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 pt-16 w-full mx-auto max-w-[80rem] px-4 sm:px-6 gap-3 pb-6 min-h-screen`}

@@ -1,5 +1,4 @@
 import { Avatar } from "antd";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { theme } from "antd";
 const { useToken } = theme;
@@ -33,9 +32,12 @@ export const HeaderComp = () => {
           </div>
           {/* nav */}
           <div className="col-span-1 lg:hidden flex justify-end gap-6 items-center">
-            <div className="bg-white/10 h-7 w-7 rounded-full cursor-pointer flex items-center justify-center">
+            <Link
+              to="/search"
+              className="bg-white/10 h-7 w-7 rounded-full cursor-pointer flex items-center justify-center"
+            >
               <span className="pi pi-search text-xs"></span>
-            </div>
+            </Link>
             <span
               className="pi pi-bars text-xl"
               onClick={() => onOpenNav(true)}
