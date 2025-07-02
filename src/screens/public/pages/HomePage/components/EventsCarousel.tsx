@@ -34,7 +34,7 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
           }}
         ></div>
         <div className="lg:col-span-2 px-8 flex flex-col justify-center pt-20 sm:pt-0 z-10">
-          <h1 className=" text-4xl lg:text-5xl text-white font-bold uppercase bebasNeue xl:columns-2">
+          <h1 className=" text-3xl lg:text-4xl text-white font-bold uppercase bebasNeue">
             {listActive.title ?? ""}
           </h1>
           <ComDescription contenido={listActive?.description ?? ""} />

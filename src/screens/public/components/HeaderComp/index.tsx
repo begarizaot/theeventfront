@@ -55,12 +55,20 @@ export const HeaderComp = () => {
                 </Link>
               ))}
               {!userData?.id && (
-                <Link
-                  to={`/auth/login`}
-                  className="text-white uppercase text-sm"
-                >
-                  Login
-                </Link>
+                <>
+                  <Link
+                    to={`/auth/login`}
+                    className="text-white uppercase text-sm"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to={`/auth/register`}
+                    className="text-white uppercase text-sm"
+                  >
+                    Register
+                  </Link>
+                </>
               )}
               {userData?.isOrganizer && (
                 <Link

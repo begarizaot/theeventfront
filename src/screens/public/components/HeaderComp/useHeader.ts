@@ -6,7 +6,7 @@ import { getUserData } from "../../../../store/thunks";
 
 export const useHeader = () => {
   const { userData } = useContext(UserContext);
-  const [userRes, setUserRes] = useState<any>(userData);
+  const [userRes, setUserRes] = useState<any>({});
 
   const { globalDate, loading } = useSelector(
     (state: RootState) => state.global
@@ -14,6 +14,7 @@ export const useHeader = () => {
 
   useEffect(() => {
     if (userData?.id) fetchUserData();
+    setUserRes({ ...userData });
   }, [userData]);
 
   const [openNav, setOpenNav] = useState(false);

@@ -22,6 +22,7 @@ import {
   postEventsDiscountCode,
   postSendMail,
 } from "../../../../store/thunks";
+import { scrollToId } from "../../../../helpers";
 
 export const useBookTickets = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -191,6 +192,7 @@ export const useBookTickets = () => {
   // checkouts
   const onCheckoutInit = (value: number) => {
     setCheckoutInit(value);
+    scrollToId("containerCheckout");
   };
 
   const onPaymentStripe = async () => {
@@ -282,6 +284,7 @@ export const useBookTickets = () => {
   const onValuesChange = (values: any) => {
     setUserData({ ...userData, ...values });
     setCheckoutInit(3);
+    scrollToId("containerCheckout");
   };
 
   const onSelectMap = (val: any) => {

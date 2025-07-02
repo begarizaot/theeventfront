@@ -34,13 +34,21 @@ export const ItemNavsComp = ({
           </Link>
         ))}
         {!userData?.id && (
-          <Link
-            to={`/auth/login`}
-            className={`text-white! uppercase text-sm ${classNameItems}`}
-            onClick={() => onClose && onClose(false)}
-          >
-            Login
-          </Link>
+          <>
+            <Link
+              to={`/auth/login`}
+              className={`text-white! uppercase text-sm ${classNameItems}`}
+              onClick={() => onClose && onClose(false)}
+            >
+              Login
+            </Link>
+            <Link
+              to={`/auth/register`}
+              className={`text-white! uppercase text-sm ${classNameItems}`}
+            >
+              Register
+            </Link>
+          </>
         )}
         {userData?.isOrganizer && (
           <Link
