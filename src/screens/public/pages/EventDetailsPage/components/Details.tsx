@@ -24,6 +24,10 @@ const Marker = ({ text }: any) => (
 export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
   const { token } = useToken();
 
+  const isMobileDevice = () => {
+    return /Mobi|Android|iPhone/i.test(navigator.userAgent);
+  };
+
   return (
     <div className="bgGradient">
       <div className="mx-auto max-w-[80rem] px-4 sm:px-6">
@@ -55,7 +59,8 @@ export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
                     label={
                       <>
                         <span className="pi pi-phone text-[10px]"></span>
-                        {dataEvent?.users_id?.country_id?.code} {dataEvent?.users_id?.phoneNumber}
+                        {dataEvent?.users_id?.country_id?.code}{" "}
+                        {dataEvent?.users_id?.phoneNumber}
                       </>
                     }
                     className="text-xs gap-2 flex items-center"
@@ -105,9 +110,7 @@ export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
                 </div>
 
                 <div className="grid gap-1">
-                  <p className="text-sm">
-                    {dataEvent.vanue}
-                  </p>
+                  <p className="text-sm">{dataEvent.vanue}</p>
                   <p className="text-sm">
                     {dataEvent.event_locations_id.formatted_address}
                   </p>
@@ -131,7 +134,11 @@ export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
               <h2 className="text-2xl bebasNeue">Share</h2>
               <div className="flex flex-wrap gap-3 text-xs">
                 {dataEvent?.share?.map((shar: any, index: any) => (
-                  <Link to={shar.link} key={index} target="_blank">
+                  <Link
+                    to={isMobileDevice() ? shar.linkMovil : shar.link}
+                    key={index}
+                    target="_blank"
+                  >
                     <div
                       className=" w-7 h-7 flex items-center justify-center rounded-full"
                       style={{ backgroundColor: token.colorPrimary }}

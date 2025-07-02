@@ -41,10 +41,12 @@ export const useEventDetails = () => {
       {
         icon: "pi pi-whatsapp",
         link: `https://wa.me/?text=${VITE_PUBLIC_URL}/event/${id}`,
+        linkMovil: `whatsapp://send?text=${VITE_PUBLIC_URL}/event/${id}`,
       },
       {
         icon: "pi pi-twitter",
         link: `https://twitter.com/intent/tweet?url=${VITE_PUBLIC_URL}/event/${id}`,
+        linkMovil: `twitter://post?message=${VITE_PUBLIC_URL}/event/${id}`,
       },
     ]);
   };

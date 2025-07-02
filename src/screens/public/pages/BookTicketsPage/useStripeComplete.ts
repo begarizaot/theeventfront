@@ -29,6 +29,7 @@ export const useStripeComplete = () => {
         });
 
         pr.canMakePayment().then((result: any) => {
+          console.log(result)
           if (result) {
             setPaymentRequest(pr);
           }

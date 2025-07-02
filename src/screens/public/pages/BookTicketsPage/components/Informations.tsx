@@ -142,7 +142,7 @@ export const InformationsComp = ({
               <span className="text-white mb-2 mt-2">
                 <span className="text-red-400">*</span> Phone
               </span>
-              <div className="col-span-1 grid grid-cols-3 gap-2">
+              <div className="col-span-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <Form.Item
                   className="m-0! col-span-1"
                   name="country"
@@ -182,6 +182,7 @@ export const InformationsComp = ({
                     }
                     className="rounded-full! bg-transparent! w-full! text-white! py-[1px]! border-white! styleNumberInput"
                     placeholder="Phone Number"
+                    inputMode="numeric"
                   />
                 </Form.Item>
               </div>

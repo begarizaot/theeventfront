@@ -40,6 +40,7 @@ export const BookTicketsPage = () => {
         className={`pt-12 w-full mx-auto max-w-[80rem] px-4 sm:px-6 ${
           checkoutInit == 1 ? "h-screen" : "min-h-screen"
         }`}
+        id="containerCheckout"
       >
         <div className="flex gap-4 items-center">
           <h1 className="text-xl sm:text-3xl uppercase font-bold bebasNeue">

@@ -200,6 +200,7 @@ export const CreateEditTeamDrawer = ({
                     className="rounded-full! bg-transparent! w-full! text-white! py-[0px]! border-white! styleNumberInput"
                     placeholder="Phone Number"
                     disabled={disableText}
+                    inputMode="numeric"
                   />
                 </Form.Item>
               </div>

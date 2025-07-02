@@ -143,6 +143,7 @@ export const LoginPages = () => {
                           }
                           className="rounded-full! bg-transparent! w-full! text-white! py-[0px]! border-white! styleNumberInput"
                           placeholder="Phone Number"
+                          inputMode="numeric"
                         />
                       </Form.Item>
                     </div>
