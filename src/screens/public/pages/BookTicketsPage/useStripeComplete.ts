@@ -15,6 +15,7 @@ export const useStripeComplete = () => {
   let activeEvent: PaymentRequestPaymentMethodEvent | null = null;
 
   const paymentStripe = (total: any) => {
+    console.log({paymentStripe: 'paymentStripe', total})
     return new Promise((resolve) => {
       if (stripe) {
         const pr: any = stripe.paymentRequest({
