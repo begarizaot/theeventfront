@@ -196,7 +196,6 @@ export const useBookTickets = () => {
   };
 
   const onPaymentStripe = async () => {
-    console.log("onPaymentStripe")
     await clearPaymentRequest();
     const paymentId = await paymentStripe(Number(values.total));
     fechCompletePurchase({ paymentId, type: "stripe" });
