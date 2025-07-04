@@ -61,7 +61,7 @@ export const BookTicketsPage = () => {
         <div
           className={`grid grid-cols-1 lg:grid-cols-3 gap-3 mt-4 lg:h-[90%]`}
         >
-          <div className="col-span-1 lg:col-span-2">
+          <div className="col-span-1 lg:col-span-2 order-1 lg:order-0">
             {!eventDetail?.url_map && checkoutInit == 1 && (
               <ChairsComp
                 imgMap={eventDetail?.map_img_url}
