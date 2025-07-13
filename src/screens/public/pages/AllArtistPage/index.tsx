@@ -32,7 +32,7 @@ export const AllArtistPage = () => {
               </div>
             )}
             {loading && (
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
                 {[1, 2, 3].map((ind: any) => (
                   <div
                     className="col-span-1  h-[400px] sm:h-[500px] "
