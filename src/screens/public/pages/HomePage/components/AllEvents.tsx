@@ -53,7 +53,7 @@ export const AllEventsComp = ({ list, loading }: AllEventsProps) => {
         {!loading && (
           <div className="col-span-1 mt-6">
             <div className="hidden lg:grid grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
-              {list?.map((event: any) => (
+              {(list ?? [])?.map((event: any) => (
                 <Link
                   key={event.id_event}
                   to={`/event/${event.id_event}`}
@@ -84,7 +84,7 @@ export const AllEventsComp = ({ list, loading }: AllEventsProps) => {
                   },
                 ]}
               >
-                {list?.map((event: any) => (
+                {(list ?? [])?.map((event: any) => (
                   <Link
                     key={event.id_event}
                     to={`/event/${event.id_event}`}

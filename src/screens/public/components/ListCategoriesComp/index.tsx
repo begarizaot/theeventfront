@@ -3,7 +3,7 @@ import { useListCategories } from "./useListCategories";
 export const ListCategoriesComp = () => {
   const { allCategories, onCategoryClick } = useListCategories();
 
-  return allCategories.map((category: any) => (
+  return (allCategories ?? []).map((category: any) => (
     <div
       className={`
                     px-3 sm:px-4 

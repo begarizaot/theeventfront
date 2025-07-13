@@ -49,7 +49,7 @@ export const ProfilePage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 mt-8">
           <div className="col-span-1 pr-4">
             <div className="flex flex-col gap-3">
-              {navProfile.map((item) => (
+              {(navProfile ?? []).map((item) => (
                 <div
                   key={item.id}
                   className={`flex items-center gap-2 cursor-pointer justify-end pr-2 uppercase py-[1px] ${

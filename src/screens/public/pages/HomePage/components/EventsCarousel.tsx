@@ -61,7 +61,7 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
             }}
             onSlideChange={(swiper) => setListActive(list[swiper.activeIndex])}
           >
-            {list?.map((event: any) => {
+            {(list ?? [])?.map((event: any) => {
               return (
                 <SwiperSlide
                   key={event.id}

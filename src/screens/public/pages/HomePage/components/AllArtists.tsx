@@ -58,7 +58,7 @@ export const AllArtistsComp = ({ list, loading }: AllArtistsProps) => {
         )}
 
         {!loading &&
-          list?.map((artist: any, index: any) => (
+          (list ?? [])?.map((artist: any, index: any) => (
             <>
               {index === midIndex && showAll && ViewAllArt()}
               <CardArtistCom

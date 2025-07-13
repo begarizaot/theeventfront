@@ -27,7 +27,7 @@ export const OrderDataComp = ({
   onDiscountCode,
   onCheckOut,
 }: OrderDataCompProps) => {
-  const seatsFilter = seats.filter((item) => item.select > 0);
+  const seatsFilter = (seats ?? []).filter((item) => item.select > 0);
 
   const [discountCode, setDiscountCode] = useState("");
 
@@ -56,7 +56,7 @@ export const OrderDataComp = ({
 
         <h1 className="text-base font-bold mt-3">Order Summary</h1>
         <div className="grid gap-1 mt-2">
-          {seatsFilter.map((item) => (
+          {(seatsFilter ?? []).map((item) => (
             <div
               className="flex items-center gap-3 justify-between"
               key={item.id}

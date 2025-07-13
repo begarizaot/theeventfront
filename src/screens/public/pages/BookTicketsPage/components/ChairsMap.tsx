@@ -40,7 +40,7 @@ export const ChairsMapComp = ({
               return "";
             }}
             pricing={
-              seats.map((event) => {
+              (seats ?? []).map((event) => {
                 return {
                   category: Number(event.order),
                   price: event.price,

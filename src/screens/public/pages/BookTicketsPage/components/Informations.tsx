@@ -204,7 +204,7 @@ export const InformationsComp = ({
               </div>
 
               <div className="grid grid-cols-2 lg:grid-cols-3 mt-2 gap-3">
-                {listRefundable?.map((item, index) => (
+                {(listRefundable ?? [])?.map((item, index) => (
                   <div className="col-span-1 flex" key={index}>
                     <div className="flex items-center gap-2 bg-white px-2 py-1 rounded-full">
                       <span className="pi pi-check bg-green-500 text-[8px] p-[3px] rounded-full font-bold"></span>

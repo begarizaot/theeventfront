@@ -61,7 +61,7 @@ export const SearchPage = () => {
               </div>
             )}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
-              {listEvents?.map((event: any) => (
+              {(listEvents ?? [])?.map((event: any) => (
                 <Link
                   key={event.id}
                   to={`/event/${event.id_event}`}

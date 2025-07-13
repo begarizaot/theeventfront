@@ -70,7 +70,7 @@ export const ArtistDetailsPage = () => {
         <div className="col-span-1 sm:col-span-2 lg:col-span-3">
           <div className="grid gap-2">
             {lengthArtist > 0 &&
-              artistDetail?.events_ids.map((event:any) => (
+              (artistDetail?.events_ids ?? []).map((event:any) => (
                 <div className="col-span-1" key={event.id_event}>
                   <div className="bg-white rounded-sm shadow-md">
                     <div className="grid grid-cols-1 sm:grid-cols-6 text-black gap-3">

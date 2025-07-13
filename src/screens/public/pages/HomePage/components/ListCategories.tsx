@@ -22,7 +22,7 @@ export const ListCategoriesComp = ({ list, loading }: listCategoriesProp) => {
           ))}
 
         {!loading &&
-          list?.map((category) => (
+          (list ?? [])?.map((category) => (
             <div className="col-span-1" key={category.id}>
               <Link
                 to={`/cotegory/${category.slug}`}
