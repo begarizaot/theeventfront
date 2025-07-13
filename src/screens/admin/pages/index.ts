@@ -6,3 +6,4 @@ export * from "./EventAnalyticsPage";
 export * from "./FreeTicketsPage";
 export * from "./MarcketingPage";
 export * from "./QrScannerPage";
+export * from "./EventAffiliatesPage";

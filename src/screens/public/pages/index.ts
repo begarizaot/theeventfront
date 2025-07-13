@@ -7,3 +7,4 @@ export * from "./ProfilePage";
 export * from "./ArtistDetailsPage";
 export * from "./AllArtistPage";
 export * from "./CreateEventPage";
+export * from "./SearchPage";

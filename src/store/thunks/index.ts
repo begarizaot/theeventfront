@@ -12,3 +12,4 @@ export * from "./DiscountCodeThunks";
 export * from "./TeamTypeRoleThunks";
 export * from "./TicketsEventsThunks";
 export * from "./EventRestrictionsThunks";
+export * from "./EventAffiliateThunks";

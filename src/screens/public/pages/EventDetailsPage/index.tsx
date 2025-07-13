@@ -17,6 +17,12 @@ export const EventDetailsPage = () => {
         {...eventMeta}
         url={`${VITE_APITHEEVENT}/event/${eventMeta?.id ?? ""}`}
       />
+      
+      <MetaDataCom
+        title={eventDetail?.name ?? ""}
+        urlImage={eventDetail?.url_image ?? ""}
+        url={`${VITE_APITHEEVENT}/event/${eventDetail?.id_event ?? ""}`}
+      />
 
       <div
         className="absolute h-[50vh] inset-0 bg-cover opacity-30"

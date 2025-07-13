@@ -11,7 +11,9 @@ import {
   EventDetailsPage,
   HomePage,
   ProfilePage,
+  SearchPage,
 } from "../pages";
+import { Error404Page } from "../../Error404";
 
 export const PubliRouter = () => {
   return (
@@ -29,6 +31,8 @@ export const PubliRouter = () => {
         <Route path="/createEvent" element={<CreateEventPage />} />
         <Route path="/editEvent/:id" element={<CreateEventPage />} />
         <Route path="/cotegory/:category" element={<AllEventsPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="*" element={<Error404Page />} />
       </Routes>
       <FooterComp />
     </>

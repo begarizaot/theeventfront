@@ -15,7 +15,6 @@ export const useStripeComplete = () => {
   let activeEvent: PaymentRequestPaymentMethodEvent | null = null;
 
   const paymentStripe = (total: any) => {
-    setPaymentRequest(null);
     return new Promise((resolve) => {
       if (stripe) {
         const pr: any = stripe.paymentRequest({
@@ -96,11 +95,22 @@ export const useStripeComplete = () => {
     }
   };
 
+  const clearPaymentRequest = () => {
+    return new Promise((resolve) => {
+      setPaymentRequest(null);
+
+      setTimeout(() => {
+        resolve(true);
+      }, 700);
+    });
+  };
+
   return {
     paymentRequest,
     paymentCard,
     abortPayment,
     paymentStripe,
     confirmCardPayment,
+    clearPaymentRequest,
   };
 };

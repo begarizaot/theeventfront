@@ -1,6 +1,6 @@
 import { TextPrimary } from "../../../../../../components";
 import "./styles.scss";
-import { Button, Drawer, Form, Input, Select, Spin } from "antd";
+import { Button, Drawer, Form, Input, InputNumber, Select, Spin } from "antd";
 import { useCreateEditTeam } from "./useCreateEditTeam";
 
 interface createEditTeamProps {
@@ -182,15 +182,16 @@ export const CreateEditTeamDrawer = ({
                     },
                   ]}
                 >
-                  <Input
+                  <InputNumber
+                    formatter={(value) =>
+                      `${value}`
+                        .replace(/\D/g, "")
+                        .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2 $3")
+                    }
+                    className="rounded-full! bg-transparent! w-full! text-white! py-[0px]! border-white! styleNumberInput"
                     placeholder="Phone Number"
-                    className="rounded-full! bg-transparent! border-white! text-white! col-span-2"
-                    classNames={{
-                      input: "placeholder-white/20! py-[4px]!",
-                    }}
-                    inputMode="numeric"
-                    autoComplete="off"
                     disabled={disableText}
+                    inputMode="numeric"
                   />
                 </Form.Item>
               </div>

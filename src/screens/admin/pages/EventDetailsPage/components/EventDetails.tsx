@@ -104,6 +104,7 @@ export const EventDetailsComp = ({
                 rows={4}
                 placeholder="Message"
                 className="rounded-xl! bg-transparent! border-white! text-white! placeholder:text-white/20!"
+                disabled
               />
             </Form.Item>
           </div>

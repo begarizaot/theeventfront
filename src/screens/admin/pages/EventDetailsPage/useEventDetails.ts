@@ -1,7 +1,11 @@
 import { message } from "antd";
 import { useEffect, useState } from "react";
 import { getLocalStorage, useMoment } from "../../../../hooks";
-import { getAdminEventDetail, putUpdateEvent } from "../../../../store/thunks";
+import {
+  getAdminEventDetail,
+  getTeamAccess,
+  putUpdateEvent,
+} from "../../../../store/thunks";
 
 export const useEventDetails = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -31,7 +35,7 @@ export const useEventDetails = () => {
       ...data,
       location: data?.event_locations_id?.formatted_address,
       vicinity: data?.event_locations_id?.vicinity,
-      startDate: useMoment(data?.start_date).format("YYYY-MM-DD HH:mm a"),
+      startDate: useMoment(data?.start_date).format("YYYY-MM-DD hh:mm a"),
       ticketTypes: data?.event_tickets_ids?.filter(
         (ticket: any) => !ticket.isTable
       ),
@@ -41,8 +45,9 @@ export const useEventDetails = () => {
     });
   };
 
-  const onOrganizer = () => {
-    setIsOrganizer(userData?.id == eventShared?.users_id?.id);
+  const onOrganizer = async () => {
+    const res = await getTeamAccess(eventShared?.id_event);
+    setIsOrganizer(res || userData?.id == eventShared?.users_id?.id);
   };
 
   const onPublichEvent = async () => {

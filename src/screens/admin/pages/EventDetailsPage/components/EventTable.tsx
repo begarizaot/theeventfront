@@ -39,7 +39,7 @@ export const EventTableComp = ({ eventData }: EventTableProps) => {
               </div>
               <div className="col-span-1 grid grid-cols-2 items-center">
                 <div className="col-span-1">
-                  {useMoment(ticket?.start_date).format("MMM D, YYYY, HH:mm A")}
+                  {useMoment(ticket?.start_date).format("MMM D, YYYY, hh:mm A")}
                 </div>
               </div>
             </div>

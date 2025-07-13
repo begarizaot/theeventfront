@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, InputNumber, Select } from "antd";
 import bgContactUs from "../../../../assets/contact/bgContact.jpeg";
 import { Link } from "react-router-dom";
 
@@ -70,14 +70,15 @@ export const ContactUsPage = () => {
                 },
               ]}
             >
-              <Input
-                placeholder="Enter Phone Number"
-                className="rounded-full! bg-transparent! border-white! text-white!"
-                classNames={{
-                  input: "placeholder-white/20! py-[6px]!",
-                }}
-                inputMode="text"
-                autoComplete="off"
+              <InputNumber
+                formatter={(value) =>
+                  `${value}`
+                    .replace(/\D/g, "")
+                    .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2 $3")
+                }
+                className="rounded-full! bg-transparent! w-full! text-white! py-[0px]! border-white! styleNumberInput"
+                placeholder="Phone Number"
+                inputMode="numeric"
               />
             </Form.Item>
 

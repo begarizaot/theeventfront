@@ -30,7 +30,7 @@ export const ListCategoriesComp = ({ list, loading }: listCategoriesProp) => {
               >
                 <div className="bg-[linear-gradient(90deg,#80001F_0%,rgba(128,0,31,0)_100%)] inset-0 z-10 absolute opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg"></div>
                 <div
-                  className="h-15 sm:h-17 bg-amber-200 bg-cover rounded-lg shadow flex items-center pl-3"
+                  className="h-15 sm:h-17 bg-amber-200 bg-cover bg-center rounded-lg shadow flex items-center pl-3"
                   style={{
                     backgroundImage: `linear-gradient(85.04deg, #000000 2.83%, rgba(0, 0, 0, 0) 98.45%),url(${category.url_image})`,
                   }}

@@ -24,15 +24,15 @@ export const EventTicketComp = ({
         {(eventData ?? [])?.map((ticket: any) => (
           <div className="col-span-1" key={ticket?.id}>
             <div className="grid grid-cols-1 gap-2 border p-2 rounded-sm">
-              <div className="col-span-1 grid grid-cols-3">
-                <div className="col-span-1 flex items-center gap-2">
+              <div className="col-span-1 grid grid-cols-1 lg:grid-cols-3">
+                <div className="col-span-1 flex items-start lg:items-center gap-2">
                   <TextPrimary className="pi pi-ticket"></TextPrimary>
                   <h1 className="text-lg">{ticket.title ?? ""}</h1>
                 </div>
-                <div className="col-span-1 text-center text-xl font-bold">
+                <div className="col-span-1 items-start lg:items-center text-xl font-bold">
                   ${ticket.price ?? 0}
                 </div>
-                <div className="col-span-1 text-right text-xl ">
+                <div className="col-span-1 items-start lg:items-right text-xl ">
                   Tickets remaining:
                   <span className="font-bold ml-1">
                     {ticket.stock ?? 0}/{ticket.quantity ?? 0}
@@ -41,7 +41,7 @@ export const EventTicketComp = ({
               </div>
               <div className="col-span-1 grid grid-cols-2 items-center">
                 <div className="col-span-1">
-                  {useMoment(ticket?.start_date).format("MMM D, YYYY, HH:mm A")}
+                  {useMoment(ticket?.start_date).format("MMM D, YYYY, hh:mm A")}
                 </div>
               </div>
             </div>

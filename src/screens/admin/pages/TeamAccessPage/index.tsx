@@ -1,4 +1,4 @@
-import { Button, TableProps, Tag } from "antd";
+import { Button, Popconfirm, TableProps, Tag } from "antd";
 import { useTeamAccess } from "./useTeamAccess";
 import { TableComp } from "../../components";
 import { useState } from "react";
@@ -41,6 +41,7 @@ export const TeamAccessPage = () => {
         );
       },
       className: "w-10",
+      width: 100,
     },
     {
       title: "Status",
@@ -65,7 +66,7 @@ export const TeamAccessPage = () => {
       width: 100,
     },
     {
-      title: "Customer",
+      title: "Team Member",
       dataIndex: "customer",
       key: "customer",
       render: (text: string, data) => {
@@ -76,15 +77,44 @@ export const TeamAccessPage = () => {
           </div>
         );
       },
-      width: 250,
     },
     {
       title: "Team Role",
       dataIndex: "teamRole",
       key: "teamRole",
+      width: 100,
     },
     {
-      title: "Purchased Date",
+      title: "Admin?",
+      dataIndex: "admin",
+      key: "admin",
+      render: (_, data) => {
+        return (
+          <Popconfirm
+            title="Grant Administrator Permission"
+            description="Are you sure you want to grant administrator permission?"
+            onConfirm={() =>
+              onUpdateActive({
+                id: data.id,
+                isAdmin: !data.isAdmin,
+              })
+            }
+            okText="Yes"
+            cancelText="No"
+          >
+            <Tag
+              color={data?.isAdmin ? "green" : "red"}
+              className="text-xs flex items-center justify-center cursor-pointer"
+            >
+              {data?.isAdmin ? "Yes" : "No"}
+            </Tag>
+          </Popconfirm>
+        );
+      },
+      width: 100,
+    },
+    {
+      title: "Created Date",
       dataIndex: "purchasedDate",
       key: "purchasedDate",
     },

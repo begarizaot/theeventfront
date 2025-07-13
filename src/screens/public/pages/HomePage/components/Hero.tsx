@@ -1,3 +1,5 @@
+import { ComDescription } from "../../../../../components";
+
 interface HeroProps {
   title: string;
   description?: string;
@@ -15,7 +17,7 @@ export const HeroComp = ({ imageUrl, title, description }: HeroProps) => {
       ></div>
       <div className="z-10 text-white text-center">
         <h1 className="bebasNeue text-3xl font-bold uppercase">{title}</h1>
-        {description && <p className="text-xs mt-2">{description}</p>}
+        {description && <ComDescription contenido={description} />}
       </div>
     </div>
   );

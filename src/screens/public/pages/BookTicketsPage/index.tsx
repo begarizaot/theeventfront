@@ -40,6 +40,7 @@ export const BookTicketsPage = () => {
         className={`pt-12 w-full mx-auto max-w-[80rem] px-4 sm:px-6 ${
           checkoutInit == 1 ? "h-screen" : "min-h-screen"
         }`}
+        id="containerCheckout"
       >
         <div className="flex gap-4 items-center">
           <h1 className="text-xl sm:text-3xl uppercase font-bold bebasNeue">
@@ -60,9 +61,10 @@ export const BookTicketsPage = () => {
         <div
           className={`grid grid-cols-1 lg:grid-cols-3 gap-3 mt-4 lg:h-[90%]`}
         >
-          <div className="col-span-1 lg:col-span-2">
+          <div className="col-span-1 lg:col-span-2 order-1 lg:order-0">
             {!eventDetail?.url_map && checkoutInit == 1 && (
               <ChairsComp
+                imgMap={eventDetail?.map_img_url}
                 loading={isLoading.seats}
                 seats={listSeats}
                 onSelect={onSelectSeats}

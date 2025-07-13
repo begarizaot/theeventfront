@@ -1,6 +1,6 @@
 import "../scss/general.scss";
 import { useContext, useEffect, useState } from "react";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, InputNumber, Select } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
 import { getListCountries, postLogin } from "../../../store/thunks";
@@ -61,10 +61,6 @@ export const LoginPages = () => {
             <h1 className="font-bold text-2xl sm:text-3xl">
               Login to your account
             </h1>
-            {/* <p className="text-xs sm:mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac
-            lectus nec enim tempor suscipit.
-          </p> */}
 
             <div className="mt-4">
               <p className="mb-1">Select </p>
@@ -122,7 +118,7 @@ export const LoginPages = () => {
                       >
                         <Select
                           showSearch
-                          placeholder="Select Query"
+                          placeholder="Select Country"
                           className="customSelect col-span-1"
                           filterOption={(input, option: any) =>
                             (option?.label ?? "")
@@ -141,14 +137,13 @@ export const LoginPages = () => {
                           },
                         ]}
                       >
-                        <Input
+                        <InputNumber
+                          formatter={(value) =>
+                            `${value}`.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2 $3')
+                          }
+                          className="rounded-full! bg-transparent! w-full! text-white! py-[0px]! border-white! styleNumberInput"
                           placeholder="Phone Number"
-                          className="rounded-full! bg-transparent! border-white! text-white! col-span-2"
-                          classNames={{
-                            input: "placeholder-white/20! py-[4px]!",
-                          }}
                           inputMode="numeric"
-                          autoComplete="off"
                         />
                       </Form.Item>
                     </div>

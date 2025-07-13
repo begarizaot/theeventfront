@@ -8,12 +8,11 @@ import { EventData } from "../../../../interfaces/EventsInterface";
 import { ServiceFeeData } from "../../../../interfaces/ServiceFeeInterface";
 
 import { CardContext } from "../../../../context";
-import { getLocalStorage, useParseNumbers } from "../../../../hooks";
+import { getLocalStorage, useParseNumbers, useQuery } from "../../../../hooks";
 
 import { useStripeComplete } from "./useStripeComplete";
 
 import {
-  getSendMail,
   getServiceFee,
   getTicketEvents,
   postCreateOrder,
@@ -21,10 +20,13 @@ import {
   postCreatePayment,
   postCreatePaymentFree,
   postEventsDiscountCode,
+  postSendMail,
 } from "../../../../store/thunks";
+import { scrollToId } from "../../../../helpers";
 
 export const useBookTickets = () => {
   const [messageApi, contextHolder] = message.useMessage();
+  const query = useQuery();
 
   const navigate = useNavigate();
 
@@ -34,6 +36,7 @@ export const useBookTickets = () => {
     paymentRequest,
     abortPayment,
     paymentStripe,
+    clearPaymentRequest,
     // cardElement,
     paymentCard,
     confirmCardPayment,
@@ -82,7 +85,7 @@ export const useBookTickets = () => {
 
   useEffect(() => {
     values?.total && checkoutInit == 3 && onPaymentStripe();
-  }, [values]);
+  }, [values, checkoutInit]);
 
   const fechEventDetail = () => {
     const event = getLocalStorage("event");
@@ -140,11 +143,12 @@ export const useBookTickets = () => {
         values: useParseNumbers(values),
         paymentId,
         type,
+        aff: query.get("aff") || "",
       };
       const resPayment = await postCreatePayment(data);
       await confirmCardPayment(resPayment?.client_secret || "");
       const order = await postCreateOrder({ ...data, payment: resPayment });
-      getSendMail(order);
+      postSendMail(order, userData);
       onValueOrder(order);
       onShowSuccess();
       navigate(`/event/${eventDetail?.id_event}`, { replace: true });
@@ -169,7 +173,7 @@ export const useBookTickets = () => {
       };
       await postCreatePaymentFree(data);
       const order = await postCreateOrderFree(data);
-      getSendMail(order);
+      postSendMail(order, userData);
       onValueOrder(order);
       onShowSuccess();
       navigate(`/admin/freeTickets/${eventDetail?.id_event}`, {
@@ -188,9 +192,11 @@ export const useBookTickets = () => {
   // checkouts
   const onCheckoutInit = (value: number) => {
     setCheckoutInit(value);
+    scrollToId("containerCheckout");
   };
 
   const onPaymentStripe = async () => {
+    await clearPaymentRequest();
     const paymentId = await paymentStripe(Number(values.total));
     fechCompletePurchase({ paymentId, type: "stripe" });
   };
@@ -223,7 +229,6 @@ export const useBookTickets = () => {
   // actions
   const onValueChangeUser = (val: any) => {
     setRefundable(val?.refundable);
-    console.log(val);
     freeTicket && setUserData({ ...userData, ...val });
   };
 
@@ -259,7 +264,8 @@ export const useBookTickets = () => {
       ticket * (sFee?.desiredProfit ?? 0) + (sFee?.fixedFee ?? 0);
     const subtotal = (discountCode ? discountCode : ticket) + serviceFee;
     const processingFee = subtotal * (sFee?.percentageFee ?? 0);
-    const refundableRes = (ticket * (sFee?.refundable ?? 0)) / 10;
+    const refundableRes =
+      (sFee?.minRefundable ?? 0) + (ticket * (sFee?.refundable ?? 0)) / 10;
     const totalRefundable = refundable ? refundableRes * ticketCount : 0;
     const total = subtotal + processingFee + totalRefundable;
 
@@ -278,6 +284,7 @@ export const useBookTickets = () => {
   const onValuesChange = (values: any) => {
     setUserData({ ...userData, ...values });
     setCheckoutInit(3);
+    scrollToId("containerCheckout");
   };
 
   const onSelectMap = (val: any) => {

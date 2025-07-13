@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Drawer } from "antd";
 import { useState } from "react";
 
@@ -6,6 +6,7 @@ import { AdminProvider } from "../../../provider";
 import { HeaderComp, NavAdminComp } from "../components";
 import {
   DiscountCodePage,
+  EventAffiliatesPage,
   EventAnalyticsPage,
   EventDetailsPage,
   FreeTicketsPage,
@@ -14,6 +15,7 @@ import {
   TeamAccessPage,
   TicketControlPage,
 } from "../pages";
+import { NavRouter } from "./NavRouter";
 
 export const AdminRouter = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -39,17 +41,27 @@ export const AdminRouter = () => {
         <div className="col-span-1 sm:col-span-2 lg:col-span-4">
           <HeaderComp onShowNav={() => setOpenNav(true)} />
           <Routes>
-            <Route path="/eventDetails/:id" element={<EventDetailsPage />} />
-            <Route path="/ticketControl/:id" element={<TicketControlPage />} />
-            <Route
-              path="/eventAnalytics/:id"
-              element={<EventAnalyticsPage />}
-            />
-            <Route path="/teamAccess/:id" element={<TeamAccessPage />} />
-            <Route path="/discountcode/:id" element={<DiscountCodePage />} />
-            <Route path="/freeTickets/:id" element={<FreeTicketsPage />} />
-            <Route path="/marcketing/:id" element={<MarcketingPage />} />
-            <Route path="/qrScanner/:id" element={<QrScannerPage />} />
+            <Route element={<NavRouter />}>
+              <Route path="/eventDetails/:id" element={<EventDetailsPage />} />
+              <Route
+                path="/ticketControl/:id"
+                element={<TicketControlPage />}
+              />
+              <Route
+                path="/eventAnalytics/:id"
+                element={<EventAnalyticsPage />}
+              />
+              <Route path="/teamAccess/:id" element={<TeamAccessPage />} />
+              <Route path="/discountcode/:id" element={<DiscountCodePage />} />
+              <Route path="/freeTickets/:id" element={<FreeTicketsPage />} />
+              <Route path="/marcketing/:id" element={<MarcketingPage />} />
+              <Route path="/qrScanner/:id" element={<QrScannerPage />} />
+              <Route
+                path="/eventAffiliates/:id"
+                element={<EventAffiliatesPage />}
+              />
+            </Route>
+            <Route path="*" element={<Navigate to="/admin/eventDetails/1" replace />} />
           </Routes>
         </div>
       </div>

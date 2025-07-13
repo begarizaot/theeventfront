@@ -3,12 +3,18 @@ import { useContext, useEffect, useState } from "react";
 
 import { MetaContext } from "../../../../context/MetaContext";
 import { getLocalStorage } from "../../../../hooks";
-import { getEventDetail } from "../../../../store/thunks";
+import {
+  getEventDetail,
+  putUpdateEventFollowing,
+} from "../../../../store/thunks";
 
 import { EventData } from "../../../../interfaces/EventsInterface";
 
+const { VITE_PUBLIC_URL } = import.meta.env;
+
 export const useEventDetails = () => {
   const { id } = useParams();
+
   const { eventMeta } = useContext(MetaContext);
 
   const [eventDetail, setEventDetail] = useState<EventData>();
@@ -25,6 +31,7 @@ export const useEventDetails = () => {
 
   const getArtistDetailApi = async () => {
     const res = await getEventDetail(id);
+    putUpdateEventFollowing(id);
     setEventDetail(res);
     getShareLink();
   };
@@ -32,16 +39,14 @@ export const useEventDetails = () => {
   const getShareLink = () => {
     setEventShare([
       {
-        icon: "pi pi-instagram",
-        link: "https://www.instagram.com/",
-      },
-      {
         icon: "pi pi-whatsapp",
-        link: "https://web.whatsapp.com/",
+        link: `https://wa.me/?text=${VITE_PUBLIC_URL}/event/${id}`,
+        linkMovil: `whatsapp://send?text=${VITE_PUBLIC_URL}/event/${id}`,
       },
       {
         icon: "pi pi-twitter",
-        link: "https://x.com/?lang=es",
+        link: `https://twitter.com/intent/tweet?url=${VITE_PUBLIC_URL}/event/${id}`,
+        linkMovil: `twitter://post?message=${VITE_PUBLIC_URL}/event/${id}`,
       },
     ]);
   };

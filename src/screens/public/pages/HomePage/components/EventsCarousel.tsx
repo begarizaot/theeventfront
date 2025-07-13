@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { CardEventCom, ComDescription } from "../../../../../components";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Button } from "antd";
 import { setLocalStorage } from "../../../../../hooks";
 
@@ -31,25 +30,23 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(${
-              listActive?.event_id?.url_image || ""
-            })`,
+            backgroundImage: `linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(https://res.cloudinary.com/det46rxjs/image/upload/v1732042088/background_Home_56bde4bae7.svg)`,
           }}
         ></div>
         <div className="lg:col-span-2 px-8 flex flex-col justify-center pt-20 sm:pt-0 z-10">
-          <h1 className=" text-4xl lg:text-5xl text-white font-bold uppercase bebasNeue xl:columns-2">
-            {listActive.title}
+          <h1 className=" text-3xl lg:text-4xl text-white font-bold uppercase bebasNeue">
+            {listActive.title ?? ""}
           </h1>
-          <ComDescription contenido={listActive?.description} />
+          <ComDescription contenido={listActive?.description ?? ""} />
 
-          {listActive?.btn && (
+          {listActive?.btn ? (
             <Button
               className="w-45 rounded-3xl! uppercase btnStyle mt-3"
               // onClick={onClick}
             >
               <span className="font-bold text-xs">{listActive.btn.label}</span>
             </Button>
-          )}
+          ) : null}
         </div>
         <div className="lg:col-span-1 flex items-center group">
           <Swiper

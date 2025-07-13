@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CardEventCom } from "../../../../../components";
 import { Skeleton } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,6 @@ import { setLocalStorage } from "../../../../../hooks";
 import { FirstUpperCase } from "../../../../../helpers";
 
 export const MyEventsComp = () => {
-  const navigate = useNavigate();
 
   const dispatch: AppDispatch = useDispatch();
   const { eventDate: myEventList, loading: loadingMyEve } = useSelector(
