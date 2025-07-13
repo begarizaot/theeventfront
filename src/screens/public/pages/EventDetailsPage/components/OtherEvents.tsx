@@ -16,7 +16,7 @@ export const OtherEventsComp = ({ list }: OtherEventsProps) => {
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3 mt-2">
-          {list?.map((event: any) => (
+          {(list ?? [])?.map((event: any) => (
             <div className="col-span-1">
               <Link key={event.id} to={`/event/${event.id}`} className="flex">
                 <CardEventCom

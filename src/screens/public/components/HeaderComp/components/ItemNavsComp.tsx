@@ -23,7 +23,7 @@ export const ItemNavsComp = ({
   return (
     <>
       <div className={`flex items-center lg:gap-5 xl:gap-8 ${className}`}>
-        {header?.navItems.map((nav: any) => (
+        {(header?.navItems ?? []).map((nav: any) => (
           <Link
             key={nav.id}
             to={nav.href}

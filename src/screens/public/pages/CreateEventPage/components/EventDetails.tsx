@@ -123,7 +123,7 @@ export const EventDetailsComp = ({
             <Form.List name="url_youtube">
               {(fields, { add, remove }) => (
                 <div className="grid grid-cols-1 gap-3">
-                  {fields.map(({ key, name, ...restField }) => (
+                  {(fields ?? []).map(({ key, name, ...restField }) => (
                     <div
                       key={key}
                       className="col-span-1 flex items-center gap-2"

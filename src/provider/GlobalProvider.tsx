@@ -46,7 +46,7 @@ export const GlobalProvider = ({ children }: CheckoutProviderProps) => {
               ? theme.darkAlgorithm
               : theme.defaultAlgorithm,
           token: {
-            ...globalRes?.colors.reduce((acc: any, item) => {
+            ...globalRes?.colors?.reduce((acc: any, item) => {
               acc[item.label] = item.color;
               return acc;
             }, {}),

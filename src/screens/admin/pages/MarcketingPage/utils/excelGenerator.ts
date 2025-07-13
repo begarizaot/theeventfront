@@ -10,7 +10,7 @@ interface ExcelRow {
 }
 
 export function generateExcelFromOrders(orders: any[], nameExcel: any): void {
-  const excelData: ExcelRow[] = orders?.map((order) => {
+  const excelData: ExcelRow[] = (orders ?? [])?.map((order) => {
     const customer = `${order?.users_id?.firstName} ${order?.users_id?.lastName}`;
     const email = order?.users_id?.email;
     const phone = `${order?.users_id?.country_id.code}${order?.users_id?.phoneNumber}`;

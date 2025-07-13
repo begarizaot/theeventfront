@@ -138,7 +138,7 @@ export const useBookTickets = () => {
       setIsLoading({ ...isLoading, complete: true });
       const data = {
         eventId: eventDetail?.id_event,
-        tickets: listSeats.filter((item) => item.select > 0),
+        tickets: (listSeats ?? []).filter((item) => item.select > 0),
         userData,
         values: useParseNumbers(values),
         paymentId,
@@ -167,7 +167,7 @@ export const useBookTickets = () => {
       setIsLoading({ ...isLoading, complete: true });
       const data = {
         eventId: eventDetail?.id_event,
-        tickets: listSeats.filter((item) => item.select > 0),
+        tickets: (listSeats ?? []).filter((item) => item.select > 0),
         userData,
         values: useParseNumbers(values),
       };
@@ -216,7 +216,7 @@ export const useBookTickets = () => {
   };
 
   const onRemoveSelected = () => {
-    const newList = listSeats.map((item) => {
+    const newList = (listSeats ?? []).map((item) => {
       return {
         ...item,
         select: 0,
@@ -233,7 +233,7 @@ export const useBookTickets = () => {
   };
 
   const onSelectSeats = (val: any) => {
-    const newList = listSeats.map((item) => {
+    const newList = (listSeats ?? []).map((item) => {
       if (item.id == val.id) {
         return {
           ...item,
@@ -246,14 +246,14 @@ export const useBookTickets = () => {
   };
 
   const onValuesTotal = (sFee?: ServiceFeeData) => {
-    const ticket = listSeats.reduce((acc, item) => {
+    const ticket = listSeats?.reduce((acc, item) => {
       if (item.select) {
         return acc + item.price * item.select;
       }
       return acc;
     }, 0);
 
-    const ticketCount = listSeats.reduce((acc, item) => {
+    const ticketCount = listSeats?.reduce((acc, item) => {
       if (item.select) {
         return acc + item.select;
       }
@@ -288,7 +288,7 @@ export const useBookTickets = () => {
   };
 
   const onSelectMap = (val: any) => {
-    const newList = listSeats.map((item: any) => {
+    const newList = (listSeats ?? []).map((item: any) => {
       if (item.order == val.category.key) {
         return {
           ...item,
@@ -304,12 +304,12 @@ export const useBookTickets = () => {
   };
 
   const onRmSelectMap = (val: any) => {
-    const newList = listSeats.map((item: any) => {
+    const newList = (listSeats ?? []).map((item: any) => {
       if (item.order == val.category.key) {
         return {
           ...item,
           select: item.select ? item.select - 1 : 0,
-          seatId: item.seatId?.filter((e: any) => e != val.seatId),
+          seatId: (item.seatId ?? [])?.filter((e: any) => e != val.seatId),
         };
       }
       return item;

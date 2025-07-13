@@ -29,7 +29,7 @@ export const MyTicketsComp = () => {
           </div>
         ))}
       {!loading &&
-        ordersDate?.map((order: any) => (
+        (ordersDate ?? [])?.map((order: any) => (
           <Link
             key={order.id}
             to={order?.url_pdf}
