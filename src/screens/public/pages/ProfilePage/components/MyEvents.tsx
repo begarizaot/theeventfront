@@ -36,7 +36,7 @@ export const MyEventsComp = () => {
             </div>
           ))}
         {!loadingMyEve &&
-          myEventList?.map((event: any) => (
+          (myEventList ?? [])?.map((event: any) => (
             <Link
               key={event.id}
               to={`/admin/eventDetails/${event?.id_event}`}

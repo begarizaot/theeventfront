@@ -13,7 +13,7 @@ export const AllCarouselComp = ({ list }: AllCarouselProps) => {
         slidesToShow={2.3}
         responsive={[{ breakpoint: 640, settings: { slidesToShow: 1 } }]}
       >
-        {list.map((val, index) => (
+        {(list ?? []).map((val, index) => (
           <img src={val} alt="" className="px-6 h-20 rounded-xl!" key={index} />
         ))}
       </Carousel>

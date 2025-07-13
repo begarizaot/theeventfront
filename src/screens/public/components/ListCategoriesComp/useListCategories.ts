@@ -51,7 +51,7 @@ export const useListCategories = () => {
 
   const onCategoryClick = (id: number) => {
     setAllCategories((prev: any) =>
-      prev.map((category: any) => ({
+      (prev ?? []).map((category: any) => ({
         ...category,
         active: category.id === id,
       }))

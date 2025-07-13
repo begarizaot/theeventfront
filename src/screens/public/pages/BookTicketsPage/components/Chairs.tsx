@@ -31,7 +31,7 @@ export const ChairsComp = ({
 
         <div className="grid gap-2 mt-2">
           {!loading &&
-            seats?.map((val) => (
+            (seats ?? [])?.map((val) => (
               <div className="col-span-1" key={val?.id}>
                 <div className="grid grid-cols-5">
                   <div className="col-span-4">

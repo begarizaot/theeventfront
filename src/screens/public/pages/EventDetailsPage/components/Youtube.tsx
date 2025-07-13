@@ -17,7 +17,7 @@ export const YoutubeComp = ({ list }: YoutubeProps) => {
         }`}
       >
         {list?.length > 0 &&
-          list?.map((item, index) => (
+          (list ?? [])?.map((item, index) => (
             <div className="col-span-1" key={index}>
               <ReactPlayer url={item} width={"auto"} />
             </div>

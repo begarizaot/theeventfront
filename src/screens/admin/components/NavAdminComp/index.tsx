@@ -79,7 +79,7 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
                         key: nav?.menu?.name,
                         label: nav?.menu?.name,
                         icon: <span className={`pi ${nav?.menu?.icon}`} />,
-                        children: nav?.menuItems?.map((item: any) => ({
+                        children: (nav?.menuItems ?? [])?.map((item: any) => ({
                           key: item.id,
                           label: onNavLinkClick(item),
                         })),

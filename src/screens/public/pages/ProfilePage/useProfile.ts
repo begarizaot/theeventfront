@@ -23,7 +23,7 @@ export const useProfile = () => {
   };
 
   const handleActive = (id: number) => {
-    const updatedNavProfile = navProfile.map((item) =>
+    const updatedNavProfile = (navProfile ?? []).map((item) =>
       item.id === id ? { ...item, active: true } : { ...item, active: false }
     );
     setNavProfile(updatedNavProfile);

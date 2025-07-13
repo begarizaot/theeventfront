@@ -68,7 +68,7 @@ export const useCreateEvent = () => {
       vanue: event?.event_locations_id?.vicinity || "",
       age_restrictions: event?.event_restriction_id?.id || undefined,
       categories: event?.categories_id?.id || undefined,
-      artists: event?.artists_ids?.map((artist: any) => artist.id) || undefined,
+      artists: (event?.artists_ids ?? [])?.map((artist: any) => artist.id) || undefined,
     });
 
     setEventData({
@@ -111,7 +111,7 @@ export const useCreateEvent = () => {
 
   const onShowDeleteTable = (ev: any) => {
     setListTables((prev: any[]) =>
-      prev
+    (prev ?? [])
         .filter((item) => item.idItem !== ev.idItem)
         .map((item, index) => ({
           ...item,
@@ -127,7 +127,7 @@ export const useCreateEvent = () => {
 
   const onShowDeleteTicket = (ev: any) => {
     setListTickets((prev: any[]) =>
-      prev
+    (prev ?? [])
         .filter((item) => item.idItem !== ev.idItem)
         .map((item, index) => ({
           ...item,

@@ -45,7 +45,7 @@ export const HeaderComp = () => {
           </div>
           <div className="col-span-1 hidden lg:flex justify-end gap-3">
             <div className="flex items-center lg:gap-5 xl:gap-8">
-              {header?.navItems.map((nav) => (
+              {(header?.navItems ?? []).map((nav) => (
                 <Link
                   key={nav.id}
                   to={nav.href}
