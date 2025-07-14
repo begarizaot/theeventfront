@@ -1,23 +1,22 @@
 import { useEventDetails } from "./useEventDetails";
-import {
-  DetailsComp,
-  ImgTitleComp,
-  YoutubeComp,
-} from "./components";
+import { DetailsComp, ImgTitleComp, YoutubeComp } from "./components";
 import { AllCarouselComp, MetaDataCom } from "../../../../components";
 
 const { VITE_APITHEEVENT } = import.meta.env;
 
 export const EventDetailsPage = () => {
-  const { eventMeta, eventDetail, eventShare } = useEventDetails();
+  const { eventMeta, eventDetail, eventShare, contextHolder } =
+    useEventDetails();
 
   return (
     <>
+      {contextHolder}
+
       <MetaDataCom
         {...eventMeta}
         url={`${VITE_APITHEEVENT}/event/${eventMeta?.id ?? ""}`}
       />
-      
+
       <MetaDataCom
         title={eventDetail?.name ?? ""}
         urlImage={eventDetail?.url_image ?? ""}

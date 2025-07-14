@@ -4,8 +4,7 @@ import {
   putUpdateDiscountCode,
 } from "../../../../../../store/thunks";
 import { Form, message } from "antd";
-import { getLocalStorage } from "../../../../../../hooks";
-import dayjs from "dayjs";
+import { getLocalStorage, useMoment } from "../../../../../../hooks";
 
 export const useCreateEditCode = ({ data, onEditCreateCode }: any) => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -80,11 +79,11 @@ export const useCreateEditCode = ({ data, onEditCreateCode }: any) => {
         },
         {
           name: "start_date",
-          value: dayjs(ev?.start_date ?? ""),
+          value: useMoment(ev?.start_date ?? ""),
         },
         {
           name: "end_date",
-          value: dayjs(ev?.end_date ?? ""),
+          value: useMoment(ev?.end_date ?? ""),
         },
       ]);
   };

@@ -9,6 +9,7 @@ import {
 } from "../../../../store/thunks";
 
 import { EventData } from "../../../../interfaces/EventsInterface";
+import { message } from "antd";
 
 const { VITE_PUBLIC_URL } = import.meta.env;
 
@@ -16,6 +17,8 @@ export const useEventDetails = () => {
   const { id } = useParams();
 
   const { eventMeta } = useContext(MetaContext);
+
+  const [messageApi, contextHolder] = message.useMessage();
 
   const [eventDetail, setEventDetail] = useState<EventData>();
   const [eventShare, setEventShare] = useState<any[]>([]);
@@ -48,6 +51,15 @@ export const useEventDetails = () => {
         link: `https://twitter.com/intent/tweet?url=${VITE_PUBLIC_URL}/event/${id}`,
         linkMovil: `twitter://post?message=${VITE_PUBLIC_URL}/event/${id}`,
       },
+      {
+        icon: "pi pi-link",
+        link: `${VITE_PUBLIC_URL}/event/${id}`,
+        linkMovil: `${VITE_PUBLIC_URL}/event/${id}`,
+        click: () => {
+          navigator.clipboard.writeText(`${VITE_PUBLIC_URL}/event/${id}`);
+          messageApi.success("Link copied!");
+        },
+      },
     ]);
   };
 
@@ -59,5 +71,5 @@ export const useEventDetails = () => {
   //   zoom: 11,
   // };
 
-  return { eventDetail, eventMeta, eventShare };
+  return { eventDetail, eventMeta, eventShare, contextHolder };
 };
