@@ -24,11 +24,9 @@ export const AnalyticDashboardComp = ({
         <div className="col-span-1 flex flex-col gap-1 ">
           <div className="flex items-center justify-between text-sm">
             <p>Checked In</p>
-            <p>{active ?? 0}</p>
-          </div>
-          <div className="flex items-center justify-between text-sm">
-            <p>Didn’t Arrive</p>
-            <p>{inActive ?? 0}</p>
+            <p>
+              {active ?? 0}/{inActive ?? 0}
+            </p>
           </div>
         </div>
         <div className="col-span-1 flex justify-center items-center ">

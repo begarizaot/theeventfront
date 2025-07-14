@@ -2,6 +2,7 @@ import { theme } from "antd";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { useHexToRgba } from "../../../../../hooks";
+import { FormatUSDLatino } from "../../../../../helpers";
 
 const { useToken } = theme;
 
@@ -83,7 +84,17 @@ export const AnalyticCircleComp = ({ data }: AnalyticCircleCompProps) => {
               key={ind}
             >
               <p>{item.title ?? ""}</p>
-              <p>${item.totalValue ?? ""}</p>
+              <div className="flex items-center gap-2">
+                <span
+                  className="pi pi-ticket text-xs"
+                  style={{
+                    color: token.colorPrimary,
+                  }}
+                ></span>
+                <p>{item.quantity ?? ""}</p>
+                <p>-</p>
+                <p>${FormatUSDLatino(item.totalValue, 2) ?? ""}</p>
+              </div>
             </div>
           ))}
         </div>
