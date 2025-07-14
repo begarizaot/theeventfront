@@ -1,4 +1,5 @@
 // hooks/useBogotaTime.ts
+import dayjs from "dayjs";
 import moment from "moment-timezone";
 
 export const useMoment = (date?: any) => {
@@ -6,6 +7,5 @@ export const useMoment = (date?: any) => {
   const bogotaTime = date
     ? moment.tz(date, "America/Bogota")
     : moment.tz("America/Bogota");
-
-  return bogotaTime;
+  return dayjs(bogotaTime.format("YYYY-MM-DD HH:mm:ss"));
 };

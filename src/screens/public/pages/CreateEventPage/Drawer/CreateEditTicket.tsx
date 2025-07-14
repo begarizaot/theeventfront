@@ -10,7 +10,7 @@ import {
   Input,
   InputNumber,
 } from "antd";
-import dayjs from "dayjs";
+import { useMoment } from "../../../../../hooks";
 
 interface CreateEditTicketProps {
   data?: any;
@@ -34,7 +34,7 @@ export const CreateEditTicket = ({
       form.setFieldsValue({
         ...data,
         startEndDate: data?.start_date
-          ? [dayjs(data?.start_date), dayjs(data?.end_date)]
+          ? [useMoment(data?.start_date), useMoment(data?.end_date)]
           : undefined,
         enableAdv: data?.enableAdv || data?.start_date,
         requitePass: data?.requitePass || data?.codePassword,

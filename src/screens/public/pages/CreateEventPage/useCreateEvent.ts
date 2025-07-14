@@ -9,8 +9,7 @@ import {
   putUpdateEventImage,
   postCreateEvent,
 } from "../../../../store/thunks";
-import dayjs from "dayjs";
-import { setLocalStorage, useImageUpload } from "../../../../hooks";
+import { setLocalStorage, useImageUpload, useMoment } from "../../../../hooks";
 
 export const useCreateEvent = () => {
   const { id } = useParams();
@@ -63,7 +62,7 @@ export const useCreateEvent = () => {
     const event = await getAdminEventDetail(id);
     form.setFieldsValue({
       ...event,
-      startEndDate: [dayjs(event.start_date), dayjs(event.end_date)],
+      startEndDate: [useMoment(event.start_date), useMoment(event.end_date)],
       location: event?.event_locations_id?.formatted_address || "",
       vanue: event?.vanue || event?.event_locations_id?.vicinity || "",
       age_restrictions: event?.event_restriction_id?.id || undefined,
@@ -81,7 +80,7 @@ export const useCreateEvent = () => {
     const listTicktes =
       (event?.event_tickets_ids ?? [])?.map((ticket: any) => ({
         ...ticket,
-        startEndDate: [dayjs(ticket.start_date), dayjs(ticket.end_date)],
+        startEndDate: [useMoment(ticket.start_date), useMoment(ticket.end_date)],
         price: Number(ticket.price),
         codePassword: ticket?.codePassword || "",
         enableAdv: true,
@@ -139,7 +138,7 @@ export const useCreateEvent = () => {
   };
 
   const onFormatDate = (date?: any) => {
-    return dayjs(date).format("YYYY-MM-DD hh:mm:ss");
+    return useMoment(date).format("YYYY-MM-DD hh:mm:ss");
   };
 
   const formatItem = (ev: any) => {
