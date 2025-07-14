@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { getAdminEventAnality } from "../../../../store/thunks";
-import { getLocalStorage } from "../../../../hooks";
+import { getLocalStorage, useExportPdf } from "../../../../hooks";
 
 export const useEventAnalytics = () => {
+  const { handleDownloadPDF } = useExportPdf();
   const [dataAnalityc, setDataAnalityc] = useState<any>({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,5 +26,5 @@ export const useEventAnalytics = () => {
     }
   };
 
-  return { isLoading, dataAnalityc };
+  return { isLoading, dataAnalityc, eventShared, handleDownloadPDF };
 };
