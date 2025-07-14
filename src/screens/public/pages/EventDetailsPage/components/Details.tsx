@@ -133,20 +133,34 @@ export const DetailsComp = ({ dataEvent }: DescriptionCompProps) => {
             <div className="grid gap-1">
               <h2 className="text-2xl bebasNeue">Share</h2>
               <div className="flex flex-wrap gap-3 text-xs">
-                {dataEvent?.share?.map((shar: any, index: any) => (
-                  <Link
-                    to={isMobileDevice() ? shar.linkMovil : shar.link}
-                    key={index}
-                    target="_blank"
-                  >
-                    <div
-                      className=" w-7 h-7 flex items-center justify-center rounded-full"
-                      style={{ backgroundColor: token.colorPrimary }}
+                {dataEvent?.share?.map((shar: any, index: any) => {
+                  if (shar.click) {
+                    return (
+                      <div
+                        key={index}
+                        onClick={shar.click}
+                        className="w-7 h-7 flex items-center justify-center rounded-full"
+                        style={{ backgroundColor: token.colorPrimary }}
+                      >
+                        <span className={`${shar.icon} text-xs`}></span>
+                      </div>
+                    );
+                  }
+                  return (
+                    <Link
+                      to={isMobileDevice() ? shar.linkMovil : shar.link}
+                      key={index}
+                      target="_blank"
                     >
-                      <span className={`${shar.icon} text-xs`}></span>
-                    </div>
-                  </Link>
-                ))}
+                      <div
+                        className=" w-7 h-7 flex items-center justify-center rounded-full"
+                        style={{ backgroundColor: token.colorPrimary }}
+                      >
+                        <span className={`${shar.icon} text-xs`}></span>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>

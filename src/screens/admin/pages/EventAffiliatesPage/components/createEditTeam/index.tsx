@@ -160,7 +160,7 @@ export const CreateEditTeamDrawer = ({
               </span>
               <div className="col-span-1 grid grid-cols-3 gap-2">
                 <Form.Item
-                  className="m-0! col-span-1"
+                  className="m-0! col-span-2"
                   name="country"
                   rules={[
                     {
@@ -183,7 +183,7 @@ export const CreateEditTeamDrawer = ({
                   />
                 </Form.Item>
                 <Form.Item
-                  className="m-0! col-span-2"
+                  className="m-0! col-span-3"
                   name="phone"
                   rules={[
                     {

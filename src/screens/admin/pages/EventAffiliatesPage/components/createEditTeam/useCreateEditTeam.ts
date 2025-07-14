@@ -6,8 +6,7 @@ import {
   putUpdateEventAffiliate,
 } from "../../../../../../store/thunks";
 import { Form, message } from "antd";
-import { getLocalStorage } from "../../../../../../hooks";
-import dayjs from "dayjs";
+import { getLocalStorage, useMoment } from "../../../../../../hooks";
 
 export const useCreateEditTeam = ({ data, onEditCreateTeam }: any) => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -39,7 +38,7 @@ export const useCreateEditTeam = ({ data, onEditCreateTeam }: any) => {
         type_role_id: data?.type_role_id?.id ?? null,
         value: data?.value ?? "",
         expirationDate: data?.expiration_date
-          ? dayjs(data?.expiration_date)
+          ? useMoment(data?.expiration_date)
           : null,
         state: data?.state ?? true,
       },
