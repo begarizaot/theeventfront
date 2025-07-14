@@ -25,7 +25,7 @@ export const HomePage = () => {
   return (
     <>
       <MetaDataCom title={VITE_TITLE} url={`${VITE_APITHEEVENT}`} />
-      {(homeDate?.eventCarruselItem ?? []).length > 0 && (
+      {(homeDate.automaticCarruselItem || (homeDate?.eventCarruselItem ?? []).length > 0) && (
         <EventsCarouselComp list={homeDate?.eventCarruselItem} />
       )}
 
@@ -40,7 +40,7 @@ export const HomePage = () => {
       {/* all events */}
       <ListCategoriesComp
         loading={loadingHome}
-        list={(homeDate?.categories ?? []).map((inf) => inf.category_id)}
+        list={(homeDate?.categories ?? []).map((inf:any) => inf.category_id)}
       />
 
       <AllEventsComp loading={loadingEvents} list={eventDate} />
