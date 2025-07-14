@@ -30,7 +30,7 @@ export const GlobalProvider = ({ children }: CheckoutProviderProps) => {
 
   useEffect(() => {
     fechGlobalData();
-  }, []);
+  }, [globalDate]);
 
   const fechGlobalData = async () => {
     const res = await getLocalStorage("global");
