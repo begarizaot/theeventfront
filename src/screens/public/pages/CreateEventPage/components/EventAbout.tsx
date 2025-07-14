@@ -65,12 +65,7 @@ export const EventAboutComp = () => {
               name="artists"
               label={<span className="text-white">Artists</span>}
               labelCol={{ span: 24, className: "pb-0!" }}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the artists!",
-                },
-              ]}
+             
             >
               <Select
                 showSearch

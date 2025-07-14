@@ -77,12 +77,12 @@ export const EventDetailsComp = ({
         <div className="col-span-1">
           <Form.Item
             className="m-0!"
-            name="vicinity"
-            label={<span className="text-white">Vanue</span>}
+            name="vanue"
+            label={<span className="text-white">Venue</span>}
             labelCol={{ span: 24, className: "pb-0!" }}
           >
             <Input
-              placeholder="Enter Vanue"
+              placeholder="Enter Venue"
               className="rounded-full! bg-transparent! border-white! text-white!"
               classNames={{
                 input: "placeholder-white/20! py-[6px]!",

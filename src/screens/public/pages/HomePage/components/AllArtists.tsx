@@ -63,6 +63,7 @@ export const AllArtistsComp = ({ list, loading }: AllArtistsProps) => {
               {index === midIndex && showAll && ViewAllArt()}
               <CardArtistCom
                 artist={artist}
+                key={index}
                 className={`
                 ${index == 0 || index == 7 ? "col-span-1 lg:col-span-1" : ""}
                 ${

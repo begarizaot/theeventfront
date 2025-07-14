@@ -65,10 +65,12 @@ export const useCreateEvent = () => {
       ...event,
       startEndDate: [dayjs(event.start_date), dayjs(event.end_date)],
       location: event?.event_locations_id?.formatted_address || "",
-      vanue: event?.event_locations_id?.vicinity || "",
+      vanue: event?.vanue || event?.event_locations_id?.vicinity || "",
       age_restrictions: event?.event_restriction_id?.id || undefined,
       categories: event?.categories_id?.id || undefined,
-      artists: (event?.artists_ids ?? [])?.map((artist: any) => artist.id) || undefined,
+      artists:
+        (event?.artists_ids ?? [])?.map((artist: any) => artist.id) ||
+        undefined,
     });
 
     setEventData({
@@ -111,7 +113,7 @@ export const useCreateEvent = () => {
 
   const onShowDeleteTable = (ev: any) => {
     setListTables((prev: any[]) =>
-    (prev ?? [])
+      (prev ?? [])
         .filter((item) => item.idItem !== ev.idItem)
         .map((item, index) => ({
           ...item,
@@ -127,7 +129,7 @@ export const useCreateEvent = () => {
 
   const onShowDeleteTicket = (ev: any) => {
     setListTickets((prev: any[]) =>
-    (prev ?? [])
+      (prev ?? [])
         .filter((item) => item.idItem !== ev.idItem)
         .map((item, index) => ({
           ...item,
@@ -241,7 +243,7 @@ export const useCreateEvent = () => {
       };
       delete res.image;
       const dataRes = await postCreateEvent(res);
-      file && await putUpdateEventImage(dataRes?.id_event, file);
+      file && (await putUpdateEventImage(dataRes?.id_event, file));
       setIsLoading(false);
       await setLocalStorage("eventShared", dataRes);
       navigate(`/admin/eventDetails/${dataRes?.id_event}`, {
@@ -259,6 +261,7 @@ export const useCreateEvent = () => {
   const onEditEvent = async (ev: any) => {
     try {
       setIsLoading(true);
+      console.log(ev);
       const res = { ...ev, ...eventData };
       delete res.image;
       await putUpdateEvent(id, res);
