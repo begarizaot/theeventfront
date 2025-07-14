@@ -17,7 +17,7 @@ export const useHome = () => {
     (state: RootState) => state.artist
   );
 
-  const [homeDate, setHomeDate] = useState({})
+  const [homeDate, setHomeDate] = useState<any>({})
 
   useEffect(() => {
     dispatch(getHome());

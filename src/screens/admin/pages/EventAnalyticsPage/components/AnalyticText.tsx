@@ -1,3 +1,5 @@
+import { FormatUSDLatino } from "../../../../../helpers";
+
 interface AnalyticTextCompProps {
   data?: any;
 }
@@ -9,12 +11,14 @@ export const AnalyticTextComp = ({ data }: AnalyticTextCompProps) => {
         <p className="text-xl bebasNeue">Event Sales</p>
       </div>
 
-      <h1 className="font-bold text-3xl">${data?.totalBasePrice || "0.00"}</h1>
+      <h1 className="font-bold text-3xl">
+        ${FormatUSDLatino(data?.totalBasePrice, 2) || "0.00"}
+      </h1>
       <div className="grid gap-1">
         {(data?.ticketsGrouped ?? []).map((item: any, ind: any) => (
           <div className="flex items-center justify-between text-sm" key={ind}>
             <p>{item.title ?? ""}</p>
-            <p>${item.totalValue ?? ""}</p>
+            <p>${FormatUSDLatino(item.totalValue, 2) ?? ""}</p>
           </div>
         ))}
       </div>
