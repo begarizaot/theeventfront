@@ -25,4 +25,15 @@ const removeLocalStorage = (key: string) => {
   }
 };
 
-export { setLocalStorage, getLocalStorage, removeLocalStorage };
+const clearLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    localStorage.clear();
+  }
+};
+
+export {
+  setLocalStorage,
+  getLocalStorage,
+  removeLocalStorage,
+  clearLocalStorage,
+};
