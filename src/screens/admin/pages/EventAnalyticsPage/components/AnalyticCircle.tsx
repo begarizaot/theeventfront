@@ -100,10 +100,9 @@ export const AnalyticCircleComp = ({
                 {!loadingPdf && (
                   <p>${FormatUSDLatino(item.totalValue, 2) ?? ""}</p>
                 )}
+
                 {loadingPdf && (
-                  <p>
-                    Sold at ${FormatUSDLatino(item.totalValue, 2) ?? ""} each
-                  </p>
+                  <p>Sold at ${FormatUSDLatino(item.price) ?? ""} each</p>
                 )}
               </div>
             </div>
