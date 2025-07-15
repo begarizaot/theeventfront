@@ -1,12 +1,64 @@
 import { useEventDetails } from "./useEventDetails";
 import { DetailsComp, ImgTitleComp, YoutubeComp } from "./components";
 import { AllCarouselComp, MetaDataCom } from "../../../../components";
+import { Skeleton } from "antd";
 
 const { VITE_APITHEEVENT } = import.meta.env;
 
 export const EventDetailsPage = () => {
-  const { eventMeta, eventDetail, eventShare, contextHolder } =
+  const { isLoading, eventMeta, eventDetail, eventShare, contextHolder } =
     useEventDetails();
+
+  if (isLoading) {
+    return (
+      <div className="z-10 relative pt-18 mb-10 mx-auto max-w-[80rem] px-4 sm:px-6 grid gap-5">
+        <div className="grid grid-cols-3 gap-3 items-center">
+          <div className="col-span-1 h-80">
+            <Skeleton.Node
+              active
+              className="bg-white/20 w-full! rounded-xl h-full!"
+            />
+          </div>
+          <div className="col-span-2 grid gap-3">
+            <Skeleton.Node
+              active
+              className="bg-white/20 w-full! rounded-xl max-h-10"
+            />
+            <Skeleton.Node
+              active
+              className="bg-white/20 w-[60%]! rounded-xl max-h-10"
+            />
+            <Skeleton.Node
+              active
+              className="bg-white/20 w-[30%]! rounded-xl max-h-10"
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-3 ">
+          <div className="col-span-2 h-80">
+            <Skeleton.Node
+              active
+              className="bg-white/20 w-full! rounded-xl h-full!"
+            />
+          </div>
+          <div className="col-span-1 h-40">
+            <Skeleton.Node
+              active
+              className="bg-white/20 w-full! rounded-xl h-full!"
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 ">
+          <div className="col-span-1 h-80">
+            <Skeleton.Node
+              active
+              className="bg-white/20 w-full! rounded-xl h-full!"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
