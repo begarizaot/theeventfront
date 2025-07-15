@@ -31,9 +31,13 @@ ChartJS.register(centerTextPlugin);
 
 interface AnalyticCircleCompProps {
   data?: any;
+  loadingPdf?: boolean;
 }
 
-export const AnalyticCircleComp = ({ data }: AnalyticCircleCompProps) => {
+export const AnalyticCircleComp = ({
+  data,
+  loadingPdf,
+}: AnalyticCircleCompProps) => {
   const { token } = useToken();
   const { hexToRgba } = useHexToRgba();
 
@@ -93,7 +97,14 @@ export const AnalyticCircleComp = ({ data }: AnalyticCircleCompProps) => {
                 ></span>
                 <p>{item.quantity ?? ""}</p>
                 <p>-</p>
-                <p>${FormatUSDLatino(item.totalValue, 2) ?? ""}</p>
+                {!loadingPdf && (
+                  <p>${FormatUSDLatino(item.totalValue, 2) ?? ""}</p>
+                )}
+                {loadingPdf && (
+                  <p>
+                    Sold at ${FormatUSDLatino(item.totalValue, 2) ?? ""} each
+                  </p>
+                )}
               </div>
             </div>
           ))}

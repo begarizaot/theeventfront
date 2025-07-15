@@ -25,11 +25,14 @@ export const EventAnalyticsPage = () => {
               className="rounded-3xl! btnStyle"
               onClick={() => {
                 setIsLoadingPdf(true);
-                handleDownloadPDF("eventAnalytics", eventShared?.name).finally(
-                  () => {
+                setTimeout(() => {
+                  handleDownloadPDF(
+                    "eventAnalytics",
+                    eventShared?.name
+                  ).finally(() => {
                     setIsLoadingPdf(false);
-                  }
-                );
+                  });
+                }, 200);
               }}
             >
               Download PDF
@@ -86,7 +89,7 @@ export const EventAnalyticsPage = () => {
               (dataAnalityc?.eventSales?.ticketData ?? []).map(
                 (item: any, ind: any) => (
                   <div className="col-span-1" key={ind}>
-                    <AnalyticCircleComp data={item} />
+                    <AnalyticCircleComp data={item} loadingPdf={isLoadingPdf} />
                   </div>
                 )
               )}
@@ -96,6 +99,8 @@ export const EventAnalyticsPage = () => {
                   active={dataAnalityc.scanStats.totalScanned}
                   inActive={dataAnalityc.scanStats.totalTickets}
                   porcentage={dataAnalityc.scanStats.percentageScanned}
+                  loadingPdf={isLoadingPdf}
+                  ticket={dataAnalityc.scanStats.ticketSales}
                 />
               </div>
             )}
