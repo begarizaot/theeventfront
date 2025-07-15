@@ -15,7 +15,7 @@ export const EventAnalyticsPage = () => {
 
   return (
     <>
-      <Spin spinning={isLoadingPdf} fullscreen size="large" />
+      {/* <Spin spinning={isLoadingPdf} fullscreen size="large" /> */}
       <div className="px-4 sm:px-6 py-3 grid">
         <div className="col-span-1 flex items-center justify-between">
           <h1 className="text-2xl font-bold bebasNeue">Event Analytics</h1>
@@ -25,14 +25,14 @@ export const EventAnalyticsPage = () => {
               className="rounded-3xl! btnStyle"
               onClick={() => {
                 setIsLoadingPdf(true);
-                setTimeout(() => {
-                  handleDownloadPDF(
-                    "eventAnalytics",
-                    eventShared?.name
-                  ).finally(() => {
-                    setIsLoadingPdf(false);
-                  });
-                }, 200);
+                // setTimeout(() => {
+                //   handleDownloadPDF(
+                //     "eventAnalytics",
+                //     eventShared?.name
+                //   ).finally(() => {
+                //     setIsLoadingPdf(false);
+                //   });
+                // }, 200);
               }}
             >
               Download PDF
