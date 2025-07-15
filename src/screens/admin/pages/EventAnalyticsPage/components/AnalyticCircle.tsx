@@ -84,7 +84,7 @@ export const AnalyticCircleComp = ({
         <div className="col-span-1 flex flex-col gap-1 ">
           {(data?.ticketsGrouped ?? []).map((item: any, ind: any) => (
             <div
-              className="flex items-center justify-between text-sm"
+              className="flex lg:grid items-center justify-between text-sm"
               key={ind}
             >
               <p>{item.title ?? ""}</p>
