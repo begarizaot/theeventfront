@@ -5,12 +5,16 @@ interface AnalyticDashboardProps {
   active: any;
   inActive: any;
   porcentage: any;
+  loadingPdf?: boolean;
+  ticket?: any[];
 }
 
 export const AnalyticDashboardComp = ({
   active,
   inActive,
   porcentage,
+  loadingPdf = false,
+  ticket = [],
 }: AnalyticDashboardProps) => {
   const { token } = useToken();
 
@@ -28,6 +32,25 @@ export const AnalyticDashboardComp = ({
               {active ?? 0}/{inActive ?? 0}
             </p>
           </div>
+
+          {loadingPdf &&
+            (ticket ?? []).map((item: any, ind: any) => (
+              <div
+                className="flex items-center justify-between text-sm"
+                key={ind}
+              >
+                <p>{item.title ?? ""}</p>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="pi pi-ticket text-xs"
+                    style={{
+                      color: token.colorPrimary,
+                    }}
+                  ></span>
+                  <p>{item.quantity ?? ""}</p>
+                </div>
+              </div>
+            ))}
         </div>
         <div className="col-span-1 flex justify-center items-center ">
           <Progress
