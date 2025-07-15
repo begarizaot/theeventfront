@@ -23,6 +23,8 @@ export const useEventDetails = () => {
   const [eventDetail, setEventDetail] = useState<EventData>();
   const [eventShare, setEventShare] = useState<any[]>([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     getEventDetailStorage();
     getArtistDetailApi();
@@ -33,10 +35,12 @@ export const useEventDetails = () => {
   };
 
   const getArtistDetailApi = async () => {
+    setIsLoading(true);
     const res = await getEventDetail(id);
     putUpdateEventFollowing(id);
     setEventDetail(res);
     getShareLink();
+    setIsLoading(false);
   };
 
   const getShareLink = () => {
@@ -71,5 +75,5 @@ export const useEventDetails = () => {
   //   zoom: 11,
   // };
 
-  return { eventDetail, eventMeta, eventShare, contextHolder };
+  return { isLoading, eventDetail, eventMeta, eventShare, contextHolder };
 };
