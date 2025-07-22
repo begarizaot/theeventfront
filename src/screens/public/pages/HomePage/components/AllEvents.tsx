@@ -36,10 +36,21 @@ export const AllEventsComp = ({ list, loading }: AllEventsProps) => {
           </div> */}
         </div>
         {/* events */}
+
         {loading && (
           <div className="col-span-1 mt-6">
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
+            <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
               {[1, 2, 3].map((ind: any) => (
+                <div className="col-span-1  h-[400px] sm:h-[500px] " key={ind}>
+                  <Skeleton.Node
+                    active
+                    className="bg-white/20 w-full! rounded-xl h-full!"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="lg:hidden grid grid-cols-1 px-4 sm:px-6 contListEvents">
+              {[1].map((ind: any) => (
                 <div className="col-span-1  h-[400px] sm:h-[500px] " key={ind}>
                   <Skeleton.Node
                     active
@@ -50,6 +61,7 @@ export const AllEventsComp = ({ list, loading }: AllEventsProps) => {
             </div>
           </div>
         )}
+
         {!loading && (
           <div className="col-span-1 mt-6">
             <div className="hidden lg:grid grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
