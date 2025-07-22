@@ -48,7 +48,7 @@ export const EventAboutComp = () => {
             >
               <Select
                 showSearch
-                placeholder="Select Query"
+                placeholder="Select Category"
                 className="customSelect"
                 filterOption={(input, option) =>
                   (option?.label ?? "")
@@ -70,7 +70,7 @@ export const EventAboutComp = () => {
               <Select
                 showSearch
                 mode="multiple"
-                placeholder="Select Query"
+                placeholder="Select Artists"
                 className="customSelect"
                 filterOption={(input, option) =>
                   (option?.label ?? "")
@@ -96,7 +96,7 @@ export const EventAboutComp = () => {
             >
               <Select
                 showSearch
-                placeholder="Select Query"
+                placeholder="Select Age Restrictions"
                 className="customSelect"
                 filterOption={(input, option) =>
                   (option?.label ?? "")

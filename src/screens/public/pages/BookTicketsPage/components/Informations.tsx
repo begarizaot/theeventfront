@@ -128,7 +128,7 @@ export const InformationsComp = ({
                 ]}
               >
                 <Input
-                  placeholder="Enter Email ID"
+                  placeholder="Enter Email"
                   className="rounded-full! bg-transparent! border-white! text-white!"
                   classNames={{
                     input: "placeholder-white/20! py-[6px]!",
@@ -155,7 +155,7 @@ export const InformationsComp = ({
                 >
                   <Select
                     showSearch
-                    placeholder="Select Query"
+                    placeholder="Country Code"
                     className="customSelect col-span-1"
                     filterOption={(input, option: any) =>
                       (option?.label ?? "")
@@ -235,7 +235,7 @@ export const InformationsComp = ({
       <div
         className={`px-3 ${
           freeTicket ? "mt-auto" : "mt-4"
-        } flex justify-between`}
+        } flex justify-between gap-2`}
       >
         <Button
           className="w-full sm:w-70 rounded-3xl! uppercase btnStyle"

@@ -162,7 +162,7 @@ export const CreateEditTeamDrawer = ({
                 >
                   <Select
                     showSearch
-                    placeholder="Select Query"
+                    placeholder="Country Code"
                     className="customSelect col-span-1"
                     filterOption={(input, option: any) =>
                       (option?.label ?? "")
