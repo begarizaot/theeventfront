@@ -12,7 +12,7 @@ export const EventDetailsPage = () => {
   if (isLoading) {
     return (
       <div className="z-10 relative pt-18 mb-10 mx-auto max-w-[80rem] px-4 sm:px-6 grid gap-5">
-        <div className="grid grid-cols-3 gap-3 items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
           <div className="col-span-1 h-80">
             <Skeleton.Node
               active
