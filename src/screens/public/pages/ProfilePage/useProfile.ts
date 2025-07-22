@@ -16,7 +16,7 @@ export const useProfile = () => {
   const fetchProfile = async () => {
     setNavProfile([
       { id: 1, name: "my events", active: true },
-      { id: 2, name: "My Tickes", active: false },
+      { id: 2, name: "My Tickets", active: false },
       // { id: 3, name: "about me", active: false },
       // { id: 4, name: "contact info", active: false },
     ]);
