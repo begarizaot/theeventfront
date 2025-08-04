@@ -39,6 +39,7 @@ export const useEventDetails = () => {
     const res = await getEventDetail(id);
     putUpdateEventFollowing(id);
     setEventDetail(res);
+    console.log(res)
     getShareLink();
     setIsLoading(false);
   };
