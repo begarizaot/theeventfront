@@ -17,19 +17,17 @@ const { VITE_APITHEEVENT, VITE_TITLE } = import.meta.env;
 export const MetaProvider = ({ children, data }: LoadingProviderProps) => {
   const event = data?.event;
   const artist = data?.artist;
-  console.log(data)
 
   const title = event?.title || artist?.title || VITE_TITLE;
   const description = event?.description || artist?.description || "";
-  const image = event?.urlImage || artist?.urlImage;
+  const urlImage = event?.urlImage || artist?.urlImage;
 
   const dataMeta = {
     title,
     description,
-    image,
+    urlImage,
     url: event?.url || artist?.url || `${VITE_APITHEEVENT}`,
   };
-  
   return (
     <MetaContext.Provider
       value={{ eventMeta: data.event, artistMeta: data.artist }}
