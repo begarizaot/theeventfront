@@ -260,7 +260,6 @@ export const useCreateEvent = () => {
   const onEditEvent = async (ev: any) => {
     try {
       setIsLoading(true);
-      console.log(ev);
       const res = { ...ev, ...eventData };
       delete res.image;
       await putUpdateEvent(id, res);
