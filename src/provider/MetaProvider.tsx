@@ -18,16 +18,17 @@ export const MetaProvider = ({ children, data }: LoadingProviderProps) => {
   const event = data?.event;
   const artist = data?.artist;
 
-  const title = event?.title || artist?.title || VITE_TITLE;
-  const description = event?.description || artist?.description || "";
-  const urlImage = event?.urlImage || artist?.urlImage;
+  const title = artist?.title || event?.title || VITE_TITLE;
+  const description = artist?.description || event?.description || "";
+  const urlImage = artist?.urlImage || event?.urlImage;
 
   const dataMeta = {
     title,
     description,
     urlImage,
-    url: event?.url || artist?.url || `${VITE_APITHEEVENT}`,
+    url: artist?.url || event?.url || `${VITE_APITHEEVENT}`,
   };
+  console.log(dataMeta)
   return (
     <MetaContext.Provider
       value={{ eventMeta: data.event, artistMeta: data.artist }}
