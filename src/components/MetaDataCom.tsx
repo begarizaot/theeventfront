@@ -18,6 +18,7 @@ export const MetaDataCom = ({
   keywords = "",
   site_name = VITE_APITHEEVENT,
 }: MetaDataProps) => {
+  if (!title) return null; // If no title, do not render meta tags
   return (
     <Helmet>
       <meta charSet="UTF-8" />
