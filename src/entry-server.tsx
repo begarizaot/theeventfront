@@ -4,15 +4,18 @@ import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 
 import { MetaProvider } from "./provider/MetaProvider";
-
 import { getArtistMeta, getEventMeta } from "./store/thunks";
 
 export const render = async (url: string) => {
-  const helmetContext = {};
+  const helmetContext: any = {};
 
-  let metaEvent = await getEventMeta(url);
-  let metaArtist = await getArtistMeta(url);
+  // Prefetch de datos
+  const [metaEvent, metaArtist] = await Promise.all([
+    getEventMeta(url),
+    getArtistMeta(url),
+  ]);
 
+  // Render SSR con datos listos
   const html = renderToString(
     <HelmetProvider context={helmetContext}>
       <StaticRouter location={url}>
@@ -23,10 +26,8 @@ export const render = async (url: string) => {
     </HelmetProvider>
   );
 
-  const { helmet }: any = helmetContext;
-
   return {
     html,
-    helmetContext: { helmet },
+    helmetContext, // ahora el servidor recibirá helmetContext directamente
   };
 };

@@ -20,12 +20,14 @@ export const HeaderComp = () => {
         setOpenNav={onOpenNav}
       />
       <div className="absolute w-full z-20">
-        <div className="max-w-[80rem] mx-auto grid grid-cols-2 py-3 px-4 sm:px-6">
+        <div className="max-w-[80rem] mx-auto grid grid-cols-3 sm:grid-cols-2 py-3 px-4 sm:px-6">
           {/* logo and search */}
+          <div className="col-span-1 sm:hidden"></div>
           <div className="items-center col-span-1 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             <LogoNavCom
               navLogo={header?.logo.href}
               urlLogo={header?.logo.urlImage}
+              classLogo="h-5 sm:h-auto"
             />
             {/* search */}
             <SearchComp className="hidden lg:flex" />

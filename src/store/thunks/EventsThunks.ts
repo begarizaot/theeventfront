@@ -19,7 +19,8 @@ export const getEventHome = () => {
     try {
       const { data } = await theEventApi.get<EventRes>(`event/getEventsHome`);
 
-      if (!data.status) return dispatch(eventHomeFailure("Failed to fetch events"));
+      if (!data.status)
+        return dispatch(eventHomeFailure("Failed to fetch events"));
 
       dispatch(eventHomeSuccess(data.data));
     } catch (error) {
@@ -34,7 +35,8 @@ export const getMyEvent = () => {
     try {
       const { data } = await theEventApi.get<EventRes>(`event/getMyEvents`);
 
-      if (!data.status) return dispatch(myEventFailure("Failed to fetch events"));
+      if (!data.status)
+        return dispatch(myEventFailure("Failed to fetch events"));
 
       dispatch(myEventSuccess(data.data));
     } catch (error) {
@@ -49,7 +51,8 @@ export const getSharedEvents = () => {
     try {
       const { data } = await theEventApi.get<EventRes>(`event/getSharedEvents`);
 
-      if (!data.status) return dispatch(sharedEventFailure("Failed to fetch events"));
+      if (!data.status)
+        return dispatch(sharedEventFailure("Failed to fetch events"));
 
       dispatch(sharedEventSuccess(data.data));
     } catch (error) {
@@ -206,7 +209,14 @@ export const getEventMeta = async (url?: any) => {
     const eventId = match[1] || "";
     try {
       const { data } = await theEventApi.get(`event/getEventMeta/${eventId}`);
-      const res = data.data || {};
+      const res = data?.data?.id
+        ? {
+            ...data?.data,
+            url: `${import.meta.env.VITE_APITHEEVENT}/event/${
+              data?.data?.id ?? ""
+            }`,
+          }
+        : {};
       return res;
     } catch (error) {
       return {};

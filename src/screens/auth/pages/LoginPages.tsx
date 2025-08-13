@@ -58,7 +58,7 @@ export const LoginPages = () => {
         bgAuth"
         >
           <div className="grid grid-cols-1 w-full">
-            <h1 className="font-bold text-2xl sm:text-3xl">
+            <h1 className="font-bold text-2xl sm:text-3xl text-center sm:text-start">
               Login to your account
             </h1>
 

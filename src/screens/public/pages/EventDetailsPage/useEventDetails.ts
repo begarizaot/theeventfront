@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { MetaContext } from "../../../../context/MetaContext";
 import { getLocalStorage } from "../../../../hooks";
 import {
   getEventDetail,
@@ -15,8 +14,6 @@ const { VITE_PUBLIC_URL } = import.meta.env;
 
 export const useEventDetails = () => {
   const { id } = useParams();
-
-  const { eventMeta } = useContext(MetaContext);
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -39,7 +36,7 @@ export const useEventDetails = () => {
     const res = await getEventDetail(id);
     putUpdateEventFollowing(id);
     setEventDetail(res);
-    console.log(res)
+    console.log(res);
     getShareLink();
     setIsLoading(false);
   };
@@ -76,5 +73,5 @@ export const useEventDetails = () => {
   //   zoom: 11,
   // };
 
-  return { isLoading, eventDetail, eventMeta, eventShare, contextHolder };
+  return { isLoading, eventDetail, eventShare, contextHolder };
 };
