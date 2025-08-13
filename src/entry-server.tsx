@@ -10,9 +10,9 @@ export const render = async (url: string) => {
   const helmetContext: any = {};
 
   // Prefetch de datos
-  const [metaArtist, metaEvent] = await Promise.all([
-    getArtistMeta(url),
+  const [metaEvent, metaArtist] = await Promise.all([
     getEventMeta(url),
+    getArtistMeta(url),
   ]);
 
   // Render SSR con datos listos
