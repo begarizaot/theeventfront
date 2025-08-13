@@ -3,6 +3,9 @@ import { setLocalStorage, useMoment } from "../../../../hooks";
 import { useArtist } from "./useArtist";
 import SpotifyPlayer from "@nuyhman/react-spotify-player";
 import { Link } from "react-router-dom";
+import { MetaDataCom } from "../../../../components";
+
+const { VITE_APITHEEVENT } = import.meta.env;
 
 export const ArtistDetailsPage = () => {
   const { artistDetail } = useArtist();
@@ -15,6 +18,12 @@ export const ArtistDetailsPage = () => {
 
   return (
     <>
+    <MetaDataCom
+        title={artistDetail?.name ?? ""}
+        urlImage={artistDetail?.url_image ?? ""}
+        url={`${VITE_APITHEEVENT}/artist/${artistDetail?.id_artist ?? ""}`}
+      />
+
       <div
         className={`grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 pt-16 w-full mx-auto max-w-[80rem] px-4 sm:px-6 gap-3 pb-6 min-h-screen`}
       >
