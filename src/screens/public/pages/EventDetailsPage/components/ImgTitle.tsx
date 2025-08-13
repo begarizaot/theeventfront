@@ -37,7 +37,7 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
         >
           {isEventInActive
             ? `${dataEvent?.event_status_id?.title} event`
-            : "Book Tickets"}
+            : "Buy Tickets"}
         </span>
       </Button>
     );
