@@ -18,7 +18,7 @@ export const FooterComp = () => {
             />
           </div>
           <div className="col-span-3 flex gap-3 sm:justify-end justify-center">
-            {(footer?.navItems ?? []).map((nav) => (
+            {([]).map((nav) => (
               <Link
                 key={nav.id}
                 to={nav.href}
