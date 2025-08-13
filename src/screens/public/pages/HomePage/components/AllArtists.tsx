@@ -33,19 +33,15 @@ export const AllArtistsComp = ({ list, loading }: AllArtistsProps) => {
 
   return (
     <div className="mt-10 sm:my-12 bgArtists">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full mx-auto max-w-[80rem] gap-3 px-4 sm:px-6 pb-3">
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6">
-          <div className="flex flex-col gap-3">
-            <h1 className="text-xl sm:text-3xl font-bold bebasNeue text-center sm:text-start">
-              Artists
-              <TextPrimary
-                label="on Tour"
-                className="uppercase bebasNeue ml-1"
-              />
-            </h1>
-          </div>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6 mb-5">
+        <div className="flex flex-col gap-3">
+          <h1 className="text-xl sm:text-3xl font-bold bebasNeue text-center sm:text-start">
+            Artists
+            <TextPrimary label="on Tour" className="uppercase bebasNeue ml-1" />
+          </h1>
         </div>
-
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full mx-auto max-w-[80rem] gap-3 px-4 sm:px-6 pb-3">
         {loading && (
           <>
             <div className="col-span-1 lg:col-span-1 h-40">
