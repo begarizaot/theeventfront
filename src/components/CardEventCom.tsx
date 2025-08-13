@@ -147,7 +147,7 @@ export const CardEventCom = ({
                 className="w-full rounded-3xl! uppercase btnStyle btnbord"
                 onClick={onClick}
               >
-                <span className="font-bold text-xs">Get Tickets!</span>
+                <span className="font-bold text-xs">Get Tickets</span>
               </Button>
 
               {!hiddenPrice && (
