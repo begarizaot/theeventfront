@@ -1,7 +1,9 @@
 import { useEventDetails } from "./useEventDetails";
 import { DetailsComp, ImgTitleComp, YoutubeComp } from "./components";
-import { AllCarouselComp } from "../../../../components";
+import { AllCarouselComp, MetaDataCom } from "../../../../components";
 import { Skeleton } from "antd";
+
+const { VITE_APITHEEVENT } = import.meta.env;
 
 export const EventDetailsPage = () => {
   const { isLoading, eventDetail, eventShare, contextHolder } =
@@ -61,6 +63,12 @@ export const EventDetailsPage = () => {
   return (
     <>
       {contextHolder}
+
+      <MetaDataCom
+        title={eventDetail?.name ?? ""}
+        urlImage={eventDetail?.url_image ?? ""}
+        url={`${VITE_APITHEEVENT}/event/${eventDetail?.id_event ?? ""}`}
+      />
 
       <div
         className="absolute h-[50vh] inset-0 bg-cover opacity-30"
