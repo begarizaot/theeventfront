@@ -84,7 +84,14 @@ export const getArtistMeta = async (url?: any) => {
     const eventId = match[1] || "";
     try {
       const { data } = await theEventApi.get(`artist/getArtistMeta/${eventId}`);
-      const res = data.data || {};
+      const res = data?.data?.id
+        ? {
+            ...data?.data,
+            url: `${import.meta.env.VITE_APITHEEVENT}/artist/${
+              data?.data?.id ?? ""
+            }`,
+          }
+        : {};
       return res;
     } catch (error) {
       return {};

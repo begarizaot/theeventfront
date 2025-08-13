@@ -1,5 +1,6 @@
 import { Skeleton } from "antd";
 import { Link } from "react-router-dom";
+import { TextPrimary } from "../../../../../components";
 
 interface listCategoriesProp {
   list: any[];
@@ -9,6 +10,17 @@ interface listCategoriesProp {
 export const ListCategoriesComp = ({ list, loading }: listCategoriesProp) => {
   return (
     <div className="col-span-1 my-6 bg-[linear-gradient(0deg,rgba(34,2,0,0)_0%,#420502_50%,rgba(34,2,0,0)_100%)]">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6">
+        <div className="flex flex-col gap-3">
+          <h1 className="text-xl sm:text-3xl font-bold bebasNeue text-center sm:text-start">
+            Browse
+            <TextPrimary
+              label="Categories"
+              className="uppercase bebasNeue ml-1"
+            />
+          </h1>
+        </div>
+      </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-[80rem] px-6 mt-3 relative">
         {loading &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
