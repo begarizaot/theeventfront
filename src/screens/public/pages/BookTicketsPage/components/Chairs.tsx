@@ -1,6 +1,7 @@
 import { Image, Select } from "antd";
 import { useState } from "react";
 import { ComDescription } from "../../../../../components";
+import { FormatUSDLatino } from "../../../../../helpers";
 
 interface ChairsCompProp {
   imgMap?: any;
@@ -35,7 +36,12 @@ export const ChairsComp = ({
               <div className="col-span-1" key={val?.id}>
                 <div className="grid grid-cols-5">
                   <div className="col-span-4">
-                    <h1 className="font-bold">{val?.title}</h1>
+                    <h1 className="font-bold flex items-center gap-2">
+                      {val?.title}{" "}
+                      {val?.price && (
+                        <span>${FormatUSDLatino(val?.price)}</span>
+                      )}
+                    </h1>
                     {val?.description && (
                       <ComDescription contenido={val?.description} />
                     )}
