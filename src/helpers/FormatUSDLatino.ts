@@ -7,7 +7,7 @@ export const FormatUSDLatino = (value: any, digits = 0) => {
 
   // Convertimos a string usando formato estándar y luego reemplazamos
   const formatted = value
-    .toLocaleString("en-US", {
+    .toLocaleString("de-DE", {
       style: "currency",
       currency: "USD",
       maximumFractionDigits: digits,
