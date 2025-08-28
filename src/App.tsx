@@ -3,7 +3,12 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
 import { AppRouter } from "./routers";
-import { UserProvider, CardProvider, GlobalProvider } from "./provider";
+import {
+  UserProvider,
+  CardProvider,
+  GlobalProvider,
+  PixelProvider,
+} from "./provider";
 
 import store from "./store";
 
@@ -16,7 +21,9 @@ function App() {
         <UserProvider>
           <CardProvider>
             <Elements stripe={stripePromise}>
-              <AppRouter />
+              <PixelProvider pixelId={import.meta.env.VITE_META_PIXEL}>
+                <AppRouter />
+              </PixelProvider>
             </Elements>
           </CardProvider>
         </UserProvider>

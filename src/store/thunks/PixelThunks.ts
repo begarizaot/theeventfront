@@ -43,11 +43,17 @@ const onResetDataMeta = (data: any) => {
 
 export const pixelViewContent = (data: PixelEvent) => {
   TiktokPixel.track("ViewContent", onResetData(data));
+};
+
+export const pixelViewContentMeta = (data: PixelEvent) => {
   window?.fbq?.("track", "ViewContent", onResetDataMeta(data));
 };
 
 export const pixelAddToCart = (data: PixelEvent) => {
   TiktokPixel.track("AddToCart", onResetData(data));
+};
+
+export const pixielAddToCartMeta = (data: PixelEvent) => {
   window?.fbq?.("track", "AddToCart", onResetDataMeta(data));
 };
 
@@ -57,5 +63,8 @@ export const pixelInitiateCheckout = (data: PixelEvent) => {
 
 export const pixelPurchase = (data: PixelEvent) => {
   TiktokPixel.track("Purchase", onResetData(data));
+};
+
+export const pixelPurchaseMeta = (data: PixelEvent) => {
   window?.fbq?.("track", "Purchase", onResetDataMeta(data));
 };
