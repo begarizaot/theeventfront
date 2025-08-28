@@ -1,4 +1,5 @@
 import TiktokPixel from "tiktok-pixel";
+import { theEventApi } from "../../lib";
 
 interface PixelEvent {
   contens: Array<{
@@ -67,4 +68,44 @@ export const pixelPurchase = (data: PixelEvent) => {
 
 export const pixelPurchaseMeta = (data: PixelEvent) => {
   window?.fbq?.("track", "Purchase", onResetDataMeta(data));
+};
+
+export const postCreatePixel = (id_event: any, dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.post<any>(
+        `pixel/postCreatePixel/${id_event}`,
+        dataReq
+      );
+
+      if (!data.status) {
+        reject(data.message);
+        return;
+      }
+
+      resolve(data.message);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
+};
+
+export const putUpdatePixel = (id_event: any, dataReq: any) => {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const { data } = await theEventApi.put<any>(
+        `pixel/putUpdatePixel/${id_event}`,
+        dataReq
+      );
+
+      if (!data.status) {
+        reject(data.message);
+        return;
+      }
+
+      resolve(data.message);
+    } catch (error: any) {
+      reject(`Failed to fetch events`);
+    }
+  });
 };
