@@ -51,6 +51,44 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
     );
   };
 
+  const onBtnShare = () => {
+    return (
+      <div className="grid gap-1 mt-2">
+        <h2 className="text-2xl bebasNeue">Share</h2>
+        <div className="flex flex-wrap gap-3 text-xs">
+          {dataEvent?.share?.map((shar: any, index: any) => {
+            if (shar.click) {
+              return (
+                <div
+                  key={index}
+                  onClick={shar.click}
+                  className="w-7 h-7 flex items-center justify-center rounded-full"
+                  style={{ backgroundColor: token.colorPrimary }}
+                >
+                  <span className={`${shar.icon} text-xs`}></span>
+                </div>
+              );
+            }
+            return (
+              <Link
+                to={isMobileDevice() ? shar.linkMovil : shar.link}
+                key={index}
+                target="_blank"
+              >
+                <div
+                  className=" w-7 h-7 flex items-center justify-center rounded-full"
+                  style={{ backgroundColor: token.colorPrimary }}
+                >
+                  <span className={`${shar.icon} text-xs`}></span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className=" mx-auto max-w-[80rem] px-4 sm:px-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -64,39 +102,7 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
             }}
           ></div>
 
-          <div className="grid gap-1 mt-2">
-            <h2 className="text-2xl bebasNeue">Share</h2>
-            <div className="flex flex-wrap gap-3 text-xs">
-              {dataEvent?.share?.map((shar: any, index: any) => {
-                if (shar.click) {
-                  return (
-                    <div
-                      key={index}
-                      onClick={shar.click}
-                      className="w-7 h-7 flex items-center justify-center rounded-full"
-                      style={{ backgroundColor: token.colorPrimary }}
-                    >
-                      <span className={`${shar.icon} text-xs`}></span>
-                    </div>
-                  );
-                }
-                return (
-                  <Link
-                    to={isMobileDevice() ? shar.linkMovil : shar.link}
-                    key={index}
-                    target="_blank"
-                  >
-                    <div
-                      className=" w-7 h-7 flex items-center justify-center rounded-full"
-                      style={{ backgroundColor: token.colorPrimary }}
-                    >
-                      <span className={`${shar.icon} text-xs`}></span>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
+          <div className="hidden sm:flex">{onBtnShare()}</div>
         </div>
         <div className="col-span-1 lg:col-span-2 flex flex-col justify-center gap-2 order-1 sm:order-2">
           <h1 className="text-4xl bebasNeue">{dataEvent?.name}</h1>
@@ -130,6 +136,8 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
 
         <div className="col-span-1 lg:col-span-2 flex flex-col justify-center gap-2 order-3 mb-3 sm:hidden!">
           {onBtn({})}
+
+          <div className="block sm:hidden">{onBtnShare()}</div>
         </div>
       </div>
     </div>
