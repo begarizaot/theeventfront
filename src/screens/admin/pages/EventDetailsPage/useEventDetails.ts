@@ -1,6 +1,6 @@
 import { message } from "antd";
 import { useEffect, useState } from "react";
-import { getLocalStorage, useMoment } from "../../../../hooks";
+import { getLocalStorage, useDownloadQr, useMoment } from "../../../../hooks";
 import {
   getAdminEventDetail,
   getTeamAccess,
@@ -8,6 +8,8 @@ import {
 } from "../../../../store/thunks";
 
 export const useEventDetails = () => {
+  const { downloadQRCode } = useDownloadQr();
+
   const [messageApi, contextHolder] = message.useMessage();
 
   const [eventData, setEventData] = useState<any>({});
@@ -74,5 +76,17 @@ export const useEventDetails = () => {
     }
   };
 
-  return { eventData, isOrganizer, contextHolder, loading, onPublichEvent };
+  const downloadSvgQRCode = () => {
+    const { slug } = eventShared;
+    downloadQRCode({ id: "myMarcketing", slug: slug });
+  };
+
+  return {
+    eventData,
+    isOrganizer,
+    contextHolder,
+    loading,
+    onPublichEvent,
+    downloadSvgQRCode,
+  };
 };

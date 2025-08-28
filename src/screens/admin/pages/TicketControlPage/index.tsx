@@ -15,6 +15,7 @@ export const TicketControlPage = () => {
     onRefundOrder,
     onRefresh,
     onDebouncedSearch,
+    downloadExcel,
   } = useTeamAccess();
 
   const columns: TableProps["columns"] = [
@@ -131,7 +132,12 @@ export const TicketControlPage = () => {
       {contextHolder}
       <Spin spinning={isLoading} fullscreen size="large" />
       <div className="px-4 sm:px-6 py-3 grid gap-3">
-        <h1 className="text-2xl font-bold bebasNeue">Ticket Control</h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold bebasNeue">Ticket Control</h1>
+          <Button className="rounded-3xl! btnStyle" onClick={downloadExcel}>
+            Download
+          </Button>
+        </div>
 
         <div className="">
           <TableComp

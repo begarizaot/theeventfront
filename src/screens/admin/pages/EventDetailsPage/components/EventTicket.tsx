@@ -25,7 +25,7 @@ export const EventTicketComp = ({
           <div className="col-span-1" key={ticket?.id}>
             <div className="grid grid-cols-1 gap-2 border p-2 rounded-sm">
               <div className="col-span-1 grid grid-cols-1 lg:grid-cols-3">
-                <div className="col-span-1 flex items-start lg:items-center gap-2">
+                <div className="col-span-1 flex items-center gap-2">
                   <TextPrimary className="pi pi-ticket"></TextPrimary>
                   <h1 className="text-lg">{ticket.title ?? ""}</h1>
                 </div>

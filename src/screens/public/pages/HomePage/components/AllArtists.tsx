@@ -1,6 +1,7 @@
-import { Skeleton } from "antd";
+import { Button, Skeleton } from "antd";
 // import { Link } from "react-router-dom";
 import { CardArtistCom, TextPrimary } from "../../../../../components";
+import { Link } from "react-router-dom";
 
 interface AllArtistsProps {
   list: any;
@@ -33,7 +34,7 @@ export const AllArtistsComp = ({ list, loading }: AllArtistsProps) => {
 
   return (
     <div className="mt-10 sm:my-12 bgArtists">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6 mb-5">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6 mb-5 mx-auto max-w-[80rem]">
         <div className="flex flex-col gap-3">
           <h1 className="text-xl sm:text-3xl font-bold bebasNeue text-center sm:text-start">
             Artists
@@ -90,6 +91,17 @@ export const AllArtistsComp = ({ list, loading }: AllArtistsProps) => {
           </div>
         )} */}
       </div>
+
+      {/* btn */}
+      {!loading && list?.length > 0 && (
+        <div className="px-4 sm:px-6 mt-6 sm:mt-10 text-center">
+          <Link to={"/allArtist"}>
+            <Button className="w-full sm:w-68 rounded-3xl! uppercase btnStyle btnbordPrimary">
+              <span className="font-bold text-xs">View All</span>
+            </Button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

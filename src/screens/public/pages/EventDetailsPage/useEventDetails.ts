@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { getLocalStorage } from "../../../../hooks";
 import {
   getEventDetail,
+  onInitializePixel,
+  pixelViewContent,
   putUpdateEventFollowing,
 } from "../../../../store/thunks";
 
@@ -38,6 +40,22 @@ export const useEventDetails = () => {
     setEventDetail(res);
     getShareLink();
     setIsLoading(false);
+    dataPixel(res);
+  };
+
+  const dataPixel = async (data: any) => {
+    if (!data?.pixel_id) return;
+    const { pixel_id, name, id_event } = data;
+    const { pixel_tiktok_id } = pixel_id;
+    if (pixel_tiktok_id) {
+      await onInitializePixel(pixel_tiktok_id);
+      pixelViewContent({
+        contens: [{
+          content_id: id_event,
+          content_name: name,
+        }],
+      });
+    }
   };
 
   const getShareLink = () => {
@@ -64,13 +82,6 @@ export const useEventDetails = () => {
     ]);
   };
 
-  // const defaultProps = {
-  //   center: {
-  //     lat: 4.710989,
-  //     lng: -74.072092,
-  //   },
-  //   zoom: 11,
-  // };
 
   return { isLoading, eventDetail, eventShare, contextHolder };
 };

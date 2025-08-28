@@ -36,6 +36,7 @@ export interface EventData {
   event_status_id: EventStatusId;
   users_id: UsersId;
   map_img_url?: any;
+  pixel_id?: any;
 }
 
 export interface Description {
