@@ -3,3 +3,4 @@ export * from "./EventDetails";
 export * from "./EventAbout";
 export * from "./EventTable";
 export * from "./EventTicket";
+export * from "./PixelsData";

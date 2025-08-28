@@ -5,6 +5,7 @@ import {
   EventImageComp,
   EventTableComp,
   EventTicketComp,
+  PixelsData,
 } from "./components";
 import { CreateEditTable, CreateEditTicket } from "./Drawer";
 import { useCreateEvent } from "./useCreateEvent";
@@ -15,6 +16,7 @@ export const CreateEventPage = () => {
     eventData,
     isLoading,
     listTables,
+    pixelDatas,
     listTickets,
     dataTableType,
     contextHolder,
@@ -34,6 +36,7 @@ export const CreateEventPage = () => {
     onImageChange,
     onCreateEvent,
     onEditEvent,
+    onSetLoading,
   } = useCreateEvent();
 
   return (
@@ -105,6 +108,17 @@ export const CreateEventPage = () => {
             onDelete={onShowDeleteTable}
           />
         </div>
+        {eventData?.id_event && (
+          <div className="col-span-1">
+            <PixelsData
+              eventData={eventData}
+              pixelDatas={pixelDatas}
+              onLoading={(ev) => {
+                onSetLoading(ev);
+              }}
+            />
+          </div>
+        )}
         <div className="col-span-1 text-right mt-4">
           <Button
             htmlType="submit"
