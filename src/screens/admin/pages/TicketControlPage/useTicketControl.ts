@@ -4,10 +4,12 @@ import debounce from "lodash/debounce";
 import { useCallback, useEffect, useState } from "react";
 import {
   getAllOrders,
+  getAllOrdersList,
   getRefundOrder,
   getSendMail,
 } from "../../../../store/thunks";
 import { getLocalStorage } from "../../../../hooks";
+import { generateExcelFromOrders } from "../MarcketingPage/utils";
 
 export const useTeamAccess = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -98,6 +100,22 @@ export const useTeamAccess = () => {
     fechDataTickes();
   };
 
+  const downloadExcel = async () => {
+    const { id_event, slug } = eventShared;
+    setLoading(true);
+    try {
+      const data = await getAllOrdersList(id_event);
+      generateExcelFromOrders(data, slug);
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+      messageApi.open({
+        type: "error",
+        content: error,
+      });
+    }
+  };
+
   return {
     dataTickes,
     sizePage,
@@ -110,5 +128,6 @@ export const useTeamAccess = () => {
     onSendMail,
     onRefresh,
     onDebouncedSearch,
+    downloadExcel,
   };
 };

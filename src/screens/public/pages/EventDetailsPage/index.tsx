@@ -79,17 +79,24 @@ export const EventDetailsPage = () => {
         }}
       ></div>
       <div className="z-10 relative pt-18 mb-10">
-        <ImgTitleComp dataEvent={eventDetail} />
+        <ImgTitleComp dataEvent={{ ...eventDetail, share: eventShare }} />
 
         <div className="mt-5">
           <DetailsComp dataEvent={{ ...eventDetail, share: eventShare }} />
         </div>
 
-        <YoutubeComp list={eventDetail?.url_youtube ?? []} />
+        {(eventDetail?.urls_images_advertising ?? [])?.length > 0 && (
+          <div className="my-10 sm:hidden">
+            <div className="px-4 sm:px-6">
+              <h2 className="text-2xl bebasNeue ">Sponsors</h2>
+            </div>
+            <AllCarouselComp
+              list={eventDetail?.urls_images_advertising ?? []}
+            />
+          </div>
+        )}
 
-        <div className="my-20">
-          <AllCarouselComp list={eventDetail?.urls_images_advertising ?? []} />
-        </div>
+        <YoutubeComp list={eventDetail?.url_youtube ?? []} />
 
         {/* <OtherEventsComp list={listOtherEvent} /> */}
       </div>

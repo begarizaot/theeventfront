@@ -30,6 +30,7 @@ export const BookTicketsPage = () => {
     onSelectSeats,
     onRmSelectMap,
     onSelectMap,
+    onCheckOut,
   } = useBookTickets();
 
   return (
@@ -107,7 +108,7 @@ export const BookTicketsPage = () => {
               loading={isLoading}
               freeTicket={freeTicket}
               checkoutInit={checkoutInit}
-              onProceedToPayment={() => onCheckoutInit(2)}
+              onProceedToPayment={() => onCheckOut()}
               onCheckOut={onCompletePurchase}
               onDiscountCode={(code) => {
                 eventsDiscountCode(code);

@@ -14,8 +14,8 @@ export const AllArtistPage = () => {
       <MetaDataCom title={"All Events"} url={`${VITE_APITHEEVENT}/allEvents`} />
       <div className="bgGradient pt-16 min-h-screen">
         <div className="grid grid-cols-1 w-full mx-auto  max-w-[80rem]">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6">
-            <h1 className="text-xl sm:text-3xl font-bold bebasNeue">
+          <div className="flex flex-col justify-center gap-4 px-4 sm:px-6">
+            <h1 className="text-xl sm:text-3xl font-bold bebasNeue text-center">
               All Artists
             </h1>
           </div>
@@ -34,10 +34,7 @@ export const AllArtistPage = () => {
             {loading && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
                 {[1, 2, 3].map((ind: any) => (
-                  <div
-                    className="col-span-1  h-[400px] sm:h-[500px] "
-                    key={ind}
-                  >
+                  <div className="col-span-1 h-40" key={ind}>
                     <Skeleton.Node
                       active
                       className="bg-white/20 w-full! rounded-xl h-full!"
@@ -46,11 +43,13 @@ export const AllArtistPage = () => {
                 ))}
               </div>
             )}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
-              {(listArticts ?? [])?.map((item: any) => (
-                <CardArtistCom artist={item} className="col-span-1" />
-              ))}
-            </div>
+            {!loading && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
+                {(listArticts ?? [])?.map((item: any) => (
+                  <CardArtistCom artist={item} className="col-span-1" />
+                ))}
+              </div>
+            )}
           </div>
           {listArticts?.length && (
             <div className="col-span-1 mt-6">

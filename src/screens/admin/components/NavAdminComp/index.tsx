@@ -25,7 +25,7 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
         key={nav.id}
         className={({ isActive }) =>
           ` flex items-center gap-2 py-2 pl-2 text-sm rounded-tl-2xl rounded-bl-2xl  ${
-            isActive ? "bg-white! text-black!" : "text-white/30!"
+            isActive ? "bg-white! text-black!" : "text-white!"
           }`
         }
         onClick={onShowNav}
@@ -92,7 +92,7 @@ export const NavAdminComp = ({ onShowNav }: NavAdminCompProp) => {
         </div>
       </div>
       <div
-        className="flex items-center mt-auto mb-5 gap-2 pl-8 py-3 cursor-pointer text-white"
+        className="hidden sm:flex items-center mt-auto mb-5 gap-2 pl-8 py-3 cursor-pointer text-white"
         onClick={() => {
           onShowNav();
           onBack();

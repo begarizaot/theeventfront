@@ -66,7 +66,7 @@ export const AnalyticCircleComp = ({
         display: false,
       },
       centerText: {
-        text: `$${data.totalValue ?? ""}`,
+        text: `$${FormatUSDLatino(data.totalValue, 2) ?? ""}`,
         fontSize: 25,
       },
     },

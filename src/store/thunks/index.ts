@@ -13,3 +13,4 @@ export * from "./TeamTypeRoleThunks";
 export * from "./TicketsEventsThunks";
 export * from "./EventRestrictionsThunks";
 export * from "./EventAffiliateThunks";
+export * from "./PixelThunks";
