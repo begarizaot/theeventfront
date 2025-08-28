@@ -19,6 +19,8 @@ import {
   pixelAddToCart,
   pixelInitiateCheckout,
   pixelPurchase,
+  pixelPurchaseMeta,
+  pixielAddToCartMeta,
   postCreateOrder,
   postCreateOrderFree,
   postCreatePayment,
@@ -160,10 +162,12 @@ export const useBookTickets = () => {
       onShowSuccess();
       navigate(`/event/${eventDetail?.id_event}`, { replace: true });
       const { selectedItems } = onFilterPixelSeats();
-      pixelPurchase({
+      const dataMeta = {
         contens: selectedItems,
         value: Number(values?.total) || 0,
-      });
+      };
+      pixelPurchaseMeta(dataMeta);
+      pixelPurchase(dataMeta);
     } catch (error: any) {
       setIsLoading({ ...isLoading, complete: false });
       abortPayment();
@@ -339,10 +343,12 @@ export const useBookTickets = () => {
     onCheckoutInit(2);
 
     const { selectedItems, totalPrice } = onFilterPixelSeats();
-    pixelAddToCart({
+    const dataMeta = {
       contens: selectedItems,
       value: totalPrice,
-    });
+    };
+    pixielAddToCartMeta(dataMeta);
+    pixelAddToCart(dataMeta);
   };
 
   const onFilterPixelSeats = () => {

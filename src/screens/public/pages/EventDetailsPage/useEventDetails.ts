@@ -6,6 +6,7 @@ import {
   getEventDetail,
   onInitializePixel,
   pixelViewContent,
+  pixelViewContentMeta,
   putUpdateEventFollowing,
 } from "../../../../store/thunks";
 
@@ -44,17 +45,22 @@ export const useEventDetails = () => {
   };
 
   const dataPixel = async (data: any) => {
-    if (!data?.pixel_id) return;
     const { pixel_id, name, id_event } = data;
     const { pixel_tiktok_id } = pixel_id;
-    if (pixel_tiktok_id) {
-      await onInitializePixel(pixel_tiktok_id);
-      pixelViewContent({
-        contens: [{
+    const dataPixel = {
+      contens: [
+        {
           content_id: id_event,
           content_name: name,
-        }],
-      });
+        },
+      ],
+    };
+
+    pixelViewContentMeta(dataPixel);
+    if (!pixel_id) return;
+    if (pixel_tiktok_id) {
+      await onInitializePixel(pixel_tiktok_id);
+      pixelViewContent(dataPixel);
     }
   };
 
@@ -81,7 +87,6 @@ export const useEventDetails = () => {
       },
     ]);
   };
-
 
   return { isLoading, eventDetail, eventShare, contextHolder };
 };
