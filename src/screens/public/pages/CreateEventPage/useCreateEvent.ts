@@ -144,7 +144,7 @@ export const useCreateEvent = () => {
   };
 
   const onFormatDate = (date?: any) => {
-    return useMoment(date).format("YYYY-MM-DD hh:mm:ss");
+    return useMoment(date).format("MM-DD-YYYY hh:mm:ss");
   };
 
   const formatItem = (ev: any) => {

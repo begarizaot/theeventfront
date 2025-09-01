@@ -37,7 +37,7 @@ export const useEventDetails = () => {
       ...data,
       location: data?.event_locations_id?.formatted_address,
       vicinity: data?.event_locations_id?.vicinity,
-      startDate: useMoment(data?.start_date).format("YYYY-MM-DD hh:mm a"),
+      startDate: useMoment(data?.start_date).format("MM-DD-YYYY hh:mm a"),
       ticketTypes: (data?.event_tickets_ids ?? [])?.filter(
         (ticket: any) => !ticket.isTable
       ),
