@@ -24,6 +24,7 @@ interface CardEventComElemProps {
   hiddenPrice?: boolean;
   hiddenBtnPrice?: boolean;
   hiddenLocation?: boolean;
+  isLocationCarrusel?: boolean;
   hiddenHour?: boolean;
   showBtn?: boolean;
   formatDate?: string;
@@ -51,6 +52,7 @@ export const CardEventCom = ({
   hiddenBtnPrice,
   hiddenLocation,
   hiddenHour,
+  isLocationCarrusel,
   showBtn,
   formatDate = "dddd, MMMM Do",
   onClick,
@@ -77,6 +79,12 @@ export const CardEventCom = ({
         }}
       >
         <div className="flex items-center justify-between">
+          {isLocationCarrusel && (
+            <div className="flex items-center gap-2 text-sm">
+              <span className="pi pi-map-marker"></span>
+              <p>{location}</p>
+            </div>
+          )}
           {!organizer && following && (
             <p
               className="bg-white/20 px-3 py-1 rounded-4xl 
