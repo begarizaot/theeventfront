@@ -73,7 +73,7 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
                   >
                     <CardEventCom
                       {...event.event_id}
-                      classNameContainer="h-70! sm:h-90! hover:shadow-none!"
+                      classNameContainer="h-78! sm:h-90! hover:shadow-none!"
                       classTitle="text-xl! lg:text-2xl! order-2 sourceSans font-bold!"
                       classDate="order-1"
                       hiddenResponsive

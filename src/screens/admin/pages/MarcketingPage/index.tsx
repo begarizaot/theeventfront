@@ -32,11 +32,6 @@ export const MarcketingPage = () => {
       {contextHolder}
       <Spin spinning={loading} fullscreen size="large" />
       <div className="px-4 sm:px-6 py-3 grid gap-3" id="myMarcketing">
-        <div className="col-span-1 grid sm:flex items-center justify-between gap-2">
-          <div className="grid">
-            <h1 className="text-2xl font-bold bebasNeue">Marketing</h1>
-          </div>
-        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* QR Generator Card */}
           {onCardClick({

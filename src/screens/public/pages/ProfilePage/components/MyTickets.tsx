@@ -39,20 +39,20 @@ export const MyTicketsComp = () => {
             //   backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),url(${order?.event_id?.url_image})`,
             // }}
           >
-            <div className="grid grid-cols-2 h-40! lg:h-35! p-2 content-center gap-2">
-              <div className="col-span-2 text-xl bebasNeue">
+            <div className="grid grid-cols-1 sm:grid-cols-2 h-40! lg:h-35! p-2 content-center gap-2">
+              <div className="col-span-1 sm:col-span-2 text-xl bebasNeue">
                 {order?.event_id?.name}
               </div>
               <div className="col-span-1">
                 {useMoment(order?.event_id?.start_date).format("dddd, Do MMMM")}
               </div>
-              <div className="col-span-1 text-right">ID: {order?.order_id}</div>
+              <div className="col-span-1 sm:text-right">ID: {order?.order_id}</div>
               <div className="col-span-1 mt-2">
                 <p className="text-sm/1">Amount paid</p>
                 <h1 className="font-bold text-xl">${order.total_price}</h1>
               </div>
               {order?.isRefundable && (
-                <div className="col-span-1 text-right">
+                <div className="col-span-1 sm:text-right">
                   Status: <span className="font-bold">Refunded</span>
                 </div>
               )}

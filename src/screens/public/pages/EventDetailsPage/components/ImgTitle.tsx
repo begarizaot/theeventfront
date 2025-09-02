@@ -105,11 +105,11 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
           <div className="hidden sm:flex">{onBtnShare()}</div>
         </div>
         <div className="col-span-1 lg:col-span-2 flex flex-col justify-center gap-2 order-1 sm:order-2">
-          <h1 className="text-4xl bebasNeue">{dataEvent?.name}</h1>
+          <h1 className="text-4xl bebasNeue text-center sm:text-left">{dataEvent?.name}</h1>
           <p>{useMoment(dataEvent?.start_date).format("dddd, Do MMMM")}</p>
           <p>{`${useMoment(dataEvent?.start_date).format(
-            "hh:mm a"
-          )} - ${useMoment(dataEvent?.end_date).format("hh:mm a")}`}</p>
+            "h:mm a"
+          )} - ${useMoment(dataEvent?.end_date).format("h:mm a")}`}</p>
 
           <Link
             className="w-full"
@@ -129,7 +129,9 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
               </p>
             </div>
           )}
-          <p className="text-sm">Views: {dataEvent?.following ?? 0}</p>
+          {/* <p className="text-sm flex items-center gap-1">
+            <span className="pi pi-eye"></span> {dataEvent?.following ?? 0}
+          </p> */}
 
           {onBtn({ className: "mt-2 hidden! sm:block!" })}
         </div>
