@@ -81,7 +81,7 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
                       hiddenLocation
                       hiddenHour
                       showBtn
-                      formatDate="DD.MM.YY"
+                      formatDate="MM.DD.YY"
                       onClick={() =>
                         navigate(`/event/${event?.event_id?.id_event}`)
                       }

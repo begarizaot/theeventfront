@@ -12,7 +12,7 @@ export const ListCategoriesComp = ({ list, loading }: listCategoriesProp) => {
     <div className="col-span-1 my-6 bg-[linear-gradient(0deg,rgba(34,2,0,0)_0%,#420502_50%,rgba(34,2,0,0)_100%)]">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6 mx-auto max-w-[80rem]">
         <div className="flex flex-col gap-3">
-          <h1 className="text-xl sm:text-3xl font-bold bebasNeue text-center sm:text-start">
+          <h1 className="text-2xl sm:text-3xl font-bold bebasNeue text-center sm:text-start">
             Browse
             <TextPrimary
               label="Categories"
