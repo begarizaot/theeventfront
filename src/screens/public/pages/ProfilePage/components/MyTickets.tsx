@@ -44,7 +44,7 @@ export const MyTicketsComp = () => {
                 {order?.event_id?.name}
               </div>
               <div className="col-span-1">
-                {useMoment(order?.event_id?.start_date).format("dddd, Do MMMM")}
+                {useMoment(order?.event_id?.start_date).format("dddd, MMMM Do")}
               </div>
               <div className="col-span-1 sm:text-right">ID: {order?.order_id}</div>
               <div className="col-span-1 mt-2">
