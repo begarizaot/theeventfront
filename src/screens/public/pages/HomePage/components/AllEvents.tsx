@@ -19,7 +19,7 @@ export const AllEventsComp = ({ list, loading }: AllEventsProps) => {
       <div className="grid grid-cols-1 w-full mx-auto  max-w-[80rem]">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 sm:px-6">
           <div className="flex flex-col gap-3">
-            <h1 className="text-xl sm:text-3xl font-bold bebasNeue text-center sm:text-start">
+            <h1 className="text-2xl sm:text-3xl font-bold bebasNeue text-center sm:text-start">
               Upcoming
               <TextPrimary
                 label="Events"
