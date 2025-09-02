@@ -115,11 +115,7 @@ export const DiscountCodePage = () => {
       />
       {contextHolder}
       <div className="px-4 sm:px-6 py-3 grid gap-3">
-        <div className="col-span-1 grid sm:flex items-center justify-between gap-2">
-          <div className="grid">
-            <h1 className="text-2xl font-bold bebasNeue">Discount Code</h1>
-          </div>
-
+        <div className="col-span-1 grid sm:flex items-center justify-end gap-2">
           <Button
             className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2!"
             onClick={() => {

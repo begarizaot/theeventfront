@@ -52,7 +52,7 @@ export const CardEventCom = ({
   hiddenLocation,
   hiddenHour,
   showBtn,
-  formatDate = "dddd, Do MMMM",
+  formatDate = "dddd, MMMM Do",
   onClick,
 }: CardEventComProps & CardEventComElemProps) => {
   const isEventInActive = event_status_id && event_status_id?.id != 1;
@@ -80,9 +80,10 @@ export const CardEventCom = ({
           {!organizer && following && (
             <p
               className="bg-white/20 px-3 py-1 rounded-4xl 
-        text-sm sm:text-base"
+        text-sm sm:text-base flex items-center gap-1"
             >
-              {useGoingLabel(following ?? 0)}
+              <span className="pi pi-eye"></span>
+              {useGoingLabel(following ?? "")}
             </p>
           )}
           {organizer && (
@@ -118,6 +119,11 @@ export const CardEventCom = ({
               {useMoment(start_date).format(formatDate)}
             </p>
           </div>
+          {!hiddenHour && (
+            <p>{`${useMoment(start_date).format("h:mm a")} - ${useMoment(
+              end_date
+            ).format("h:mm a")}`}</p>
+          )}
           {!hiddenLocation && !hiddenHour && (
             <div className="flex items-center gap-2 sm:text-sm">
               {!hiddenLocation && (
@@ -125,12 +131,6 @@ export const CardEventCom = ({
                   <span className="pi pi-map-marker"></span>
                   <p>{location}</p>
                 </div>
-              )}
-
-              {!hiddenHour && (
-                <p>{`${useMoment(start_date).format("hh:mm a")} - ${useMoment(
-                  end_date
-                ).format("hh:mm a")}`}</p>
               )}
             </div>
           )}

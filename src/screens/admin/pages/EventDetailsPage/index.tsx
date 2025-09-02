@@ -33,10 +33,8 @@ export const EventDetailsPage = () => {
           bgColor="#fff"
           className="hidden!"
         />
-        <div className="col-span-1 grid sm:flex items-center justify-between">
-          <h1 className="text-2xl font-bold bebasNeue">Event Flyer</h1>
-
-          <div className="flex gap-3">
+        <div className="col-span-1 flex items-center justify-between">
+          <div className="flex gap-3  ml-auto">
             <Button className="rounded-3xl! btnStyle" onClick={downloadSvgQRCode}>
               Create QR
             </Button>

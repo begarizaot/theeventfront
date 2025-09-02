@@ -17,9 +17,9 @@ export const AllEventsPage = () => {
       <div className="bgGradient pt-16 min-h-screen">
         <div className="grid grid-cols-1 w-full mx-auto  max-w-[80rem]">
           <div className="flex flex-col justify-center gap-4 px-4 sm:px-6">
-            <h1 className="text-xl sm:text-3xl font-bold bebasNeue">
+            <h1 className="text-xl sm:text-3xl font-bold bebasNeue text-center">
               {category
-                ? `Events in ${category.replace(/-/g, " ")}`
+                ? `${category.replace(/-/g, " ")}`
                 : "All Events"}
             </h1>
           </div>

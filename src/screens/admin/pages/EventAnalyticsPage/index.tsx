@@ -17,9 +17,7 @@ export const EventAnalyticsPage = () => {
     <>
       <Spin spinning={isLoadingPdf} fullscreen size="large" />
       <div className="px-4 sm:px-6 py-3 grid">
-        <div className="col-span-1 flex items-center justify-between">
-          <h1 className="text-2xl font-bold bebasNeue">Event Analytics</h1>
-
+        <div className="col-span-1 flex items-center justify-end">
           {!isLoading && (
             <Button
               className="rounded-3xl! btnStyle"
