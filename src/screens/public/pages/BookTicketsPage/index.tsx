@@ -65,6 +65,7 @@ export const BookTicketsPage = () => {
           <div className="col-span-1 lg:col-span-2 order-1 lg:order-0">
             {!eventDetail?.url_map && checkoutInit == 1 && (
               <ChairsComp
+                freeTicket={freeTicket}
                 imgMap={eventDetail?.map_img_url}
                 loading={isLoading.seats}
                 seats={listSeats}

@@ -4,6 +4,7 @@ import { ComDescription } from "../../../../../components";
 import { FormatUSDLatino } from "../../../../../helpers";
 
 interface ChairsCompProp {
+  freeTicket?: boolean;
   imgMap?: any;
   loading: boolean;
   seats: any[];
@@ -11,6 +12,7 @@ interface ChairsCompProp {
 }
 
 export const ChairsComp = ({
+  freeTicket,
   imgMap,
   loading,
   seats,
@@ -52,7 +54,11 @@ export const ChairsComp = ({
                       className="customSelect w-full"
                       value={val?.select ?? 0}
                       options={useSelectOptions(
-                        (val?.stock < val?.limit ? val?.stock : val?.limit) || 0
+                        freeTicket
+                          ? 50
+                          : (val?.stock < val?.limit
+                              ? val?.stock
+                              : val?.limit) || 0
                       )}
                       onChange={(e) => onSelect?.({ id: val?.id, value: e })}
                     />
