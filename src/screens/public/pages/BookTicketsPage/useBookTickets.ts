@@ -94,7 +94,7 @@ export const useBookTickets = () => {
   }, [values, checkoutInit]);
 
   const fechEventDetail = async () => {
-    const event = getLocalStorage("event");
+    const event = getLocalStorage(freeTicket ? "eventShared":"event");
     setEventDetail(event);
     setListSeats(event.event_tickets_ids ?? []);
     fechTicketEvents(event?.id_event);
