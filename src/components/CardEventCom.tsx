@@ -109,9 +109,9 @@ export const CardEventCom = ({
         </div>
 
         <div
-          className={`absolute bottom-5 left-0 px-4 grid gap-2 ${
+          className={`absolute bottom-5 left-0 px-4 flex flex-col gap-2 justify-end ${
             !showBtn
-              ? " lg:h-[160px] lg:group-hover:h-[196px] transition-all duration-300"
+              ? " lg:h-[160px] lg:group-hover:h-[220px] transition-all duration-300"
               : ""
           }`}
         >
@@ -147,7 +147,7 @@ export const CardEventCom = ({
             <div
               className={`${
                 !showBtn
-                  ? "lg:opacity-0 lg:max-h-0 mt-3 group-hover:opacity-100 group-hover:max-h-32"
+                  ? "lg:opacity-0 lg:max-h-0 group-hover:mt-3 group-hover:opacity-100 group-hover:max-h-32"
                   : ""
               } overflow-hidden grid grid-cols-2 gap-2 transition-all duration-300 `}
             >

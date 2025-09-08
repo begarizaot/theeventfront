@@ -38,7 +38,6 @@ export const LocationField = ({
           }
         }
       }
-      // console.log(place)
     });
   }, []);
 

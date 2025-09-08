@@ -13,14 +13,15 @@ export const AllEventsPage = () => {
 
   return (
     <>
-      <MetaDataCom title={"All Events"} url={`${VITE_APITHEEVENT}/allEvents`} />
+      <MetaDataCom
+        title={category ? `${category.replace(/-/g, " ")}` : "All Events"}
+        url={`${VITE_APITHEEVENT}/allEvents`}
+      />
       <div className="bgGradient pt-16 min-h-screen">
         <div className="grid grid-cols-1 w-full mx-auto  max-w-[80rem]">
           <div className="flex flex-col justify-center gap-4 px-4 sm:px-6">
             <h1 className="text-xl sm:text-3xl font-bold bebasNeue text-center">
-              {category
-                ? `${category.replace(/-/g, " ")}`
-                : "All Events"}
+              {category ? `${category.replace(/-/g, " ")}` : "All Events"}
             </h1>
           </div>
           {/* events */}
@@ -51,7 +52,7 @@ export const AllEventsPage = () => {
               </div>
             )}
             {!loading && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 contListEvents">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 sm:px-6 ">
                 {(listEvents ?? [])?.map((event: any) => (
                   <Link
                     key={event.id}
@@ -63,7 +64,7 @@ export const AllEventsPage = () => {
                       restriction={event?.event_restriction_id?.title ?? ""}
                       location={event?.event_locations_id?.vicinity ?? ""}
                       price={event?.event_tickets_ids ?? []}
-                      classNameContainer="cardEventCom"
+                      classNameContainer="cardEventCom "
                     />
                   </Link>
                 ))}
