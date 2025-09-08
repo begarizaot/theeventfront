@@ -83,7 +83,7 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
                       showBtn
                       formatDate="MM.DD"
                       isLocationCarrusel
-                      location={event?.event_id?.event_locations_id?.title ?? ""}
+                      location={event?.event_id?.event_locations_id?.vicinity ?? ""}
                       onClick={() =>
                         navigate(`/event/${event?.event_id?.id_event}`)
                       }
