@@ -128,13 +128,19 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
             </p>
           </Link>
 
-          {dataEvent?.categories_id && (
-            <div className="flex flex-wrap gap-2 text-xs">
+          <div className="flex flex-wrap gap-2 text-xs">
+            {dataEvent?.categories_id && (
               <p className="border border-white px-2 py-[2px] rounded-full">
                 {dataEvent?.categories_id?.title}
               </p>
-            </div>
-          )}
+            )}
+
+            {dataEvent?.event_restriction_id && (
+              <p className="border border-white px-2 py-[2px] rounded-full">
+                {dataEvent?.event_restriction_id?.title}
+              </p>
+            )}
+          </div>
           {/* <p className="text-sm flex items-center gap-1">
             <span className="pi pi-eye"></span> {dataEvent?.following ?? 0}
           </p> */}
