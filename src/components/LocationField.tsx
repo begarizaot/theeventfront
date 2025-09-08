@@ -24,10 +24,21 @@ export const LocationField = ({
     });
 
     autocomplete.addListener("place_changed", () => {
-      const place = autocomplete.getPlace();
+      let place:any = autocomplete.getPlace();
       const formattedAddress = place.formatted_address || place.name || "";
       setInputValue(formattedAddress);
       onPlaceSelected(place);
+      if (place.address_components) {
+        for (const component of place.address_components) {
+          if (component.types.includes("locality")) {
+            place.city = component.long_name;
+          }
+          if (component.types.includes("administrative_area_level_1")) {
+            place.state = component.long_name;
+          }
+        }
+      }
+      // console.log(place)
     });
   }, []);
 
