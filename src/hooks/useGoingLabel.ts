@@ -12,7 +12,7 @@ const formatNumber = (value: number): string => {
 
 export const useGoingLabel = (value: number) => {
   const label = useMemo(() => {
-    return `${formatNumber(value)} Going`;
+    return `${formatNumber(value ?? '')}`;
   }, [value]);
 
   return label;

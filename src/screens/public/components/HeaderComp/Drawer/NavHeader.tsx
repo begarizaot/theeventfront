@@ -27,7 +27,7 @@ export const NavHeader = ({ data, openNav, setOpenNav }: NavHeaderProps) => {
         <ItemNavsComp
           {...data}
           className="flex-col gap-3"
-          classNameItems="w-full text-center"
+          classNameItems="w-full text-center border-b pb-2"
           onClose={setOpenNav}
         />
       </div>

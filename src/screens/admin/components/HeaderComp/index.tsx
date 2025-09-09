@@ -2,26 +2,33 @@
 // import { useHeader } from "./useHeader";
 import { useContext } from "react";
 import { UserContext } from "../../../../context";
+import { useHeader } from "./useHeader";
 
 interface HeaderCompProp {
   onShowNav: () => void;
 }
 
 export const HeaderComp = ({ onShowNav }: HeaderCompProp) => {
-  // const { navUser } = useHeader();
+  const { onBack } = useHeader();
   const { userData } = useContext(UserContext);
 
   return (
     <div className="bg-nav px-4 sm:px-6 py-2 flex items-center justify-between sticky top-0 z-10">
-      <div className="grid">
+      <div className="flex justify-between w-full sm:grid">
+        <span
+          className="sm:hidden! pi pi-arrow-left p-[10px] rounded-full text-xl cursor-pointer"
+          onClick={onBack}
+        ></span>
+        <div className="hidden sm:block">
+          <h1 className="font-bold bebasNeue text-2xl">
+            Hello, {userData.firstName} {userData.lastName}
+          </h1>
+        </div>
+
         <span
           className="sm:hidden! pi pi-bars p-[10px] rounded-full text-xl cursor-pointer"
           onClick={onShowNav}
         ></span>
-
-        <div className="hidden sm:block">
-          <h1 className="font-bold bebasNeue text-2xl">Hello, {userData.firstName} {userData.lastName}</h1>
-        </div>
       </div>
 
       {/* <div className="flex items-center gap-4">

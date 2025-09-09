@@ -136,17 +136,7 @@ export const TeamAccessPage = () => {
       />
       {contextHolder}
       <div className="px-4 sm:px-6 py-3 grid gap-3">
-        <div className="col-span-1 grid sm:flex items-center justify-between gap-2">
-          <div className="grid">
-            <h1 className="text-2xl font-bold bebasNeue">Team Access</h1>
-            <div className="grid">
-              <span>Do you have logistics staff for your event?</span>
-              <span className="text-base/4 sm:text-base/2">
-                Create access for Co-Organizer or Operator users.
-              </span>
-            </div>
-          </div>
-
+        <div className="col-span-1 grid sm:flex items-center justify-end gap-2">
           <Button
             className="rounded-full! bg-white! border-transparent! h-7! text-black! flex px-2!"
             onClick={() => {
@@ -155,7 +145,7 @@ export const TeamAccessPage = () => {
             }}
           >
             <span className="pi pi-plus"></span>
-            Create Access
+            Add Team Member
           </Button>
         </div>
 

@@ -1,14 +1,14 @@
 import { Button } from "antd";
-import { MetaDataCom } from "../../../../components";
 import { setLocalStorage, useMoment } from "../../../../hooks";
 import { useArtist } from "./useArtist";
 import SpotifyPlayer from "@nuyhman/react-spotify-player";
 import { Link } from "react-router-dom";
+import { MetaDataCom } from "../../../../components";
 
 const { VITE_APITHEEVENT } = import.meta.env;
 
 export const ArtistDetailsPage = () => {
-  const { artistDetail, artistMeta } = useArtist();
+  const { artistDetail } = useArtist();
 
   const lengthArtist = (artistDetail?.events_ids ?? []).length;
 
@@ -18,11 +18,7 @@ export const ArtistDetailsPage = () => {
 
   return (
     <>
-      <MetaDataCom
-        {...artistMeta}
-        url={`${VITE_APITHEEVENT}/artist/${artistMeta?.id ?? ""}`}
-      />
-      <MetaDataCom
+    <MetaDataCom
         title={artistDetail?.name ?? ""}
         urlImage={artistDetail?.url_image ?? ""}
         url={`${VITE_APITHEEVENT}/artist/${artistDetail?.id_artist ?? ""}`}
@@ -70,7 +66,7 @@ export const ArtistDetailsPage = () => {
         <div className="col-span-1 sm:col-span-2 lg:col-span-3">
           <div className="grid gap-2">
             {lengthArtist > 0 &&
-              (artistDetail?.events_ids ?? []).map((event:any) => (
+              (artistDetail?.events_ids ?? []).map((event: any) => (
                 <div className="col-span-1" key={event.id_event}>
                   <div className="bg-white rounded-sm shadow-md">
                     <div className="grid grid-cols-1 sm:grid-cols-6 text-black gap-3">
@@ -102,7 +98,9 @@ export const ArtistDetailsPage = () => {
                           onClick={() => onSaveLocalStorage(event)}
                         >
                           <Button className="w-full rounded-3xl! uppercase btnStyle bg-black/20!">
-                            <span className="font-bold text-xs">View Event</span>
+                            <span className="font-bold text-xs">
+                              View Event
+                            </span>
                           </Button>
                         </Link>
                       </div>

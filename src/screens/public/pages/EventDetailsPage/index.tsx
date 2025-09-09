@@ -1,12 +1,17 @@
 import { useEventDetails } from "./useEventDetails";
 import { DetailsComp, ImgTitleComp, YoutubeComp } from "./components";
-import { AllCarouselComp, MetaDataCom } from "../../../../components";
+import {
+  AllCarouselComp,
+  MetaDataCom,
+  TextPrimary,
+} from "../../../../components";
 import { Skeleton } from "antd";
+import { Link } from "react-router-dom";
 
 const { VITE_APITHEEVENT } = import.meta.env;
 
 export const EventDetailsPage = () => {
-  const { isLoading, eventMeta, eventDetail, eventShare, contextHolder } =
+  const { isLoading, eventDetail, eventShare, contextHolder } =
     useEventDetails();
 
   if (isLoading) {
@@ -65,11 +70,6 @@ export const EventDetailsPage = () => {
       {contextHolder}
 
       <MetaDataCom
-        {...eventMeta}
-        url={`${VITE_APITHEEVENT}/event/${eventMeta?.id ?? ""}`}
-      />
-
-      <MetaDataCom
         title={eventDetail?.name ?? ""}
         urlImage={eventDetail?.url_image ?? ""}
         url={`${VITE_APITHEEVENT}/event/${eventDetail?.id_event ?? ""}`}
@@ -84,16 +84,59 @@ export const EventDetailsPage = () => {
         }}
       ></div>
       <div className="z-10 relative pt-18 mb-10">
-        <ImgTitleComp dataEvent={eventDetail} />
+        <ImgTitleComp dataEvent={{ ...eventDetail, share: eventShare }} />
 
         <div className="mt-5">
           <DetailsComp dataEvent={{ ...eventDetail, share: eventShare }} />
         </div>
 
+        {(eventDetail?.urls_images_advertising ?? [])?.length > 0 && (
+          <div className="my-10 sm:hidden">
+            <div className="px-4 sm:px-6">
+              <h2 className="text-2xl bebasNeue ">Sponsors</h2>
+            </div>
+            <AllCarouselComp
+              list={eventDetail?.urls_images_advertising ?? []}
+            />
+          </div>
+        )}
+
         <YoutubeComp list={eventDetail?.url_youtube ?? []} />
 
-        <div className="my-20">
-          <AllCarouselComp list={eventDetail?.urls_images_advertising ?? []} />
+        <div className="grid gap-1 px-4 sm:px-6">
+          <h2 className="text-2xl bebasNeue">Organizers</h2>
+          <div className="flex gap-2">
+            <Link
+              to={`tel:${eventDetail?.users_id?.country_id?.code}${eventDetail?.users_id?.phoneNumber}`}
+              className="bg-white px-2 py-[3px] rounded-full flex items-center"
+            >
+              <TextPrimary
+                label={
+                  <>
+                    <span className="pi pi-phone text-[10px]"></span>
+                    {eventDetail?.users_id?.country_id?.code}{" "}
+                    {eventDetail?.users_id?.phoneNumber}
+                  </>
+                }
+                className="text-xs gap-2 flex items-center"
+              />
+            </Link>
+
+            <Link
+              to={`mailto:${eventDetail?.users_id?.email}`}
+              className="bg-white px-2 py-[3px] rounded-full flex items-center"
+            >
+              <TextPrimary
+                label={
+                  <>
+                    <span className="pi pi-envelope text-[10px]"></span>
+                    {eventDetail?.users_id?.email}
+                  </>
+                }
+                className="text-xs gap-2 flex items-center"
+              />
+            </Link>
+          </div>
         </div>
 
         {/* <OtherEventsComp list={listOtherEvent} /> */}

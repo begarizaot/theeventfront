@@ -55,7 +55,7 @@ export const RegisterPage = () => {
         bgAuth"
       >
         <div className="grid grid-cols-1 w-full">
-          <h1 className="font-bold text-2xl sm:text-3xl">Create an account</h1>
+          <h1 className="font-bold text-2xl sm:text-3xl text-center sm:text-start">Create an account</h1>
           <div className="mt-4 sm:mt-6 mb-6 sm:mb-8">
             <p className="text-sm font-black">Enter details</p>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">

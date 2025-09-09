@@ -29,6 +29,7 @@ export const useCreateEvent = () => {
   const [dataTableType, setDataTableType] = useState({});
 
   const [eventData, setEventData] = useState<any>({});
+  const [pixelDatas, setPixelDatas] = useState<any>({});
 
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingEdit, setIsLoadingEdit] = useState(true);
@@ -77,10 +78,15 @@ export const useCreateEvent = () => {
       imageEvent: event?.url_image || "",
     });
 
+    setPixelDatas(event?.pixel_id || {});
+
     const listTicktes =
       (event?.event_tickets_ids ?? [])?.map((ticket: any) => ({
         ...ticket,
-        startEndDate: [useMoment(ticket.start_date), useMoment(ticket.end_date)],
+        startEndDate: [
+          useMoment(ticket.start_date),
+          useMoment(ticket.end_date),
+        ],
         price: Number(ticket.price),
         codePassword: ticket?.codePassword || "",
         enableAdv: true,
@@ -138,7 +144,7 @@ export const useCreateEvent = () => {
   };
 
   const onFormatDate = (date?: any) => {
-    return useMoment(date).format("YYYY-MM-DD hh:mm:ss");
+    return useMoment(date).format("MM-DD-YYYY hh:mm:ss");
   };
 
   const formatItem = (ev: any) => {
@@ -260,7 +266,6 @@ export const useCreateEvent = () => {
   const onEditEvent = async (ev: any) => {
     try {
       setIsLoading(true);
-      console.log(ev);
       const res = { ...ev, ...eventData };
       delete res.image;
       await putUpdateEvent(id, res);
@@ -314,10 +319,15 @@ export const useCreateEvent = () => {
     });
   };
 
+  const onSetLoading = (loading: boolean) => {
+    setIsLoading(loading);
+  };
+
   return {
     form,
     isLoading,
     eventData,
+    pixelDatas,
     listTables,
     listTickets,
     dataTableType,
@@ -338,5 +348,6 @@ export const useCreateEvent = () => {
     onImageChange,
     onCreateEvent,
     onEditEvent,
+    onSetLoading,
   };
 };

@@ -48,7 +48,7 @@ export const OtpPages = () => {
         bgAuth"
         >
           <div className="grid grid-cols-1 w-full">
-            <h1 className="font-bold text-2xl sm:text-3xl">
+            <h1 className="font-bold text-2xl sm:text-3xl text-center sm:text-start">
               Enter your OTP code
             </h1>
 

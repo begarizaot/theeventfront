@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { MetaContext } from "../../../../context/MetaContext";
 import { getLocalStorage } from "../../../../hooks";
 import {
   getEventDetail,
+  onInitializePixel,
+  pixelViewContent,
+  pixelViewContentMeta,
   putUpdateEventFollowing,
 } from "../../../../store/thunks";
 
@@ -15,8 +17,6 @@ const { VITE_PUBLIC_URL } = import.meta.env;
 
 export const useEventDetails = () => {
   const { id } = useParams();
-
-  const { eventMeta } = useContext(MetaContext);
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -39,9 +39,29 @@ export const useEventDetails = () => {
     const res = await getEventDetail(id);
     putUpdateEventFollowing(id);
     setEventDetail(res);
-    console.log(res)
     getShareLink();
     setIsLoading(false);
+    dataPixel(res);
+  };
+
+  const dataPixel = async (data: any) => {
+    const { pixel_id, name, id_event } = data;
+    const { pixel_tiktok_id } = pixel_id;
+    const dataPixel = {
+      contens: [
+        {
+          content_id: id_event,
+          content_name: name,
+        },
+      ],
+    };
+
+    pixelViewContentMeta(dataPixel);
+    if (!pixel_id) return;
+    if (pixel_tiktok_id) {
+      await onInitializePixel(pixel_tiktok_id);
+      pixelViewContent(dataPixel);
+    }
   };
 
   const getShareLink = () => {
@@ -68,13 +88,5 @@ export const useEventDetails = () => {
     ]);
   };
 
-  // const defaultProps = {
-  //   center: {
-  //     lat: 4.710989,
-  //     lng: -74.072092,
-  //   },
-  //   zoom: 11,
-  // };
-
-  return { isLoading, eventDetail, eventMeta, eventShare, contextHolder };
+  return { isLoading, eventDetail, eventShare, contextHolder };
 };

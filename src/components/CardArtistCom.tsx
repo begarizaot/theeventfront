@@ -37,7 +37,7 @@ export const CardArtistCom = ({ artist, className }: ArtistProps) => {
             <p className="uppercase font-bold bebasNeue text-lg/3">
               {artist.name}
             </p>
-            <p>{(artist?.events_ids ?? []).length ?? 0} Concerts</p>
+            <p>{(artist?.events_ids ?? []).length ?? 0} Event(s)</p>
           </div>
 
           <div className="bgPrimary h-8 w-8 flex items-center justify-center rounded-full group-hover:bg-white! group-hover:rotate-45 transition-transform duration-300 ease-in-out">

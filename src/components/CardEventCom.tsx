@@ -24,6 +24,7 @@ interface CardEventComElemProps {
   hiddenPrice?: boolean;
   hiddenBtnPrice?: boolean;
   hiddenLocation?: boolean;
+  isLocationCarrusel?: boolean;
   hiddenHour?: boolean;
   showBtn?: boolean;
   formatDate?: string;
@@ -51,8 +52,9 @@ export const CardEventCom = ({
   hiddenBtnPrice,
   hiddenLocation,
   hiddenHour,
+  isLocationCarrusel,
   showBtn,
-  formatDate = "dddd, Do MMMM",
+  formatDate = "dddd, MMMM Do",
   onClick,
 }: CardEventComProps & CardEventComElemProps) => {
   const isEventInActive = event_status_id && event_status_id?.id != 1;
@@ -77,12 +79,19 @@ export const CardEventCom = ({
         }}
       >
         <div className="flex items-center justify-between">
+          {isLocationCarrusel && (
+            <div className="flex items-center gap-2 text-sm">
+              <span className="pi pi-map-marker"></span>
+              <p>{location}</p>
+            </div>
+          )}
           {!organizer && following && (
             <p
               className="bg-white/20 px-3 py-1 rounded-4xl 
-        text-sm sm:text-base"
+        text-sm sm:text-base flex items-center gap-1"
             >
-              {useGoingLabel(following ?? 0)}
+              <span className="pi pi-eye"></span>
+              {useGoingLabel(following ?? "")}
             </p>
           )}
           {organizer && (
@@ -100,9 +109,9 @@ export const CardEventCom = ({
         </div>
 
         <div
-          className={`absolute bottom-5 left-0 px-4 grid gap-2 ${
+          className={`absolute bottom-5 left-0 px-4 flex flex-col gap-2 justify-end ${
             !showBtn
-              ? " lg:h-[160px] lg:group-hover:h-[196px] transition-all duration-300"
+              ? " lg:h-[160px] lg:group-hover:h-[220px] transition-all duration-300"
               : ""
           }`}
         >
@@ -118,6 +127,11 @@ export const CardEventCom = ({
               {useMoment(start_date).format(formatDate)}
             </p>
           </div>
+          {!hiddenHour && (
+            <p>{`${useMoment(start_date).format("h:mm a")} - ${useMoment(
+              end_date
+            ).format("h:mm a")}`}</p>
+          )}
           {!hiddenLocation && !hiddenHour && (
             <div className="flex items-center gap-2 sm:text-sm">
               {!hiddenLocation && (
@@ -126,12 +140,6 @@ export const CardEventCom = ({
                   <p>{location}</p>
                 </div>
               )}
-
-              {!hiddenHour && (
-                <p>{`${useMoment(start_date).format("hh:mm a")} - ${useMoment(
-                  end_date
-                ).format("hh:mm a")}`}</p>
-              )}
             </div>
           )}
 
@@ -139,7 +147,7 @@ export const CardEventCom = ({
             <div
               className={`${
                 !showBtn
-                  ? "lg:opacity-0 lg:max-h-0 mt-3 group-hover:opacity-100 group-hover:max-h-32"
+                  ? "lg:opacity-0 lg:max-h-0 group-hover:mt-3 group-hover:opacity-100 group-hover:max-h-32"
                   : ""
               } overflow-hidden grid grid-cols-2 gap-2 transition-all duration-300 `}
             >
@@ -147,7 +155,7 @@ export const CardEventCom = ({
                 className="w-full rounded-3xl! uppercase btnStyle btnbord"
                 onClick={onClick}
               >
-                <span className="font-bold text-xs">Get Tickets!</span>
+                <span className="font-bold text-xs">Get Tickets</span>
               </Button>
 
               {!hiddenPrice && (

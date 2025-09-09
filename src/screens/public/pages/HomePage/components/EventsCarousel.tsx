@@ -25,15 +25,15 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
   };
 
   return (
-    <div className="h-[90vh] mb-3">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 h-full relative">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(https://res.cloudinary.com/det46rxjs/image/upload/v1732042088/background_Home_56bde4bae7.svg)`,
-          }}
-        ></div>
-        <div className="lg:col-span-2 px-8 flex flex-col justify-center pt-20 sm:pt-0 z-10">
+    <div className="h-[85vh] mb-3 relative">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%),url(https://res.cloudinary.com/det46rxjs/image/upload/v1732042088/background_Home_56bde4bae7.svg)`,
+        }}
+      ></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 h-full mx-auto  max-w-[80rem]">
+        <div className="lg:col-span-1 text-center sm:text-start px-10 sm:px-8 flex flex-col sm:justify-center justify-end pt-20 sm:pt-0 z-10">
           <h1 className=" text-3xl lg:text-4xl text-white font-bold uppercase bebasNeue">
             {listActive.title ?? ""}
           </h1>
@@ -73,7 +73,7 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
                   >
                     <CardEventCom
                       {...event.event_id}
-                      classNameContainer="h-70! sm:h-90! hover:shadow-none!"
+                      classNameContainer="h-78! sm:h-90! hover:shadow-none!"
                       classTitle="text-xl! lg:text-2xl! order-2 sourceSans font-bold!"
                       classDate="order-1"
                       hiddenResponsive
@@ -81,7 +81,13 @@ export const EventsCarouselComp = ({ list }: EventsCarouselProps) => {
                       hiddenLocation
                       hiddenHour
                       showBtn
-                      formatDate="DD.MM.YY"
+                      formatDate="MM.DD"
+                      isLocationCarrusel
+                      location={
+                        event?.event_id?.event_locations_id?.city
+                          ? `${event?.event_id?.event_locations_id?.city}, ${event?.event_id?.event_locations_id?.state}`
+                          : event?.event_id?.event_locations_id?.title ?? ""
+                      }
                       onClick={() =>
                         navigate(`/event/${event?.event_id?.id_event}`)
                       }

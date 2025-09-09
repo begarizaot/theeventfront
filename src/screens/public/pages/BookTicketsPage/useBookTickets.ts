@@ -15,6 +15,12 @@ import { useStripeComplete } from "./useStripeComplete";
 import {
   getServiceFee,
   getTicketEvents,
+  onInitializePixel,
+  pixelAddToCart,
+  pixelInitiateCheckout,
+  pixelPurchase,
+  pixelPurchaseMeta,
+  pixielAddToCartMeta,
   postCreateOrder,
   postCreateOrderFree,
   postCreatePayment,
@@ -87,11 +93,14 @@ export const useBookTickets = () => {
     values?.total && checkoutInit == 3 && onPaymentStripe();
   }, [values, checkoutInit]);
 
-  const fechEventDetail = () => {
-    const event = getLocalStorage("event");
+  const fechEventDetail = async () => {
+    const event = getLocalStorage(freeTicket ? "eventShared":"event");
     setEventDetail(event);
     setListSeats(event.event_tickets_ids ?? []);
     fechTicketEvents(event?.id_event);
+    // -- Pixel TikTok --
+    const { pixel_tiktok_id } = eventDetail?.pixel_id;
+    pixel_tiktok_id && onInitializePixel(pixel_tiktok_id);
   };
 
   const fechTicketEvents = async (id_event?: any) => {
@@ -152,6 +161,13 @@ export const useBookTickets = () => {
       onValueOrder(order);
       onShowSuccess();
       navigate(`/event/${eventDetail?.id_event}`, { replace: true });
+      const { selectedItems } = onFilterPixelSeats();
+      const dataMeta = {
+        contens: selectedItems,
+        value: Number(values?.total) || 0,
+      };
+      pixelPurchaseMeta(dataMeta);
+      pixelPurchase(dataMeta);
     } catch (error: any) {
       setIsLoading({ ...isLoading, complete: false });
       abortPayment();
@@ -281,10 +297,16 @@ export const useBookTickets = () => {
     });
   };
 
-  const onValuesChange = (values: any) => {
-    setUserData({ ...userData, ...values });
+  const onValuesChange = (data: any) => {
+    setUserData({ ...userData, ...data });
     setCheckoutInit(3);
     scrollToId("containerCheckout");
+
+    const { selectedItems } = onFilterPixelSeats();
+    pixelInitiateCheckout({
+      contens: selectedItems,
+      value: Number(values?.total) || 0,
+    });
   };
 
   const onSelectMap = (val: any) => {
@@ -304,6 +326,20 @@ export const useBookTickets = () => {
   };
 
   const onRmSelectMap = (val: any) => {
+    if(val.numFree){
+      const newList = (listSeats ?? []).map((item: any) => {
+        if (item.order == val.category.key) {
+          return {
+            ...item,
+            select: item.select ? item.select - (val.numFree || 1) : 0,
+            seatId: (item.seatId ?? [])?.filter((e: any) => e != val.seatId),
+          };
+        }
+        return item;
+      });
+      setListSeats(newList);
+      return;
+    }
     const newList = (listSeats ?? []).map((item: any) => {
       if (item.order == val.category.key) {
         return {
@@ -315,6 +351,33 @@ export const useBookTickets = () => {
       return item;
     });
     setListSeats(newList);
+  };
+
+  const onCheckOut = async () => {
+    onCheckoutInit(2);
+
+    const { selectedItems, totalPrice } = onFilterPixelSeats();
+    const dataMeta = {
+      contens: selectedItems,
+      value: totalPrice,
+    };
+    pixielAddToCartMeta(dataMeta);
+    pixelAddToCart(dataMeta);
+  };
+
+  const onFilterPixelSeats = () => {
+    const selectedItems = listSeats
+      .filter((item) => item.select)
+      .flatMap((item) =>
+        Array.from({ length: item.select }, () => ({
+          content_id: item.id,
+          content_name: item.title,
+          price: item.price,
+        }))
+      );
+
+    const totalPrice = selectedItems.reduce((sum, item) => sum + item.price, 0);
+    return { selectedItems, totalPrice };
   };
 
   return {
@@ -337,5 +400,6 @@ export const useBookTickets = () => {
     onSelectSeats,
     onRmSelectMap,
     onSelectMap,
+    onCheckOut,
   };
 };

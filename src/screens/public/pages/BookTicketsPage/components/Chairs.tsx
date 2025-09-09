@@ -1,8 +1,10 @@
 import { Image, Select } from "antd";
 import { useState } from "react";
 import { ComDescription } from "../../../../../components";
+import { FormatUSDLatino } from "../../../../../helpers";
 
 interface ChairsCompProp {
+  freeTicket?: boolean;
   imgMap?: any;
   loading: boolean;
   seats: any[];
@@ -10,6 +12,7 @@ interface ChairsCompProp {
 }
 
 export const ChairsComp = ({
+  freeTicket,
   imgMap,
   loading,
   seats,
@@ -35,7 +38,12 @@ export const ChairsComp = ({
               <div className="col-span-1" key={val?.id}>
                 <div className="grid grid-cols-5">
                   <div className="col-span-4">
-                    <h1 className="font-bold">{val?.title}</h1>
+                    <h1 className="font-bold flex items-center gap-2">
+                      {val?.title}{" "}
+                      {val?.price && (
+                        <span>${FormatUSDLatino(val?.price)}</span>
+                      )}
+                    </h1>
                     {val?.description && (
                       <ComDescription contenido={val?.description} />
                     )}
@@ -46,7 +54,11 @@ export const ChairsComp = ({
                       className="customSelect w-full"
                       value={val?.select ?? 0}
                       options={useSelectOptions(
-                        (val?.stock < val?.limit ? val?.stock : val?.limit) || 0
+                        freeTicket
+                          ? 50
+                          : (val?.stock < val?.limit
+                              ? val?.stock
+                              : val?.limit) || 0
                       )}
                       onChange={(e) => onSelect?.({ id: val?.id, value: e })}
                     />

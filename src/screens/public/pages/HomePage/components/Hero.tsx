@@ -8,7 +8,7 @@ interface HeroProps {
 
 export const HeroComp = ({ imageUrl, title, description }: HeroProps) => {
   return (
-    <div className="h-[90vh] relative flex items-center justify-center px-8">
+    <div className="h-[85vh] relative flex items-center justify-center px-8">
       <div
         className="absolute inset-1 left-0 top-0 bg-cover bg-center bg-no-repeat"
         style={{

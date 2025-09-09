@@ -31,7 +31,7 @@ export const ChairsMapComp = ({
             showLegend={true}
             popoverInfo={(object) => {
               const ticktData = seats.find(
-                (e) => e.order === object.category?.key && e.isTable
+                (e) => e.order == object.category?.key && e.isTable
               );
 
               if (ticktData?.id) {

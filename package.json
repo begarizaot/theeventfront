@@ -47,6 +47,7 @@
     "sirv": "^3.0.1",
     "swiper": "^11.2.6",
     "tailwindcss": "^4.1.6",
+    "tiktok-pixel": "^2.0.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

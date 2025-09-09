@@ -5,7 +5,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--app-head-->
-    <meta property="fb:app_id" content="1218668469373331" />
+    <meta property="fb:app_id" content="1396926501398594" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,14 +20,6 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-  </head>
-  <body class="bgBody">
-    <div id="root"><!--app-html--></div>
-    <script type="module" src="/src/entry-client.tsx"></script>
-    <script
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMAS0tkyRk77l10tV3SLhDYtnspY2ZZdY&callback=console.debug&libraries=maps,marker,places&v=beta"
-    ></script>
     <!-- TikTok Pixel Code Start -->
     <script>
       !(function (w, d, t) {
@@ -80,11 +72,44 @@
             e = document.getElementsByTagName("script")[0];
             e.parentNode.insertBefore(n, e);
           });
-
-        ttq.load("CVM4H7JC77U8PJBE5TP0");
-        ttq.page();
       })(window, document, "ttq");
     </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+    </script>
+    <!-- End Meta Pixel Code -->
     <!-- TikTok Pixel Code End -->
+  </head>
+  <body class="bgBody">
+    <div id="root"><!--app-html--></div>
+    <script type="module" src="/src/entry-client.tsx"></script>
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMAS0tkyRk77l10tV3SLhDYtnspY2ZZdY&callback=console.debug&libraries=maps,marker,places&v=beta"
+    ></script>
   </body>
 </html>
