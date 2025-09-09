@@ -98,7 +98,10 @@ export const useCreateEditTeam = ({ data, onEditCreateTeam }: any) => {
     const { id_event } = eventShared;
     setLoading(true);
     try {
-      await postCreateTeamAccess(id_event, dataTeam);
+      await postCreateTeamAccess(id_event, {
+        ...dataTeam,
+        phone: String(dataTeam?.phone),
+      });
       setLoading(false);
       onEditCreateTeam();
     } catch (error: any) {
