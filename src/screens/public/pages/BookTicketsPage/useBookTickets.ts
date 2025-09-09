@@ -326,6 +326,20 @@ export const useBookTickets = () => {
   };
 
   const onRmSelectMap = (val: any) => {
+    if(val.numFree){
+      const newList = (listSeats ?? []).map((item: any) => {
+        if (item.order == val.category.key) {
+          return {
+            ...item,
+            select: item.select ? item.select - (val.numFree || 1) : 0,
+            seatId: (item.seatId ?? [])?.filter((e: any) => e != val.seatId),
+          };
+        }
+        return item;
+      });
+      setListSeats(newList);
+      return;
+    }
     const newList = (listSeats ?? []).map((item: any) => {
       if (item.order == val.category.key) {
         return {
