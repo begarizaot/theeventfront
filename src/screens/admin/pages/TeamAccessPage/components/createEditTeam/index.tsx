@@ -200,11 +200,11 @@ export const CreateEditTeamDrawer = ({
               <Form.Item
                 className="m-0! col-span-1"
                 name="typeRol"
-                label={<span className="text-white">Type Rol</span>}
+                label={<span className="text-white">Role</span>}
                 rules={[
                   {
                     required: true,
-                    message: "Please select your type rol!",
+                    message: "Please select your Role!",
                   },
                 ]}
               >
