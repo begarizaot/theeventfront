@@ -4,6 +4,8 @@ import {
   CardNumberElement,
   PaymentRequestButtonElement,
   AffirmMessageElement,
+  AffirmMessageElementComponent,
+  AffirmMessageElementProps
 } from "@stripe/react-stripe-js";
 import { Button } from "antd";
 
@@ -77,25 +79,22 @@ export const PaymentMethodsComp = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 mt-2 gap-3">
+      {/* <div className="grid grid-cols-2 mt-2">
         <div className="col-span-2">
           <h1 className="text-sm font-bold">Affirm Message Element</h1>
         </div>
 
         <div className="col-span-2">
           <AffirmMessageElement
-            className="rounded-full! bg-transparent! border-white! text-white! border px-3 pb-2"
             options={{
-              amount: Number((parseFloat(total) * 100).toFixed(0)),
+              amount: 194980,
               currency: "USD",
               fontColor: "#fff",
-            }}
-            onReady={() => {
-              console.log("Affirm Message Element is ready");
+              logoColor: "white"
             }}
           />
         </div>
-      </div>
+      </div> */}
 
       <div className="mt-4 lg:mt-auto">
         <Button

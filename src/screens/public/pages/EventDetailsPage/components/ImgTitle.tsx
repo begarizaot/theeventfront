@@ -120,11 +120,13 @@ export const ImgTitleComp = ({ dataEvent }: ImgTitleCompProps) => {
           >
             <p className="flex items-center gap-1 text-sm">
               <span className="pi pi-map-marker"></span>{" "}
-              {dataEvent?.vanue ?? ""},{" "}
               {(dataEvent?.event_locations_id?.formatted_address ?? "")
                 .split(",")
                 .slice(0, -1)
                 .join(",")}
+              {dataEvent?.event_locations_id?.city
+                ? ` ,${dataEvent?.event_locations_id?.city}, ${dataEvent?.event_locations_id?.state}`
+                : ""}
             </p>
           </Link>
 

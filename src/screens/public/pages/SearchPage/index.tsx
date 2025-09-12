@@ -70,7 +70,12 @@ export const SearchPage = () => {
                   <CardEventCom
                     {...event}
                     restriction={event?.event_restriction_id?.title ?? ""}
-                    location={event?.event_locations_id?.vicinity ?? ""}
+                    location={(
+                      event?.event_locations_id?.formatted_address ?? ""
+                    )
+                      .split(",")
+                      .slice(0, -1)
+                      .join(",")}
                     price={event?.event_tickets_ids ?? []}
                     classNameContainer="cardEventCom"
                   />
