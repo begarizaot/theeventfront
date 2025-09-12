@@ -3,18 +3,23 @@ import {
   CardExpiryElement,
   CardNumberElement,
   PaymentRequestButtonElement,
+  AffirmMessageElement,
+  AffirmMessageElementComponent,
+  AffirmMessageElementProps
 } from "@stripe/react-stripe-js";
 import { Button } from "antd";
 
 interface PaymentMethodsCompProps {
   paymentRequest: any;
   error: any;
+  total: any;
   onProceedToPayment?: () => void;
 }
 
 export const PaymentMethodsComp = ({
   error,
   paymentRequest,
+  total,
   onProceedToPayment,
 }: PaymentMethodsCompProps) => {
   return (
@@ -73,6 +78,23 @@ export const PaymentMethodsComp = ({
           />
         </div>
       </div>
+
+      {/* <div className="grid grid-cols-2 mt-2">
+        <div className="col-span-2">
+          <h1 className="text-sm font-bold">Affirm Message Element</h1>
+        </div>
+
+        <div className="col-span-2">
+          <AffirmMessageElement
+            options={{
+              amount: 194980,
+              currency: "USD",
+              fontColor: "#fff",
+              logoColor: "white"
+            }}
+          />
+        </div>
+      </div> */}
 
       <div className="mt-4 lg:mt-auto">
         <Button

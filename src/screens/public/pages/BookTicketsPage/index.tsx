@@ -96,6 +96,7 @@ export const BookTicketsPage = () => {
               <PaymentMethodsComp
                 error={isError}
                 paymentRequest={paymentRequest}
+                total={values?.total}
                 onProceedToPayment={() => onCheckoutInit(2)}
               />
             )}

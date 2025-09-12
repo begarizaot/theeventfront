@@ -53,7 +53,12 @@ export const MyEventsComp = () => {
                     : ""
                 }
                 restriction={event?.event_restriction_id?.title ?? ""}
-                location={event?.event_locations_id?.vicinity ?? ""}
+                location={(
+                      event?.event_locations_id?.formatted_address ?? ""
+                    )
+                      .split(",")
+                      .slice(0, -1)
+                      .join(",")}
                 price={event?.event_tickets_ids ?? []}
                 classNameContainer="h-100! lg:h-80! hover:shadow-none!"
                 classTitle="text-xl! lg:text-2xl! font-bold!"
