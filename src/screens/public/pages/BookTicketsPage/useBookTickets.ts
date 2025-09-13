@@ -94,7 +94,7 @@ export const useBookTickets = () => {
   }, [values, checkoutInit]);
 
   const fechEventDetail = async () => {
-    const event = getLocalStorage(freeTicket ? "eventShared":"event");
+    const event = getLocalStorage(freeTicket ? "eventShared" : "event");
     setEventDetail(event);
     setListSeats(event.event_tickets_ids ?? []);
     fechTicketEvents(event?.id_event);
@@ -326,12 +326,12 @@ export const useBookTickets = () => {
   };
 
   const onRmSelectMap = (val: any) => {
-    if(val.numFree){
+    if (val.numFree) {
       const newList = (listSeats ?? []).map((item: any) => {
         if (item.order == val.category.key) {
           return {
             ...item,
-            select: item.select ? item.select - (val.numFree || 1) : 0,
+            select: item.select-- - 1,
             seatId: (item.seatId ?? [])?.filter((e: any) => e != val.seatId),
           };
         }
