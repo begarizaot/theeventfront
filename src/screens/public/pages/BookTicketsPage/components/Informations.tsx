@@ -187,6 +187,25 @@ export const InformationsComp = ({
                 </Form.Item>
               </div>
             </div>
+            <div className="col-span-1">
+              <div className="">
+                <Form.Item
+                  name="textMessages"
+                  valuePropName="checked"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please agree to receive text messages.",
+                    },
+                  ]}
+                >
+                  <Checkbox className="text-white! text-xs!">
+                    I agree to receive text messages about my ticket and event
+                    updates.
+                  </Checkbox>
+                </Form.Item>
+              </div>
+            </div>
           </div>
         </div>
         {/* refundable policy */}
