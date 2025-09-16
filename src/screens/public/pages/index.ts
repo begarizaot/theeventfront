@@ -8,3 +8,5 @@ export * from "./ArtistDetailsPage";
 export * from "./AllArtistPage";
 export * from "./CreateEventPage";
 export * from "./SearchPage";
+export * from "./PrivacyPolicyPage";
+export * from "./TermsAndConditionsPage";

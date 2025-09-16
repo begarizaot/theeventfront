@@ -8,6 +8,7 @@ import {
   myEventSlices,
   myOrdersSlices,
   sharedEventSlices,
+  policySlices,
 } from "./slices";
 
 const store = configureStore({
@@ -20,6 +21,7 @@ const store = configureStore({
     sharedEvent: sharedEventSlices.reducer,
     artist: artistSlices.reducer,
     myOrders: myOrdersSlices.reducer,
+    polity: policySlices.reducer,
   },
 });
 

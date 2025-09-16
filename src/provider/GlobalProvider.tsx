@@ -3,7 +3,7 @@ import { ConfigProvider, theme } from "antd";
 import { useEffect, useState } from "react";
 
 import { AppDispatch, RootState } from "../store";
-import { getGlobal } from "../store/thunks";
+import { getGlobal, getPolicy } from "../store/thunks";
 
 import { GlobalContext } from "../context";
 import { getLocalStorage, useTheme } from "../hooks";
@@ -26,6 +26,7 @@ export const GlobalProvider = ({ children }: CheckoutProviderProps) => {
 
   useEffect(() => {
     dispatch(getGlobal());
+    dispatch(getPolicy());
   }, [dispatch]);
 
   useEffect(() => {

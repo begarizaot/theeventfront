@@ -14,3 +14,4 @@ export * from "./TicketsEventsThunks";
 export * from "./EventRestrictionsThunks";
 export * from "./EventAffiliateThunks";
 export * from "./PixelThunks";
+export * from "./PolicyThunks";
