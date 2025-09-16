@@ -10,8 +10,10 @@ import {
   CreateEventPage,
   EventDetailsPage,
   HomePage,
+  PrivacyPolicyPage,
   ProfilePage,
   SearchPage,
+  TermsAndConditionsPage,
 } from "../pages";
 import { Error404Page } from "../../Error404";
 
@@ -32,6 +34,8 @@ export const PubliRouter = () => {
         <Route path="/editEvent/:id" element={<CreateEventPage />} />
         <Route path="/cotegory/:category" element={<AllEventsPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicyPage />} />
+        <Route path="/termsAndConditions" element={<TermsAndConditionsPage />} />
         <Route path="*" element={<Error404Page />} />
       </Routes>
       <FooterComp />

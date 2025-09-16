@@ -1,24 +1,25 @@
 import { Link } from "react-router-dom";
 import { useFooter } from "./useFooter";
 import { SearchComp } from "../";
+import { LogoNavCom } from "../../../../components";
 // import { LogoNavCom } from "../../../../components";
 
 export const FooterComp = () => {
-  const { footer } = useFooter();
+  const { footer, } = useFooter();
 
   return (
     <div className="bg-[linear-gradient(360deg,#410010_-3.59%,#121212_100%)]">
       <div className="max-w-[80rem] mx-auto grid grid-cols-1 py-3 px-4 sm:px-6">
-        {/* <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          <div className="col-span-1 flex justify-center sm:justify-start">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+          {/* <div className="col-span-1 flex justify-center sm:justify-start">
             <LogoNavCom
               navLogo={footer?.logo.href}
               urlLogo={footer?.logo.urlImage}
               classLogo="w-50"
             />
-          </div>
-          <div className="col-span-3 flex gap-3 sm:justify-end justify-center">
-            {([]).map((nav) => (
+          </div> */}
+          <div className="col-span-4 flex flex-wrap gap-3 justify-center">
+            {(footer?.navItems ?? []).map((nav:any) => (
               <Link
                 key={nav.id}
                 to={nav.href}
@@ -28,7 +29,7 @@ export const FooterComp = () => {
               </Link>
             ))}
           </div>
-        </div> */}
+        </div>
 
         <div className="flex justify-center my-4 sm:my-6">
           <SearchComp className="flex w-80" />

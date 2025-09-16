@@ -928,7 +928,7 @@
 
 "@strapi/blocks-react-renderer@^1.0.2":
   version "1.0.2"
-  resolved "https://registry.npmjs.org/@strapi/blocks-react-renderer/-/blocks-react-renderer-1.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/@strapi/blocks-react-renderer/-/blocks-react-renderer-1.0.2.tgz#56b48d65a84601f803d983f12d1457257b1ec02f"
   integrity sha512-pRV/WMreo5wyrLg7J0pw1DM9lg8U8m+QA7Bd8CPN3beUBTdDhYrFTTNZh3XveEdnURZNJu1X0aWXAg4SzVg7QA==
 
 "@stripe/react-stripe-js@^3.6.0":
