@@ -4,6 +4,7 @@ interface DiscountCodeRes {
   data: number;
   message: string;
   status: boolean;
+  freeTicket?: boolean;
 }
 
 export const getListDiscountCode = (
@@ -55,10 +56,10 @@ export const postEventsDiscountCode = (id_event: any, body?: any) => {
         body
       );
 
-      if (!data.status || data.message)
+      if (!data.freeTicket && (!data.status || data.message))
         return reject(data.message || data.message);
 
-      resolve(data.data);
+      resolve(data);
     } catch (error: any) {
       reject(`Failed to fetch events`);
     }
