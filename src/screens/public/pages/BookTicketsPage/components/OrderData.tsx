@@ -8,11 +8,13 @@ interface OrderDataCompProps {
   event: any;
   loading: any;
   seats: any[];
+  freeCode: boolean;
   checkoutInit: any;
   freeTicket: any;
   onCheckOut: () => void;
   onProceedToPayment: () => void;
   onDiscountCode: (code: string) => void;
+  onDeleteDiscountCode: () => void;
 }
 
 export const OrderDataComp = ({
@@ -21,10 +23,12 @@ export const OrderDataComp = ({
   seats,
   values,
   loading,
+  freeCode,
   freeTicket,
   checkoutInit,
   onProceedToPayment,
   onDiscountCode,
+  onDeleteDiscountCode,
   onCheckOut,
 }: OrderDataCompProps) => {
   const seatsFilter = (seats ?? []).filter((item) => item.select > 0);
@@ -108,6 +112,21 @@ export const OrderDataComp = ({
                 <div className="flex justify-between items-center text-sm">
                   <p>Refundable Tickets Fee</p>
                   <p>${!loading.values ? values.totalRefundable : 0}</p>
+                </div>
+              )}
+              {freeCode && (
+                <div className="flex justify-between items-center text-sm">
+                  <p>
+                    <i
+                      className="pi pi-trash text-xs mr-1"
+                      onClick={() => {
+                        onDeleteDiscountCode();
+                        setDiscountCode("")
+                      }}
+                    ></i>{" "}
+                    {discountCode}
+                  </p>
+                  <p>100%</p>
                 </div>
               )}
             </div>

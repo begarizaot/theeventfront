@@ -36,7 +36,8 @@ export const useBookTickets = () => {
 
   const navigate = useNavigate();
 
-  const { onShowSuccess, onValueOrder, freeTicket } = useContext(CardContext);
+  const { onShowSuccess, onValueOrder, freeTicket, onFreeTicket } =
+    useContext(CardContext);
   const {
     // payment
     paymentRequest,
@@ -69,6 +70,7 @@ export const useBookTickets = () => {
   const [serviceFee, setServiceFee] = useState<ServiceFeeData>();
   const [refundable, setRefundable] = useState(false);
   const [discountCode, setDiscountCode] = useState(0);
+  const [freeCode, setFreeCode] = useState(false);
 
   const [listRefundable, setListRefundable] = useState<any[]>([]);
 
@@ -82,6 +84,7 @@ export const useBookTickets = () => {
     if (checkoutInit == 1) {
       setIsError({ ...isError, discountCode: "" });
       eventDetail?.url_map && onRemoveSelected();
+      freeCode && onFreeTicket(false);
     }
   }, [checkoutInit]);
 
@@ -131,14 +134,25 @@ export const useBookTickets = () => {
         code,
         value: Number(values?.subTotal ?? 0),
       });
-      Number(values?.subTotal ?? 0) <= discountCode
+      if (discountCode.freeTicket) {
+        setFreeCode(true);
+        onFreeTicket(true);
+        return;
+      }
+
+      Number(values?.subTotal ?? 0) <= discountCode.data
         ? setDiscountCode(0)
-        : setDiscountCode(discountCode);
+        : setDiscountCode(discountCode.data);
 
       setUserData({ ...userData, discountCode: code });
+      setFreeCode(false);
     } catch (error: any) {
       setDiscountCode(0);
       setIsError({ ...isError, discountCode: error });
+      if (freeCode) {
+        onFreeTicket(false);
+        setFreeCode(false);
+      }
     }
   };
 
@@ -380,9 +394,18 @@ export const useBookTickets = () => {
     return { selectedItems, totalPrice };
   };
 
+  const onDeleteDiscountCode = () => {
+    setDiscountCode(0);
+    setUserData({ ...userData, discountCode: "" });
+    setIsError({ ...isError, discountCode: "" });
+    onFreeTicket(false);
+    setFreeCode(false);
+  };
+
   return {
     values,
     isError,
+    freeCode,
     userForm,
     listSeats,
     isLoading,
@@ -392,6 +415,7 @@ export const useBookTickets = () => {
     contextHolder,
     listRefundable,
     paymentRequest,
+    onDeleteDiscountCode,
     eventsDiscountCode,
     onCompletePurchase,
     onValueChangeUser,

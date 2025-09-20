@@ -13,6 +13,7 @@ export const BookTicketsPage = () => {
   const {
     values,
     isError,
+    freeCode,
     userForm,
     listSeats,
     isLoading,
@@ -22,6 +23,7 @@ export const BookTicketsPage = () => {
     contextHolder,
     listRefundable,
     paymentRequest,
+    onDeleteDiscountCode,
     eventsDiscountCode,
     onCompletePurchase,
     onValueChangeUser,
@@ -106,12 +108,14 @@ export const BookTicketsPage = () => {
               error={isError}
               values={values}
               seats={listSeats}
+              freeCode={freeCode}
               event={eventDetail}
               loading={isLoading}
               freeTicket={freeTicket}
               checkoutInit={checkoutInit}
               onProceedToPayment={() => onCheckOut()}
               onCheckOut={onCompletePurchase}
+              onDeleteDiscountCode={onDeleteDiscountCode}
               onDiscountCode={(code) => {
                 eventsDiscountCode(code);
               }}
