@@ -52,7 +52,7 @@ export const EventDetailsPage = () => {
                     navigate(`/editEvent/${eventData?.id_event}`);
                   }}
                 >
-                  Edit Event
+                  Save Event
                 </Button>
               </>
             )}
