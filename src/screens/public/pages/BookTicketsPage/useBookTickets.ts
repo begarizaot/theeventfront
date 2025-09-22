@@ -96,6 +96,11 @@ export const useBookTickets = () => {
     values?.total && checkoutInit == 3 && onPaymentStripe();
   }, [values, checkoutInit]);
 
+  useEffect(() => {
+    setRefundable(userData.refundable);
+  }, [userData.refundable]);
+  
+
   const fechEventDetail = async () => {
     const event = getLocalStorage(freeTicket ? "eventShared" : "event");
     setEventDetail(event);
@@ -258,8 +263,7 @@ export const useBookTickets = () => {
 
   // actions
   const onValueChangeUser = (val: any) => {
-    setRefundable(val?.refundable);
-    freeTicket && setUserData({ ...userData, ...val });
+    setUserData({ ...userData, ...val });
   };
 
   const onSelectSeats = (val: any) => {
@@ -298,7 +302,7 @@ export const useBookTickets = () => {
       (sFee?.minRefundable ?? 0) + (ticket * (sFee?.refundable ?? 0)) / 10;
     const totalRefundable = refundable ? refundableRes * ticketCount : 0;
     const total = subtotal + processingFee + totalRefundable;
-
+    
     setValues({
       ...values,
       subTotal: ticket.toFixed(2),
