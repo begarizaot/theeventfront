@@ -5,12 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { getListCountries, postLogin } from "../../../store/thunks";
 import { SegmentedCom, TextPrimary } from "../../../components";
-import { AuthContext } from "../../../context";
+import { AuthContext, UserContext } from "../../../context";
 import { BgAuth } from "../components";
 
 export const LoginPages = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
+
+  const { onValueUser } = useContext(UserContext);
 
   const { onLoading, onError, onValueInfo } = useContext(AuthContext);
 
@@ -30,9 +32,14 @@ export const LoginPages = () => {
     onLoading(true);
     try {
       const res = await postLogin({ ...values, type: selectForm });
-      await onValueInfo(res);
+      // await onValueInfo(res);
+      // onLoading(false);
+      // navigate(`/auth/otp`);
+
+      onValueUser(res);
+      onValueInfo({});
       onLoading(false);
-      navigate(`/auth/otp`);
+      navigate(`/`, { replace: true });
     } catch (error) {
       onError(error as string);
       onLoading(false);
@@ -139,7 +146,9 @@ export const LoginPages = () => {
                       >
                         <InputNumber
                           formatter={(value) =>
-                            `${value}`.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2 $3')
+                            `${value}`
+                              .replace(/\D/g, "")
+                              .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2 $3")
                           }
                           className="rounded-full! bg-transparent! w-full! text-white! py-[0px]! border-white! styleNumberInput"
                           placeholder="Phone Number"
