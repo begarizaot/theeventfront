@@ -46,17 +46,9 @@ export const InfoScannerQrMod = ({
           )}
         </div>
         <div className="col-span-1 mt-3">
-          <Popconfirm
-            title="Confirm Scanned Ticket"
-            description="Are you sure you want to confirm this scanned ticket?"
-            onConfirm={onContinue}
-            okText="Yes"
-            cancelText="No"
-          >
-            <Button className="w-full rounded-3xl! uppercase btnStyle">
-              <span className="font-bold text-xs">Continue</span>
-            </Button>
-          </Popconfirm>
+          <Button className="w-full rounded-3xl! uppercase btnStyle" onClick={onContinue}>
+            <span className="font-bold text-xs">Continue</span>
+          </Button>
         </div>
       </div>
     </Modal>
