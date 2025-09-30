@@ -4,6 +4,7 @@ import {
   getValidateEmail,
 } from "../../../../../store/thunks";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 interface InformationsCompProps {
   userData: any;
@@ -199,9 +200,27 @@ export const InformationsComp = ({
                     },
                   ]}
                 >
-                  <Checkbox className="text-white! text-xs!">
-                    I agree to receive text messages about my ticket and event
-                    updates.
+                  <Checkbox className="text-white! text-xs! flex">
+                    By providing your phone number, you agree to receive SMS
+                    order confirmations and ticket links from Event Jet.
+                    Frequency varies by order. Reply HELP for help or STOP to
+                    opt out. Message & data rates may apply. See our Privacy
+                    Policy at
+                    <Link
+                      to="/privacyPolicy"
+                      className="text-white! text-sm mx-1 underline!"
+                      target="_blank"
+                    >
+                      Privacy Policy
+                    </Link>
+                    and our
+                    <Link
+                      to="/termsAndConditions"
+                      className="text-white! text-sm ml-1 underline!"
+                      target="_blank"
+                    >
+                      Terms of Service
+                    </Link>
                   </Checkbox>
                 </Form.Item>
               </div>
