@@ -31,8 +31,8 @@ export const FreeTicketsPage = () => {
       width: 250,
     },
     {
-      title: "Phone",
-      dataIndex: "phone",
+      title: "Phone/Email",
+      dataIndex: "phoneEmail",
       key: "phone",
       width: 150,
     },

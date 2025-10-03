@@ -44,8 +44,7 @@ export const getMyOrders = () => {
     try {
       const { data } = await theEventApi.get<any>(`order/getMyOrders`);
 
-      if (!data.status)
-        return dispatch(myOrdersFailure(data.message));
+      if (!data.status) return dispatch(myOrdersFailure(data.message));
 
       dispatch(myOrdersSuccess(data.data));
     } catch (error) {
@@ -149,7 +148,9 @@ export const getAllOrdersFree = (
         item.customer = `${FirstUpperCase(
           item.users_id?.firstName
         )} ${FirstUpperCase(item.users_id?.lastName)}`;
-        item.phone = `${item.users_id?.country_id?.code}${item.users_id?.phoneNumber}`;
+        item.phoneEmail = item.users_id?.phoneNumber
+          ? `${item.users_id?.country_id?.code}${item.users_id?.phoneNumber}`
+          : item.users_id?.email;
         item.tickets = GroupedTickets(item.tickets_id)
           .map((item: any) => `${item.quantity ?? ""} ${item.title ?? ""}`)
           .join(", ");
@@ -269,7 +270,6 @@ export const postCreateOrderFree = (dataReq: any) => {
     }
   });
 };
-
 
 export const postSendMail = (idOrder: any, dataReq: any) => {
   return new Promise<any>(async (resolve, reject) => {
