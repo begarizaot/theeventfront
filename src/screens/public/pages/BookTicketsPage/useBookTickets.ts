@@ -99,7 +99,6 @@ export const useBookTickets = () => {
   useEffect(() => {
     setRefundable(userData.refundable);
   }, [userData.refundable]);
-  
 
   const fechEventDetail = async () => {
     const event = getLocalStorage(freeTicket ? "eventShared" : "event");
@@ -211,9 +210,11 @@ export const useBookTickets = () => {
       postSendMail(order, userData);
       onValueOrder(order);
       onShowSuccess();
-      navigate(`/admin/freeTickets/${eventDetail?.id_event}`, {
-        replace: true,
-      });
+      freeCode
+        ? navigate(`/event/${eventDetail?.id_event}`, { replace: true })
+        : navigate(`/admin/freeTickets/${eventDetail?.id_event}`, {
+            replace: true,
+          });
     } catch (error: any) {
       setIsLoading({ ...isLoading, complete: false });
       abortPayment();
@@ -302,7 +303,7 @@ export const useBookTickets = () => {
       (sFee?.minRefundable ?? 0) + (ticket * (sFee?.refundable ?? 0)) / 10;
     const totalRefundable = refundable ? refundableRes * ticketCount : 0;
     const total = subtotal + processingFee + totalRefundable;
-    
+
     setValues({
       ...values,
       subTotal: ticket.toFixed(2),
