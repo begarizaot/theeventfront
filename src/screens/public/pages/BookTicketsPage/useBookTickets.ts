@@ -204,6 +204,7 @@ export const useBookTickets = () => {
         tickets: (listSeats ?? []).filter((item) => item.select > 0),
         userData,
         values: useParseNumbers(values),
+        freeCode
       };
       await postCreatePaymentFree(data);
       const order = await postCreateOrderFree(data);
